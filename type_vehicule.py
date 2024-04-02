@@ -6,5 +6,7 @@ class Type_de_Vehicule:
         Catégorie du véhicule.
     """
     def __init__(self) -> None:
+        """ fonction
+        """
         pass
 
