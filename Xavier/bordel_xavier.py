@@ -13,6 +13,7 @@ def nmbr_mort_total(data):
     return ("Nombre total de personnes tuées dans toute la base de données :",
             total_persons_killed)
 
+
 result = nmbr_mort_total(data)
 print(result)
 
