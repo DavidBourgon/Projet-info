@@ -30,6 +30,8 @@ class SecteurPrive:
                     indicateur_risque +
                     self.__calculer_risque_rue(vehicule, localisation[k])
                     )
+            prix = (400 * indicateur_risque) * (1 + self.marge)
+            return prix
 
     def __repr__(self, localisation: list[str], vehicule) -> str:
         return (f"Pour assurer votre véhicule de type, vous devez vous"
