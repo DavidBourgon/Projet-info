@@ -12,3 +12,4 @@ def nmbr_mort_total():
     total_persons_killed = data["NUMBER.OF.PERSONS.KILLED"].sum()
     return ["Nombre total de personnes tuées dans toute la base de données :",
             total_persons_killed]
+
