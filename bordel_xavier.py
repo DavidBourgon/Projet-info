@@ -13,7 +13,6 @@ def nmbr_mort_total(data):
     return ("Nombre total de personnes tuées dans toute la base de données :",
             total_persons_killed)
 
-
 # result = nmbr_mort_total(data)
 # print(result)
 
@@ -23,4 +22,6 @@ def nmbr_mort_total_rue(data, street : str):
     return ("Nombre total de personnes tuées dans toute la base de données :",
             total_persons_killed)
 
-street = 
+
+street = 'HEATH AVENUE'
+print(nmbr_mort_total_rue(data, street))
