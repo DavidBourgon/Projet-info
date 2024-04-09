@@ -5,7 +5,9 @@ class Type_de_Vehicule:
     categorie: str
         Catégorie du véhicule.
     """
-    def __init__(self) -> None:
+    def __init__(self, categorie: str) -> None:
         """ fonction
         """
-        pass
+        if not isinstance(categorie, str):
+            raise TypeError("Le nom doit être une instance de str.")
+
