@@ -11,13 +11,13 @@ class SecteurPublic:
     Parameters
     ----------
     pieton : bool
-        indique si l'utilisateur concerné est un piéton ou non
+        Indique si l'utilisateur concerné est un piéton ou non.
 
     velo : bool
-        indique si l'utilisateur concerné est un cycliste ou non
+        Indique si l'utilisateur concerné est un cycliste ou non.
 
     vehicule : bool
-        indique si l'utilisateur concerné est un conducteur ou non
+        Indique si l'utilisateur concerné est un conducteur ou non.
 
     """
 
@@ -35,15 +35,29 @@ class SecteurPublic:
         Parameters
         ----------
         rue : str
-            Nom de la rue dont on veut calculer le taux de mortalité
+            Nom de la rue dont on veut calculer le taux de mortalité.
 
         Returns
         -------
-        str : taux de mortalité de la rue demandée
+        str : Taux de mortalité de la rue demandée.
 
         """
         taux_mortalité = bx.nmbr_mort_total(data)/bx.nmbr_mort_total_rue(data)
         return f"Le taux de mortalité de la rue {rue} est {taux_mortalité}."
 
     def __localiser_infrastructure(self, zones: dict[int: list[str]]):
+        """ Permet de savoir où localiser des structures publiques parmi
+        certaines zones sélectionées.
+
+        Parameters
+        ----------
+        zones : dict[int: list[str]]
+            Dictionnaire contenant les zones sélectionnées auxquelles des
+            numéros sont attribués.
+
+        Returns
+        -------
+        int : Numéro de la zone où localiser l'infrastructure.
+
+        """
         pass
