@@ -4,7 +4,7 @@
 import pandas as pd
 
 
-data = pd.read_excel("BdD_Bronx.xlsx")
+data = pd.read_excel("bronx_2.xlsx")
 
 
 def nmbr_mort_total(data):
@@ -27,6 +27,6 @@ def nmbr_mort_total_rue(data, street: str):
             total_persons_killed)
 
 
-data = pd.read_excel("BdD_Bronx.xlsx")
+data = pd.read_excel("bronx_2.xlsx")
 street = 'HEATH AVENUE'
 print(nmbr_mort_total_rue(data, street))
