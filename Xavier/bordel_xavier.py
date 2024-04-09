@@ -23,9 +23,9 @@ def nmbr_mort_total_rue(data, street: str):
     street_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
                        data["ON.STREET.NAME"].str.contains(street) |
                        data["OFF.STREET.NAME"].str.contains(street)]
-    total_persons_killed = street_data["NUMBER.OF.PERSONS.KILLED"].sum()
+    total_persons_killed_street = street_data["NUMBER.OF.PERSONS.KILLED"].sum()
     return ("Nombre total de personnes tuées dans la rue base de données :",
-            total_persons_killed)
+            total_persons_killed_street)
 
 
 # data = pd.read_excel("Bronx_2.xlsx")
