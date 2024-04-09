@@ -19,9 +19,9 @@ def nmbr_mort_total(data):
 
 def nmbr_mort_total_rue(data, street: str):
     # Calculer le nombre total de personnes par rue
-    street_data = data[data["CROSS.STREET.NAME"] == street |
-                       data["ON.STREET.NAME"] == street |
-                       data["OFF.STREET.NAME"] == street]
+    street_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
+                       data["ON.STREET.NAME"].str.contains(street) |
+                       data["OFF.STREET.NAME"].str.contains(street)]
     total_persons_killed = street_data["NUMBER.OF.PERSONS.KILLED"].sum()
     return ("Nombre total de personnes tuées dans la rue base de données :",
             total_persons_killed)
