@@ -1,6 +1,9 @@
-import panda as pd
+# pip install openpyxl
+# pip install pandas
 
-# Charger le fichier Excel dans un DataFrame
+import pandas as pd
+
+
 data = pd.read_excel("BdD_Bronx.xlsx")
 
 
