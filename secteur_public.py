@@ -8,7 +8,7 @@ class SecteurPublic:
         self.vehicule = vehicule
         if not isinstance(vehicule, TypeDeVehicule):
             raise TypeError("Le véhicule doit être une instance de "
-            "TypeDeVehicule.")
+                            "TypeDeVehicule.")
 
     def calculer_mortalité_rue(rue: str):
         pass
