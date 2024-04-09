@@ -3,3 +3,11 @@ class Type_de_Vehicule:
         """ fonction
         """
         pass
+
+
+def name():
+    """
+    Purpose:
+    """
+    pass
+# end def
