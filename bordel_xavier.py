@@ -16,10 +16,11 @@ def nmbr_mort_total(data):
 # result = nmbr_mort_total(data)
 # print(result)
 
-def nmbr_mort_total_rue(data, street : str):
+
+def nmbr_mort_total_rue(data, street: str):
     # Calculer le nombre total de personnes par rue
     total_persons_killed = data.groupby(street)["NUMBER.OF.PERSONS.KILLED"].sum()
-    return ("Nombre total de personnes tuées dans toute la base de données :",
+    return ("Nombre total de personnes tuées dans la rue base de données :",
             total_persons_killed)
 
 
