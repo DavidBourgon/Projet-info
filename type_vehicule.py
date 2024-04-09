@@ -1,4 +1,4 @@
-class Type_de_Vehicule:
+class TypeDeVehicule:
     """ Décrit le véhicule.
     Parameters
     ----------
