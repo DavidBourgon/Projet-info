@@ -1,5 +1,5 @@
 import pandas as pd
-from type_vehicule import Type_de_Vehicule
+from type_vehicule import TypeDeVehicule
 
 
 class SecteurPrive:
@@ -18,8 +18,10 @@ class SecteurPrive:
                               rue: str) -> float:
         pass
 
-    def __donner_prix(self, localisation: list[str]) -> float:
+    def __donner_prix(self, localisation: list[str], type_de_vehicule) -> float:
         pass
 
-    def __repr__(self) -> str:
-        pass
+    def __repr__(self, localisation: list[str], type_de_vehicule) -> str:
+        return (f"Pour assurer votre véhicule de type, vous devez vous"
+                f"acquitter de"
+                f" {self.__donner_prix(localisation, type_de_vehicule)}")
