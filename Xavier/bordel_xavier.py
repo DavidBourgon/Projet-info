@@ -17,7 +17,7 @@ def nombre_observation(data):
     Returns:
     int: Nombre d'observations dans le DataFrame.
     """
-    return ("Nombre d'observations dans le DataFrame :",data.shape[0])
+    return ("Nombre d'observations dans le DataFrame :", data.shape[0])
 
 
 # print(nombre_observation(data))
@@ -32,14 +32,16 @@ def nmbr_mort_total(data):
 # result = nmbr_mort_total(data)
 # print(result)
 
+
 def nmbr_blessés_total(data):
     # Calculer le nombre total de personnes tuées
     total_persons_injuried = data["NUMBER.OF.PERSONS.INJURED"].sum()
-    return ("Nombre total de personnes bléssées dans toute la base de données :",
+    return ("Nombre total de personnes bléssées dans toute la base :",
             total_persons_injuried)
 
 # result = nmbr_blessés_total(data)
 # print(result)
+
 
 def nmbr_mort_total_rue(data, street: str):
     # Calculer le nombre total de personnes par rue
@@ -109,7 +111,7 @@ def modalités_variable(data, variable):
     data (DataFrame): Le DataFrame contenant les données.
 
     Returns:
-    list: Liste des modalités différentes de la variable "CONTRIBUTING.FACTOR.VEHICLE.1".
+    list: Liste des modalités différentes de la variable.
     """
     return ("Modalités différentes de :",
             variable,
@@ -147,7 +149,8 @@ def filtrer_par_modalité(data, variable, modalité):
 
 def filtrer_par_date(data, date_debut, date_fin):
     """
-    Filtre le DataFrame en fonction de la date entre date_debut et date_fin inclusivement.
+    Filtre le DataFrame en fonction de la date entre date_debut et date_fin
+    inclusivement.
 
     Args:
     data (DataFrame): Le DataFrame contenant les données.
@@ -184,12 +187,15 @@ def filtrer_par_date(data, date_debut, date_fin):
 
 def filtrer_par_heure(data, heure_debut, heure_fin):
     """
-    Filtre le DataFrame en fonction de la date entre date_debut et date_fin inclusivement.
+    Filtre le DataFrame en fonction de la date entre date_debut et date_fin
+    inclusivement.
 
     Args:
     data (DataFrame): Le DataFrame contenant les données.
-    date_debut (str): La date de début de la période choisie au format "MM/DD/YYYY".
-    date_fin (str): La date de fin de la période choisie au format "MM/DD/YYYY".
+    date_debut (str): La date de début de la période choisie
+    au format "MM/DD/YYYY".
+    date_fin (str): La date de fin de la période choisie
+    au format "MM/DD/YYYY".
 
     Returns:
     tuple: Un tuple contenant un message décrivant la période filtrée et le
@@ -213,6 +219,6 @@ def filtrer_par_heure(data, heure_debut, heure_fin):
             filtered_data)
 
 # Définir les heures de début et de fin de la période choisie
-heure_debut = "00:00"
+heure_debut = "01:00" # attention ne prends pas 24:00 s'arrête à 00:01
 heure_fin = "23:00" # attention ne prends pas 24:00 s'arrête à 23:59
 print(filtrer_par_date(data, heure_debut, heure_fin))
