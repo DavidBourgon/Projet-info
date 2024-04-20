@@ -7,6 +7,22 @@ import pandas as pd
 data = pd.read_excel("Bronx_2.xlsx")
 
 
+def nombre_observation(data):
+    """
+    Compte le nombre d'observations dans un DataFrame.
+
+    Args:
+    data (DataFrame): Le DataFrame contenant les données.
+
+    Returns:
+    int: Nombre d'observations dans le DataFrame.
+    """
+    return ("Nombre d'observations dans le DataFrame :",data.shape[0])
+
+
+# print(nombre_observation(data))
+
+
 def nmbr_mort_total(data):
     # Calculer le nombre total de personnes tuées
     total_persons_killed = data["NUMBER.OF.PERSONS.KILLED"].sum()
@@ -127,3 +143,76 @@ def filtrer_par_modalité(data, variable, modalité):
 # modalité = "Unspecified"
 # variable = "CONTRIBUTING.FACTOR.VEHICLE.1"
 # print(filtrer_par_modalité(data, variable, modalité))
+
+
+def filtrer_par_date(data, date_debut, date_fin):
+    """
+    Filtre le DataFrame en fonction de la date entre date_debut et date_fin inclusivement.
+
+    Args:
+    data (DataFrame): Le DataFrame contenant les données.
+    date_debut (str): La date de début de la période choisie au format
+    "MM/DD/YYYY".
+    date_fin (str): La date de fin de la période choisie au format
+    "MM/DD/YYYY".
+
+    Returns:
+    DataFrame: Le DataFrame filtré.
+    """
+    # Convertir les colonnes "CRASH.DATE" en type datetime
+    data["CRASH_DATE"] = pd.to_datetime(data["CRASH.DATE"])
+
+    # Les bornes sont prises
+    filtered_data = data[(data["CRASH_DATE"] >= pd.to_datetime(date_debut)) &
+                         (data["CRASH_DATE"] <= pd.to_datetime(date_fin))]
+
+    # Supprimer la colonne temporaire "CRASH_DATE"
+    filtered_data = filtered_data.drop(columns=["CRASH_DATE"])
+
+    return ("Data frame filtré pour la période du",
+            date_debut,
+            "au",
+            date_fin,
+            filtered_data)
+
+
+# # Année 2021
+# date_debut = "01/01/2021"
+# date_fin = "12/31/2021"
+# print(filtrer_par_date(data, date_debut, date_fin))
+
+
+def filtrer_par_heure(data, heure_debut, heure_fin):
+    """
+    Filtre le DataFrame en fonction de la date entre date_debut et date_fin inclusivement.
+
+    Args:
+    data (DataFrame): Le DataFrame contenant les données.
+    date_debut (str): La date de début de la période choisie au format "MM/DD/YYYY".
+    date_fin (str): La date de fin de la période choisie au format "MM/DD/YYYY".
+
+    Returns:
+    tuple: Un tuple contenant un message décrivant la période filtrée et le
+    DataFrame filtré.
+    """
+    # Convertir les colonnes "CRASH.DATE" en type datetime
+    data["CRASH_TIME"] = pd.to_datetime(data["CRASH.TIME"])
+
+    # Filtrer le DataFrame en fonction de la date entre date_debut et date_fin
+    # inclusivement
+    filtered_data = data[(data["CRASH_TIME"].dt.strftime("%H:%M")
+                          >= heure_debut) &
+                         (data["CRASH_TIME"].dt.strftime("%H:%M")
+                          <= heure_fin)]
+
+    # Supprimer la colonne temporaire "CRASH_TIME"
+    filtered_data = filtered_data.drop(columns=["CRASH_TIME"])
+
+    return ("Data frame filtré pour la période entre", heure_debut,
+            "et", heure_fin, ":",
+            filtered_data)
+
+# Définir les heures de début et de fin de la période choisie
+heure_debut = "00:00"
+heure_fin = "23:00" # attention ne prends pas 24:00 s'arrête à 23:59
+print(filtrer_par_date(data, heure_debut, heure_fin))
