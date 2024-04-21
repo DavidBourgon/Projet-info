@@ -2,8 +2,6 @@
 # pip install pandas
 
 import pandas as pd
-
-
 data = pd.read_excel("Bronx_2.xlsx")
 
 
