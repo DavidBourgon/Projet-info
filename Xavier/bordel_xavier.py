@@ -137,7 +137,7 @@ def filtrer_par_modalité(data, variable, modalité):
     filtered_data = data[data[variable] == modalité]
     return ("Data frame filtré pour la modalité",
             modalité,
-            "et la variable",
+            "de la variable",
             variable,
             filtered_data)
 
@@ -184,41 +184,43 @@ def filtrer_par_date(data, date_debut, date_fin):
 # date_fin = "12/31/2021"
 # print(filtrer_par_date(data, date_debut, date_fin))
 
+from datetime import datetime
 
 def filtrer_par_heure(data, heure_debut, heure_fin):
     """
-    Filtre le DataFrame en fonction de la date entre date_debut et date_fin
-    inclusivement.
+    Filtre le DataFrame en fonction de l'heure entre heure_debut et heure_fin inclusivement.
 
     Args:
     data (DataFrame): Le DataFrame contenant les données.
-    date_debut (str): La date de début de la période choisie
-    au format "MM/DD/YYYY".
-    date_fin (str): La date de fin de la période choisie
-    au format "MM/DD/YYYY".
+    heure_debut (str): L'heure de début de la période choisie au format "HH:MM".
+    heure_fin (str): L'heure de fin de la période choisie au format "HH:MM".
 
     Returns:
-    tuple: Un tuple contenant un message décrivant la période filtrée et le
-    DataFrame filtré.
+    tuple: Un tuple contenant un message décrivant la période filtrée et le DataFrame filtré.
     """
-    # Convertir les colonnes "CRASH.DATE" en type datetime
-    data["CRASH_TIME"] = pd.to_datetime(data["CRASH.TIME"])
+    # Convertir les colonnes "CRASH.TIME" en type datetime
+    data["CRASH_TIME"] = pd.to_datetime(data["CRASH.TIME"]).dt.strftime("%H:%M")
 
-    # Filtrer le DataFrame en fonction de la date entre date_debut et date_fin
-    # inclusivement
-    filtered_data = data[(data["CRASH_TIME"].dt.strftime("%H:%M")
-                          >= heure_debut) &
-                         (data["CRASH_TIME"].dt.strftime("%H:%M")
-                          <= heure_fin)]
+    # Filtrer le DataFrame en fonction de l'heure entre heure_debut
+    # et heure_fin inclusivement
+    filtered_data = data[(data["CRASH_TIME"].dt.strftime("%H:%M") >= heure_debut) &
+                         (data["CRASH_TIME"].dt.strftime("%H:%M") <= heure_fin)]
 
     # Supprimer la colonne temporaire "CRASH_TIME"
     filtered_data = filtered_data.drop(columns=["CRASH_TIME"])
 
-    return ("Data frame filtré pour la période entre", heure_debut,
-            "et", heure_fin, ":",
+    return ("Data frame filtré pour la période entre",
+            heure_debut,
+            "et",
+            heure_fin, ":",
             filtered_data)
 
 # Définir les heures de début et de fin de la période choisie
 heure_debut = "01:00" # attention ne prends pas 24:00 s'arrête à 00:01
 heure_fin = "23:00" # attention ne prends pas 24:00 s'arrête à 23:59
-print(filtrer_par_date(data, heure_debut, heure_fin))
+print(filtrer_par_heure(data, heure_debut, heure_fin))
+
+
+# data["CRASH_TIME"] = pd.to_datetime(data["CRASH.TIME"]).dt.strftime("%H:%M")
+
+# print(data.head(5))
