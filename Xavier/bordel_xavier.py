@@ -61,7 +61,8 @@ def nmbr_blessés_total_rue(data, street: str):
     street_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
                        data["ON.STREET.NAME"].str.contains(street) |
                        data["OFF.STREET.NAME"].str.contains(street)]
-    total_persons_injuried_street = street_data["NUMBER.OF.PERSONS.INJURED"].sum()
+    total_persons_injuried_street = street_data["NUMBER.OF.PERSONS.INJURED"].\
+        sum()
     return ("Nombre total de personnes bléssées dans la rue base de données :",
             total_persons_injuried_street)
 
@@ -184,27 +185,29 @@ def filtrer_par_date(data, date_debut, date_fin):
 # date_fin = "12/31/2021"
 # print(filtrer_par_date(data, date_debut, date_fin))
 
-from datetime import datetime
 
 def filtrer_par_heure(data, heure_debut, heure_fin):
     """
-    Filtre le DataFrame en fonction de l'heure entre heure_debut et heure_fin inclusivement.
+    Filtre le DataFrame en fonction de l'heure entre heure_debut
+    et heure_fin inclusivement.
 
     Args:
     data (DataFrame): Le DataFrame contenant les données.
-    heure_debut (str): L'heure de début de la période choisie au format "HH:MM".
-    heure_fin (str): L'heure de fin de la période choisie au format "HH:MM".
+    heure_debut (str): L'heure de début de la période au format "HH:MM".
+    heure_fin (str): L'heure de fin de la période au format "HH:MM".
 
     Returns:
-    tuple: Un tuple contenant un message décrivant la période filtrée et le DataFrame filtré.
+    tuple: Un tuple contenant un message décrivant la période filtrée
+    et le DataFrame filtré.
     """
     # Convertir les colonnes "CRASH.TIME" en type datetime
-    data["CRASH_TIME"] = pd.to_datetime(data["CRASH.TIME"]).dt.strftime("%H:%M")
+    data["CRASH_TIME"] = pd.to_datetime(data["CRASH.TIME"]).dt.\
+        strftime("%H:%M")
 
     # Filtrer le DataFrame en fonction de l'heure entre heure_debut
     # et heure_fin inclusivement
-    filtered_data = data[(data["CRASH_TIME"].dt.strftime("%H:%M") >= heure_debut) &
-                         (data["CRASH_TIME"].dt.strftime("%H:%M") <= heure_fin)]
+    filtered_data = data[(data["CRASH_TIME"] >= heure_debut) &
+                         (data["CRASH_TIME"] <= heure_fin)]
 
     # Supprimer la colonne temporaire "CRASH_TIME"
     filtered_data = filtered_data.drop(columns=["CRASH_TIME"])
@@ -215,12 +218,7 @@ def filtrer_par_heure(data, heure_debut, heure_fin):
             heure_fin, ":",
             filtered_data)
 
-# Définir les heures de début et de fin de la période choisie
-heure_debut = "01:00" # attention ne prends pas 24:00 s'arrête à 00:01
-heure_fin = "23:00" # attention ne prends pas 24:00 s'arrête à 23:59
-print(filtrer_par_heure(data, heure_debut, heure_fin))
-
-
-# data["CRASH_TIME"] = pd.to_datetime(data["CRASH.TIME"]).dt.strftime("%H:%M")
-
-# print(data.head(5))
+# # Définir les heures de début et de fin de la période choisie
+# heure_debut = "08:00" # attention ne prends pas 24:00 s'arrête à 00:01
+# heure_fin = "08:40" # attention ne prends pas 24:00 s'arrête à 23:59
+# print(filtrer_par_heure(data, heure_debut, heure_fin))
