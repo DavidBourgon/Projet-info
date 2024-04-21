@@ -14,7 +14,13 @@ def nombre_observation(data):
 
     Returns:
     int: Nombre d'observations dans le DataFrame.
+
+    Raises:
+    TypeError: Si data n'est pas un DataFrame.
     """
+    if not isinstance(data, pd.DataFrame):
+        raise TypeError("data de nombre_observation doit être un DataFrame.")
+
     return ("Nombre d'observations dans le DataFrame :", data.shape[0])
 
 
