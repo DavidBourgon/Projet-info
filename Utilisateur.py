@@ -2,10 +2,10 @@ import pandas as pd
 
 
 class Utilisateur:
-    def __init__(data):
+    def __init__(self):
         pass
 
-    def nombre_observation(data):
+    def nombre_observation(self, data):
         """
         Compte le nombre d'observations dans un DataFrame.
 
@@ -19,101 +19,114 @@ class Utilisateur:
         TypeError: Si data n'est pas un DataFrame.
         """
         if not isinstance(data, pd.DataFrame):
-            raise TypeError("data de nombre_observation doit être un DataFrame.")
+            raise TypeError("data de nombre_observation "
+                            "doit être un DataFrame.")
 
         return ("Nombre d'observations dans le DataFrame :", data.shape[0])
 
-    def nmbr_mort_total(data):
-        # Calculer le nombre total de personnes tuées
-        total_persons_killed = data["NUMBER.OF.PERSONS.KILLED"].sum()
-        return ("Nombre total de personnes tuées dans toute la base de données :",
-                total_persons_killed)
+    def calcul_totaux_statut(self, data, statut):
+        # statut est un str B pr bléssés
+        # m mort
+        # bm bléssés et mort
+        if not isinstance(data, pd.DataFrame):
+            raise TypeError("data de calcul_totaux doit être un DataFrame.")
 
-    def nmbr_blessés_total(data):
-        # Calculer le nombre total de personnes tuées
-        total_persons_injuried = data["NUMBER.OF.PERSONS.INJURED"].sum()
-        return ("Nombre total de personnes bléssées dans toute la base :",
-                total_persons_injuried)
+        elif statut == "B":
+            total_persons_injuried = data["NUMBER.OF.PERSONS.INJURED"].sum()
+            return ("Nombre total de personnes bléssées dans le tableau :",
+                    total_persons_injuried)
+        elif statut == "T":
+            total_persons_killed = data["NUMBER.OF.PERSONS.KILLED"].sum()
+            return ("Nombre total de personnes tuées dans le tableau :",
+                    total_persons_killed)
+        elif statut == "BT":
+            total_persons_killed = data["NUMBER.OF.PERSONS.KILLED"].sum()
+            total_persons_injuried = data["NUMBER.OF.PERSONS.INJURED"].sum()
+            total_both = total_persons_killed + total_persons_injuried
+            return ("Nombre total d'individus bléssés et"
+                    " tués dans le tableau :",
+                    total_both)
 
-    def nmbr_mort_total_rue(data, street: str):
-        # Calculer le nombre total de personnes par rue
-        street_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
-                        data["ON.STREET.NAME"].str.contains(street) |
-                        data["OFF.STREET.NAME"].str.contains(street)]
-        total_persons_killed_street = street_data["NUMBER.OF.PERSONS.KILLED"].sum()
-        return ("Nombre total de personnes tuées dans la rue base de données :",
-                total_persons_killed_street)
-
-    def nmbr_blessés_total_rue(data, street: str):
-        # Calculer le nombre total de personnes par rue
-        street_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
-                        data["ON.STREET.NAME"].str.contains(street) |
-                        data["OFF.STREET.NAME"].str.contains(street)]
-        total_persons_injuried_street = street_data["NUMBER.OF.PERSONS.INJURED"].\
-            sum()
-        return ("Nombre total de personnes bléssées dans la rue base de données :",
-                total_persons_injuried_street)
-
-    def total_piétons_blessés_tués(data):
-        colonnes_piétons = ["NUMBER.OF.PEDESTRIANS.INJURED",
-                            "NUMBER.OF.PEDESTRIANS.KILLED"]
-        total_piétons = data[colonnes_piétons].sum().sum()
-        return ("Nombre total de piétons blessés ou tués :",
-                total_piétons)
-
-    def total_cyclistes_blessés_tués(data):
-        colonnes_cyclistes = ["NUMBER.OF.CYCLIST.INJURED",
-                            "NUMBER.OF.CYCLIST.KILLED"]
-        total_cyclistes = data[colonnes_cyclistes].sum().sum()
-        return ("Nombre total de cyclistes blessés ou tués :",
-                total_cyclistes)
-
-    def total_automobilistes_blessés_tués(data):
-        colonnes_automobilistes = ["NUMBER.OF.MOTORIST.INJURED",
-                                "NUMBER.OF.MOTORIST.KILLED"]
-        total_automobilistes = data[colonnes_automobilistes].sum().sum()
-        return ("Nombre total d'automobilistes blessés ou tués :",
-                total_automobilistes)
-
-    def modalités_variable(data, variable):
+    def calcul_type_statut(self, data, type, statut):
         """
-        Renvoie toutes les modalités différentes d'une variable
-        dans une liste.
+        type str si auto / cycl / piet
+        """
+        if not isinstance(data, pd.DataFrame):
+            raise TypeError("data de calcul_totaux doit être un DataFrame.")
 
-        attention varible en majusccule et séparéles mots par des points
+        elif type == "Auto":
+            colonnes_automobilistes = ["NUMBER.OF.MOTORIST.INJURED",
+                                       "NUMBER.OF.MOTORIST.KILLED"]
+            if statut == "B":
+                total_automobilistes = data[colonnes_automobilistes[0]].sum()
+                return ("Nombre total d'automobilistes blessés :",
+                        total_automobilistes)
+            elif statut == "T":
+                total_automobilistes = data[colonnes_automobilistes[1]].sum()
+                return ("Nombre total d'automobilistes tués :",
+                        total_automobilistes)
+            elif statut == "BT":
+                total_automobilistes = data[colonnes_automobilistes].sum()\
+                    .sum()
+                return ("Nombre total d'automobilistes blessés tués :",
+                        total_automobilistes)
+
+        elif type == "Cycl":
+            colonnes_cyclistes = ["NUMBER.OF.CYCLIST.INJURED",
+                                  "NUMBER.OF.CYCLIST.KILLED"]
+            if statut == "B":
+                total_cyclistes = data[colonnes_cyclistes[0]].sum()
+                return ("Nombre total de cyclistes blessés :",
+                        total_cyclistes)
+            elif statut == "T":
+                total_cyclistes = data[colonnes_cyclistes[1]].sum()
+                return ("Nombre total de cyclistes blessés :",
+                        total_cyclistes)
+            elif statut == "BT":
+                total_cyclistes = data[colonnes_cyclistes].sum().sum()
+                return ("Nombre total de cyclistes blessés et tués :",
+                        total_cyclistes)
+
+        elif type == "Piet":
+            colonnes_piétons = ["NUMBER.OF.PEDESTRIANS.INJURED",
+                                "NUMBER.OF.PEDESTRIANS.KILLED"]
+            if statut == "B":
+                total_piétons = data[colonnes_piétons[0]].sum()
+                return ("Nombre total de piétons blessés :",
+                        total_piétons)
+            elif statut == "T":
+                total_piétons = data[colonnes_piétons[1]].sum()
+                return ("Nombre total de piétons tués :",
+                        total_piétons)
+            elif statut == "BT":
+                total_piétons = data[colonnes_piétons].sum().sum()
+                return ("Nombre total de piétons blessés et tués :",
+                        total_piétons)
+
+    # fonction de filtres
+    def filtrer_par_nom_de_rue(data, street):
+        """
+        Filtre le DataFrame en fonction du nom de la rue.
+
         Args:
         data (DataFrame): Le DataFrame contenant les données.
+        street (str): Le nom de la rue à filtrer.
 
         Returns:
-        list: Liste des modalités différentes de la variable.
+        DataFrame: Le DataFrame filtré contenant uniquement les lignes
+        où le nom de la rue correspond à street.
         """
-        return ("Modalités différentes de :",
-                variable,
-                list(data[variable].unique()))
+        # Filtrer le DataFrame en fonction du nom de la rue
+        filtered_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
+                             data["ON.STREET.NAME"].str.contains(street) |
+                             data["OFF.STREET.NAME"].str.contains(street)]
+        return ("Data frame filtré pour la rue dénomée:",
+                street, filtered_data)
 
-    def filtrer_par_modalité(data, variable, modalité):
+    def filtrer_par_date(self, data, date_debut, date_fin):
         """
-        Filtre le DataFrame en fonction d'une modalité spécifique d'une variable
-        spécifique et renvoie le DataFrame filtré.
-
-        Args:
-        data (DataFrame): Le DataFrame contenant les données.
-        modalité (str): La modalité spécifique à filtrer.
-
-        Returns:
-        DataFrame: Le DataFrame filtré.
-        """
-        filtered_data = data[data[variable] == modalité]
-        return ("Data frame filtré pour la modalité",
-                modalité,
-                "de la variable",
-                variable,
-                filtered_data)
-
-    def filtrer_par_date(data, date_debut, date_fin):
-        """
-        Filtre le DataFrame en fonction de la date entre date_debut et date_fin
-        inclusivement.
+        Filtre le DataFrame en fonction de la date entre date_debut
+        et date_fin inclusivement.
 
         Args:
         data (DataFrame): Le DataFrame contenant les données.
@@ -129,8 +142,9 @@ class Utilisateur:
         data["CRASH_DATE"] = pd.to_datetime(data["CRASH.DATE"])
 
         # Les bornes sont prises
-        filtered_data = data[(data["CRASH_DATE"] >= pd.to_datetime(date_debut)) &
-                            (data["CRASH_DATE"] <= pd.to_datetime(date_fin))]
+        filtered_data = data[(data["CRASH_DATE"] >= pd.to_datetime(date_debut))
+                             &
+                             (data["CRASH_DATE"] <= pd.to_datetime(date_fin))]
 
         # Supprimer la colonne temporaire "CRASH_DATE"
         filtered_data = filtered_data.drop(columns=["CRASH_DATE"])
@@ -141,7 +155,7 @@ class Utilisateur:
                 date_fin,
                 filtered_data)
 
-    def filtrer_par_heure(data, heure_debut, heure_fin):
+    def filtrer_par_heure(self, data, heure_debut, heure_fin):
         """
         Filtre le DataFrame en fonction de l'heure entre heure_debut
         et heure_fin inclusivement.
@@ -162,7 +176,7 @@ class Utilisateur:
         # Filtrer le DataFrame en fonction de l'heure entre heure_debut
         # et heure_fin inclusivement
         filtered_data = data[(data["CRASH_TIME"] >= heure_debut) &
-                            (data["CRASH_TIME"] <= heure_fin)]
+                             (data["CRASH_TIME"] <= heure_fin)]
 
         # Supprimer la colonne temporaire "CRASH_TIME"
         filtered_data = filtered_data.drop(columns=["CRASH_TIME"])
@@ -172,3 +186,56 @@ class Utilisateur:
                 "et",
                 heure_fin, ":",
                 filtered_data)
+
+    def filtrer_par_modalité_variable(self, data, variable, modalite):
+        """
+        attention aussi à la variable qui doit être dans une liste de varible du tableau
+        /!\ faire attention pour les vérification de type de madalité qui doit exister en utilisant la fonction est dans une liste de moadalités d'une variable
+        Filtre le DataFrame en fonction d'une modalité spécifique d'une
+        variable spécifique et renvoie le DataFrame filtré.
+
+        Args:
+        data (DataFrame): Le DataFrame contenant les données.
+        modalité (str): La modalité spécifique à filtrer.
+
+        Returns:
+        DataFrame: Le DataFrame filtré.
+        """
+        filtered_data = data[data[variable] == modalite]
+        return ("Data frame filtré pour la modalité",
+                modalite,
+                "de la variable",
+                variable,
+                filtered_data)
+
+    # fonction listant les modalités et les variables d'un dataframe
+
+    def liste_variables_dataframe(self, data):
+        """
+        Renvoie la liste des variables (colonnes) d'un DataFrame.
+
+        Args:
+        data (DataFrame): Le DataFrame contenant les données.
+
+        Returns:
+        list: Liste des variables (colonnes) du DataFrame.
+        """
+        liste_variable = data.columns.tolist()
+        return ("Liste des variables du DataFrame :",
+                liste_variable)
+
+    def liste_modalites_variable(self, data, variable):
+        """
+        Renvoie toutes les modalités différentes d'une variable
+        dans une liste.
+
+        attention varible en majusccule et séparéles mots par des points
+        Args:
+        data (DataFrame): Le DataFrame contenant les données.
+
+        Returns:
+        list: Liste des modalités différentes de la variable.
+        """
+        liste_modalites = list(data[variable].unique())
+        return ("Liste des modalités différentes de la variable :",
+                variable, liste_modalites)
