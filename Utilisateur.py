@@ -29,7 +29,8 @@ class Utilisateur:
         # m mort
         # bm bléssés et mort
         if not isinstance(data, pd.DataFrame):
-            raise TypeError("data de calcul_totaux doit être un DataFrame.")
+            raise TypeError("data de calcul_totaux"
+                            " doit être un DataFrame.")
 
         elif statut == "B":
             total_persons_injuried = data["NUMBER.OF.PERSONS.INJURED"].sum()
@@ -50,9 +51,11 @@ class Utilisateur:
     def calcul_type_statut(self, data, type, statut):
         """
         type str si auto / cycl / piet
+        doit sortir un int
         """
         if not isinstance(data, pd.DataFrame):
-            raise TypeError("data de calcul_totaux doit être un DataFrame.")
+            raise TypeError("data de calcul_type_statut"
+                            " doit être un DataFrame.")
 
         elif type == "Auto":
             colonnes_automobilistes = ["NUMBER.OF.MOTORIST.INJURED",
@@ -80,7 +83,7 @@ class Utilisateur:
                         total_cyclistes)
             elif statut == "T":
                 total_cyclistes = data[colonnes_cyclistes[1]].sum()
-                return ("Nombre total de cyclistes blessés :",
+                return ("Nombre total de cyclistes tués :",
                         total_cyclistes)
             elif statut == "BT":
                 total_cyclistes = data[colonnes_cyclistes].sum().sum()
@@ -117,6 +120,10 @@ class Utilisateur:
         où le nom de la rue correspond à street.
         """
         # Filtrer le DataFrame en fonction du nom de la rue
+        if not isinstance(data, pd.DataFrame):
+            raise TypeError("data de filtrer_par_nom_de_rue"
+                            " doit être un DataFrame.")
+
         filtered_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
                              data["ON.STREET.NAME"].str.contains(street) |
                              data["OFF.STREET.NAME"].str.contains(street)]
@@ -138,6 +145,10 @@ class Utilisateur:
         Returns:
         DataFrame: Le DataFrame filtré.
         """
+        if not isinstance(data, pd.DataFrame):
+            raise TypeError("data de filtrer_par_date"
+                            " doit être un DataFrame.")
+
         # Convertir les colonnes "CRASH.DATE" en type datetime
         data["CRASH_DATE"] = pd.to_datetime(data["CRASH.DATE"])
 
@@ -169,6 +180,10 @@ class Utilisateur:
         tuple: Un tuple contenant un message décrivant la période filtrée
         et le DataFrame filtré.
         """
+        if not isinstance(data, pd.DataFrame):
+            raise TypeError("data de filtrer_par_heure"
+                            " doit être un DataFrame.")
+
         # Convertir les colonnes "CRASH.TIME" en type datetime
         data["CRASH_TIME"] = pd.to_datetime(data["CRASH.TIME"]).dt.\
             strftime("%H:%M")
@@ -201,6 +216,10 @@ class Utilisateur:
         Returns:
         DataFrame: Le DataFrame filtré.
         """
+        if not isinstance(data, pd.DataFrame):
+            raise TypeError("data de filtrer_par_modalité_variable"
+                            " doit être un DataFrame.")
+
         filtered_data = data[data[variable] == modalite]
         return ("Data frame filtré pour la modalité",
                 modalite,
@@ -220,6 +239,10 @@ class Utilisateur:
         Returns:
         list: Liste des variables (colonnes) du DataFrame.
         """
+        if not isinstance(data, pd.DataFrame):
+            raise TypeError("data de liste_variables_dataframe"
+                            " doit être un DataFrame.")
+
         liste_variable = data.columns.tolist()
         return ("Liste des variables du DataFrame :",
                 liste_variable)
@@ -236,6 +259,10 @@ class Utilisateur:
         Returns:
         list: Liste des modalités différentes de la variable.
         """
+        if not isinstance(data, pd.DataFrame):
+            raise TypeError("data de liste_modalites_variable"
+                            " doit être un DataFrame.")
+
         liste_modalites = list(data[variable].unique())
         return ("Liste des modalités différentes de la variable :",
                 variable, liste_modalites)
