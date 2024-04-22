@@ -26,8 +26,8 @@ class Utilisateur:
 
     def calcul_totaux_statut(self, data, statut):
         # statut est un str B pr bléssés
-        # m mort
-        # bm bléssés et mort
+        # t tué
+        # bt bléssés tués
         if not isinstance(data, pd.DataFrame):
             raise TypeError("data de calcul_totaux"
                             " doit être un DataFrame.")
