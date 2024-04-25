@@ -191,7 +191,7 @@ class Utilisateur:
             raise TypeError("La base de données doit être un DataFrame.")
 
         if not isinstance(street, str):
-            raise TypeError("Le nom de la rue donné doit être de type str.")
+            raise TypeError("Le nom de la rue doit être de type str.")
 
         filtered_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
                              data["ON.STREET.NAME"].str.contains(street) |
@@ -357,6 +357,9 @@ class Utilisateur:
             La base de données dont on souhaite obtenir les modalités d'une de
             ses variables.
 
+        variable : str
+            Variable dont on souhaite obtenir toutes les modalités.
+
         Returns
         -------
         list : Liste des modalités différentes de la variable.
@@ -364,6 +367,13 @@ class Utilisateur:
         """
         if not isinstance(data, pd.DataFrame):
             raise TypeError("La base de données doit être un DataFrame.")
+
+        if not isinstance(variable, str):
+            raise TypeError("La variable doit être de type str.")
+
+        if variable not in self.liste_variables_dataframe(data):
+            raise ValueError("Cette variable n'est pas dans la base de "
+                             "données.")
 
         liste_modalites = list(data[variable].unique())
         return ("Liste des modalités différentes de la variable :",
