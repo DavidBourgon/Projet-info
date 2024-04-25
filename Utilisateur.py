@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 
 
 class Utilisateur:
@@ -17,6 +18,7 @@ class Utilisateur:
 
         Returns
         -------
+        Une liste dont le dernier élement est un
         int : Nombre d'observations de la base de données.
 
         Raises
@@ -46,6 +48,7 @@ class Utilisateur:
 
         Returns
         -------
+        Une liste dont le dernier élement est un
         int : Nombre de personnes blessées et/ou tuées selon le statut
               souhaité.
 
@@ -99,6 +102,7 @@ class Utilisateur:
 
         Returns
         -------
+        Une liste dont le dernier élement est un
         int : Nombre de personnes blessées et/ou tuées selon le type et le
               statut souhaités.
 
@@ -130,7 +134,8 @@ class Utilisateur:
                 return ["Nombre total d'automobilistes tués :",
                         total_automobilistes]
             elif statut == "BT":
-                total_automobilistes = data[colonnes_automobilistes].sum().sum()
+                total_automobilistes = data[colonnes_automobilistes].sum()\
+                    .sum()
                 return ["Nombre total d'automobilistes blessés et tués :",
                         total_automobilistes]
 
@@ -182,6 +187,7 @@ class Utilisateur:
 
         Returns
         -------
+        Une liste dont le dernier élement est un
         DataFrame : La base de données filtrée contenant uniquement les lignes
                     où le nom de la rue correspond à street.
 
@@ -192,6 +198,9 @@ class Utilisateur:
         if not isinstance(street, str):
             raise TypeError("Le nom de la rue doit être de type str.")
 
+        # ici faire qqch pr bien voir que street existe et que ça a du sens
+        # de dire qu'il contient il faudrait faire une fonction annexe
+        # Pour que cela soit propre
         filtered_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
                              data["ON.STREET.NAME"].str.contains(street) |
                              data["OFF.STREET.NAME"].str.contains(street)]
@@ -216,11 +225,26 @@ class Utilisateur:
 
         Returns
         -------
+        Une liste dont le dernier élement est un
         DataFrame : Le base de données filtrée.
 
         """
         if not isinstance(data, pd.DataFrame):
             raise TypeError("La base de données doit être un DataFrame.")
+
+        if not isinstance(date_debut, str):
+            raise TypeError("La date début doit être un str.")
+
+        if not re.match(r'^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/[0-9]{4}$',
+                        date_debut):
+            raise ValueError("La date début doit être au format 'MM/JJ/AAAA'.")
+
+        if not isinstance(date_fin, str):
+            raise TypeError("La date fin doit être un str.")
+
+        if not re.match(r'^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/[0-9]{4}$',
+                        date_fin):
+            raise ValueError("La date fin doit être au format 'MM/JJ/AAAA'.")
 
         # Convertir les colonnes "CRASH.DATE" en type datetime
         data["CRASH_DATE"] = pd.to_datetime(data["CRASH.DATE"])
@@ -257,12 +281,24 @@ class Utilisateur:
 
         Returns
         -------
-        tuple : Un tuple contenant un message décrivant la période filtrée
+        list : Une liste contenant un message décrivant la période filtrée
             et le DataFrame filtré.
 
         """
         if not isinstance(data, pd.DataFrame):
             raise TypeError("La base de données doit être un DataFrame.")
+
+        if not isinstance(heure_debut, str):
+            raise TypeError("L'heure de début doit être un str")
+
+        if not re.match(r'^(2[0-3]|[01][0-9]):[0-5][0-9]$', heure_debut):
+            raise ValueError("L'heure de début doit être au format 'HH:MM'.")
+
+        if not isinstance(heure_debut, str):
+            raise TypeError("L'heure de fin doit être un str")
+
+        if not re.match(r'^(2[0-3]|[01][0-9]):[0-5][0-9]$', heure_debut):
+            raise ValueError("L'heure de fin doit être au format 'HH:MM'.")
 
         # Convertir les colonnes "CRASH.TIME" en type datetime
         data["CRASH_TIME"] = pd.to_datetime(data["CRASH.TIME"]).dt.\
@@ -287,12 +323,6 @@ class Utilisateur:
         Filtre la base de données en fonction d'une modalité spécifique d'une
         variable spécifique et renvoie la base de données filtrée.
 
-        attention aussi à la variable qui doit être dans une liste de variable
-        du tableau
-        /!\ faire attention pour les vérification de type de modalité qui doit
-        exister en utilisant la fonction est dans une liste de moadalités d'une
-        variable
-
         Parameters
         ----------
         data : DataFrame
@@ -306,14 +336,13 @@ class Utilisateur:
 
         Returns
         -------
+
+        Une liste dont le dernier élement est un
         DataFrame : La base de données filtrée.
 
         """
         if not isinstance(data, pd.DataFrame):
             raise TypeError("La base de données doit être un DataFrame.")
-
-        if not isinstance(variable, str):
-            raise TypeError("La variable doit être de type str.")
 
         if variable not in self.liste_variables_dataframe(data)[-1]:
             raise ValueError("Cette variable n'est pas dans la base de "
@@ -323,7 +352,7 @@ class Utilisateur:
             raise TypeError("La modalité doit être de type str.")
 
         if modalite not in self.liste_modalites_variable(data, variable)[-1]:
-            raise ValueError("Cette modalité n'existe pas dans la variable "
+            raise ValueError("Cette modalité n'existe pas pour la variable "
                              "choisie.")
 
         filtered_data = data[data[variable] == modalite]
@@ -382,6 +411,11 @@ class Utilisateur:
 
         if not isinstance(variable, str):
             raise TypeError("La variable doit être de type str.")
+
+        if not re.match(r'^[A-Z0-9.]+$', variable):
+            raise ValueError("La variable ne doit contenir que "
+                             "des majuscules, des points, des nombres "
+                             "et pas d'espaces.")
 
         if variable not in self.liste_variables_dataframe(data)[-1]:
             raise ValueError("Cette variable n'est pas dans la base de "
