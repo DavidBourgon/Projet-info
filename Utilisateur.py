@@ -24,8 +24,7 @@ class Utilisateur:
 
         """
         if not isinstance(data, pd.DataFrame):
-            raise TypeError("data de nombre_observation "
-                            "doit être un DataFrame.")
+            raise TypeError("La base de données doit être un DataFrame.")
 
         return ("Nombre d'observations dans le DataFrame :", data.shape[0])
 
@@ -50,8 +49,7 @@ class Utilisateur:
 
         """
         if not isinstance(data, pd.DataFrame):
-            raise TypeError("data de calcul_totaux"
-                            " doit être un DataFrame.")
+            raise TypeError("La base de données doit être un DataFrame.")
 
         elif statut == "B":
             total_persons_injuried = data["NUMBER.OF.PERSONS.INJURED"].sum()
@@ -98,8 +96,7 @@ class Utilisateur:
 
         """
         if not isinstance(data, pd.DataFrame):
-            raise TypeError("data de calcul_type_statut"
-                            " doit être un DataFrame.")
+            raise TypeError("La base de données doit être un DataFrame.")
 
         elif type == "Auto":
             colonnes_automobilistes = ["NUMBER.OF.MOTORIST.INJURED",
@@ -170,8 +167,7 @@ class Utilisateur:
 
         """
         if not isinstance(data, pd.DataFrame):
-            raise TypeError("data de filtrer_par_nom_de_rue"
-                            " doit être un DataFrame.")
+            raise TypeError("La base de données doit être un DataFrame.")
 
         filtered_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
                              data["ON.STREET.NAME"].str.contains(street) |
@@ -201,8 +197,7 @@ class Utilisateur:
 
         """
         if not isinstance(data, pd.DataFrame):
-            raise TypeError("data de filtrer_par_date"
-                            " doit être un DataFrame.")
+            raise TypeError("La base de données doit être un DataFrame.")
 
         # Convertir les colonnes "CRASH.DATE" en type datetime
         data["CRASH_DATE"] = pd.to_datetime(data["CRASH.DATE"])
@@ -244,8 +239,7 @@ class Utilisateur:
 
         """
         if not isinstance(data, pd.DataFrame):
-            raise TypeError("data de filtrer_par_heure"
-                            " doit être un DataFrame.")
+            raise TypeError("La base de données doit être un DataFrame.")
 
         # Convertir les colonnes "CRASH.TIME" en type datetime
         data["CRASH_TIME"] = pd.to_datetime(data["CRASH.TIME"]).dt.\
@@ -291,8 +285,7 @@ class Utilisateur:
 
         """
         if not isinstance(data, pd.DataFrame):
-            raise TypeError("data de filtrer_par_modalité_variable"
-                            " doit être un DataFrame.")
+            raise TypeError("La base de données doit être un DataFrame.")
 
         filtered_data = data[data[variable] == modalite]
         return ("Data frame filtré pour la modalité",
@@ -305,17 +298,20 @@ class Utilisateur:
 
     def liste_variables_dataframe(self, data):
         """
-        Renvoie la liste des variables (colonnes) d'un DataFrame.
+        Renvoie la liste des variables (colonnes) d'une base de données.
 
-        Args:
-        data (DataFrame): Le DataFrame contenant les données.
+        Parameters
+        ----------
+        data : DataFrame
+            La base de données dont on souhaite la liste des variables.
 
-        Returns:
-        list: Liste des variables (colonnes) du DataFrame.
+        Returns
+        -------
+        list : Liste des variables (colonnes) de la base de données.
+
         """
         if not isinstance(data, pd.DataFrame):
-            raise TypeError("data de liste_variables_dataframe"
-                            " doit être un DataFrame.")
+            raise TypeError("La base de données doit être un DataFrame.")
 
         liste_variable = data.columns.tolist()
         return ("Liste des variables du DataFrame :",
@@ -323,19 +319,24 @@ class Utilisateur:
 
     def liste_modalites_variable(self, data, variable):
         """
-        Renvoie toutes les modalités différentes d'une variable
-        dans une liste.
+        Renvoie toutes les modalités différentes d'une variable d'une base de
+        données.
 
         attention varible en majusccule et séparéles mots par des points
-        Args:
-        data (DataFrame): Le DataFrame contenant les données.
 
-        Returns:
-        list: Liste des modalités différentes de la variable.
+        Parameters
+        ----------
+        data : DataFrame
+            La base de données dont on souhaite obtenir les modalités d'une de
+            ses variables.
+
+        Returns
+        -------
+        list : Liste des modalités différentes de la variable.
+
         """
         if not isinstance(data, pd.DataFrame):
-            raise TypeError("data de liste_modalites_variable"
-                            " doit être un DataFrame.")
+            raise TypeError("La base de données doit être un DataFrame.")
 
         liste_modalites = list(data[variable].unique())
         return ("Liste des modalités différentes de la variable :",
