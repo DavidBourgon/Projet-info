@@ -9,13 +9,17 @@ def nombre_observation(data):
     """
     Compte le nombre d'observations dans un DataFrame.
 
-    Args:
-    data (DataFrame): Le DataFrame contenant les données.
+    Parameters
+    ----------
+    data : DataFrame
+        Le DataFrame contenant les données.
 
-    Returns:
-    int: Nombre d'observations dans le DataFrame.
+    Returns
+    -------
+    int : Nombre d'observations dans le DataFrame.
 
-    Raises:
+    Raises
+    ------
     TypeError: Si data n'est pas un DataFrame.
     """
     if not isinstance(data, pd.DataFrame):
