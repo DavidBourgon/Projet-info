@@ -4,7 +4,7 @@ from type_vehicule import TypeDeVehicule
 
 class SecteurPrive:
     """ Secteur Privé.
-    
+
     Décrit le secteur privé.
 
     Parameters
