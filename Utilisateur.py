@@ -415,7 +415,7 @@ class Utilisateur:
         if not re.match(r'^[A-Z0-9.]+$', variable):
             raise ValueError("La variable ne doit contenir que "
                              "des majuscules, des points, des nombres "
-                             "et pas d'espaces.")
+                             "et pas d'espace.")
 
         if variable not in self.liste_variables_dataframe(data)[-1]:
             raise ValueError("Cette variable n'est pas dans la base de "
