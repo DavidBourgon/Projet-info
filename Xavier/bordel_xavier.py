@@ -21,6 +21,7 @@ def nombre_observation(data):
     Raises
     ------
     TypeError: Si data n'est pas un DataFrame.
+
     """
     if not isinstance(data, pd.DataFrame):
         raise TypeError("data de nombre_observation doit être un DataFrame.")
@@ -32,7 +33,23 @@ def nombre_observation(data):
 
 
 def nmbr_mort_total(data):
-    # Calculer le nombre total de personnes tuées
+    """
+    Calcule le nombre total de personnes tuées
+
+    Parameters
+    ----------
+    data : DataFrame
+        base de données sur laquelle on veut déterminer le nombre de
+        personnes tuées
+
+    Returns
+    -------
+    int : nombre total de personnes tuées
+
+    """
+    if not isinstance(data, pd.DataFrame):
+        raise TypeError("data de nmbr_mort_total doit être un DataFrame.")
+
     total_persons_killed = data["NUMBER.OF.PERSONS.KILLED"].sum()
     return ("Nombre total de personnes tuées dans toute la base de données :",
             total_persons_killed)
@@ -41,18 +58,50 @@ def nmbr_mort_total(data):
 # print(result)
 
 
-def nmbr_blessés_total(data):
-    # Calculer le nombre total de personnes tuées
+def nmbr_blesses_total(data):
+    """
+    Calcule le nombre total de personnes blessées
+
+    Parameters
+    ----------
+    data : DataFrame
+        base de données sur laquelle on veut déterminer le nombre de
+        personnes blessées
+
+    Returns
+    -------
+    int : nombre total de personnes blessées
+
+    """
+    if not isinstance(data, pd.DataFrame):
+        raise TypeError("data de nmbr_blesses_total doit être un DataFrame.")
+
     total_persons_injuried = data["NUMBER.OF.PERSONS.INJURED"].sum()
     return ("Nombre total de personnes bléssées dans toute la base :",
             total_persons_injuried)
 
-# result = nmbr_blessés_total(data)
+# result = nmbr_blesses_total(data)
 # print(result)
 
 
 def nmbr_mort_total_rue(data, street: str):
-    # Calculer le nombre total de personnes par rue
+    """
+    Calcule le nombre total de personnes tuées dans la rue souhaitée
+
+    Parameters
+    ----------
+    data : DataFrame
+        base de données sur laquelle on veut déterminer le nombre de
+        personnes tuées dans une rue
+
+    street : str
+        nom de la rue dont on veut déterminer le nombre de tués
+
+    Returns
+    -------
+    int : nombre total de personnes tuées dans la rue souhaitée
+
+    """
     street_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
                        data["ON.STREET.NAME"].str.contains(street) |
                        data["OFF.STREET.NAME"].str.contains(street)]
@@ -64,8 +113,24 @@ def nmbr_mort_total_rue(data, street: str):
 # print(nmbr_mort_total_rue(data, street))
 
 
-def nmbr_blessés_total_rue(data, street: str):
-    # Calculer le nombre total de personnes par rue
+def nmbr_blesses_total_rue(data, street: str):
+    """
+    Calcule le nombre total de personnes blessées dans une rue souhaitée
+
+    Parameters
+    ----------
+    data : DataFrame
+        base de données sur laquelle on veut déterminer le nombre de
+        personnes blessées dans une rue
+
+    street : str
+        nom de la rue dont on veut déterminer le nombre de blessés
+
+    Returns
+    -------
+    int : nombre total de personnes blessées dans la rue souhaitée
+
+    """
     street_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
                        data["ON.STREET.NAME"].str.contains(street) |
                        data["OFF.STREET.NAME"].str.contains(street)]
@@ -75,42 +140,56 @@ def nmbr_blessés_total_rue(data, street: str):
             total_persons_injuried_street)
 
 # street = 'HEATH AVENUE'
-# print(nmbr_blessés_total_rue(data, street))
+# print(nmbr_blesses_total_rue(data, street))
 
 
-def total_piétons_blessés_tués(data):
-    colonnes_piétons = ["NUMBER.OF.PEDESTRIANS.INJURED",
+def total_pietons_blesses_tues(data):
+    """
+    Calcule le nombre total de piétons blessés et tués dans une base de données
+
+    Parameters
+    ----------
+    data : DataFrame
+        base de données sur laquelle on veut déterminer le nombre de blessées
+        et de tués
+
+    Returns
+    -------
+    int : nombre total de piétons blessés et tués d'une base de données
+
+    """
+    colonnes_pietons = ["NUMBER.OF.PEDESTRIANS.INJURED",
                         "NUMBER.OF.PEDESTRIANS.KILLED"]
-    total_piétons = data[colonnes_piétons].sum().sum()
+    total_pietons = data[colonnes_pietons].sum().sum()
     return ("Nombre total de piétons blessés ou tués :",
-            total_piétons)
+            total_pietons)
 
-# total_piétons = total_piétons_blessés_tués(data)
-# print(total_piétons)
-# print(total_piétons_blessés_tués(data))
+# total_pietons = total_pietons_blesses_tues(data)
+# print(total_pietons)
+# print(total_pietons_blesses_tues(data))
 
 
-def total_cyclistes_blessés_tués(data):
+def total_cyclistes_blesses_tues(data):
     colonnes_cyclistes = ["NUMBER.OF.CYCLIST.INJURED",
                           "NUMBER.OF.CYCLIST.KILLED"]
     total_cyclistes = data[colonnes_cyclistes].sum().sum()
     return ("Nombre total de cyclistes blessés ou tués :",
             total_cyclistes)
 
-# print(total_cyclistes_blessés_tués(data))
+# print(total_cyclistes_blesses_tues(data))
 
 
-def total_automobilistes_blessés_tués(data):
+def total_automobilistes_blesses_tues(data):
     colonnes_automobilistes = ["NUMBER.OF.MOTORIST.INJURED",
                                "NUMBER.OF.MOTORIST.KILLED"]
     total_automobilistes = data[colonnes_automobilistes].sum().sum()
     return ("Nombre total d'automobilistes blessés ou tués :",
             total_automobilistes)
 
-# print(total_automobilistes_blessés_tués(data))
+# print(total_automobilistes_blesses_tues(data))
 
 
-def modalités_variable(data, variable):
+def modalites_variable(data, variable):
     """
     Renvoie toutes les modalités différentes d'une variable
     dans une liste.
@@ -128,7 +207,7 @@ def modalités_variable(data, variable):
 
 
 # variable = "CONTRIBUTING.FACTOR.VEHICLE.1"
-# print(modalités_variable(data, variable))
+# print(modalites_variable(data, variable))
 
 
 def filtrer_par_modalité(data, variable, modalité):
