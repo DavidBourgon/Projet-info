@@ -6,7 +6,9 @@ data = pd.read_excel("BdD_Bronx.xlsx")
 
 
 class SecteurPublic:
-    """ Secteur Public
+    """ Secteur Public.
+
+    Décrit le secteur public.
 
     Parameters
     ----------
