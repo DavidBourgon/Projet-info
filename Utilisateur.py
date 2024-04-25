@@ -7,16 +7,17 @@ class Utilisateur:
 
     def nombre_observation(self, data):
         """
-        Compte le nombre d'observations d'un DataFrame.
+        Compte le nombre d'observations d'une base de données.
 
         Parameters
         ----------
         data : DataFrame
-            Le DataFrame contenant les données.
+            La base de données dont on souhaite connaître le nombre
+            d'observations.
 
         Returns
         -------
-        int : Nombre d'observations dans le DataFrame.
+        int : Nombre d'observations de la base de données.
 
         Raises
         ------
@@ -51,6 +52,12 @@ class Utilisateur:
         if not isinstance(data, pd.DataFrame):
             raise TypeError("La base de données doit être un DataFrame.")
 
+        if not isinstance(statut, str):
+            raise TypeError("Le statut doit être de type str.")
+
+        if statut != "B" or statut != "T" or statut != "BT":
+            raise ValueError("Le statut doit être B, T ou BT.")
+
         elif statut == "B":
             total_persons_injuried = data["NUMBER.OF.PERSONS.INJURED"].sum()
             return ("Nombre total de personnes bléssées dans le tableau :",
@@ -67,7 +74,7 @@ class Utilisateur:
                     " tués dans le tableau :",
                     total_both)
 
-    def calcul_type_statut(self, data, type, statut):
+    def calcul_type_statut(self, data, etat, statut):
         """
         Calcule le nombre de blessées et/ou de tués selon le type de personnes
         souhaité.
@@ -76,8 +83,8 @@ class Utilisateur:
             Base de données sur laquelle on veut déterminer le nombre de
             blessés et/ou tués.
 
-        type : str
-            Type des personnes dont on veut déterminer le nombre de blessés
+        etat : str
+            Etat des personnes dont on veut déterminer le nombre de blessés
             et/ou tués.
             auto : automobilistes
             cycl : cyclistes
@@ -98,7 +105,16 @@ class Utilisateur:
         if not isinstance(data, pd.DataFrame):
             raise TypeError("La base de données doit être un DataFrame.")
 
-        elif type == "Auto":
+        if not isinstance(statut, str):
+            raise TypeError("Le statut doit être de type str.")
+
+        if statut != "B" or statut != "T" or statut != "BT":
+            raise ValueError("Le statut doit être B, T ou BT.")
+
+        if not isinstance(etat, str):
+            raise TypeError("L'état doit être un str.")
+
+        elif etat == "Auto":
             colonnes_automobilistes = ["NUMBER.OF.MOTORIST.INJURED",
                                        "NUMBER.OF.MOTORIST.KILLED"]
             if statut == "B":
@@ -115,7 +131,7 @@ class Utilisateur:
                 return ("Nombre total d'automobilistes blessés tués :",
                         total_automobilistes)
 
-        elif type == "Cycl":
+        elif etat == "Cycl":
             colonnes_cyclistes = ["NUMBER.OF.CYCLIST.INJURED",
                                   "NUMBER.OF.CYCLIST.KILLED"]
             if statut == "B":
@@ -131,7 +147,7 @@ class Utilisateur:
                 return ("Nombre total de cyclistes blessés et tués :",
                         total_cyclistes)
 
-        elif type == "Piet":
+        elif etat == "Piet":
             colonnes_piétons = ["NUMBER.OF.PEDESTRIANS.INJURED",
                                 "NUMBER.OF.PEDESTRIANS.KILLED"]
             if statut == "B":
