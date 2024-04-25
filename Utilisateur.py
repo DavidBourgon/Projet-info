@@ -112,7 +112,10 @@ class Utilisateur:
             raise ValueError("Le statut doit être B, T ou BT.")
 
         if not isinstance(etat, str):
-            raise TypeError("L'état doit être un str.")
+            raise TypeError("L'état doit être de type str.")
+
+        if etat != "cycl" or etat != "auto" or etat != "piet":
+            raise ValueError("L'état doit être auto, cylc ou piet.")
 
         elif etat == "Auto":
             colonnes_automobilistes = ["NUMBER.OF.MOTORIST.INJURED",
