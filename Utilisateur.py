@@ -27,7 +27,8 @@ class Utilisateur:
         if not isinstance(data, pd.DataFrame):
             raise TypeError("La base de données doit être un DataFrame.")
 
-        return ("Nombre d'observations dans le DataFrame :", data.shape[0])
+        return ("Nombre d'observations dans la base d edonnées :",
+                data.shape[0])
 
     def calcul_totaux_statut(self, data, statut):
         """
@@ -60,7 +61,7 @@ class Utilisateur:
 
         elif statut == "B":
             total_persons_injuried = data["NUMBER.OF.PERSONS.INJURED"].sum()
-            return ("Nombre total de personnes bléssées dans le tableau :",
+            return ("Nombre total de personnes blessées dans le tableau :",
                     total_persons_injuried)
         elif statut == "T":
             total_persons_killed = data["NUMBER.OF.PERSONS.KILLED"].sum()
@@ -70,7 +71,7 @@ class Utilisateur:
             total_persons_killed = data["NUMBER.OF.PERSONS.KILLED"].sum()
             total_persons_injuried = data["NUMBER.OF.PERSONS.INJURED"].sum()
             total_both = total_persons_killed + total_persons_injuried
-            return ("Nombre total d'individus bléssés et"
+            return ("Nombre total d'individus blessés et"
                     " tués dans le tableau :",
                     total_both)
 
@@ -131,7 +132,7 @@ class Utilisateur:
             elif statut == "BT":
                 total_automobilistes = data[colonnes_automobilistes].sum()\
                     .sum()
-                return ("Nombre total d'automobilistes blessés tués :",
+                return ("Nombre total d'automobilistes blessés et tués :",
                         total_automobilistes)
 
         elif etat == "Cycl":
@@ -169,7 +170,7 @@ class Utilisateur:
     # fonction de filtres
     def filtrer_par_nom_de_rue(data, street):
         """
-        Filtre le DataFrame en fonction du nom de la rue.
+        Filtre la base de données en fonction de la rue souhaitée.
 
         Parameters
         ----------
@@ -177,21 +178,25 @@ class Utilisateur:
             La base de données à filtrer.
 
         street : str
-            Le nom de la rue selon laquelle nous souhaitons filtrer.
+            Le nom de la rue selon laquelle nous souhaitons filtrer la base de
+            données.
 
         Returns
         -------
-        DataFrame : Le DataFrame filtré contenant uniquement les lignes
+        DataFrame : La base de données filtrée contenant uniquement les lignes
                     où le nom de la rue correspond à street.
 
         """
         if not isinstance(data, pd.DataFrame):
             raise TypeError("La base de données doit être un DataFrame.")
 
+        if not isinstance(street, str):
+            raise TypeError("Le nom de la rue donné doit être de type str.")
+
         filtered_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
                              data["ON.STREET.NAME"].str.contains(street) |
                              data["OFF.STREET.NAME"].str.contains(street)]
-        return ("Data frame filtré pour la rue dénomée:",
+        return ("Base de données filtrée pour la rue nomée:",
                 street, filtered_data)
 
     def filtrer_par_date(self, data, date_debut, date_fin):
@@ -229,7 +234,7 @@ class Utilisateur:
         # Supprimer la colonne temporaire "CRASH_DATE"
         filtered_data = filtered_data.drop(columns=["CRASH_DATE"])
 
-        return ("Data frame filtré pour la période du",
+        return ("Base de données filtrée pour la période du",
                 date_debut,
                 "au",
                 date_fin,
@@ -272,13 +277,13 @@ class Utilisateur:
         # Supprimer la colonne temporaire "CRASH_TIME"
         filtered_data = filtered_data.drop(columns=["CRASH_TIME"])
 
-        return ("Data frame filtré pour la période entre",
+        return ("Base de données filtrée pour la période entre",
                 heure_debut,
                 "et",
                 heure_fin, ":",
                 filtered_data)
 
-    def filtrer_par_modalité_variable(self, data, variable, modalite):
+    def filtrer_par_modalite_variable(self, data, variable, modalite):
         """
         Filtre la base de données en fonction d'une modalité spécifique d'une
         variable spécifique et renvoie la base de données filtrée.
@@ -295,7 +300,7 @@ class Utilisateur:
         data : DataFrame
             La base de données à filtrer.
 
-        modalité : str
+        modalite : str
             La modalité spécifique à filtrer.
 
         Returns
@@ -306,8 +311,11 @@ class Utilisateur:
         if not isinstance(data, pd.DataFrame):
             raise TypeError("La base de données doit être un DataFrame.")
 
+        if not isinstance(modalite, str):
+            raise TypeError("La modalité doit être de type str.")
+
         filtered_data = data[data[variable] == modalite]
-        return ("Data frame filtré pour la modalité",
+        return ("Base de données filtrée pour la modalité",
                 modalite,
                 "de la variable",
                 variable,
@@ -333,7 +341,7 @@ class Utilisateur:
             raise TypeError("La base de données doit être un DataFrame.")
 
         liste_variable = data.columns.tolist()
-        return ("Liste des variables du DataFrame :",
+        return ("Liste des variables de la base de données :",
                 liste_variable)
 
     def liste_modalites_variable(self, data, variable):
