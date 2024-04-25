@@ -27,7 +27,7 @@ class Utilisateur:
         if not isinstance(data, pd.DataFrame):
             raise TypeError("La base de données doit être un DataFrame.")
 
-        return ("Nombre d'observations dans la base d edonnées :",
+        return ("Nombre d'observations dans la base de données :",
                 data.shape[0])
 
     def calcul_totaux_statut(self, data, statut):
