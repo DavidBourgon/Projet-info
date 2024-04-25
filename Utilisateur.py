@@ -7,16 +7,21 @@ class Utilisateur:
 
     def nombre_observation(self, data):
         """
-        Compte le nombre d'observations dans un DataFrame.
+        Compte le nombre d'observations d'un DataFrame.
 
-        Args:
-        data (DataFrame): Le DataFrame contenant les données.
+        Parameters
+        ----------
+        data : DataFrame
+            Le DataFrame contenant les données.
 
-        Returns:
-        int: Nombre d'observations dans le DataFrame.
+        Returns
+        -------
+        int : Nombre d'observations dans le DataFrame.
 
-        Raises:
+        Raises
+        ------
         TypeError: Si data n'est pas un DataFrame.
+
         """
         if not isinstance(data, pd.DataFrame):
             raise TypeError("data de nombre_observation "
@@ -25,9 +30,25 @@ class Utilisateur:
         return ("Nombre d'observations dans le DataFrame :", data.shape[0])
 
     def calcul_totaux_statut(self, data, statut):
-        # statut est un str B pr bléssés
-        # t tué
-        # bt bléssés tués
+        """
+        Calcule le nombre de blessées et/ou de tués.
+
+        data : DataFrame
+            Base de données sur laquelle on veut déterminer le nombre de
+            blessés et/ou tués.
+
+        statut : str
+            Statut des victimes.
+            B : blessées
+            T : tuées
+            BT : blessées et tuées
+
+        Returns
+        -------
+        int : Nombre de personnes blessées et/ou tuées selon le statut
+              souhaité.
+
+        """
         if not isinstance(data, pd.DataFrame):
             raise TypeError("data de calcul_totaux"
                             " doit être un DataFrame.")
@@ -50,8 +71,31 @@ class Utilisateur:
 
     def calcul_type_statut(self, data, type, statut):
         """
-        type str si auto / cycl / piet
-        doit sortir un int
+        Calcule le nombre de blessées et/ou de tués selon le type de personnes
+        souhaité.
+
+        data : DataFrame
+            Base de données sur laquelle on veut déterminer le nombre de
+            blessés et/ou tués.
+
+        type : str
+            Type des personnes dont on veut déterminer le nombre de blessés
+            et/ou tués.
+            auto : automobilistes
+            cycl : cyclistes
+            piet : piétons
+
+        statut : str
+            Statut des victimes.
+            B : blessées
+            T : tuées
+            BT : blessées et tuées
+
+        Returns
+        -------
+        int : Nombre de personnes blessées et/ou tuées selon le type et le
+              statut souhaités.
+
         """
         if not isinstance(data, pd.DataFrame):
             raise TypeError("data de calcul_type_statut"
@@ -111,15 +155,20 @@ class Utilisateur:
         """
         Filtre le DataFrame en fonction du nom de la rue.
 
-        Args:
-        data (DataFrame): Le DataFrame contenant les données.
-        street (str): Le nom de la rue à filtrer.
+        Parameters
+        ----------
+        data : DataFrame
+            La base de données à filtrer.
 
-        Returns:
-        DataFrame: Le DataFrame filtré contenant uniquement les lignes
-        où le nom de la rue correspond à street.
+        street : str
+            Le nom de la rue selon laquelle nous souhaitons filtrer.
+
+        Returns
+        -------
+        DataFrame : Le DataFrame filtré contenant uniquement les lignes
+                    où le nom de la rue correspond à street.
+
         """
-        # Filtrer le DataFrame en fonction du nom de la rue
         if not isinstance(data, pd.DataFrame):
             raise TypeError("data de filtrer_par_nom_de_rue"
                             " doit être un DataFrame.")
@@ -133,17 +182,23 @@ class Utilisateur:
     def filtrer_par_date(self, data, date_debut, date_fin):
         """
         Filtre le DataFrame en fonction de la date entre date_debut
-        et date_fin inclusivement.
+        et date_fin inclus.
 
-        Args:
-        data (DataFrame): Le DataFrame contenant les données.
-        date_debut (str): La date de début de la période choisie au format
-        "MM/DD/YYYY".
-        date_fin (str): La date de fin de la période choisie au format
-        "MM/DD/YYYY".
+        Parameters
+        ----------
+        data : DataFrame
+            La base de données à filtrer.
 
-        Returns:
-        DataFrame: Le DataFrame filtré.
+        date_debut : str
+            La date de début de la période choisie au format "MM/DD/YYYY".
+
+        date_fin : str
+            La date de fin de la période choisie au format "MM/DD/YYYY".
+
+        Returns
+        -------
+        DataFrame : Le base de données filtrée.
+
         """
         if not isinstance(data, pd.DataFrame):
             raise TypeError("data de filtrer_par_date"
@@ -169,16 +224,24 @@ class Utilisateur:
     def filtrer_par_heure(self, data, heure_debut, heure_fin):
         """
         Filtre le DataFrame en fonction de l'heure entre heure_debut
-        et heure_fin inclusivement.
+        et heure_fin inclus.
 
-        Args:
-        data (DataFrame): Le DataFrame contenant les données.
-        heure_debut (str): L'heure de début de la période au format "HH:MM".
-        heure_fin (str): L'heure de fin de la période au format "HH:MM".
+        Parameters
+        ----------
+        data : DataFrame
+            La base de données à filtrer.
 
-        Returns:
-        tuple: Un tuple contenant un message décrivant la période filtrée
-        et le DataFrame filtré.
+        heure_debut : str
+            L'heure de début de la période au format "HH:MM".
+
+        heure_fin : str
+            L'heure de fin de la période au format "HH:MM".
+
+        Returns
+        -------
+        tuple : Un tuple contenant un message décrivant la période filtrée
+               et le DataFrame filtré.
+
         """
         if not isinstance(data, pd.DataFrame):
             raise TypeError("data de filtrer_par_heure"
@@ -204,17 +267,28 @@ class Utilisateur:
 
     def filtrer_par_modalité_variable(self, data, variable, modalite):
         """
-        attention aussi à la variable qui doit être dans une liste de varible du tableau
-        /!\ faire attention pour les vérification de type de madalité qui doit exister en utilisant la fonction est dans une liste de moadalités d'une variable
-        Filtre le DataFrame en fonction d'une modalité spécifique d'une
-        variable spécifique et renvoie le DataFrame filtré.
+        Filtre la base de données en fonction d'une modalité spécifique d'une
+        variable spécifique et renvoie la base de données filtrée.
 
-        Args:
-        data (DataFrame): Le DataFrame contenant les données.
-        modalité (str): La modalité spécifique à filtrer.
+        attention aussi à la variable qui doit être dans une liste de variable
+        du tableau
+        /!\ faire attention pour les vérification de type de modalité qui doit
+        exister en utilisant la fonction est dans une liste de moadalités d'une
+        variable
 
-        Returns:
-        DataFrame: Le DataFrame filtré.
+
+        Parameters
+        ----------
+        data : DataFrame
+            La base de données à filtrer.
+
+        modalité : str
+            La modalité spécifique à filtrer.
+
+        Returns
+        -------
+        DataFrame : La base de données filtrée.
+
         """
         if not isinstance(data, pd.DataFrame):
             raise TypeError("data de filtrer_par_modalité_variable"
