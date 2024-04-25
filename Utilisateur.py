@@ -27,8 +27,8 @@ class Utilisateur:
         if not isinstance(data, pd.DataFrame):
             raise TypeError("La base de données doit être un DataFrame.")
 
-        return ("Nombre d'observations dans la base de données :",
-                data.shape[0])
+        return ["Nombre d'observations dans la base de données :",
+                data.shape[0]]
 
     def calcul_totaux_statut(self, data, statut):
         """
@@ -56,24 +56,24 @@ class Utilisateur:
         if not isinstance(statut, str):
             raise TypeError("Le statut doit être de type str.")
 
-        if statut != "B" or statut != "T" or statut != "BT":
+        if statut != "B" and statut != "T" and statut != "BT":
             raise ValueError("Le statut doit être B, T ou BT.")
 
         elif statut == "B":
             total_persons_injuried = data["NUMBER.OF.PERSONS.INJURED"].sum()
-            return ("Nombre total de personnes blessées dans le tableau :",
-                    total_persons_injuried)
+            return ["Nombre total de personnes blessées dans le tableau :",
+                    total_persons_injuried]
         elif statut == "T":
             total_persons_killed = data["NUMBER.OF.PERSONS.KILLED"].sum()
-            return ("Nombre total de personnes tuées dans le tableau :",
-                    total_persons_killed)
+            return ["Nombre total de personnes tuées dans le tableau :",
+                    total_persons_killed]
         elif statut == "BT":
             total_persons_killed = data["NUMBER.OF.PERSONS.KILLED"].sum()
             total_persons_injuried = data["NUMBER.OF.PERSONS.INJURED"].sum()
             total_both = total_persons_killed + total_persons_injuried
-            return ("Nombre total d'individus blessés et"
+            return ["Nombre total d'individus blessés et"
                     " tués dans le tableau :",
-                    total_both)
+                    total_both]
 
     def calcul_type_statut(self, data, etat, statut):
         """
@@ -109,63 +109,62 @@ class Utilisateur:
         if not isinstance(statut, str):
             raise TypeError("Le statut doit être de type str.")
 
-        if statut != "B" or statut != "T" or statut != "BT":
+        if statut != "B" and statut != "T" and statut != "BT":
             raise ValueError("Le statut doit être B, T ou BT.")
 
         if not isinstance(etat, str):
             raise TypeError("L'état doit être de type str.")
 
-        if etat != "cycl" or etat != "auto" or etat != "piet":
-            raise ValueError("L'état doit être auto, cylc ou piet.")
+        if etat != "cycl" and etat != "auto" and etat != "piet":
+            raise ValueError("L'état doit être auto, cycl ou piet.")
 
-        elif etat == "Auto":
+        elif etat == "auto":
             colonnes_automobilistes = ["NUMBER.OF.MOTORIST.INJURED",
                                        "NUMBER.OF.MOTORIST.KILLED"]
             if statut == "B":
                 total_automobilistes = data[colonnes_automobilistes[0]].sum()
-                return ("Nombre total d'automobilistes blessés :",
-                        total_automobilistes)
+                return ["Nombre total d'automobilistes blessés :",
+                        total_automobilistes]
             elif statut == "T":
                 total_automobilistes = data[colonnes_automobilistes[1]].sum()
-                return ("Nombre total d'automobilistes tués :",
-                        total_automobilistes)
+                return ["Nombre total d'automobilistes tués :",
+                        total_automobilistes]
             elif statut == "BT":
-                total_automobilistes = data[colonnes_automobilistes].sum()\
-                    .sum()
-                return ("Nombre total d'automobilistes blessés et tués :",
-                        total_automobilistes)
+                total_automobilistes = data[colonnes_automobilistes].sum().sum()
+                return ["Nombre total d'automobilistes blessés et tués :",
+                        total_automobilistes]
 
-        elif etat == "Cycl":
+        elif etat == "cycl":
             colonnes_cyclistes = ["NUMBER.OF.CYCLIST.INJURED",
                                   "NUMBER.OF.CYCLIST.KILLED"]
             if statut == "B":
                 total_cyclistes = data[colonnes_cyclistes[0]].sum()
-                return ("Nombre total de cyclistes blessés :",
-                        total_cyclistes)
+                return ["Nombre total de cyclistes blessés :",
+                        total_cyclistes]
             elif statut == "T":
                 total_cyclistes = data[colonnes_cyclistes[1]].sum()
-                return ("Nombre total de cyclistes tués :",
-                        total_cyclistes)
+                return ["Nombre total de cyclistes tués :",
+                        total_cyclistes]
             elif statut == "BT":
                 total_cyclistes = data[colonnes_cyclistes].sum().sum()
-                return ("Nombre total de cyclistes blessés et tués :",
-                        total_cyclistes)
+                return ["Nombre total de cyclistes blessés et tués :",
+                        total_cyclistes]
 
-        elif etat == "Piet":
+        elif etat == "piet":
             colonnes_piétons = ["NUMBER.OF.PEDESTRIANS.INJURED",
                                 "NUMBER.OF.PEDESTRIANS.KILLED"]
             if statut == "B":
                 total_piétons = data[colonnes_piétons[0]].sum()
-                return ("Nombre total de piétons blessés :",
-                        total_piétons)
+                return ["Nombre total de piétons blessés :",
+                        total_piétons]
             elif statut == "T":
                 total_piétons = data[colonnes_piétons[1]].sum()
-                return ("Nombre total de piétons tués :",
-                        total_piétons)
+                return ["Nombre total de piétons tués :",
+                        total_piétons]
             elif statut == "BT":
                 total_piétons = data[colonnes_piétons].sum().sum()
-                return ("Nombre total de piétons blessés et tués :",
-                        total_piétons)
+                return ["Nombre total de piétons blessés et tués :",
+                        total_piétons]
 
     # fonction de filtres
     def filtrer_par_nom_de_rue(data, street):
@@ -196,8 +195,8 @@ class Utilisateur:
         filtered_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
                              data["ON.STREET.NAME"].str.contains(street) |
                              data["OFF.STREET.NAME"].str.contains(street)]
-        return ("Base de données filtrée pour la rue nomée:",
-                street, filtered_data)
+        return ["Base de données filtrée pour la rue nomée:",
+                street, filtered_data]
 
     def filtrer_par_date(self, data, date_debut, date_fin):
         """
@@ -234,11 +233,11 @@ class Utilisateur:
         # Supprimer la colonne temporaire "CRASH_DATE"
         filtered_data = filtered_data.drop(columns=["CRASH_DATE"])
 
-        return ("Base de données filtrée pour la période du",
+        return ["Base de données filtrée pour la période du",
                 date_debut,
                 "au",
                 date_fin,
-                filtered_data)
+                filtered_data]
 
     def filtrer_par_heure(self, data, heure_debut, heure_fin):
         """
@@ -259,7 +258,7 @@ class Utilisateur:
         Returns
         -------
         tuple : Un tuple contenant un message décrivant la période filtrée
-               et le DataFrame filtré.
+            et le DataFrame filtré.
 
         """
         if not isinstance(data, pd.DataFrame):
@@ -277,11 +276,11 @@ class Utilisateur:
         # Supprimer la colonne temporaire "CRASH_TIME"
         filtered_data = filtered_data.drop(columns=["CRASH_TIME"])
 
-        return ("Base de données filtrée pour la période entre",
+        return ["Base de données filtrée pour la période entre",
                 heure_debut,
                 "et",
                 heure_fin, ":",
-                filtered_data)
+                filtered_data]
 
     def filtrer_par_modalite_variable(self, data, variable, modalite):
         """
@@ -294,11 +293,13 @@ class Utilisateur:
         exister en utilisant la fonction est dans une liste de moadalités d'une
         variable
 
-
         Parameters
         ----------
         data : DataFrame
             La base de données à filtrer.
+
+        variable : str
+            La variable spécifique à filtrer.
 
         modalite : str
             La modalité spécifique à filtrer.
@@ -311,15 +312,26 @@ class Utilisateur:
         if not isinstance(data, pd.DataFrame):
             raise TypeError("La base de données doit être un DataFrame.")
 
+        if not isinstance(variable, str):
+            raise TypeError("La variable doit être de type str.")
+
+        if variable not in self.liste_variables_dataframe(data)[-1]:
+            raise ValueError("Cette variable n'est pas dans la base de "
+                             "données.")
+
         if not isinstance(modalite, str):
             raise TypeError("La modalité doit être de type str.")
 
+        if modalite not in self.liste_modalites_variable(data, variable)[-1]:
+            raise ValueError("Cette modalité n'existe pas dans la variable "
+                             "choisie.")
+
         filtered_data = data[data[variable] == modalite]
-        return ("Base de données filtrée pour la modalité",
+        return ["Base de données filtrée pour la modalité",
                 modalite,
                 "de la variable",
                 variable,
-                filtered_data)
+                filtered_data]
 
     # fonction listant les modalités et les variables d'un dataframe
 
@@ -341,15 +353,15 @@ class Utilisateur:
             raise TypeError("La base de données doit être un DataFrame.")
 
         liste_variable = data.columns.tolist()
-        return ("Liste des variables de la base de données :",
-                liste_variable)
+        return ["Liste des variables de la base de données :",
+                liste_variable]
 
     def liste_modalites_variable(self, data, variable):
         """
         Renvoie toutes les modalités différentes d'une variable d'une base de
         données.
 
-        attention varible en majusccule et séparéles mots par des points
+        attention varible en majuscule et séparer les mots par des points
 
         Parameters
         ----------
@@ -371,10 +383,10 @@ class Utilisateur:
         if not isinstance(variable, str):
             raise TypeError("La variable doit être de type str.")
 
-        if variable not in self.liste_variables_dataframe(data):
+        if variable not in self.liste_variables_dataframe(data)[-1]:
             raise ValueError("Cette variable n'est pas dans la base de "
                              "données.")
 
         liste_modalites = list(data[variable].unique())
-        return ("Liste des modalités différentes de la variable :",
-                variable, liste_modalites)
+        return ["Liste des modalités différentes de la variable :",
+                variable, liste_modalites]
