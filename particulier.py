@@ -34,10 +34,6 @@ class Particulier:
     def __init__(pieton, velo, vehicule):
         pass
 
-    def eviter_zone_risquee(self, heure_depart: time,
-                            heure_arrive):
-        pass
-
     def itineraires(self, adresse_depart, adresse_arrivee):
         # chargement et centrage de la carte
         carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=12)
@@ -63,6 +59,10 @@ class Particulier:
         return itineraires
 
     def evaluate_risque_itineraire(self, adresse_depart, adresse_arrivee):
+        # chargement et centrage de la carte
+        carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=12)
+        geolocator = Nominatim(user_agent="carte_bronx")
+        # chargement des dictionnaires utiles
         itineraires = self.itineraires(adresse_depart, adresse_arrivee)
         risques = {"car": 1, "cycle": 1, "foot": 1}
         L = ["car", "cycle", "foot"]
@@ -70,8 +70,23 @@ class Particulier:
             Iti_coord = itineraires[vehicule]
             # on va voir besoin du nombre total de points pour renvoyer
             # la moyenne du risque dans le dictionnaire
-            total_points = len(Iti_coord)
+            tot_points = len(Iti_coord)
+            compteur = 0
             for i in range(len(Iti_coord)):
+                # Pour matcher avec les fonction morts risque_rue de Xavier,
+                # on trouve le nom de la rue pour les coordonnées données
+                localisation = geolocator.reverse(Iti_coord[i])
+                address = localisation.raw['address']
+                # Récupérer le nom de la rue si disponible
+                nom_rue = address.get('road', None)
+                # Là on peut utiliser les fonctions de Xavier,
+                # il nous faudrait juste un fonction globale et
+                # un filtrage par vehicule possible pour faire :
+                compteur += jsp_quel_type.calculer_risque_rue(nom_rue, vehicule)
+            risques[vehicule] = compteur/tot_points
+
+    def eviter_zone_risquee(self, adresse_depart, adresse_arrive):
+        if
 
 
 
