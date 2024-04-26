@@ -88,6 +88,9 @@ class Particulier:
         return risques
 
     def eviter_zone_risquee(self, adresse_depart, adresse_arrive):
+        # Chargement de la carte
+        carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=12)
+        geolocator = Nominatim(user_agent="carte_bronx")
         dico_itineraires = self.itineraires(adresse_depart, adresse_arrivee)
         dico_risque = self.evaluate_risque_itineraire(adresse_depart, adresse_arrivee)
         vehicule_moins_risque = "car"
@@ -97,13 +100,14 @@ class Particulier:
                 risque = dico_risque[vehicule]
                 vehicule_moins_risque = vehicule
         if self.type_vehicule == vehicule_moins_risque:
+            # on trace l'itineraire
             folium.PolyLine(locations=dico_itineraires[vehicule], color='blue').add_to(carte_bronx)
             webbrowser.open('carte_bronx.html')
             return ("Vous avez choisi le mode de transport le moins risqué,"
                     "voici votre itinéraire :")
         else:
+            # on trace l'itineraire
             folium.PolyLine(locations=dico_itineraires[vehicule_moins_risque], color='blue').add_to(carte_bronx)
             webbrowser.open('carte_bronx.html')
             return ("Choisissez plutôt ce type de vehicule"
                     f"{vehicule_moins_risque}, voici l'itineraire")
-        # on trace l'itineraire
