@@ -1,6 +1,7 @@
 # avant toute chose on a besoin de folium pour générer une carte :
 # pip install folium
-# on a également besoin de geopy et de geolocator pour transformer des adresses en coordonnées :
+# on a également besoin de geopy et de geolocator pour transformer
+# des adresses en coordonnées :
 # pip install geopy
 # pip install geolocator
 # on a besoin de créer un itinéraire avec pyroutelib3 :
@@ -84,14 +85,25 @@ class Particulier:
                 # un filtrage par vehicule possible pour faire :
                 compteur += jsp_quel_type.calculer_risque_rue(nom_rue, vehicule)
             risques[vehicule] = compteur/tot_points
+        return risques
 
     def eviter_zone_risquee(self, adresse_depart, adresse_arrive):
-        if
-
-
-
-
-
+        dico_itineraires = self.itineraires(adresse_depart, adresse_arrivee)
+        dico_risque = self.evaluate_risque_itineraire(adresse_depart, adresse_arrivee)
+        vehicule_moins_risque = "car"
+        risque = 2
+        for vehicule in dico_risque:
+            if dico_risque[vehicule] < risque:
+                risque = dico_risque[vehicule]
+                vehicule_moins_risque = vehicule
+        if self.type_vehicule == vehicule_moins_risque:
+            folium.PolyLine(locations=dico_itineraires[vehicule], color='blue').add_to(carte_bronx)
+            webbrowser.open('carte_bronx.html')
+            return ("Vous avez choisi le mode de transport le moins risqué,"
+                    "voici votre itinéraire :")
+        else:
+            folium.PolyLine(locations=dico_itineraires[vehicule_moins_risque], color='blue').add_to(carte_bronx)
+            webbrowser.open('carte_bronx.html')
+            return ("Choisissez plutôt ce type de vehicule"
+                    f"{vehicule_moins_risque}, voici l'itineraire")
         # on trace l'itineraire
-        folium.PolyLine(locations=coordonnees_route, color='blue').add_to(carte_bronx)
-        webbrowser.open('carte_bronx.html')
