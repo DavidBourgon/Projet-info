@@ -75,7 +75,7 @@ class Utilisateur:
                     " tués dans le tableau :",
                     total_both]
 
-    def calcul_type_statut(self, data, etat, statut):
+    def calcul_totaux_type_statut(self, data, cat, statut):
         """
         Calcule le nombre de blessées et/ou de tués selon le type de personnes
         souhaité.
@@ -84,9 +84,9 @@ class Utilisateur:
             Base de données sur laquelle on veut déterminer le nombre de
             blessés et/ou tués.
 
-        etat : str
-            Etat des personnes dont on veut déterminer le nombre de blessés
-            et/ou tués.
+        cat : str
+            Catégorie des personnes dont on veut déterminer le nombre
+            de blessés et/ou tués.
             auto : automobilistes
             cycl : cyclistes
             piet : piétons
@@ -113,13 +113,13 @@ class Utilisateur:
         if statut != "B" and statut != "T" and statut != "BT":
             raise ValueError("Le statut doit être B, T ou BT.")
 
-        if not isinstance(etat, str):
+        if not isinstance(cat, str):
             raise TypeError("L'état doit être de type str.")
 
-        if etat != "cycl" and etat != "auto" and etat != "piet":
+        if cat != "cycl" and cat != "auto" and cat != "piet":
             raise ValueError("L'état doit être auto, cycl ou piet.")
 
-        elif etat == "auto":
+        elif cat == "auto":
             colonnes_automobilistes = ["NUMBER.OF.MOTORIST.INJURED",
                                        "NUMBER.OF.MOTORIST.KILLED"]
             if statut == "B":
@@ -136,7 +136,7 @@ class Utilisateur:
                 return ["Nombre total d'automobilistes blessés et tués :",
                         total_automobilistes]
 
-        elif etat == "cycl":
+        elif cat == "cycl":
             colonnes_cyclistes = ["NUMBER.OF.CYCLIST.INJURED",
                                   "NUMBER.OF.CYCLIST.KILLED"]
             if statut == "B":
@@ -152,7 +152,7 @@ class Utilisateur:
                 return ["Nombre total de cyclistes blessés et tués :",
                         total_cyclistes]
 
-        elif etat == "piet":
+        elif cat == "piet":
             colonnes_piétons = ["NUMBER.OF.PEDESTRIANS.INJURED",
                                 "NUMBER.OF.PEDESTRIANS.KILLED"]
             if statut == "B":
@@ -421,3 +421,19 @@ class Utilisateur:
         liste_modalites = list(data[variable].unique())
         return ["Liste des modalités différentes de la variable :",
                 variable, liste_modalites]
+
+    # fonction avancée
+    def danger_rue(self, data, street, cat):
+        data_street = self.filtrer_par_nom_de_rue(data, street)[-1]
+        n_tot = self.nombre_observation(data)[-1]
+        if n_tot == 0:
+            return ["Il n'y a pas d'accidents ou bien le tableau est vide.",
+                    "Pour la rue :", street,
+                    "Il y a un rique (en %) de :", 0]
+        else:
+            n_T = self.calcul_totaux_type_statut(data_street, cat, "T")[-1]
+            n_B = self.calcul_totaux_type_statut(data_street, cat, "B")[-1]
+            risque = (n_T + (1/4)*n_B) / n_tot
+            return ["Pour la rue :", street,
+                    "et la catégorie d'usagée", cat,
+                    "il y a un rique (en %) de :", risque]
