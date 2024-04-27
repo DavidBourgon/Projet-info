@@ -17,16 +17,16 @@ def nmbr_mort_total(data):
 # print(result)
 
 
-def nmbr_mort_total_rue(data, street: str):
-    # Calculer le nombre total de personnes par rue
-    street_data = data[data["CROSS.STREET.NAME"] == street |
-                       data["ON.STREET.NAME"] == street |
-                       data["ON.STREET.NAME"] == street]
-    total_persons_killed = street_data["NUMBER.OF.PERSONS.KILLED"].sum()
-    return ("Nombre total de personnes tuées dans la rue base de données :",
-            total_persons_killed)
+# def nmbr_mort_total_rue(data, street: str):
+#     # Calculer le nombre total de personnes par rue
+#     street_data = data[data["CROSS.STREET.NAME"] == street |
+#                        data["ON.STREET.NAME"] == street |
+#                        data["ON.STREET.NAME"] == street]
+#     total_persons_killed = street_data["NUMBER.OF.PERSONS.KILLED"].sum()
+#     return ("Nombre total de personnes tuées dans la rue base de données :",
+#             total_persons_killed)
 
 
-data = pd.read_excel("BdD_Bronx.xlsx")
-street = 'HEATH AVENUE'
-print(nmbr_mort_total_rue(data, street))
+# data = pd.read_excel("BdD_Bronx.xlsx")
+# street = 'HEATH AVENUE'
+# print(nmbr_mort_total_rue(data, street))
