@@ -75,7 +75,7 @@ class Utilisateur:
                     " tués dans le tableau :",
                     total_both]
 
-    def calcul_totaux_type_statut(self, data, cat, statut):
+    def calcul_totaux_cat_statut(self, data, cat, statut):
         """
         Calcule le nombre de blessées et/ou de tués selon le type de personnes
         souhaité.
@@ -431,9 +431,9 @@ class Utilisateur:
                     "Pour la rue :", street,
                     "Il y a un rique (en %) de :", 0]
         else:
-            n_T = self.calcul_totaux_type_statut(data_street, cat, "T")[-1]
-            n_B = self.calcul_totaux_type_statut(data_street, cat, "B")[-1]
-            risque = (n_T + (1/4)*n_B) / n_tot
+            n_T = self.calcul_totaux_cat_statut(data_street, cat, "T")[-1]
+            n_B = self.calcul_totaux_cat_statut(data_street, cat, "B")[-1]
+            risque = (n_T + (1/4)*n_B) / n_T
             return ["Pour la rue :", street,
                     "et la catégorie d'usagée", cat,
                     "il y a un rique (en %) de :", risque]
