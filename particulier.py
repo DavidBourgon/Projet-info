@@ -36,6 +36,23 @@ class Particulier:
         pass
 
     def itineraires(self, adresse_depart, adresse_arrivee):
+        """
+        Permet de déterminer un itinéraire entre 2 adresses du Bronx.
+
+        Parameters
+        ----------
+        adresse_depart : str
+            Adresse de départ.
+
+        adresse_arrivee : str
+            Adresse d'arrivée.
+
+        Retunrs
+        -------
+        itineraires : dict[str : list]
+            Dictionnaire d'itinéraires selon le type de véhicule.
+
+        """
         # chargement et centrage de la carte
         carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=12)
         geolocator = Nominatim(user_agent="carte_bronx")
@@ -44,7 +61,7 @@ class Particulier:
         coord_depart = (localisation_1.latitude, localisation_1.longitude)
         localisation_2 = geolocator.geocode(adresse_arrivee)
         coord_arrivee = (localisation_2.latitude, localisation_2.longitude)
-        # ajout des points de depar et d'arrivee à la carte
+        # ajout des points de depart et d'arrivee à la carte
         folium.Marker(coord_arrivee, popup='Départ').add_to(carte_bronx)
         folium.Marker(coord_depart, popup='Arrivée').add_to(carte_bronx)
         # creation de l'itineraire
