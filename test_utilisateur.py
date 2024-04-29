@@ -1,9 +1,9 @@
-from station import Station
+from utilisateur import Utilisateur
 import pytest
 import re
 
 
-# Définition des cas de test pour l'initialisation invalide
+# Définition des cas de test pour nombre_observation
 @pytest.mark.parametrize(
     'kwargs, erreur, message_erreur',
     [
@@ -13,7 +13,6 @@ import re
          "Les clés du dictionnaire doivent être de type str"),
         ({'pompes': {'clef': 4}}, TypeError,
          "Les valeurs du dictionnaire doivent être de type Pompe"),
-
 
         ({'prix': 1}, TypeError,
          ("Les prix sont des dictionnaires")),
@@ -31,10 +30,13 @@ import re
 
     ]
 )
-def test_station_init_echec(station_kwargs,  kwargs, erreur, message_erreur):
-    station_kwargs.update(kwargs)
+def test_station_nombre_observation_echec(utilisateur_kwargs,
+                                          kwargs,
+                                          erreur,
+                                          message_erreur):
+    utilisateur_kwargs.update(kwargs)
     with pytest.raises(erreur, match=re.escape(message_erreur)):
-        Station(**station_kwargs)
+        Utilisateur(**utilisateur_kwargs)
 
 
 # Définition des cas de test pour l'initialisation réussie
@@ -46,8 +48,9 @@ def test_station_init_echec(station_kwargs,  kwargs, erreur, message_erreur):
 )
 def test_station_init_succes(kwargs_str, request):
     kwargs = request.getfixturevalue(kwargs_str)
-    Station(**kwargs)
+    Utilisateur(**kwargs)
 
+ # BROUILLON NE PAS TOUCHER !!!
 
 # Définition des cas de test pour la méthode _verifier_nom_carburant
 @pytest.mark.parametrize(
