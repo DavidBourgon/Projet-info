@@ -424,10 +424,30 @@ class Utilisateur:
 
     # fonction avancée
     def danger_rue(self, data, street, cat):
+        """
+        Permet de calculer le danger d'une rue en %.
+
+        Parameters
+        ----------
+        data : Dataframe
+            base de données sur laquelle nous travaillons.
+
+        street : str
+            Nom de la rue pour laquelle nous souhaitons déterminer le danger.
+
+        cat : str
+            Catégorie d'usagés : blessés ou tués.
+
+        Returns
+        -------
+        str : Phrase indiquant le danger en % pour la rue et la catégorie
+              souhaitées.
+
+        """
         data_street = self.filtrer_par_nom_de_rue(data, street)[-1]
         n_tot = self.nombre_observation(data)[-1]
         if n_tot == 0:
-            return ["Il n'y a pas d'accidents ou bien le tableau est vide.",
+            return ["Il n'y a pas d'accident ou bien le tableau est vide.",
                     "Pour la rue :", street,
                     "Il y a un rique (en %) de :", 0]
         else:
@@ -435,5 +455,4 @@ class Utilisateur:
             n_B = self.calcul_totaux_cat_statut(data_street, cat, "B")[-1]
             risque = (n_T + (1/4)*n_B) / n_tot
             return ["Pour la rue :", street,
-                    "et la catégorie d'usagée", cat,
                     "il y a un rique (en %) de :", risque]
