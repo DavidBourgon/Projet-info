@@ -31,28 +31,25 @@ def test_station_nombre_observation_succes(kwargs_str, request):
     kwargs = request.getfixturevalue(kwargs_str)
     Utilisateur(**kwargs)
 
- # BROUILLON NE PAS TOUCHER !!!
+# BROUILLON NE PAS TOUCHER !!!
 
-# Définition des cas de test pour la méthode _verifier_nom_carburant
+# Définition des cas de test pour la méthode nombre_observation échec
 @pytest.mark.parametrize(
-    'kwargs, nom_carburant, erreur, message_erreur',
+    'kwargs, data, erreur, message_erreur',
     [
         ({}, 60, TypeError,
-         "Le nom de carburant doit être une chaîne de caractères."),
-        ({"pompes": {"pompe_gpl": pytest.pompe_gpl},
-          "prix": {"pompe_gpl": 1.5}}, 'str', ValueError,
-         "Le carburant n'est pas disponible dans la station."),
+         "La base de données doit être un DataFrame.")
     ]
 )
-def test_station_verif_nom_carburant(station_kwargs, kwargs, nom_carburant,
-                                     erreur, message_erreur):
-    station_kwargs.update(kwargs)
-    station = Station(**station_kwargs)
+def test_nombre_observation_echec(obs_kwargs, kwargs, data,
+                                  erreur, message_erreur):
+    obs_kwargs.update(kwargs)
+    utilisateur = Utilisateur(**obs_kwargs)
     with pytest.raises(erreur, match=re.escape(message_erreur)):
-        station._Station__verifier_nom_carburant(nom_carburant)
+        utilisateur.nombre_observation(data)
 
 
-# Définition des cas de test pour la méthode _verifier_pompe
+# Définition des cas de test pour la méthode nombre_observation succés
 @pytest.mark.parametrize(
     'kwargs, nom_carburant, erreur, message_erreur',
     [
