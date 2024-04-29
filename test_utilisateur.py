@@ -3,31 +3,12 @@ import pytest
 import re
 
 
-# Définition des cas de test pour nombre_observation
+# Définition des cas de test pour nombre_observation échec
 @pytest.mark.parametrize(
     'kwargs, erreur, message_erreur',
     [
-        ({'pompes': 2}, TypeError,
-         "Les pompes sont des dictionnaires."),
-        ({'pompes': {1: pytest.pompe_gpl}}, TypeError,
-         "Les clés du dictionnaire doivent être de type str"),
-        ({'pompes': {'clef': 4}}, TypeError,
-         "Les valeurs du dictionnaire doivent être de type Pompe"),
-
-        ({'prix': 1}, TypeError,
-         ("Les prix sont des dictionnaires")),
-        ({'prix': {2: 'valeurs'}}, TypeError,
-         ("Les clés du dictionnaire doivent être de type str")),
-        ({'prix': {'clef': 'valeurs'}}, ValueError,
-         ("Les valeurs du dictionnaire doivent être de type float")),
-
-        ({'prix': {'clef': -0.4}}, ValueError,
-         ("La valeur de prix ne doit pas être négative.")),
-        ({'prix': {'clef1': 10.0},
-          'pompes': {'clef2': pytest.pompe_gpl}},
-         ValueError, ("Les clés des carburants dans les pompes"
-                      " doivent correspondre aux clés des prix.")),
-
+        ({2}, TypeError,
+         "La base de données doit être un DataFrame.")
     ]
 )
 def test_station_nombre_observation_echec(utilisateur_kwargs,
@@ -39,14 +20,14 @@ def test_station_nombre_observation_echec(utilisateur_kwargs,
         Utilisateur(**utilisateur_kwargs)
 
 
-# Définition des cas de test pour l'initialisation réussie
+# Définition des cas de test pour nombre_observation réussie
 @pytest.mark.parametrize(
     'kwargs_str',
     [
         'station_kwargs'
     ]
 )
-def test_station_init_succes(kwargs_str, request):
+def test_station_nombre_observation_succes(kwargs_str, request):
     kwargs = request.getfixturevalue(kwargs_str)
     Utilisateur(**kwargs)
 
