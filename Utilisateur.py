@@ -462,3 +462,47 @@ class Utilisateur:
             risque = (n_T + (1/4)*n_B) / (n_T + n_B)
             return ["Pour la rue :", street,
                     "il y a un rique (en %) de :", risque]
+
+
+
+# Fonction pour classer si c'est jour ou nuit
+def classer_jour_nuit(self, heure):
+    if heure.hour >= 6 and heure.hour < 18:
+        return 'jour'
+    else:
+        return 'nuit'
+    
+# Appliquer la fonction pour créer une nouvelle colonne 'Jour_Nuit'
+df['Jour_Nuit'] = df['CRASH.TIME'].apply(classer_jour_nuit)
+
+def risque_nuit_jour(self, data,utilisateur) : 
+    jour=2
+    nuit=2
+    if data['Jour_Nuit']=='jour':
+        if jour==0 : 
+                return 0
+        else : 
+             return jour/(jour+nuit)
+    else : 
+        if nuit==0 : 
+                return 0
+        else : 
+                return nuit/(jour+nuit)
+
+def risque_voiture(self, data, utilisateur, voiture):
+    if voiture in data['VEHICLE.TYPE.CODE.1'].values:
+        # Regroupement par 'VEHICLE.TYPE.CODE.1' et comptage des occurrences de 'COLLISION_ID'
+        regroupement = df.groupby('VEHICLE.TYPE.CODE.1')['COLLISION_ID'].count()
+        return regroupement[voiture]/max(regroupement.iloc[:, 1])
+    else:
+        return 0
+
+def risque_rue(self, data, rue):
+     if rue in data["CROSS.STREET.NAME"].values or in data["OFF.STREET.NAME"].values or in data["ON.STREET.NAME"].values:
+        # calcul des nombres de bléssés/morts
+        regroupement = filtre(data, rue)[-1]
+        nombre_BT_rue= calcul_totaux_statut(regroupement, BT)[1]
+        nombre_BT= max(calcul_totaux_statut(data, BT)[1])
+        return nombre_BT_rue/nombre_BT
+     else:
+        return 0
