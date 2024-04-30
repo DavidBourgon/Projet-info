@@ -1,7 +1,9 @@
 from Utilisateur import Utilisateur
 import pytest
+import pandas as pd
 import re
 
+data = pd.read_excel("Bronx_2.xlsx")
 
 # Définition des cas de test pour nombre_observation échec
 @pytest.mark.parametrize(
