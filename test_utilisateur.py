@@ -11,10 +11,10 @@ import re
          "La base de données doit être un DataFrame.")
     ]
 )
-def test_station_nombre_observation_echec(utilisateur_kwargs,
-                                          kwargs,
-                                          erreur,
-                                          message_erreur):
+def test_nombre_observation_echec(utilisateur_kwargs,
+                                  kwargs,
+                                  erreur,
+                                  message_erreur):
     utilisateur_kwargs.update(kwargs)
     with pytest.raises(erreur, match=re.escape(message_erreur)):
         Utilisateur(**utilisateur_kwargs)
