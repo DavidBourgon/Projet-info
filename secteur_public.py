@@ -18,13 +18,15 @@ class SecteurPublic:
 
     """
 
-    def __init__(self, pieton, velo, vehicule):
-        self.pieton = pieton
-        self.velo = velo
-        self.vehicule = vehicule
-        if not isinstance(vehicule, TypeDeVehicule):
-            raise TypeError("Le véhicule doit être une instance de "
-                            "TypeDeVehicule.")
+    def __init__(self, categorie):
+        self.categorie = categorie
+
+        if not isinstance(categorie, str):
+            raise TypeError("Le véhicule doit être une chaîne de caractères.")
+
+        if categorie not in ("piet", "cycl", "autot"):
+            raise ValueError("La catégorie doit être valoir piet, cycl ou "
+                             "auto.")
 
     def calculer_mortalité_rue(self, rue: str) -> int:
         """ Calcule le taux de mortalité d'une rue.
