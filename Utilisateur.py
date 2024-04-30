@@ -453,6 +453,6 @@ class Utilisateur:
         else:
             n_T = self.calcul_totaux_cat_statut(data_street, cat, "T")[-1]
             n_B = self.calcul_totaux_cat_statut(data_street, cat, "B")[-1]
-            risque = (n_T + (1/4)*n_B) / n_tot
+            risque = (n_T + (1/4)*n_B) / (n_T + n_B)
             return ["Pour la rue :", street,
                     "il y a un rique (en %) de :", risque]
