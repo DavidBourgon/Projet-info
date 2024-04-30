@@ -22,20 +22,39 @@ class Particulier:
 
     Parameters
     ----------
-    pieton : bool
-        Indique si l'utilisateur concerné est un piéton ou non.
-
-    velo : bool
-        Indique si l'utilisateur concerné est un cycliste ou non.
-
-    vehicule : bool
-        Indique si l'utilisateur concerné est un conducteur ou non.
+    categorie : str
+        Catégorie de l'usagé : piéton, cycliste ou  automobiliste. Elle vaut
+        soit piet, soit cycl soit auto
 
     """
-    def __init__(pieton, velo, vehicule):
-        pass
+    def __init__(self, categorie):
+        self.categorie = categorie
+
+        if not isinstance(categorie, str):
+            raise TypeError("La catégorie doit être une chaîne de caractères.")
+
+        if categorie not in ("piet", "cycl", "autot"):
+            raise ValueError("La catégorie doit être valoir piet, cycl ou "
+                             "auto.")
 
     def itineraires(self, adresse_depart, adresse_arrivee):
+        """
+        Permet de déterminer un itinéraire entre 2 adresses du Bronx.
+
+        Parameters
+        ----------
+        adresse_depart : str
+            Adresse de départ.
+
+        adresse_arrivee : str
+            Adresse d'arrivée.
+
+        Retunrs
+        -------
+        itineraires : dict[str : list]
+            Dictionnaire d'itinéraires selon le type de véhicule.
+
+        """
         # chargement et centrage de la carte
         carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=12)
         geolocator = Nominatim(user_agent="carte_bronx")
@@ -44,7 +63,7 @@ class Particulier:
         coord_depart = (localisation_1.latitude, localisation_1.longitude)
         localisation_2 = geolocator.geocode(adresse_arrivee)
         coord_arrivee = (localisation_2.latitude, localisation_2.longitude)
-        # ajout des points de depar et d'arrivee à la carte
+        # ajout des points de depart et d'arrivee à la carte
         folium.Marker(coord_arrivee, popup='Départ').add_to(carte_bronx)
         folium.Marker(coord_depart, popup='Arrivée').add_to(carte_bronx)
         # creation de l'itineraire
@@ -54,8 +73,10 @@ class Particulier:
             # ici on parle de noeud car la carte est un graphe
             noeud_depart = Router(vehicule).findNode(*coord_depart)
             noeud_arrivee = Router(vehicule).findNode(*coord_arrivee)
-            status, route = Router(vehicule).doRoute(noeud_depart, noeud_arrivee)
-            coordonnees_route = [Router(vehicule).nodeLatLon(node) for node in route]
+            status, route = Router(vehicule).doRoute(noeud_depart,
+                                                     noeud_arrivee)
+            coordonnees_route = [Router(vehicule).nodeLatLon(node) for node in
+                                 route]
             itineraires[vehicule] = coordonnees_route
         return itineraires
 
@@ -83,16 +104,18 @@ class Particulier:
                 # Là on peut utiliser les fonctions de Xavier,
                 # il nous faudrait juste un fonction globale et
                 # un filtrage par vehicule possible pour faire :
-                compteur += jsp_quel_type.calculer_risque_rue(nom_rue, vehicule)
+                compteur += jsp_quel_type.calculer_risque_rue(nom_rue,
+                                                              vehicule)
             risques[vehicule] = compteur/tot_points
         return risques
 
-    def eviter_zone_risquee(self, adresse_depart, adresse_arrive):
+    def eviter_zone_risquee(self, adresse_depart, adresse_arrivee):
         # Chargement de la carte
         carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=12)
         geolocator = Nominatim(user_agent="carte_bronx")
         dico_itineraires = self.itineraires(adresse_depart, adresse_arrivee)
-        dico_risque = self.evaluate_risque_itineraire(adresse_depart, adresse_arrivee)
+        dico_risque = self.evaluate_risque_itineraire(adresse_depart,
+                                                      adresse_arrivee)
         vehicule_moins_risque = "car"
         risque = 2
         for vehicule in dico_risque:
@@ -101,13 +124,15 @@ class Particulier:
                 vehicule_moins_risque = vehicule
         if self.type_vehicule == vehicule_moins_risque:
             # on trace l'itineraire
-            folium.PolyLine(locations=dico_itineraires[vehicule], color='blue').add_to(carte_bronx)
+            folium.PolyLine(locations=dico_itineraires[vehicule],
+                            color='blue').add_to(carte_bronx)
             webbrowser.open('carte_bronx.html')
             return ("Vous avez choisi le mode de transport le moins risqué,"
                     "voici votre itinéraire :")
         else:
             # on trace l'itineraire
-            folium.PolyLine(locations=dico_itineraires[vehicule_moins_risque], color='blue').add_to(carte_bronx)
+            folium.PolyLine(locations=dico_itineraires[vehicule_moins_risque],
+                            color='blue').add_to(carte_bronx)
             webbrowser.open('carte_bronx.html')
             return ("Choisissez plutôt ce type de vehicule"
                     f"{vehicule_moins_risque}, voici l'itineraire")

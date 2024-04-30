@@ -3,9 +3,6 @@ import re
 
 
 class Utilisateur:
-    def __init__(self):
-        pass
-
     def nombre_observation(self, data):
         """
         Compte le nombre d'observations d'une base de données.
@@ -18,8 +15,9 @@ class Utilisateur:
 
         Returns
         -------
-        Une liste dont le dernier élement est un
-        int : Nombre d'observations de la base de données.
+        list[str, int] :
+            str : Phrase réponse.
+            int : Nombre d'observations de la base de données.
 
         Raises
         ------
@@ -34,7 +32,7 @@ class Utilisateur:
 
     def calcul_totaux_statut(self, data, statut):
         """
-        Calcule le nombre de blessées et/ou de tués.
+        Calcule le nombre de blessés et/ou de tués.
 
         data : DataFrame
             Base de données sur laquelle on veut déterminer le nombre de
@@ -48,8 +46,9 @@ class Utilisateur:
 
         Returns
         -------
-        Une liste dont le dernier élement est un
-        int : Nombre de personnes blessées et/ou tuées selon le statut
+        list[int, str] :
+            str : Phrase réponse.
+            int : Nombre de personnes blessées et/ou tuées selon le statut
               souhaité.
 
         """
@@ -78,7 +77,7 @@ class Utilisateur:
                     " tués dans le tableau :",
                     total_both]
 
-    def calcul_type_statut(self, data, etat, statut):
+    def calcul_totaux_cat_statut(self, data, categorie, statut):
         """
         Calcule le nombre de blessées et/ou de tués selon le type de personnes
         souhaité.
@@ -87,9 +86,9 @@ class Utilisateur:
             Base de données sur laquelle on veut déterminer le nombre de
             blessés et/ou tués.
 
-        etat : str
-            Etat des personnes dont on veut déterminer le nombre de blessés
-            et/ou tués.
+        categorie : str
+            Catégorie des personnes dont on veut déterminer le nombre
+            de blessés et/ou tués.
             auto : automobilistes
             cycl : cyclistes
             piet : piétons
@@ -102,9 +101,10 @@ class Utilisateur:
 
         Returns
         -------
-        Une liste dont le dernier élement est un
-        int : Nombre de personnes blessées et/ou tuées selon le type et le
-              statut souhaités.
+        list[str, int] :
+            str : Phrase réponse.
+            int : Nombre de personnes blessées et/ou tuées selon la catégorie
+            souhaitée et le statut souhaité.
 
         """
         if not isinstance(data, pd.DataFrame):
@@ -116,13 +116,13 @@ class Utilisateur:
         if statut != "B" and statut != "T" and statut != "BT":
             raise ValueError("Le statut doit être B, T ou BT.")
 
-        if not isinstance(etat, str):
+        if not isinstance(categorie, str):
             raise TypeError("L'état doit être de type str.")
 
-        if etat != "cycl" and etat != "auto" and etat != "piet":
+        if categorie != "cycl" and categorie != "auto" and categorie != "piet":
             raise ValueError("L'état doit être auto, cycl ou piet.")
 
-        elif etat == "auto":
+        elif categorie == "auto":
             colonnes_automobilistes = ["NUMBER.OF.MOTORIST.INJURED",
                                        "NUMBER.OF.MOTORIST.KILLED"]
             if statut == "B":
@@ -139,7 +139,7 @@ class Utilisateur:
                 return ["Nombre total d'automobilistes blessés et tués :",
                         total_automobilistes]
 
-        elif etat == "cycl":
+        elif categorie == "cycl":
             colonnes_cyclistes = ["NUMBER.OF.CYCLIST.INJURED",
                                   "NUMBER.OF.CYCLIST.KILLED"]
             if statut == "B":
@@ -155,7 +155,7 @@ class Utilisateur:
                 return ["Nombre total de cyclistes blessés et tués :",
                         total_cyclistes]
 
-        elif etat == "piet":
+        elif categorie == "piet":
             colonnes_piétons = ["NUMBER.OF.PEDESTRIANS.INJURED",
                                 "NUMBER.OF.PEDESTRIANS.KILLED"]
             if statut == "B":
@@ -187,9 +187,10 @@ class Utilisateur:
 
         Returns
         -------
-        Une liste dont le dernier élement est un
-        DataFrame : La base de données filtrée contenant uniquement les lignes
-                    où le nom de la rue correspond à street.
+        list[str, DataFrame] :
+            str : Phrase réponse.
+            DataFrame : La base de données filtrée contenant uniquement les
+                        lignes où le nom de la rue correspond à street.
 
         """
         if not isinstance(data, pd.DataFrame):
@@ -225,8 +226,8 @@ class Utilisateur:
 
         Returns
         -------
-        Une liste dont le dernier élement est un
-        DataFrame : Le base de données filtrée.
+        list : Une liste contenant un message décrivant la période filtrée
+            et le DataFrame filtré.
 
         """
         if not isinstance(data, pd.DataFrame):
@@ -336,9 +337,8 @@ class Utilisateur:
 
         Returns
         -------
-
-        Une liste dont le dernier élement est un
-        DataFrame : La base de données filtrée.
+        list : Une liste contenant un message décrivant la modalité filtrée
+        d'une certaines variable et le DataFrame filtré.
 
         """
         if not isinstance(data, pd.DataFrame):
@@ -424,3 +424,38 @@ class Utilisateur:
         liste_modalites = list(data[variable].unique())
         return ["Liste des modalités différentes de la variable :",
                 variable, liste_modalites]
+
+    # fonction avancée
+    def danger_rue(self, data, street, categorie):
+        """
+        Permet de calculer le danger d'une rue en %.
+
+        Parameters
+        ----------
+        data : Dataframe
+            base de données sur laquelle nous travaillons.
+
+        street : str
+            Nom de la rue pour laquelle nous souhaitons déterminer le danger.
+
+        categorie : str
+            Catégorie d'usagés : piéton, cycliste ou automobiliste.
+
+        Returns
+        -------
+        str : Phrase indiquant le danger en % pour la rue et la catégorie
+              souhaitées.
+
+        """
+        data_street = self.filtrer_par_nom_de_rue(data, street)[-1]
+        n_tot = self.nombre_observation(data)[-1]
+        if n_tot == 0:
+            return ["Il n'y a pas d'accident ou bien le tableau est vide.",
+                    "Pour la rue :", street,
+                    "Il y a un rique (en %) de :", 0]
+        else:
+            n_T = self.calcul_totaux_cat_statut(data_street, categorie, "T")[-1]
+            n_B = self.calcul_totaux_cat_statut(data_street, categorie, "B")[-1]
+            risque = (n_T + (1/4)*n_B) / (n_T + n_B)
+            return ["Pour la rue :", street,
+                    "il y a un rique (en %) de :", risque]
