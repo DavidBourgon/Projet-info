@@ -172,6 +172,10 @@ class Particulier:
             # on trace l'itineraire
             folium.PolyLine(locations=dico_itineraires[vehicule],
                             color='blue').add_to(carte_bronx)
+            for vehicule in ["car", "cycle", "foot"]:
+                if vehicule != vehicule_moins_risque:
+                    folium.PolyLine(locations=dico_itineraires[vehicule],
+                            color='red').add_to(carte_bronx)
             webbrowser.open('carte_bronx.html')
             return ("Vous avez choisi le mode de transport le moins risqué,"
                     "voici votre itinéraire :")
@@ -179,6 +183,10 @@ class Particulier:
             # on trace l'itineraire
             folium.PolyLine(locations=dico_itineraires[vehicule_moins_risque],
                             color='blue').add_to(carte_bronx)
+            for vehicule in ["car", "cycle", "foot"]:
+                if vehicule != vehicule_moins_risque:
+                    folium.PolyLine(locations=dico_itineraires[vehicule],
+                            color='red').add_to(carte_bronx)
             webbrowser.open('carte_bronx.html')
             return ("Choisissez plutôt ce type de vehicule"
                     f"{vehicule_moins_risque}, voici l'itineraire")
