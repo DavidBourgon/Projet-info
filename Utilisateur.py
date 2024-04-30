@@ -199,9 +199,9 @@ class Utilisateur:
         if not isinstance(street, str):
             raise TypeError("Le nom de la rue doit être de type str.")
 
-        # ici faire qqch pr bien voir que street existe et que ça a du sens
-        # de dire qu'il contient il faudrait faire une fonction annexe
-        # Pour que cela soit propre
+            # ici faire qqch pr bien voir que street existe et que ça a du sens
+            # de dire qu'il contient il faudrait faire une fonction annexe
+            # Pour que cela soit propre
         filtered_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
                              data["ON.STREET.NAME"].str.contains(street) |
                              data["OFF.STREET.NAME"].str.contains(street)]
@@ -227,7 +227,8 @@ class Utilisateur:
         Returns
         -------
         list : Une liste contenant un message décrivant la période filtrée
-            et le DataFrame filtré.
+            et le DataFrame filtré entre le jour de début et de fin de
+            la période.
 
         """
         if not isinstance(data, pd.DataFrame):
@@ -454,8 +455,10 @@ class Utilisateur:
                     "Pour la rue :", street,
                     "Il y a un rique (en %) de :", 0]
         else:
-            n_T = self.calcul_totaux_cat_statut(data_street, categorie, "T")[-1]
-            n_B = self.calcul_totaux_cat_statut(data_street, categorie, "B")[-1]
+            n_T = self.\
+                calcul_totaux_cat_statut(data_street, categorie, "T")[-1]
+            n_B = self.\
+                calcul_totaux_cat_statut(data_street, categorie, "B")[-1]
             risque = (n_T + (1/4)*n_B) / (n_T + n_B)
             return ["Pour la rue :", street,
                     "il y a un rique (en %) de :", risque]
