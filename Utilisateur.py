@@ -436,7 +436,7 @@ class Utilisateur:
             Nom de la rue pour laquelle nous souhaitons déterminer le danger.
 
         cat : str
-            Catégorie d'usagés : blessés ou tués.
+            Catégorie d'usagés : piéton, cycliste ou automobiliste.
 
         Returns
         -------
