@@ -19,16 +19,15 @@ def test_nombre_observation_echec(kwargs,
         Utilisateur.nombre_observation(kwargs)
 
 
-# # Définition des cas de test pour nombre_observation réussie
-# @pytest.mark.parametrize(
-#     'kwargs_str',
-#     [
-#         'station_kwargs'
-#     ]
-# )
-# def test_station_nombre_observation_succes(kwargs_str, request):
-#     kwargs = request.getfixturevalue(kwargs_str)
-#     Utilisateur(**kwargs)
+# Définition des cas de test pour nombre_observation réussie
+@pytest.mark.parametrize(
+    'kwargs_str',
+    ['
+    ]
+)
+def test_nombre_observation_succes(kwargs_str, request):
+    kwargs = request.getfixturevalue(kwargs_str)
+    Utilisateur.nombre_observation(kwargs)
 
 # # BROUILLON NE PAS TOUCHER !!!
 
