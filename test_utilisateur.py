@@ -14,9 +14,9 @@ import re
 def test_nombre_observation_echec(kwargs,
                                   erreur,
                                   message_erreur):
-    Utilisateur.nombre_observation(kwargs)
+
     with pytest.raises(erreur, match=re.escape(message_erreur)):
-        Utilisateur(kwargs)
+        Utilisateur.nombre_observation(kwargs)
 
 
 # # Définition des cas de test pour nombre_observation réussie
