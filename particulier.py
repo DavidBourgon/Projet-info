@@ -23,8 +23,9 @@ class Particulier:
     Parameters
     ----------
     categorie : str
-        Catégorie de l'usagé : piéton, cycliste ou  automobiliste. Elle vaut
-        soit piet, soit cycl soit auto
+        Catégorie de l'usagé : piéton, cycliste ou automobiliste. Elle vaut
+        soit foot pour les piétons, soit cycle pour les cyclistes soit car
+        pour les automobilistes.
 
     """
     def __init__(self, categorie):
@@ -33,9 +34,9 @@ class Particulier:
         if not isinstance(categorie, str):
             raise TypeError("La catégorie doit être une chaîne de caractères.")
 
-        if categorie not in ("piet", "cycl", "auto"):
-            raise ValueError("La catégorie doit être valoir piet, cycl ou "
-                             "auto.")
+        if categorie not in ("foot", "cycle", "car"):
+            raise ValueError("La catégorie doit valoir foot, cycle ou "
+                             "car.")
 
     def itineraires(self, adresse_depart, adresse_arrivee):
         """
@@ -53,6 +54,8 @@ class Particulier:
         -------
         itineraires : dict[str : list]
             Dictionnaire d'itinéraires selon le type de véhicule.
+            str : Moyen de transport utilisé.
+            list : Itinéraire.
 
         """
         # chargement et centrage de la carte
@@ -81,12 +84,32 @@ class Particulier:
         return itineraires
 
     def evaluate_risque_itineraire(self, adresse_depart, adresse_arrivee):
+        """
+        Permet de déterminer le risque des itinéraires entre 2 adresses du
+        Bronx.
+
+        Parameters
+        ----------
+        adresse_depart : str
+            Adresse de départ.
+
+        adresse_arrivee : str
+            Adresse d'arrivée.
+
+        Retunrs
+        -------
+        itineraires : dict[str : float]
+            Dictionnaire de risque d'itinéraires selon le type de véhicule.
+            str : Moyen de transport utilisé.
+            float : Risque de l'itinéraire.
+
+        """
         # chargement et centrage de la carte
         carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=12)
         geolocator = Nominatim(user_agent="carte_bronx")
         # chargement des dictionnaires utiles
         itineraires = self.itineraires(adresse_depart, adresse_arrivee)
-        risques = {"car": 1, "cycle": 1, "foot": 1}
+        risques = {"car": 1.0, "cycle": 1.0, "foot": 1.0}
         L = ["car", "cycle", "foot"]
         for vehicule in L:
             Iti_coord = itineraires[vehicule]
@@ -101,15 +124,38 @@ class Particulier:
                 address = localisation.raw['address']
                 # Récupérer le nom de la rue si disponible
                 nom_rue = address.get('road', None)
+                # On met le nom de la rue en majuscules pour correspondre à
+                # la base de données.
+                nom_rue_maj = nom_rue.upper()
                 # Là on peut utiliser les fonctions de Xavier,
                 # il nous faudrait juste un fonction globale et
                 # un filtrage par vehicule possible pour faire :
-                compteur += jsp_quel_type.calculer_risque_rue(nom_rue,
+                compteur += jsp_quel_type.calculer_risque_rue(nom_rue_maj,
                                                               vehicule)
             risques[vehicule] = compteur/tot_points
         return risques
 
     def eviter_zone_risquee(self, adresse_depart, adresse_arrivee):
+        """
+        Permet de déterminer le moyen de transport pour lequel l'itinéraire est
+        le moins risqué entre 2 adresses du Bronx.
+
+        Parameters
+        ----------
+        adresse_depart : str
+            Adresse de départ.
+
+        adresse_arrivee : str
+            Adresse d'arrivée.
+
+        Retunrs
+        -------
+        str : Phrase indiquant le moyen de transport à choisir pour avoir le
+              moins de risques.
+        map : Carte du meilleur itinéraire en vert et des 2 autres itinéraires
+              plus risqués en rouge.
+
+        """
         # Chargement de la carte
         carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=12)
         geolocator = Nominatim(user_agent="carte_bronx")
