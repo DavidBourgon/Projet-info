@@ -89,9 +89,9 @@ class Utilisateur:
         categorie : str
             Catégorie des personnes dont on veut déterminer le nombre
             de blessés et/ou tués.
-            auto : automobilistes
-            cycl : cyclistes
-            piet : piétons
+            car : automobilistes
+            cycle : cyclistes
+            foot : piétons
 
         statut : str
             Statut des victimes.
@@ -119,10 +119,10 @@ class Utilisateur:
         if not isinstance(categorie, str):
             raise TypeError("L'état doit être de type str.")
 
-        if categorie != "cycl" and categorie != "auto" and categorie != "piet":
-            raise ValueError("L'état doit être auto, cycl ou piet.")
+        if categorie != "cycle" and categorie != "car" and categorie != "foot":
+            raise ValueError("L'état doit être car, cycle ou foot.")
 
-        elif categorie == "auto":
+        elif categorie == "car":
             colonnes_automobilistes = ["NUMBER.OF.MOTORIST.INJURED",
                                        "NUMBER.OF.MOTORIST.KILLED"]
             if statut == "B":
@@ -139,7 +139,7 @@ class Utilisateur:
                 return ["Nombre total d'automobilistes blessés et tués :",
                         total_automobilistes]
 
-        elif categorie == "cycl":
+        elif categorie == "cycle":
             colonnes_cyclistes = ["NUMBER.OF.CYCLIST.INJURED",
                                   "NUMBER.OF.CYCLIST.KILLED"]
             if statut == "B":
@@ -155,7 +155,7 @@ class Utilisateur:
                 return ["Nombre total de cyclistes blessés et tués :",
                         total_cyclistes]
 
-        elif categorie == "piet":
+        elif categorie == "foot":
             colonnes_piétons = ["NUMBER.OF.PEDESTRIANS.INJURED",
                                 "NUMBER.OF.PEDESTRIANS.KILLED"]
             if statut == "B":
@@ -199,9 +199,9 @@ class Utilisateur:
         if not isinstance(street, str):
             raise TypeError("Le nom de la rue doit être de type str.")
 
-        # ici faire qqch pr bien voir que street existe et que ça a du sens
-        # de dire qu'il contient il faudrait faire une fonction annexe
-        # Pour que cela soit propre
+            # ici faire qqch pr bien voir que street existe et que ça a du sens
+            # de dire qu'il contient il faudrait faire une fonction annexe
+            # Pour que cela soit propre
         filtered_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
                              data["ON.STREET.NAME"].str.contains(street) |
                              data["OFF.STREET.NAME"].str.contains(street)]
@@ -227,7 +227,8 @@ class Utilisateur:
         Returns
         -------
         list : Une liste contenant un message décrivant la période filtrée
-            et le DataFrame filtré.
+            et le DataFrame filtré entre le jour de début et de fin de
+            la période.
 
         """
         if not isinstance(data, pd.DataFrame):
@@ -454,8 +455,10 @@ class Utilisateur:
                     "Pour la rue :", street,
                     "Il y a un rique (en %) de :", 0]
         else:
-            n_T = self.calcul_totaux_cat_statut(data_street, categorie, "T")[-1]
-            n_B = self.calcul_totaux_cat_statut(data_street, categorie, "B")[-1]
+            n_T = self.\
+                calcul_totaux_cat_statut(data_street, categorie, "T")[-1]
+            n_B = self.\
+                calcul_totaux_cat_statut(data_street, categorie, "B")[-1]
             risque = (n_T + (1/4)*n_B) / (n_T + n_B)
             return ["Pour la rue :", street,
                     "il y a un rique (en %) de :", risque]
