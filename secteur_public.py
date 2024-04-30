@@ -12,14 +12,9 @@ class SecteurPublic:
 
     Parameters
     ----------
-    pieton : bool
-        Indique si l'utilisateur concerné est un piéton ou non.
-
-    velo : bool
-        Indique si l'utilisateur concerné est un cycliste ou non.
-
-    vehicule : bool
-        Indique si l'utilisateur concerné est un conducteur ou non.
+    categorie : str
+        Catégorie de l'usagé : piéton, cycliste ou  automobiliste. Elle vaut
+        soit piet, soit cycl soit auto.
 
     """
 
