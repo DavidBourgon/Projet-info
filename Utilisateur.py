@@ -15,8 +15,9 @@ class Utilisateur:
 
         Returns
         -------
-        Une liste dont le dernier élement est un
-        int : Nombre d'observations de la base de données.
+        list[str, int] :
+            str : Phrase réponse.
+            int : Nombre d'observations de la base de données.
 
         Raises
         ------
@@ -31,7 +32,7 @@ class Utilisateur:
 
     def calcul_totaux_statut(self, data, statut):
         """
-        Calcule le nombre de blessées et/ou de tués.
+        Calcule le nombre de blessés et/ou de tués.
 
         data : DataFrame
             Base de données sur laquelle on veut déterminer le nombre de
@@ -45,8 +46,9 @@ class Utilisateur:
 
         Returns
         -------
-        Une liste dont le dernier élement est un
-        int : Nombre de personnes blessées et/ou tuées selon le statut
+        list[int, str] :
+            str : Phrase réponse.
+            int : Nombre de personnes blessées et/ou tuées selon le statut
               souhaité.
 
         """
@@ -99,9 +101,10 @@ class Utilisateur:
 
         Returns
         -------
-        Une liste dont le dernier élement est un
-        int : Nombre de personnes blessées et/ou tuées selon le type et le
-              statut souhaités.
+        list[str, int] :
+            str : Phrase réponse.
+            int : Nombre de personnes blessées et/ou tuées selon la catégorie
+            souhaitée et le statut souhaité.
 
         """
         if not isinstance(data, pd.DataFrame):
@@ -184,9 +187,10 @@ class Utilisateur:
 
         Returns
         -------
-        Une liste dont le dernier élement est un
-        DataFrame : La base de données filtrée contenant uniquement les lignes
-                    où le nom de la rue correspond à street.
+        list[str, DataFrame] :
+            str : Phrase réponse.
+            DataFrame : La base de données filtrée contenant uniquement les
+                        lignes où le nom de la rue correspond à street.
 
         """
         if not isinstance(data, pd.DataFrame):
@@ -222,8 +226,8 @@ class Utilisateur:
 
         Returns
         -------
-        Une liste dont le dernier élement est un
-        DataFrame : Le base de données filtrée.
+        list : Une liste contenant un message décrivant la période filtrée
+            et le DataFrame filtré.
 
         """
         if not isinstance(data, pd.DataFrame):
@@ -333,9 +337,8 @@ class Utilisateur:
 
         Returns
         -------
-
-        Une liste dont le dernier élement est un
-        DataFrame : La base de données filtrée.
+        list : Une liste contenant un message décrivant la modalité filtrée
+        d'une certaines variable et le DataFrame filtré.
 
         """
         if not isinstance(data, pd.DataFrame):
