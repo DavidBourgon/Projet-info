@@ -33,7 +33,7 @@ class Particulier:
         if not isinstance(categorie, str):
             raise TypeError("La catégorie doit être une chaîne de caractères.")
 
-        if categorie not in ("piet", "cycl", "autot"):
+        if categorie not in ("piet", "cycl", "auto"):
             raise ValueError("La catégorie doit être valoir piet, cycl ou "
                              "auto.")
 
