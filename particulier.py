@@ -22,18 +22,20 @@ class Particulier:
 
     Parameters
     ----------
-    pieton : bool
-        Indique si l'utilisateur concerné est un piéton ou non.
-
-    velo : bool
-        Indique si l'utilisateur concerné est un cycliste ou non.
-
-    vehicule : bool
-        Indique si l'utilisateur concerné est un conducteur ou non.
+    categorie : str
+        Catégorie de l'usagé : piéton, cycliste ou  automobiliste. Elle vaut
+        soit piet, soit cycl soit auto
 
     """
-    def __init__(self, pieton, velo, vehicule):
-        pass
+    def __init__(self, categorie):
+        self.categorie = categorie
+
+        if not isinstance(categorie, str):
+            raise TypeError("La catégorie doit être une chaîne de caractères.")
+
+        if categorie not in ("piet", "cycl", "autot"):
+            raise ValueError("La catégorie doit être valoir piet, cycl ou "
+                             "auto.")
 
     def itineraires(self, adresse_depart, adresse_arrivee):
         """
