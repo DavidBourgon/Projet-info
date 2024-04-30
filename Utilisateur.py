@@ -89,9 +89,9 @@ class Utilisateur:
         categorie : str
             Catégorie des personnes dont on veut déterminer le nombre
             de blessés et/ou tués.
-            auto : automobilistes
-            cycl : cyclistes
-            piet : piétons
+            car : automobilistes
+            cycle : cyclistes
+            foot : piétons
 
         statut : str
             Statut des victimes.
@@ -119,10 +119,10 @@ class Utilisateur:
         if not isinstance(categorie, str):
             raise TypeError("L'état doit être de type str.")
 
-        if categorie != "cycl" and categorie != "auto" and categorie != "piet":
-            raise ValueError("L'état doit être auto, cycl ou piet.")
+        if categorie != "cycle" and categorie != "car" and categorie != "foot":
+            raise ValueError("L'état doit être car, cycle ou foot.")
 
-        elif categorie == "auto":
+        elif categorie == "car":
             colonnes_automobilistes = ["NUMBER.OF.MOTORIST.INJURED",
                                        "NUMBER.OF.MOTORIST.KILLED"]
             if statut == "B":
@@ -139,7 +139,7 @@ class Utilisateur:
                 return ["Nombre total d'automobilistes blessés et tués :",
                         total_automobilistes]
 
-        elif categorie == "cycl":
+        elif categorie == "cycle":
             colonnes_cyclistes = ["NUMBER.OF.CYCLIST.INJURED",
                                   "NUMBER.OF.CYCLIST.KILLED"]
             if statut == "B":
@@ -155,7 +155,7 @@ class Utilisateur:
                 return ["Nombre total de cyclistes blessés et tués :",
                         total_cyclistes]
 
-        elif categorie == "piet":
+        elif categorie == "foot":
             colonnes_piétons = ["NUMBER.OF.PEDESTRIANS.INJURED",
                                 "NUMBER.OF.PEDESTRIANS.KILLED"]
             if statut == "B":
