@@ -293,13 +293,15 @@ class Utilisateur:
         if not isinstance(heure_debut, str):
             raise TypeError("L'heure de début doit être un str")
 
+        # Ne prends pas 24h00 mais prend 00:00
+
         if not re.match(r'^(2[0-3]|[01][0-9]):[0-5][0-9]$', heure_debut):
             raise ValueError("L'heure de début doit être au format 'HH:MM'.")
 
-        if not isinstance(heure_debut, str):
+        if not isinstance(heure_fin, str):
             raise TypeError("L'heure de fin doit être un str")
 
-        if not re.match(r'^(2[0-3]|[01][0-9]):[0-5][0-9]$', heure_debut):
+        if not re.match(r'^(2[0-3]|[01][0-9]):[0-5][0-9]$', heure_fin):
             raise ValueError("L'heure de fin doit être au format 'HH:MM'.")
 
         # Convertir les colonnes "CRASH.TIME" en type datetime
@@ -352,7 +354,8 @@ class Utilisateur:
         if not isinstance(modalite, str):
             raise TypeError("La modalité doit être de type str.")
 
-        if modalite not in Utilisateur().liste_modalites_variable(data, variable)[-1]:
+        if modalite not in Utilisateur().\
+            liste_modalites_variable(data, variable)[-1]:
             raise ValueError("Cette modalité n'existe pas pour la variable "
                              "choisie.")
 
@@ -471,22 +474,22 @@ def classer_jour_nuit(self, heure):
         return 'jour'
     else:
         return 'nuit'
-    
+
 # Appliquer la fonction pour créer une nouvelle colonne 'Jour_Nuit'
 df['Jour_Nuit'] = df['CRASH.TIME'].apply(classer_jour_nuit)
 
-def risque_nuit_jour(self, data,utilisateur) : 
+def risque_nuit_jour(self, data,utilisateur) :
     jour=2
     nuit=2
     if data['Jour_Nuit']=='jour':
-        if jour==0 : 
+        if jour==0 :
                 return 0
-        else : 
+        else :
              return jour/(jour+nuit)
-    else : 
-        if nuit==0 : 
+    else :
+        if nuit==0 :
                 return 0
-        else : 
+        else :
                 return nuit/(jour+nuit)
 
 def risque_voiture(self, data, utilisateur, voiture):
