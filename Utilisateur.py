@@ -117,10 +117,10 @@ class Utilisateur:
             raise ValueError("Le statut doit être B, T ou BT.")
 
         if not isinstance(categorie, str):
-            raise TypeError("L'état doit être de type str.")
+            raise TypeError("La catégorie doit être de type str.")
 
         if categorie != "cycle" and categorie != "car" and categorie != "foot":
-            raise ValueError("L'état doit être car, cycle ou foot.")
+            raise ValueError("La catégorie doit être car, cycle ou foot.")
 
         elif categorie == "car":
             colonnes_automobilistes = ["NUMBER.OF.MOTORIST.INJURED",
@@ -199,9 +199,11 @@ class Utilisateur:
         if not isinstance(street, str):
             raise TypeError("Le nom de la rue doit être de type str.")
 
-            # ici faire qqch pr bien voir que street existe et que ça a du sens
-            # de dire qu'il contient il faudrait faire une fonction annexe
-            # Pour que cela soit propre
+        for char in street:
+            if not (char.isupper() or char.isspace()):
+                raise ValueError("Le nom de la rue doit contenir uniquement"
+                                 " des majuscules et des espaces")
+
         filtered_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
                              data["ON.STREET.NAME"].str.contains(street) |
                              data["OFF.STREET.NAME"].str.contains(street)]
@@ -247,6 +249,10 @@ class Utilisateur:
         if not re.match(r'^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/[0-9]{4}$',
                         date_fin):
             raise ValueError("La date fin doit être au format 'MM/JJ/AAAA'.")
+
+        if date_debut > date_fin:
+            raise ValueError("La date de début ne doit pas être supérieure"
+                             " à la date de fin.")
 
         # Convertir les colonnes "CRASH.DATE" en type datetime
         data["CRASH_DATE"] = pd.to_datetime(data["CRASH.DATE"])
@@ -304,6 +310,10 @@ class Utilisateur:
         if not re.match(r'^(2[0-3]|[01][0-9]):[0-5][0-9]$', heure_fin):
             raise ValueError("L'heure de fin doit être au format 'HH:MM'.")
 
+        if heure_debut > heure_fin:
+            raise ValueError("L'heure de début ne doit pas être supérieure"
+                             " à l'heure de fin.")
+
         # Convertir les colonnes "CRASH.TIME" en type datetime
         data["CRASH_TIME"] = pd.to_datetime(data["CRASH.TIME"]).dt.\
             strftime("%H:%M")
@@ -347,15 +357,12 @@ class Utilisateur:
         if not isinstance(data, pd.DataFrame):
             raise TypeError("La base de données doit être un DataFrame.")
 
-        if variable not in Utilisateur().liste_variables_dataframe(data)[-1]:
+        if variable not in Utilisateur.liste_variables_dataframe(data)[-1]:
             raise ValueError("Cette variable n'est pas dans la base de "
                              "données.")
 
-        if not isinstance(modalite, str):
-            raise TypeError("La modalité doit être de type str.")
-
-        if modalite not in Utilisateur().\
-            liste_modalites_variable(data, variable)[-1]:
+        L_mod_var = Utilisateur.liste_modalites_variable(data, variable)[-1]
+        if modalite not in L_mod_var:
             raise ValueError("Cette modalité n'existe pas pour la variable "
                              "choisie.")
 
@@ -421,7 +428,8 @@ class Utilisateur:
                              "des majuscules, des points, des nombres "
                              "et pas d'espace.")
 
-        if variable not in Utilisateur().liste_variables_dataframe(data)[-1]:
+        List_Variables = Utilisateur.liste_variables_dataframe(data)
+        if variable not in List_Variables[-1]:
             raise ValueError("Cette variable n'est pas dans la base de "
                              "données.")
 
@@ -451,16 +459,16 @@ class Utilisateur:
               souhaitées.
 
         """
-        data_street = Utilisateur().filtrer_par_nom_de_rue(data, street)[-1]
-        n_tot = Utilisateur().nombre_observation(data)[-1]
+        data_street = Utilisateur.filtrer_par_nom_de_rue(data, street)[-1]
+        n_tot = Utilisateur.nombre_observation(data)[-1]
         if n_tot == 0:
             return ["Il n'y a pas d'accident ou bien le tableau est vide.",
                     "Pour la rue :", street,
                     "Il y a un rique (en %) de :", 0]
         else:
-            n_T = Utilisateur().\
+            n_T = Utilisateur.\
                 calcul_totaux_cat_statut(data_street, categorie, "T")[-1]
-            n_B = Utilisateur().\
+            n_B = Utilisateur.\
                 calcul_totaux_cat_statut(data_street, categorie, "B")[-1]
             risque = (n_T + (1/4)*n_B) / (n_T + n_B)
             return ["Pour la rue :", street,
@@ -468,44 +476,44 @@ class Utilisateur:
 
 
 
-# Fonction pour classer si c'est jour ou nuit
-def classer_jour_nuit(self, heure):
-    if heure.hour >= 6 and heure.hour < 18:
-        return 'jour'
-    else:
-        return 'nuit'
+# # Fonction pour classer si c'est jour ou nuit
+# def classer_jour_nuit(self, heure):
+#     if heure.hour >= 6 and heure.hour < 18:
+#         return 'jour'
+#     else:
+#         return 'nuit'
 
-# Appliquer la fonction pour créer une nouvelle colonne 'Jour_Nuit'
-df['Jour_Nuit'] = df['CRASH.TIME'].apply(classer_jour_nuit)
+# # Appliquer la fonction pour créer une nouvelle colonne 'Jour_Nuit'
+# df['Jour_Nuit'] = df['CRASH.TIME'].apply(classer_jour_nuit)
 
-def risque_nuit_jour(self, data,utilisateur) :
-    jour=2
-    nuit=2
-    if data['Jour_Nuit']=='jour':
-        if jour==0 :
-                return 0
-        else :
-             return jour/(jour+nuit)
-    else :
-        if nuit==0 :
-                return 0
-        else :
-                return nuit/(jour+nuit)
+# def risque_nuit_jour(self, data,utilisateur) :
+#     jour=2
+#     nuit=2
+#     if data['Jour_Nuit']=='jour':
+#         if jour==0 :
+#                 return 0
+#         else :
+#              return jour/(jour+nuit)
+#     else :
+#         if nuit==0 :
+#                 return 0
+#         else :
+#                 return nuit/(jour+nuit)
 
-def risque_voiture(self, data, utilisateur, voiture):
-    if voiture in data['VEHICLE.TYPE.CODE.1'].values:
-        # Regroupement par 'VEHICLE.TYPE.CODE.1' et comptage des occurrences de 'COLLISION_ID'
-        regroupement = df.groupby('VEHICLE.TYPE.CODE.1')['COLLISION_ID'].count()
-        return regroupement[voiture]/max(regroupement.iloc[:, 1])
-    else:
-        return 0
+# def risque_voiture(self, data, utilisateur, voiture):
+#     if voiture in data['VEHICLE.TYPE.CODE.1'].values:
+#         # Regroupement par 'VEHICLE.TYPE.CODE.1' et comptage des occurrences de 'COLLISION_ID'
+#         regroupement = df.groupby('VEHICLE.TYPE.CODE.1')['COLLISION_ID'].count()
+#         return regroupement[voiture]/max(regroupement.iloc[:, 1])
+#     else:
+#         return 0
 
-def risque_rue(self, data, rue):
-     if rue in data["CROSS.STREET.NAME"].values or in data["OFF.STREET.NAME"].values or in data["ON.STREET.NAME"].values:
-        # calcul des nombres de bléssés/morts
-        regroupement = filtre(data, rue)[-1]
-        nombre_BT_rue= calcul_totaux_statut(regroupement, BT)[1]
-        nombre_BT= max(calcul_totaux_statut(data, BT)[1])
-        return nombre_BT_rue/nombre_BT
-     else:
-        return 0
+# def risque_rue(self, data, rue):
+#      if rue in data["CROSS.STREET.NAME"].values or in data["OFF.STREET.NAME"].values or in data["ON.STREET.NAME"].values:
+#         # calcul des nombres de bléssés/morts
+#         regroupement = filtre(data, rue)[-1]
+#         nombre_BT_rue= calcul_totaux_statut(regroupement, BT)[1]
+#         nombre_BT= max(calcul_totaux_statut(data, BT)[1])
+#         return nombre_BT_rue/nombre_BT
+#      else:
+#         return 0
