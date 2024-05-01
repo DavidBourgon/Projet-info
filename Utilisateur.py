@@ -30,7 +30,7 @@ class Utilisateur:
         return ["Nombre d'observations dans la base de données :",
                 data.shape[0]]
 
-    def calcul_totaux_statut(self, data, statut):
+    def calcul_totaux_statut(data, statut):
         """
         Calcule le nombre de blessés et/ou de tués.
 
@@ -77,7 +77,7 @@ class Utilisateur:
                     " tués dans le tableau :",
                     total_both]
 
-    def calcul_totaux_cat_statut(self, data, categorie, statut):
+    def calcul_totaux_cat_statut(data, categorie, statut):
         """
         Calcule le nombre de blessées et/ou de tués selon le type de personnes
         souhaité.
@@ -208,7 +208,7 @@ class Utilisateur:
         return ["Base de données filtrée pour la rue nomée:",
                 street, filtered_data]
 
-    def filtrer_par_date(self, data, date_debut, date_fin):
+    def filtrer_par_date(data, date_debut, date_fin):
         """
         Filtre le DataFrame en fonction de la date entre date_debut
         et date_fin inclus.
@@ -265,7 +265,7 @@ class Utilisateur:
                 date_fin,
                 filtered_data]
 
-    def filtrer_par_heure(self, data, heure_debut, heure_fin):
+    def filtrer_par_heure(data, heure_debut, heure_fin):
         """
         Filtre le DataFrame en fonction de l'heure entre heure_debut
         et heure_fin inclus.
@@ -320,7 +320,7 @@ class Utilisateur:
                 heure_fin, ":",
                 filtered_data]
 
-    def filtrer_par_modalite_variable(self, data, variable, modalite):
+    def filtrer_par_modalite_variable(data, variable, modalite):
         """
         Filtre la base de données en fonction d'une modalité spécifique d'une
         variable spécifique et renvoie la base de données filtrée.
@@ -345,14 +345,14 @@ class Utilisateur:
         if not isinstance(data, pd.DataFrame):
             raise TypeError("La base de données doit être un DataFrame.")
 
-        if variable not in self.liste_variables_dataframe(data)[-1]:
+        if variable not in Utilisateur().liste_variables_dataframe(data)[-1]:
             raise ValueError("Cette variable n'est pas dans la base de "
                              "données.")
 
         if not isinstance(modalite, str):
             raise TypeError("La modalité doit être de type str.")
 
-        if modalite not in self.liste_modalites_variable(data, variable)[-1]:
+        if modalite not in Utilisateur().liste_modalites_variable(data, variable)[-1]:
             raise ValueError("Cette modalité n'existe pas pour la variable "
                              "choisie.")
 
@@ -365,7 +365,7 @@ class Utilisateur:
 
     # fonction listant les modalités et les variables d'un dataframe
 
-    def liste_variables_dataframe(self, data):
+    def liste_variables_dataframe(data):
         """
         Renvoie la liste des variables (colonnes) d'une base de données.
 
@@ -386,7 +386,7 @@ class Utilisateur:
         return ["Liste des variables de la base de données :",
                 liste_variable]
 
-    def liste_modalites_variable(self, data, variable):
+    def liste_modalites_variable(data, variable):
         """
         Renvoie toutes les modalités différentes d'une variable d'une base de
         données.
@@ -418,7 +418,7 @@ class Utilisateur:
                              "des majuscules, des points, des nombres "
                              "et pas d'espace.")
 
-        if variable not in self.liste_variables_dataframe(data)[-1]:
+        if variable not in Utilisateur().liste_variables_dataframe(data)[-1]:
             raise ValueError("Cette variable n'est pas dans la base de "
                              "données.")
 
@@ -427,7 +427,7 @@ class Utilisateur:
                 variable, liste_modalites]
 
     # fonction avancée
-    def danger_rue(self, data, street, categorie):
+    def danger_rue(data, street, categorie):
         """
         Permet de calculer le danger d'une rue en %.
 
@@ -448,17 +448,61 @@ class Utilisateur:
               souhaitées.
 
         """
-        data_street = self.filtrer_par_nom_de_rue(data, street)[-1]
-        n_tot = self.nombre_observation(data)[-1]
+        data_street = Utilisateur().filtrer_par_nom_de_rue(data, street)[-1]
+        n_tot = Utilisateur().nombre_observation(data)[-1]
         if n_tot == 0:
             return ["Il n'y a pas d'accident ou bien le tableau est vide.",
                     "Pour la rue :", street,
                     "Il y a un rique (en %) de :", 0]
         else:
-            n_T = self.\
+            n_T = Utilisateur().\
                 calcul_totaux_cat_statut(data_street, categorie, "T")[-1]
-            n_B = self.\
+            n_B = Utilisateur().\
                 calcul_totaux_cat_statut(data_street, categorie, "B")[-1]
             risque = (n_T + (1/4)*n_B) / (n_T + n_B)
             return ["Pour la rue :", street,
                     "il y a un rique (en %) de :", risque]
+
+
+
+# Fonction pour classer si c'est jour ou nuit
+def classer_jour_nuit(self, heure):
+    if heure.hour >= 6 and heure.hour < 18:
+        return 'jour'
+    else:
+        return 'nuit'
+    
+# Appliquer la fonction pour créer une nouvelle colonne 'Jour_Nuit'
+df['Jour_Nuit'] = df['CRASH.TIME'].apply(classer_jour_nuit)
+
+def risque_nuit_jour(self, data,utilisateur) : 
+    jour=2
+    nuit=2
+    if data['Jour_Nuit']=='jour':
+        if jour==0 : 
+                return 0
+        else : 
+             return jour/(jour+nuit)
+    else : 
+        if nuit==0 : 
+                return 0
+        else : 
+                return nuit/(jour+nuit)
+
+def risque_voiture(self, data, utilisateur, voiture):
+    if voiture in data['VEHICLE.TYPE.CODE.1'].values:
+        # Regroupement par 'VEHICLE.TYPE.CODE.1' et comptage des occurrences de 'COLLISION_ID'
+        regroupement = df.groupby('VEHICLE.TYPE.CODE.1')['COLLISION_ID'].count()
+        return regroupement[voiture]/max(regroupement.iloc[:, 1])
+    else:
+        return 0
+
+def risque_rue(self, data, rue):
+     if rue in data["CROSS.STREET.NAME"].values or in data["OFF.STREET.NAME"].values or in data["ON.STREET.NAME"].values:
+        # calcul des nombres de bléssés/morts
+        regroupement = filtre(data, rue)[-1]
+        nombre_BT_rue= calcul_totaux_statut(regroupement, BT)[1]
+        nombre_BT= max(calcul_totaux_statut(data, BT)[1])
+        return nombre_BT_rue/nombre_BT
+     else:
+        return 0

@@ -1,7 +1,9 @@
 from Utilisateur import Utilisateur
 import pytest
+import pandas as pd
 import re
 
+data = pd.read_excel("Bronx_2.xlsx")
 
 # Définition des cas de test pour nombre_observation échec
 @pytest.mark.parametrize(
@@ -22,11 +24,18 @@ def test_nombre_observation_echec(kwargs,
 # Définition des cas de test pour nombre_observation réussie
 @pytest.mark.parametrize(
     'kwargs_str',
+<<<<<<< HEAD
     [
         'station_kwargs'
     ]
 )
 def test_station_nombre_observation_succes(kwargs_str, request):
+=======
+    ['
+    ]
+)
+def test_nombre_observation_succes(kwargs_str, request):
+>>>>>>> 9892470f613721e3a6dd10c41cbb7e2f657f4a85
     kwargs = request.getfixturevalue(kwargs_str)
     Utilisateur.nombre_observation(kwargs)
 
