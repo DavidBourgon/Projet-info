@@ -3,7 +3,7 @@ import re
 
 
 class Utilisateur:
-    def nombre_observation(self, data):
+    def nombre_observation(data):
         """
         Compte le nombre d'observations d'une base de données.
 
