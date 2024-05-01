@@ -46,7 +46,7 @@ class Utilisateur:
 
         Returns
         -------
-        list[int, str] :
+        list[str, int] :
             str : Phrase réponse.
             int : Nombre de personnes blessées et/ou tuées selon le statut
               souhaité.
