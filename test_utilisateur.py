@@ -229,7 +229,7 @@ def test_liste_modalites_variable_echec(data,
 
 @pytest.mark.parametrize(
     'data, categorie, statut, resultat_attendu',
-    [(tableau, "foot", "B", 151),]
+    [(tableau, "foot", "B", ['Nombre total de piétons blessés :', 151]),]
 )
 def test_calcul_totaux_cat_statut_sucess(data, categorie, statut, resultat_attendu):
     assert (
