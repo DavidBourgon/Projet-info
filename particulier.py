@@ -1,18 +1,17 @@
-# avant toute chose on a besoin de folium pour générer une carte :
+# # avant toute chose on a besoin de folium pour générer une carte :
 # pip install folium
-# on a également besoin de geopy et de geolocator pour transformer
-# des adresses en coordonnées :
+# # on a également besoin de geopy et de geolocator pour transformer
+# # des adresses en coordonnées :
 # pip install geopy
 # pip install geolocator
-# on a besoin de créer un itinéraire avec pyroutelib3 :
+# # on a besoin de créer un itinéraire avec pyroutelib3 :
 # pip install pyroutelib3
 import folium
-import webbrowser
-# webbrowser sert à afficher la carte en language html.
+import webbrowser # webbrowser sert à afficher la carte en language html.
 from geopy.geocoders import Nominatim
 from pyroutelib3 import Router
 # router sert à préciser le type de vehicule qui peut être : car, cycle, foot,
-#  horse, tram, train
+# horse, tram, train
 
 
 class Particulier:
@@ -58,6 +57,24 @@ class Particulier:
             list : Itinéraire.
 
         """
+        if not isinstance(adresse_depart, str):
+            raise TypeError("L'adresse de départ doit être un str.")
+        elif not adresse_depart.endswith(', New York'):
+            raise ValueError("La chaîne de caractères doit se "
+                             "terminer par ', New York'.")
+        elif not adresse_depart.split(',')[0].strip().isalpha():
+            raise TypeError("Le début de la chaîne de caractères "
+                            "doit être str.")
+
+        if not isinstance(adresse_arrivee, str):
+            raise TypeError("L'adresse de départ doit être un str.")
+        elif not adresse_arrivee.endswith(', New York'):
+            raise ValueError("La chaîne de caractères doit se "
+                             "terminer par ', New York'.")
+        elif not adresse_arrivee.split(',')[0].strip().isalpha():
+            raise TypeError("Le début de la chaîne de caractères "
+                            "doit être str.")
+
         # chargement et centrage de la carte
         carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=12)
         geolocator = Nominatim(user_agent="carte_bronx")

@@ -1,5 +1,5 @@
 import pandas as pd
-import Utilisateur from Utilisateur
+from Utilisateur import Utilisateur
 
 class SecteurPrive:
     """ Secteur Privé.
