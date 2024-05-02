@@ -260,9 +260,9 @@ def test_liste_modalites_variable_echec(data,
 
 @pytest.mark.parametrize(
     'data, categorie, statut, resultat_attendu',
-    [(tableau, "foot", "B", 175)]
+    [(tableau, "foot", "B", 151),]
 )
-def calcul_totaux_cat_statut_sucess(data, categorie, statut, resultat_attendu):
+def test_calcul_totaux_cat_statut_sucess(data, categorie, statut, resultat_attendu):
     assert (
         Utilisateur.calcul_totaux_cat_statut(data, categorie, statut)
         ==
