@@ -17,14 +17,17 @@ class SecteurPrive:
     """
     def __init__(self, nom_assureur, marge):
 
-        self.nom_assureur = nom_assureur
-        self.marge = marge
-
         if not isinstance(nom_assureur, str):
             raise TypeError("Le nom doit être une instance de str.")
 
         if not isinstance(marge, float):
             raise TypeError("La marge doit être un float.")
+
+        if not 0 <= marge <= 1:
+            raise ValueError("La marge doit être comprise entre 0 et 1.")
+
+        self.nom_assureur = nom_assureur
+        self.marge = marge
 
     def __decompose_trajet(adresse_depart, adresse_arrrive):
         # doit return une liste des rues / passages emprunter
