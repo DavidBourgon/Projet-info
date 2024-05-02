@@ -171,7 +171,7 @@ class Particulier:
         if self.type_vehicule == vehicule_moins_risque:
             # on trace l'itineraire
             folium.PolyLine(locations=dico_itineraires[vehicule],
-                            color='blue').add_to(carte_bronx)
+                            color='green').add_to(carte_bronx)
             for vehicule in ["car", "cycle", "foot"]:
                 if vehicule != vehicule_moins_risque:
                     folium.PolyLine(locations=dico_itineraires[vehicule],
@@ -182,7 +182,7 @@ class Particulier:
         else:
             # on trace l'itineraire
             folium.PolyLine(locations=dico_itineraires[vehicule_moins_risque],
-                            color='blue').add_to(carte_bronx)
+                            color='green').add_to(carte_bronx)
             for vehicule in ["car", "cycle", "foot"]:
                 if vehicule != vehicule_moins_risque:
                     folium.PolyLine(locations=dico_itineraires[vehicule],
