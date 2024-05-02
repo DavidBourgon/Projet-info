@@ -498,11 +498,11 @@ def risque_voiture(self, data, utilisateur, voiture):
         return 0
 
 def risque_rue(self, data, rue):
-     if rue in data["CROSS.STREET.NAME"].values or in data["OFF.STREET.NAME"].values or in data["ON.STREET.NAME"].values:
+    if rue in data["CROSS.STREET.NAME"].values or in data["OFF.STREET.NAME"].values or in data["ON.STREET.NAME"].values:
         # calcul des nombres de bléssés/morts
         regroupement = filtre(data, rue)[-1]
         nombre_BT_rue= calcul_totaux_statut(regroupement, BT)[1]
         nombre_BT= max(calcul_totaux_statut(data, BT)[1])
         return nombre_BT_rue/nombre_BT
-     else:
+    else:
         return 0
