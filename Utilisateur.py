@@ -474,7 +474,7 @@ class Utilisateur:
                 calcul_totaux_statut(data, "T")[-1]
             n_blesse_total = Utilisateur.\
                 calcul_totaux_statut(data, "B")[-1]
-        risque = n_mort_cat/n_mort_total + n_blesse_cat/n_blesse_total
+            risque = (n_mort_cat/n_mort_total + n_blesse_cat/n_blesse_total)/2
 
         return ["Pour la rue :", street,
                 "il y a un rique (en %) de :", risque]
