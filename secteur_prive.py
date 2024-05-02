@@ -59,16 +59,23 @@ class SecteurPrive:
         """
         if not isinstance(localisation, list):
             raise TypeError("La localisation doit être une liste.")
-            indicateur_risque = 0
-            for k in len(localisation):
-                indicateur_risque = (
-                    indicateur_risque +
-                    self.__calculer_risque_rue(vehicule, localisation[k])
-                    )
-            prix = (400 * indicateur_risque) * (1 + self.marge)
-            return prix
+
+        indicateur_risque = 0
+        for k in len(localisation):
+            indicateur_risque = (
+                indicateur_risque +
+                self.__calculer_risque_rue(vehicule, localisation[k])
+                )
+        prix = (400 * indicateur_risque) * (1 + self.marge)
+        return prix
 
     def __repr__(self, localisation: list[str], vehicule) -> str:
+        """
+
+        Représentation officielle de la réponse de l'assureur au client
+        lui indiquant combien il doit payer.
+
+        """
         return (f"Pour assurer votre véhicule de type, vous devez vous"
                 f"acquitter de"
                 f" {self.__donner_prix(localisation, vehicule)}")
