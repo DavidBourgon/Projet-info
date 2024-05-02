@@ -192,16 +192,16 @@ class Utilisateur:
                         lignes où le nom de la rue correspond à street.
 
         """
-        if not isinstance(data, pd.DataFrame):
-            raise TypeError("La base de données doit être un DataFrame.")
+        # if not isinstance(data, pd.DataFrame):
+        #     raise TypeError("La base de données doit être un DataFrame.")
 
-        if not isinstance(street, str):
-            raise TypeError("Le nom de la rue doit être de type str.")
+        # if not isinstance(street, str):
+        #     raise TypeError("Le nom de la rue doit être de type str.")
 
-        for char in street:
-            if not (char.isupper() or char.isspace()):
-                raise ValueError("Le nom de la rue doit contenir uniquement"
-                                 " des majuscules et des espaces")
+        # for char in street:
+        #     if not (char.isupper() or char.isspace()):
+        #         raise ValueError("Le nom de la rue doit contenir uniquement"
+        #                          " des majuscules et des espaces")
 
         filtered_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
                              data["ON.STREET.NAME"].str.contains(street) |

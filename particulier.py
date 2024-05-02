@@ -111,7 +111,7 @@ class Particulier:
         adresse_arrivee : str
             Adresse d'arrivée.
 
-        Retunrs
+        Returns
         -------
         itineraires : dict[str : float]
             Dictionnaire de risque d'itinéraires selon le type de véhicule.
@@ -120,7 +120,7 @@ class Particulier:
 
         """
         # chargement et centrage de la carte
-        carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=12)
+        carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=30)
         geolocator = Nominatim(user_agent="carte_bronx")
         data = pd.read_excel("Bronx_2.xlsx")
         # chargement des dictionnaires utiles
@@ -143,10 +143,11 @@ class Particulier:
                 # On met le nom de la rue en majuscules pour correspondre à
                 # la base de données.
                 nom_rue_maj = nom_rue.upper()
+                print(nom_rue_maj)
                 # Là on peut utiliser les fonctions de Xavier,
                 # il nous faudrait juste un fonction globale et
                 # un filtrage par vehicule possible pour faire :
-                compteur += Utilisateur.danger_rue(data,nom_rue_maj,vehicule)[-1]
+                compteur += Utilisateur.risque_rue(data, nom_rue_maj, vehicule)[-1]
             risques[vehicule] = compteur/tot_points
         return risques
 
@@ -179,33 +180,41 @@ class Particulier:
                                                       adresse_arrivee)
         vehicule_moins_risque = "car"
         risque = 2
+        localisation_1 = geolocator.geocode(adresse_depart)
+        coord_depart = (localisation_1.latitude, localisation_1.longitude)
+        localisation_2 = geolocator.geocode(adresse_arrivee)
+        coord_arrivee = (localisation_2.latitude, localisation_2.longitude)
+        folium.Marker(coord_depart, popup='Adresse de départ').add_to(carte_bronx)
+        folium.Marker(coord_arrivee, popup='Adresse d\'arrivée').add_to(carte_bronx)
         for vehicule in dico_risque:
             if dico_risque[vehicule] < risque:
                 risque = dico_risque[vehicule]
                 vehicule_moins_risque = vehicule
-        if self.type_vehicule == vehicule_moins_risque:
+        if self.categorie == vehicule_moins_risque:
             # on trace l'itineraire
-            folium.PolyLine(locations=dico_itineraires[vehicule],
-                            color='green').add_to(carte_bronx)
             for vehicule in ["car", "cycle", "foot"]:
                 if vehicule != vehicule_moins_risque:
                     folium.PolyLine(locations=dico_itineraires[vehicule],
                             color='red').add_to(carte_bronx)
+            folium.PolyLine(locations=dico_itineraires[vehicule],
+                            color='green').add_to(carte_bronx)
+            carte_bronx.save("carte_bronx.html")
             webbrowser.open('carte_bronx.html')
             return ("Vous avez choisi le mode de transport le moins risqué,"
                     "voici votre itinéraire :")
         else:
             # on trace l'itineraire
-            folium.PolyLine(locations=dico_itineraires[vehicule_moins_risque],
-                            color='green').add_to(carte_bronx)
             for vehicule in ["car", "cycle", "foot"]:
                 if vehicule != vehicule_moins_risque:
                     folium.PolyLine(locations=dico_itineraires[vehicule],
                             color='red').add_to(carte_bronx)
+            folium.PolyLine(locations=dico_itineraires[vehicule_moins_risque],
+                            color='green').add_to(carte_bronx)
+            carte_bronx.save("carte_bronx.html")
             webbrowser.open('carte_bronx.html')
-            return ("Choisissez plutôt ce type de vehicule"
+            return ("Choisissez plutôt ce type de vehicule : "
                     f"{vehicule_moins_risque}, voici l'itineraire")
 
 
 Xavier = Particulier("foot")
-print(Xavier.eviter_zone_risquee("1 E 161st St, Bronx, NY 10451, États-Unis", "2900 Southern Blvd, Bronx, NY 10458, États-Unis"))
+print(Xavier.eviter_zone_risquee("1 E 161st St, Bronx, NY 10451, États-Unis", "111 E 164th St, Bronx, NY 10452, États-Unis"))
