@@ -309,7 +309,6 @@ def test_liste_variables_dataframe_sucess(data, resultat_attendu):
     )
 
 
-
 # Définition des cas de test pour liste_modalites_variable échec
 @pytest.mark.parametrize(
     'data, variable, erreur, message_erreur',
@@ -362,6 +361,32 @@ def test_liste_modalites_variable_echec(data,
 def test_liste_modalites_variable_sucess(data, variable, resultat_attendu):
     assert (
         Utilisateur.liste_modalites_variable(data, variable)
+        ==
+        resultat_attendu
+    )
+
+
+tableau2 = pd.DataFrame(columns=["colonne1", "colonne2", "colonne3"])
+
+
+# Définition des cas de test pour risque_rue succes
+@pytest.mark.parametrize(
+    'data, street, categorie, resultat_attendu',
+    [
+
+     (tableau, "HEATH AVENUE", 'foot',
+      ["Pour la rue :", "HEATH AVENUE",
+       "il y a un rique (en %) de :", 0.0]),
+    #  (tableau2, "HEATH AVENUE", 'foot',
+    #   ["Il n'y a pas d'accident ou bien le tableau est vide.",
+    #    "Pour la rue :", "HEATH AVENUE",
+    #    "Il y a un rique (en %) de :", 0]),
+
+    ]
+)
+def test_risque_rue_sucess(data, street, categorie, resultat_attendu):
+    assert (
+        Utilisateur.risque_rue(data, street, categorie)
         ==
         resultat_attendu
     )
