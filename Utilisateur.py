@@ -63,18 +63,17 @@ class Utilisateur:
 
         elif statut == "B":
             total_persons_injuried = data["NUMBER.OF.PERSONS.INJURED"].sum()
-            return ["Nombre total de personnes blessées dans le tableau :",
+            return ["Nombre total d'individus blessés :",
                     total_persons_injuried]
         elif statut == "T":
             total_persons_killed = data["NUMBER.OF.PERSONS.KILLED"].sum()
-            return ["Nombre total de personnes tuées dans le tableau :",
+            return ["Nombre total d'individus tués :",
                     total_persons_killed]
         elif statut == "BT":
             total_persons_killed = data["NUMBER.OF.PERSONS.KILLED"].sum()
             total_persons_injuried = data["NUMBER.OF.PERSONS.INJURED"].sum()
             total_both = total_persons_killed + total_persons_injuried
-            return ["Nombre total d'individus blessés et"
-                    " tués dans le tableau :",
+            return ["Nombre total d'individus blessés et tués :",
                     total_both]
 
     def calcul_totaux_cat_statut(data, categorie, statut):
@@ -433,7 +432,7 @@ class Utilisateur:
             raise ValueError("Cette variable n'est pas dans la base de "
                              "données.")
 
-        liste_modalites = list(data[variable].unique())
+        liste_modalites = list(data[variable].astype(str).unique())
         return ["Liste des modalités différentes de la variable :",
                 variable, liste_modalites]
 
