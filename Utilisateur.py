@@ -475,45 +475,169 @@ class Utilisateur:
                     "il y a un rique (en %) de :", risque]
 
 
+import numpy as np 
+import pandas as pd 
+import matplotlib as plt
+import seaborn as sns
+import datetime as dt
+import warnings
+warnings.filterwarnings('ignore')
+import os
+df = pd.read_csv("bronx.csv", sep=";")
+df[:3]
 
-# # Fonction pour classer si c'est jour ou nuit
-# def classer_jour_nuit(self, heure):
-#     if heure.hour >= 6 and heure.hour < 18:
-#         return 'jour'
-#     else:
-#         return 'nuit'
+# Netoyage de la base de donnée
 
-# # Appliquer la fonction pour créer une nouvelle colonne 'Jour_Nuit'
-# df['Jour_Nuit'] = df['CRASH.TIME'].apply(classer_jour_nuit)
+# on supprime les colonnes non utiles
+cols = ["VEHICLE.TYPE.CODE.2", "VEHICLE.TYPE.CODE.3", "VEHICLE.TYPE.CODE.4", 
+        "VEHICLE.TYPE.CODE.5", "CONTRIBUTING.FACTOR.VEHICLE.2", 
+        "CONTRIBUTING.FACTOR.VEHICLE.3", "CONTRIBUTING.FACTOR.VEHICLE.4", 
+        "CONTRIBUTING.FACTOR.VEHICLE.5"]
 
-# def risque_nuit_jour(self, data,utilisateur) :
-#     jour=2
-#     nuit=2
-#     if data['Jour_Nuit']=='jour':
-#         if jour==0 :
-#                 return 0
-#         else :
-#              return jour/(jour+nuit)
-#     else :
-#         if nuit==0 :
-#                 return 0
-#         else :
-#                 return nuit/(jour+nuit)
+df.drop(cols, axis='columns', inplace=True) 
 
-# def risque_voiture(self, data, utilisateur, voiture):
-#     if voiture in data['VEHICLE.TYPE.CODE.1'].values:
-#         # Regroupement par 'VEHICLE.TYPE.CODE.1' et comptage des occurrences de 'COLLISION_ID'
-#         regroupement = df.groupby('VEHICLE.TYPE.CODE.1')['COLLISION_ID'].count()
-#         return regroupement[voiture]/max(regroupement.iloc[:, 1])
-#     else:
-#         return 0
+# Comme 'CONTRIBUTING FACTOR VEHICLE 1'  est la variable la plus importante,
+# on supprime les lignes contenants des NAs
+df.dropna(subset=("CONTRIBUTING.FACTOR.VEHICLE.1"), inplace= True)
 
-# def risque_rue(self, data, rue):
-#      if rue in data["CROSS.STREET.NAME"].values or in data["OFF.STREET.NAME"].values or in data["ON.STREET.NAME"].values:
-#         # calcul des nombres de bléssés/morts
-#         regroupement = filtre(data, rue)[-1]
-#         nombre_BT_rue= calcul_totaux_statut(regroupement, BT)[1]
-#         nombre_BT= max(calcul_totaux_statut(data, BT)[1])
-#         return nombre_BT_rue/nombre_BT
-#      else:
-#         return 0
+# Les NAs sont remplacés par des 0 pour les personnestuées et bléssées
+df["NUMBER.OF.PERSONS.INJURED"].fillna(0, inplace=True)
+df["NUMBER.OF.PERSONS.KILLED"].fillna(0, inplace=True)
+
+# Convertion de  'CRASH DATE' en datetime
+
+df["CRASH.DATE"] = pd.to_datetime(df["CRASH.DATE"])
+df["YEAR"] = df["CRASH.DATE"].dt.year 
+df["MONTH"] = df["CRASH.DATE"].dt.month
+
+# Convertir la colonne 'Heure' en format datetime
+df['CRASH.TIME'] = pd.to_datetime(df['CRASH.TIME'], format='%H:%M')
+
+
+# Fonction pour classer si c'est jour ou nuit
+def classer_jour_nuit(heure):
+    if heure.hour >= 6 and heure.hour < 18:
+        return 'jour'
+    else:
+        return 'nuit'
+    
+# Appliquer la fonction pour créer une nouvelle colonne 'Jour_Nuit'
+def ajout_jour_nuit(data) :
+     df['Jour_Nuit'] = df['CRASH.TIME'].apply(classer_jour_nuit)
+
+
+#Calcul du risque selon l'horraire
+def risque_nuit_jour(data) : 
+    jour=2
+    nuit=2
+    if data['Jour_Nuit']=='jour':
+        if jour==0 : 
+                return 0
+        else : 
+             return jour/(jour+nuit)
+    else : 
+        if nuit==0 : 
+                return 0
+        else : 
+                return nuit/(jour+nuit)
+
+#risque des voitures
+def risque_voiture(data, rue, voiture):
+    
+    if voiture in data['VEHICLE.TYPE.CODE.1'].values:
+        # Filtrer les données pour la rue spécifique et le type de véhicule spécifique
+        df_filtre_on = df[(df['ON.STREET.NAME'] == rue) & (df['CONTRIBUTING.FACTOR.VEHICLE.1'] == voiture)]
+        df_filtre_off = df[(df['OFF.STREET.NAME'] == rue) & (df['CONTRIBUTING.FACTOR.VEHICLE.1'] == voiture)]
+        df_filtre_cross = df[(df['CROSS.STREET.NAME'] == rue) & (df['CONTRIBUTING.FACTOR.VEHICLE.1'] == voiture)]
+        # Compter le nombre d'accidents après le filtrage
+        nombre_accidents = len(df_filtre_on)+len(df_filtre_off)+len(df_filtre_cross)
+        if nombre_accidents== 0 :
+             return 0
+        if nombre_accidents < 5 : 
+             return 0.1
+        if nombre_accidents < 8 :
+             return 0.2 
+        if nombre_accidents < 10 :
+             return 0.3
+        else : 
+             return 0.4
+
+
+
+def df_blesse_mort_rue(data, utilisateur) :
+     #crée un dataframe avec la somme de cross on et off street pour les velos et piétons
+     # Créer une liste contenant toutes les valeurs uniques des colonnes de rue
+     rues = pd.unique(pd.concat([data['ON.STREET.NAME'], data['OFF.STREET.NAME'], data['CROSS.STREET.NAME']]))
+     # Initialiser un dictionnaire pour stocker les totaux des blessés piétons par rue
+     nombre_blessés_pietons_par_rue = {}
+     nombre_blessés_cyclistes_par_rue = {}
+     nombre_tués_pietons_par_rue = {}
+     nombre_tués_cyclistes_par_rue = {}
+    # Pour chaque rue, calculer la somme des blessés piétons
+     for rue in rues:
+    # Filtrer le DataFrame pour inclure toutes les lignes où la rue apparaît dans l'une des colonnes
+        rue_filtre = data[(data['ON.STREET.NAME'] == rue) | (data['OFF.STREET.NAME'] == rue) | (data['CROSS.STREET.NAME'] == rue)]
+        # Calculer la somme des blessés piétons pour cette rue
+        if utilisateur == pedestrian :
+            total_blessés_pietons = rue_filtre['NUMBER.OF.PEDESTRIANS.INJURED'].sum()
+            # Stocker le total dans le dictionnaire
+            nombre_blessés_pietons_par_rue[rue] = total_blessés_pietons
+            # Créer un DataFrame à partir du dictionnaire
+            total_tués_pietons = rue_filtre['NUMBER.OF.PEDESTRIANS.KILLED'].sum()
+            # Stocker le total dans le dictionnaire
+            nombre_tués_pietons_par_rue[rue] = total_tués_pietons
+            # Créer un DataFrame à partir du dictionnaire
+            a=pd.DataFrame(list(nombre_blessés_pietons_par_rue.items()), columns=['Rue', 'Nombre blessés piétons'])
+            b=pd.DataFrame(list(nombre_tués_pietons_par_rue.items()), columns=['Rue', 'Nombre tués piétons'])
+            return (pd.merge(a,b, on='Rue', how='inner'), data)
+         
+        if utilisateur == cyclist :
+            total_blessés_cycliste = rue_filtre['NUMBER.OF.CYCLISTS.INJURED'].sum()
+            # Stocker le total dans le dictionnaire
+            nombre_blessés_cyclistes_par_rue[rue] = total_blessés_cycliste
+            # Créer un DataFrame à partir du dictionnaire
+            return pd.DataFrame(list(nombre_blessés_cyclistes_par_rue.items()), columns=['Rue', 'Nombre blessés cyclistes'])
+            total_tués_cycliste = rue_filtre['NUMBER.OF.CYCLISTS.KILLED'].sum()
+            # Stocker le total dans le dictionnaire
+            nombre_tués_cyclistes_par_rue[rue] = total_tués_cycliste
+            # Créer un DataFrame à partir du dictionnaire
+            a=pd.DataFrame(list(nombre_tués_cyclistes_par_rue.items()), columns=['Rue', 'Nombre tués cyclistes'])
+            b=pd.DataFrame(list(nombre_tués_cyclistes_par_rue.items()), columns=['Rue', 'Nombre tués cyclistes'])
+            return (pd.merge(a,b, on='Rue', how='inner'), data)
+         
+
+
+
+#calcul le risque selon la rue pour piétons et cycliste
+def risque_rue_pieton_velo(data, rue, utilisateur):
+     if rue in data["CROSS.STREET.NAME"].values or in data["OFF.STREET.NAME"].values or in data["ON.STREET.NAME"].values :
+        df_b_m=df_blesse_mort_rue(data, utilisateur)
+        # Filtrer les données pour inclure uniquement les accidents sur la rue spécifique
+        df_rue = data[data['ON.STREET.NAME'] == rue]
+        if utilisateur==pedestrian :
+# Calculer le nombre total de morts et de blessés parmi les piétons pour la rue spécifique
+                nombre_total_pietons_rue_specifique = df_rue['Nombre blessés piétons'].sum() + df_rue['Nombre tués piétons'].sum()
+                # Calculer le nombre total de morts et de blessés parmi les piétons pour chaque rue
+                df_pietons = df_b_m[df_b_m['Nombre blessés piétons'] > 0]
+                total_pietons_par_rue = df_pietons.groupby('Rue').agg({'Nombre blessés piétons': 'sum', 'Nombre tués piétons': 'sum'}).reset_index()
+                # Trouver la rue avec le maximum de morts et de blessés parmi les piétons
+                rue_max_pietons = total_pietons_par_rue.loc[total_pietons_par_rue['Nombre blessés piétons'].idxmax()] + total_pietons_par_rue.loc[total_pietons_par_rue['Nombre tués piétons'].idxmax()]
+                return total_pietons_par_rue/rue_max_pietons 
+        if utilisateur==cyclist :
+                # Calculer le nombre total de morts et de blessés parmi les piétons pour la rue spécifique
+                nombre_total_pietons_rue_specifique = df_rue['Nombre blessés cyclistes'].sum() + df_rue['Nombre tués cyclistes'].sum()
+                # Calculer le nombre total de morts et de blessés parmi les piétons pour chaque rue
+                df_cyclists = data[data['Nombre blessés cyclistes'] > 0]
+                total_cyclistes_par_rue = df_cyclists.groupby('Rue').agg({'Nombre blessés cyclistes': 'sum', 'Nombre tués cyclistes': 'sum'}).reset_index()
+                # Trouver la rue avec le maximum de morts et de blessés parmi les cyclistes
+                rue_max_cyclistes = total_cyclistes_par_rue.loc[total_cyclistes_par_rue['Nombre blessés cyclistes'].idxmax()] + total_cyclistes_par_rue.loc[total_cyclistes_par_rue['Nombre blessés piétons'].idxmax()]
+                return total_cyclistes_par_rue/rue_max_cyclistes        
+     else:
+        return 0
+
+
+     
+
+        
+
+
