@@ -624,6 +624,9 @@ def risque_rue_pieton_velo(data, rue, utilisateur):
                 # Calculer le nombre total de morts et de blessés parmi les piétons pour chaque rue
                 df_pietons = df_b_m[df_b_m['Nombre blessés piétons'] > 0]
                 total_pietons_par_rue = df_pietons.groupby('Rue').agg({'Nombre blessés piétons': 'sum', 'Nombre tués piétons': 'sum'}).reset_index()
+                #supprime les unspecified pour ne pas avoir de problèmes  avec le max
+                total_pietons_par_rue = total_pietons_par_rue[~total_pietons_par_rue['Rue'].str.contains('Nombre blessés piétons')]
+                total_pietons_par_rue = total_pietons_par_rue[~total_pietons_par_rue['Rue'].str.contains('Nombre tués piétons')]
                 # Trouver la rue avec le maximum de morts et de blessés parmi les piétons
                 rue_max_pietons = total_pietons_par_rue.loc[total_pietons_par_rue['Nombre blessés piétons'].idxmax()] + total_pietons_par_rue.loc[total_pietons_par_rue['Nombre tués piétons'].idxmax()]
                 return total_pietons_par_rue/rue_max_pietons 
@@ -633,6 +636,9 @@ def risque_rue_pieton_velo(data, rue, utilisateur):
                 # Calculer le nombre total de morts et de blessés parmi les piétons pour chaque rue
                 df_cyclists = data[data['Nombre blessés cyclistes'] > 0]
                 total_cyclistes_par_rue = df_cyclists.groupby('Rue').agg({'Nombre blessés cyclistes': 'sum', 'Nombre tués cyclistes': 'sum'}).reset_index()
+                #supprime les unspecified pour ne pas avoir de problèmes  avec le max
+                total_pietons_par_rue = total_pietons_par_rue[~total_pietons_par_rue['Rue'].str.contains('Nombre blessés piétons')]
+                total_pietons_par_rue = total_pietons_par_rue[~total_pietons_par_rue['Rue'].str.contains('Nombre tués piétons')]
                 # Trouver la rue avec le maximum de morts et de blessés parmi les cyclistes
                 rue_max_cyclistes = total_cyclistes_par_rue.loc[total_cyclistes_par_rue['Nombre blessés cyclistes'].idxmax()] + total_cyclistes_par_rue.loc[total_cyclistes_par_rue['Nombre blessés piétons'].idxmax()]
                 return total_cyclistes_par_rue/rue_max_cyclistes        
