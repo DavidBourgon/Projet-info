@@ -26,7 +26,7 @@ class SecteurPrive:
         if not isinstance(marge, float):
             raise TypeError("La marge doit être un float.")
 
-    def __donner_prix(self, localisation: list[str], vehicule) -> float:
+    def __donner_prix(self, data, localisation, categorie):
         """
         Détermine le prix qu'un client va payer
 
@@ -45,13 +45,12 @@ class SecteurPrive:
 
         """
         if not isinstance(localisation, list):
-            raise TypeError("La localisation doit être une liste.")
+            raise TypeError("La localisation doit être une liste de rues")
 
         indicateur_risque = 0
         for k in len(localisation):
             indicateur_risque = (
-                indicateur_risque +
-                self.__calculer_risque_rue(vehicule, localisation[k])
+                indicateur_risque + Utilisateur.risque_rue(data, localisation[k], categorie)
                 )
         prix = (400 * indicateur_risque) * (1 + self.marge)
         return prix
