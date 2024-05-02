@@ -257,13 +257,14 @@ def test_liste_modalites_variable_echec(data,
     with pytest.raises(erreur, match=re.escape(message_erreur)):
         Utilisateur.liste_modalites_variable(data, variable)
 
+
 @pytest.mark.parametrize(
-    'kwargs_str',
-    [
-        'carburant_gazole_kwargs', 'sp98_kwargs', 'sp95_kwargs',
-        'sp95_e10_kwargs', 'e85_kwargs', 'gpl_kwargs'
-    ]
+    'data, categorie, statut, resultat_attendu',
+    [(tableau, "foot", "B", 175)]
 )
-def test_calcul_totaux_statut(kwargs_str, request):
-    kwargs = request.getfixturevalue(kwargs_str)
-    Carburant(**kwargs)
+def calcul_totaux_cat_statut_sucess(data, categorie, statut, resultat_attendu):
+    assert (
+        Utilisateur.calcul_totaux_cat_statut(data, categorie, statut)
+        ==
+        resultat_attendu
+    )
