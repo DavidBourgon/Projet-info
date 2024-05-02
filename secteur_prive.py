@@ -1,6 +1,5 @@
 import pandas as pd
-from type_vehicule import TypeDeVehicule
-
+from Utilisateur import Utilisateur
 
 class SecteurPrive:
     """ Secteur Privé.
@@ -16,7 +15,7 @@ class SecteurPrive:
         Marge que prend l'assureur.
 
     """
-    def __init__(self, nom_assureur: str, marge: float):
+    def __init__(self, data, nom_assureur, marge):
 
         self.nom_assureur = nom_assureur
         self.marge = marge
@@ -30,12 +29,10 @@ class SecteurPrive:
     def calculer_mortalite_rue(self, rue: str) -> float:
         pass
 
-    def __calculer_risque_rue(self, vehicule, rue: str) -> float:
+    def __calculer_risque_rue(self, data, type_vehicule, street) -> float:
 
-        if not isinstance(rue, str):
-            raise TypeError("La rue doit être une instance de str.")
-
-        if not isinstance(vehicule, TypeDeVehicule):
+        L_type_vehicule = Utilisateur.liste_modalites_variable(data, VEHICLE.TYPE.CODE.1)[-1]
+        if type_vehicule not in L_type_vehicule:
             raise TypeError("Le nom du vehicule n'est pas correct.")
         pass
 
@@ -59,16 +56,23 @@ class SecteurPrive:
         """
         if not isinstance(localisation, list):
             raise TypeError("La localisation doit être une liste.")
-            indicateur_risque = 0
-            for k in len(localisation):
-                indicateur_risque = (
-                    indicateur_risque +
-                    self.__calculer_risque_rue(vehicule, localisation[k])
-                    )
-            prix = (400 * indicateur_risque) * (1 + self.marge)
-            return prix
+
+        indicateur_risque = 0
+        for k in len(localisation):
+            indicateur_risque = (
+                indicateur_risque +
+                self.__calculer_risque_rue(vehicule, localisation[k])
+                )
+        prix = (400 * indicateur_risque) * (1 + self.marge)
+        return prix
 
     def __repr__(self, localisation: list[str], vehicule) -> str:
+        """
+
+        Représentation officielle de la réponse de l'assureur au client
+        lui indiquant combien il doit payer.
+
+        """
         return (f"Pour assurer votre véhicule de type, vous devez vous"
                 f"acquitter de"
                 f" {self.__donner_prix(localisation, vehicule)}")

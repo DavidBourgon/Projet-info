@@ -41,6 +41,9 @@ class SecteurPublic:
         str : Taux de mortalité de la rue demandée.
 
         """
+        if not isinstance(rue, str):
+            raise TypeError("La rue donnée doit être de type str.")
+
         taux_mortalité = bx.nmbr_mort_total(data)/bx.nmbr_mort_total_rue(data)
         return f"Le taux de mortalité de la rue {rue} est {taux_mortalité}."
 
