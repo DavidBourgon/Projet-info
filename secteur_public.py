@@ -14,7 +14,7 @@ class SecteurPublic:
     ----------
     categorie : str
         Catégorie de l'usagé : piéton, cycliste ou  automobiliste. Elle vaut
-        soit piet, soit cycl soit auto.
+        soit foot, soit cycle soit car.
 
     """
 
@@ -24,9 +24,9 @@ class SecteurPublic:
         if not isinstance(categorie, str):
             raise TypeError("Le véhicule doit être une chaîne de caractères.")
 
-        if categorie not in ("piet", "cycl", "autot"):
-            raise ValueError("La catégorie doit être valoir piet, cycl ou "
-                             "auto.")
+        if categorie not in ("foot", "cycle", "car"):
+            raise ValueError("La catégorie doit être valoir foot, cycle ou "
+                             "car.")
 
     def calculer_mortalité_rue(self, rue: str) -> int:
         """ Calcule le taux de mortalité d'une rue.
