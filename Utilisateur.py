@@ -466,9 +466,9 @@ class Utilisateur:
                     "Pour la rue :", street,
                     "Il y a un rique (en %) de :", 0]
         else:
-            n_T = Utilisateur.\
+            n_mort_cat = Utilisateur.\
                 calcul_totaux_cat_statut(data_street, categorie, "T")[-1]
-            n_B = Utilisateur.\
+            n_blesse_cat = Utilisateur.\
                 calcul_totaux_cat_statut(data_street, categorie, "B")[-1]
             n_mort_total = Utilisateur.\
                 calcul_totaux_statut(data, "T")[-1]
