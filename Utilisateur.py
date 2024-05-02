@@ -466,13 +466,18 @@ class Utilisateur:
                     "Pour la rue :", street,
                     "Il y a un rique (en %) de :", 0]
         else:
-            n_T = Utilisateur.\
+            n_mort_cat = Utilisateur.\
                 calcul_totaux_cat_statut(data_street, categorie, "T")[-1]
-            n_B = Utilisateur.\
+            n_blesse_cat = Utilisateur.\
                 calcul_totaux_cat_statut(data_street, categorie, "B")[-1]
-            risque = (n_T + (1/4)*n_B) / (n_T + n_B)
-            return ["Pour la rue :", street,
-                    "il y a un rique (en %) de :", risque]
+            n_mort_total = Utilisateur.\
+                calcul_totaux_statut(data, "T")[-1]
+            n_blesse_total = Utilisateur.\
+                calcul_totaux_statut(data, "B")[-1]
+        risque = n_mort_cat/n_mort_total + n_blesse_cat/n_blesse_total
+
+        return ["Pour la rue :", street,
+                "il y a un rique (en %) de :", risque]
 
 
 # import numpy as np
