@@ -28,7 +28,7 @@ class SecteurPrive:
 
     def __decompose_trajet(adresse_depart, adresse_arrrive):
         # doit return une liste des rues / passages emprunter
-        # par l'utilisateur
+        # par l'utilisateur (localisation)
         pass
 
     def __donner_prix(self, data, localisation, categorie):
@@ -61,7 +61,7 @@ class SecteurPrive:
         prix = (400 * ind_risque) * (1 + self.marge)
         return prix
 
-    def __repr__(self, localisation: list[str], vehicule):
+    def __repr__(self, localisation: list[str], categorie):
         """
 
         Représentation officielle de la réponse de l'assureur au client
@@ -70,4 +70,4 @@ class SecteurPrive:
         """
         return (f"Pour vous assurer sur votre trajet quotidien,"
                 f" vous devez vous acquitter de"
-                f" {self.__donner_prix(localisation, vehicule)}")
+                f" {self.__donner_prix(localisation, categorie)}")
