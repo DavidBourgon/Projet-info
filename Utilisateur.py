@@ -588,7 +588,9 @@ def df_blesse_mort_rue(data, utilisateur) :
             nombre_tués_pietons_par_rue[rue] = total_tués_pietons
             # Créer un DataFrame à partir du dictionnaire
             a=pd.DataFrame(list(nombre_blessés_pietons_par_rue.items()), columns=['Rue', 'Nombre blessés piétons'])
+            a = a[~a['Rue'].str.contains("Unspecified")]
             b=pd.DataFrame(list(nombre_tués_pietons_par_rue.items()), columns=['Rue', 'Nombre tués piétons'])
+            b = b[~b['Rue'].str.contains("Unspecified")]
             return (pd.merge(a,b, on='Rue', how='inner'), data)
          
         if utilisateur == cyclist :
@@ -602,7 +604,9 @@ def df_blesse_mort_rue(data, utilisateur) :
             nombre_tués_cyclistes_par_rue[rue] = total_tués_cycliste
             # Créer un DataFrame à partir du dictionnaire
             a=pd.DataFrame(list(nombre_tués_cyclistes_par_rue.items()), columns=['Rue', 'Nombre tués cyclistes'])
+            a = a[~a['Rue'].str.contains("Unspecified")]
             b=pd.DataFrame(list(nombre_tués_cyclistes_par_rue.items()), columns=['Rue', 'Nombre tués cyclistes'])
+            b = b[~b['Rue'].str.contains("Unspecified")]
             return (pd.merge(a,b, on='Rue', how='inner'), data)
          
 
