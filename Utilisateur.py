@@ -663,9 +663,9 @@ def risque_global_rue(data, rue, type_vehicule, heure) :
     if type_vehicule==car: 
         accumulateur = 0
         for vehicule in l : 
-            accumulateur+=risque_voiture(data, rue, vehicule) + risque_nuit_jour(data, heure) 
+            accumulateur+=risque_voiture(data, rue, vehicule)
     return accumulateur/len(l)
     if type_vehicule==foot : 
-        return risque_rue_pieton_velo(data, rue, foot) + risque_nuit_jour(data, heure) 
+        return risque_rue_pieton_velo(data, rue, foot) 
     if type_vehicule==cycle : 
-        return risque_rue_pieton_velo(data, rue, cycle) + risque_nuit_jour(data, heure) 
+        return risque_rue_pieton_velo(data, rue, cycle) 
