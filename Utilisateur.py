@@ -438,7 +438,7 @@ class Utilisateur:
                 variable, liste_modalites]
 
     # fonction avancée
-    def danger_rue(data, street, categorie):
+    def risque_rue(data, street, categorie):
         """
         Permet de calculer le danger d'une rue en %.
 

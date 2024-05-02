@@ -15,7 +15,7 @@ class SecteurPrive:
         Marge que prend l'assureur.
 
     """
-    def __init__(self, data, nom_assureur, marge):
+    def __init__(self, nom_assureur, marge):
 
         self.nom_assureur = nom_assureur
         self.marge = marge
@@ -25,16 +25,6 @@ class SecteurPrive:
 
         if not isinstance(marge, float):
             raise TypeError("La marge doit être un float.")
-
-    def calculer_mortalite_rue(self, rue: str) -> float:
-        pass
-
-    def __calculer_risque_rue(self, data, type_vehicule, street) -> float:
-
-        L_type_vehicule = Utilisateur.liste_modalites_variable(data, VEHICLE.TYPE.CODE.1)[-1]
-        if type_vehicule not in L_type_vehicule:
-            raise TypeError("Le nom du vehicule n'est pas correct.")
-        pass
 
     def __donner_prix(self, localisation: list[str], vehicule) -> float:
         """
