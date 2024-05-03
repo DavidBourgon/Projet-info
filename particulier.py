@@ -7,7 +7,7 @@
 # # on a besoin de créer un itinéraire avec pyroutelib3 :
 # pip install pyroutelib3
 import folium
-import webbrowser # webbrowser sert à afficher la carte en language html.
+import webbrowser  # webbrowser sert à afficher la carte en language html.
 from geopy.geocoders import Nominatim
 from pyroutelib3 import Router
 from Utilisateur import Utilisateur
