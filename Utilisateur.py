@@ -1,6 +1,11 @@
 import pandas as pd
 import re
-
+import numpy as np
+import matplotlib as plt
+import datetime as dt
+import warnings
+warnings.filterwarnings('ignore')
+import os
 
 class Utilisateur:
     def nombre_observation(data):
@@ -479,43 +484,34 @@ class Utilisateur:
                 "il y a un rique (en %) de :", risque]
 
 
-# import numpy as np
-# import pandas as pd
-# import matplotlib as plt
-# import seaborn as sns
-# import datetime as dt
-# import warnings
-# warnings.filterwarnings('ignore')
-# import os
-# df = pd.read_csv("bronx.csv", sep=";")
-# df[:3]
 
 # # Netoyage de la base de donnée
 
-# # on supprime les colonnes non utiles
-# cols = ["VEHICLE.TYPE.CODE.2", "VEHICLE.TYPE.CODE.3", "VEHICLE.TYPE.CODE.4",
-#         "VEHICLE.TYPE.CODE.5", "CONTRIBUTING.FACTOR.VEHICLE.2",
-#         "CONTRIBUTING.FACTOR.VEHICLE.3", "CONTRIBUTING.FACTOR.VEHICLE.4",
-#         "CONTRIBUTING.FACTOR.VEHICLE.5"]
+data = pd.read_csv("bronx.csv", sep=";")
 
-# df.drop(cols, axis='columns', inplace=True)
+# # on supprime les colonnes non utiles
+cols = ["VEHICLE.TYPE.CODE.2", "VEHICLE.TYPE.CODE.3", "VEHICLE.TYPE.CODE.4",
+        "VEHICLE.TYPE.CODE.5", "CONTRIBUTING.FACTOR.VEHICLE.2",
+        "CONTRIBUTING.FACTOR.VEHICLE.3", "CONTRIBUTING.FACTOR.VEHICLE.4",
+        "CONTRIBUTING.FACTOR.VEHICLE.5"]
+
+data.drop(cols, axis='columns', inplace=True)
 
 # # Comme 'CONTRIBUTING FACTOR VEHICLE 1'  est la variable la plus importante,
 # # on supprime les lignes contenants des NAs
-# df.dropna(subset=("CONTRIBUTING.FACTOR.VEHICLE.1"), inplace= True)
+data.dropna(subset=("CONTRIBUTING.FACTOR.VEHICLE.1"), inplace= True)
 
 # # Les NAs sont remplacés par des 0 pour les personnestuées et bléssées
-# df["NUMBER.OF.PERSONS.INJURED"].fillna(0, inplace=True)
-# df["NUMBER.OF.PERSONS.KILLED"].fillna(0, inplace=True)
+data["NUMBER.OF.PERSONS.INJURED"].fillna(0, inplace=True)
+data["NUMBER.OF.PERSONS.KILLED"].fillna(0, inplace=True)
 
 # # Convertion de  'CRASH DATE' en datetime
 
-# df["CRASH.DATE"] = pd.to_datetime(df["CRASH.DATE"])
-# df["YEAR"] = df["CRASH.DATE"].dt.year
-# df["MONTH"] = df["CRASH.DATE"].dt.month
-
+df["CRASH.DATE"] = pd.to_datetime(df["CRASH.DATE"])
+df["YEAR"] = df["CRASH.DATE"].dt.year
+df["MONTH"] = df["CRASH.DATE"].dt.month
 # # Convertir la colonne 'Heure' en format datetime
-# df['CRASH.TIME'] = pd.to_datetime(df['CRASH.TIME'], format='%H:%M')
+df['CRASH.TIME'] = pd.to_datetime(df['CRASH.TIME'], format='%H:%M')
 
 
 # # Fonction pour classer si c'est jour ou nuit
