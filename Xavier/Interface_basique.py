@@ -3,6 +3,7 @@
 # from secteur_prive import SecteurPrive
 # from secteur_public import SecteurPublic
 # from particulier import Particulier
+import tkinter as tk
 import time
 
 
@@ -21,6 +22,7 @@ def choisi(L):
 
 
 try:
+    # Se lance automatiquement qd on exécute le fichier
     print("Bienvenue dans vie de quartier")
     time.sleep(2)
     print("L'application qui te renseigne sur les dangers dans ton quartier")
@@ -46,6 +48,7 @@ try:
 
 
 except KeyboardInterrupt:
+    # faire CTRL C pour fermer l'application
     print()
     print("Fermeture de l'application")
     time.sleep(1)
