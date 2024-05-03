@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renseignement danger dans le Bronx</title>
+    <style>
+        .title-banner {
+            background-color: rgba(255, 255, 255, 0.7); /* Couleur de fond semi-transparente */
+            color: #000000; /* Couleur du texte */
+            padding: 10px; /* Espacement intérieur du bandeau */
+            margin: 0; /* Supprime les marges par défaut */
+            text-align: center; /* Centrage du texte */
+            align-self: flex-start; /* Alignement au début du conteneur parent */
+        }
+        .content {
+            display: flex; /* Utilise Flexbox */
+            flex-direction: column; /* Empile les éléments verticalement */
+            align-items: center; /* Centre les éléments horizontalement */
+            min-height: 100vh; /* Hauteur minimale de l'écran */
+            justify-content: center; /* Centre les éléments verticalement */
+            background-color: #f0f0f0; /* Couleur de fond de la page */
+            background-image: url('photo site/bronx_image.jpg'); /* Image de fond */
+            background-size: cover; /* Redimensionne l'image pour couvrir toute la surface */
+            background-position: center; /* Centre l'image de fond */
+            font-family: Arial, sans-serif; /* Police de caractère */
+            padding: 20px; /* Espacement intérieur */
+        }
+        .banner {
+            background-color: rgba(255, 255, 255, 0.7); /* Couleur de fond */
+            padding: 20px; /* Espacement intérieur */
+            border-radius: 10px; /* Arrondi des coins */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Ombre portée */
+            max-width: 600px; /* Limite la largeur du bandeau */
+            width: 100%; /* Force la largeur à 100% */
+            margin-top: 20px; /* Marge vers le haut */
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<div class="title-banner">
+    <h1>Agence de renseignement sur les dangers de circulation dans le Bronx</h1>
+</div>
+<body>
+    <div class="content">
+        <div class="banner">
+            <h1>Quel profil d'utilisateur êtes-vous ?</h1>
+            <p>Sélectionnez parmi les propositions suivantes :</p>
+            <select>
+                <option value="secteur_prive">Secteur Privé</option>
+                <option value="secteur_public">Secteur Public</option>
+                <option value="particulier">Particulier</option>
+            </select>
+        </div>
+    </div>
+</body>
+</html>
