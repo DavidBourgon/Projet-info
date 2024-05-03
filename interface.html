@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renseignement danger dans le Bronx</title>
+    <style>
+        .title-banner {
+            background-color: rgba(255, 255, 255, 0.7); /* Couleur de fond semi-transparente */
+            color: #000000; /* Couleur du texte */
+            padding: 10px; /* Espacement intérieur du bandeau */
+            margin: 0; /* Supprime les marges par défaut */
+            text-align: center; /* Centrage du texte */
+            align-self: flex-start; /* Alignement au début du conteneur parent */
+        }
+        .content {
+            display: flex; /* Utilise Flexbox */
+            flex-direction: column; /* Empile les éléments verticalement */
+            align-items: center; /* Centre les éléments horizontalement */
+            min-height: 100vh; /* Hauteur minimale de l'écran */
+            justify-content: center; /* Centre les éléments verticalement */
+            background-color: #f0f0f0; /* Couleur de fond de la page */
+            background-image: url('photo site/bronx_image.jpg'); /* Image de fond */
+            background-size: cover; /* Redimensionne l'image pour couvrir toute la surface */
+            background-position: center; /* Centre l'image de fond */
+            font-family: Arial, sans-serif; /* Police de caractère */
+            padding: 20px; /* Espacement intérieur */
+        }
+        .banner {
+            background-color: rgba(255, 255, 255, 0.7); /* Couleur de fond */
+            padding: 20px; /* Espacement intérieur */
+            border-radius: 10px; /* Arrondi des coins */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Ombre portée */
+            max-width: 600px; /* Limite la largeur du bandeau */
+            width: 100%; /* Force la largeur à 100% */
+            margin-top: 20px; /* Marge vers le haut */
+        }
+        .address-input {
+            display: none; /* Masquer les champs d'adresse par défaut */
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<div class="title-banner">
+    <h1>Agence de renseignement sur les dangers de circulation dans le Bronx</h1>
+</div>
+<body>
+    <div class="content">
+        <div class="banner">
+            <h1>Quel profil d'utilisateur êtes-vous ?</h1>
+            <p>Sélectionnez parmi les propositions suivantes :</p>
+            <select id="profil" onchange="toggleAddressInputs()">
+                <option value="">Sélectionnez un profil</option>
+                <option value="secteur_prive">Secteur Privé</option>
+                <option value="secteur_public">Secteur Public</option>
+                <option value="particulier">Particulier</option>
+            </select>
+            <!-- Champs pour le moyen de locomotion -->
+            <div class="address-input" id="vehicle">
+                <label for="vehicle">Moyen de locomotion :</label>
+                <select id="vehicle" name="vehicle">
+                    <option value="voiture">Voiture</option>
+                    <option value="vélo">Vélo</option>
+                    <option value="à_pied">À pied</option>
+                </select>
+            </div>
+            <!-- Champs pour l'adresse de départ et l'adresse d'arrivée -->
+            <div class="address-input" id="adresse_de_depart">
+                <label for="start">Adresse de départ :</label>
+                <input type="text" id="start" name="start">
+            </div>
+            <div class="address-input" id="adresse_d_arrivee">
+                <label for="end">Adresse d'arrivée :</label>
+                <input type="text" id="end" name="end">
+            </div>
+            <!-- Bouton Valider -->
+            <button onclick="validerAdresses()">Valider</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleAddressInputs() {
+            var selectElement = document.getElementById("profil");
+            var selectedValue = selectElement.value;
+            var addressInputs = document.querySelectorAll(".address-input");
+
+            // Afficher les champs d'adresse si "Particulier" est sélectionné, sinon les masquer
+            if (selectedValue === "particulier") {
+                addressInputs.forEach(function(input) {
+                    input.style.display = "block";
+                });
+            } else {
+                addressInputs.forEach(function(input) {
+                    input.style.display = "none";
+                });
+            }
+        }
+
+        function validerAdresses() {
+            var startAddress = document.getElementById("start").value;
+            var endAddress = document.getElementById("end").value;
+            var vehicle = document.getElementById("vehicle").value;
+
+            // Lancer la fonction eviterZoneRisquee avec les adresses et le moyen de locomotion collectés
+            eviterZoneRisquee(startAddress, endAddress, vehicle);
+        }
+
+        function eviterZoneRisquee(startAddress, endAddress, vehicle) {
+             // Définir les données à envoyer dans la requête
+            var data = {
+                start: startAddress,
+                end: endAddress,
+                vehicle: vehicle
+            };
+
+            // Configuration de la requête fetch
+            var requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            };
+
+            // Envoyer la requête à votre API Flask
+            fetch('/python', requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur réseau');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Traitement des résultats de votre API Flask
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
+        }
+    </script>
+</body>
+</html>

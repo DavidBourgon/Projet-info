@@ -22,10 +22,10 @@ class SecteurPublic:
         self.categorie = categorie
 
         if not isinstance(categorie, str):
-            raise TypeError("Le véhicule doit être une chaîne de caractères.")
+            raise TypeError("La catégorie doit être une chaîne de caractères.")
 
         if categorie not in ("foot", "cycle", "car"):
-            raise ValueError("La catégorie doit être valoir foot, cycle ou "
+            raise ValueError("La catégorie doit valoir foot, cycle ou "
                              "car.")
 
     def calculer_mortalité_rue(self, rue: str) -> int:
@@ -44,7 +44,7 @@ class SecteurPublic:
         if not isinstance(rue, str):
             raise TypeError("La rue donnée doit être de type str.")
 
-        taux_mortalité = bx.nmbr_mort_total(data)/bx.nmbr_mort_total_rue(data)
+        taux_mortalité = bx.nmbr_mort_total_rue(data)/bx.nmbr_mort_total(data)
         return f"Le taux de mortalité de la rue {rue} est {taux_mortalité}."
 
     def __localiser_infrastructure(self, zones: dict[int: list[str]]):
