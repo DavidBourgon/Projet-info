@@ -31,15 +31,15 @@ try:
 
     time.sleep(1)
 
-    if profil == "Secteur Privé":
+    if mot == "Secteur Privé":
         print("En tant qu'acteur privé que souhaitez vous faire ?")
         time.sleep(1)
 
-    elif profil == "Secteur Public":
+    elif mot == "Secteur Public":
         print("En tant qu'acteur public que souhaitez vous faire ?")
         time.sleep(1)
 
-    elif profil == "Particulier":
+    elif mot == "Particulier":
         print("En tant que particulier que souhaitez vous faire ?")
         time.sleep(1)
 
