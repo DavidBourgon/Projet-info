@@ -73,43 +73,30 @@ try:
         print("En tant que particulier que souhaitez vous faire ?")
         time.sleep(1)
 
-        utilisation = choisi(["Déterminer un itinéraire.",
-                              "Connaître le risque d'un itinéraire.",
+        utilisation = choisi(["Connaître le risque d'un itinéraire.",
                               "Savoir quel moyen de transport utiliser pour"
-                              " éviter les risques."])
-
-        if utilisation == "Déterminer un itinéraire.":
-            print("Quelle est votre adresse de départ ?")
-            adresse_arrivee = input("Entrez le nom de la rue, doit finir par ', New York' :")
-
-            time.sleep(1)
-            print("Quelle est votre adresse d'arrivée ?")
-            adresse_depart = input("Entrez le nom de la rue, doit finir par ', New York' :")
-
-            time.sleep(1)
-            print("Voici l'itinéraire permettant de relier vos 2 adresses :",
-                  Particulier.itineraires(adresse_arrivee, adresse_depart))
+                              " éviter les risques et avoir l'itinéraire correspondant."])
 
         if utilisation == "Connaître le risque d'un itinéraire.":
             print("Quelle est votre adresse de départ ?")
-            adresse_arrivee = input("Entrez le nom de la rue, doit finir par ', New York' :")
+            adresse_depart = input("Entrez le nom de la rue, doit finir par ', New York' :")
 
             time.sleep(1)
             print("Quelle est votre adresse d'arrivée ?")
-            adresse_depart = input("Entrez le nom de la rue, doit finir par ', New York' :")
+            adresse_arrivee = input("Entrez le nom de la rue, doit finir par ', New York' :")
 
             time.sleep(1)
             print("Voici le risque de l'itinéraire permettant de relier vos 2 adresses :",
                   Particulier.evaluate_risque_itineraire(adresse_arrivee,
                                                          adresse_depart))
 
-        if utilisation == "Savoir quel moyen de transport utiliser pour éviter les risques.":
+        if utilisation == "Savoir quel moyen de transport utiliser pour éviter les risques et avoir l'itinéraire correspondant.":
             print("Quelle est votre adresse de départ ?")
-            adresse_arrivee = input("Entrez le nom de la rue, doit finir par ', New York' :")
+            adresse_depart = input("Entrez le nom de la rue, doit finir par ', New York' :")
 
             time.sleep(1)
             print("Quelle est votre adresse d'arrivée ?")
-            adresse_depart = input("Entrez le nom de la rue, doit finir par ', New York' :")
+            adresse_arrivee = input("Entrez le nom de la rue, doit finir par ', New York' :")
 
             time.sleep(1)
             print(Particulier.eviter_zone_risquee(adresse_arrivee,
