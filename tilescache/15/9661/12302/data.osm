@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<osm version="0.6" generator="CGImap 0.9.2 (104066 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<osm version="0.6" generator="CGImap 0.9.2 (1747432 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
  <bounds minlat="40.8553705" minlon="-73.8610840" maxlat="40.8636797" maxlon="-73.8500977"/>
  <node id="42730948" visible="true" version="4" changeset="94926063" timestamp="2020-11-28T04:57:44Z" user="daniel_solow" uid="1954307" lat="40.8631077" lon="-73.8616449">
   <tag k="highway" v="traffic_signals"/>
@@ -364,12 +364,13 @@
   <tag k="gnis:state_id" v="36"/>
   <tag k="name" v="Pelham Preparatory High School"/>
  </node>
- <node id="357612579" visible="true" version="2" changeset="56530482" timestamp="2018-02-20T19:26:53Z" user="maxerickson" uid="360392" lat="40.8584327" lon="-73.8553395">
+ <node id="357612579" visible="true" version="3" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307" lat="40.8584327" lon="-73.8553395">
   <tag k="addr:city" v="Bronx"/>
   <tag k="addr:housenumber" v="1101"/>
   <tag k="addr:postcode" v="10469"/>
   <tag k="addr:street" v="Pelham Parkway North"/>
   <tag k="amenity" v="clinic"/>
+  <tag k="check_date" v="2024-05-01"/>
   <tag k="gnis:feature_id" v="2073784"/>
   <tag k="healthcare" v="clinic"/>
   <tag k="healthcare:speciality" v="ophthalmology"/>
@@ -12233,8 +12234,9 @@
   <tag k="highway" v="crossing"/>
  </node>
  <node id="11540240897" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307" lat="40.8554381" lon="-73.8551810"/>
- <node id="11540240898" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307" lat="40.8582405" lon="-73.8559988">
+ <node id="11540240898" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307" lat="40.8582405" lon="-73.8559988">
   <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing:markings" v="zebra"/>
   <tag k="highway" v="crossing"/>
  </node>
  <node id="11540240899" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307" lat="40.8598193" lon="-73.8558273"/>
@@ -14331,6 +14333,38 @@
   <tag k="highway" v="stop"/>
   <tag k="stop" v="minor"/>
  </node>
+ <node id="11872348161" visible="true" version="1" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307" lat="40.8567692" lon="-73.8578657">
+  <tag k="amenity" v="dentist"/>
+  <tag k="healthcare" v="dentist"/>
+  <tag k="healthcare:speciality" v="orthodontics"/>
+ </node>
+ <node id="11872348162" visible="true" version="1" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307" lat="40.8586931" lon="-73.8555480">
+  <tag k="access" v="yes"/>
+  <tag k="amenity" v="bicycle_parking"/>
+  <tag k="bicycle_parking" v="stands"/>
+  <tag k="capacity" v="6"/>
+  <tag k="colour" v="silver"/>
+  <tag k="covered" v="no"/>
+  <tag k="fee" v="no"/>
+  <tag k="indoor" v="no"/>
+  <tag k="operator" v="NYC DOT"/>
+ </node>
+ <node id="11872348163" visible="true" version="1" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307" lat="40.8587620" lon="-73.8556417">
+  <tag k="access" v="yes"/>
+  <tag k="amenity" v="bicycle_parking"/>
+  <tag k="bicycle_parking" v="stands"/>
+  <tag k="capacity" v="6"/>
+  <tag k="colour" v="silver"/>
+  <tag k="covered" v="no"/>
+  <tag k="fee" v="no"/>
+  <tag k="indoor" v="no"/>
+  <tag k="operator" v="NYC DOT"/>
+ </node>
+ <node id="11872348164" visible="true" version="1" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307" lat="40.8565903" lon="-73.8574045">
+  <tag k="amenity" v="doctors"/>
+  <tag k="healthcare" v="doctor"/>
+  <tag k="healthcare:speciality" v="paediatrics"/>
+ </node>
  <way id="5696571" visible="true" version="12" changeset="124325241" timestamp="2022-08-01T04:58:15Z" user="snake21" uid="2591427">
   <nd ref="3636285267"/>
   <nd ref="9923716197"/>
@@ -14532,7 +14566,7 @@
   <tag k="tiger:zip_left" v="10469"/>
   <tag k="tiger:zip_right" v="10469"/>
  </way>
- <way id="5697422" visible="true" version="10" changeset="124325241" timestamp="2022-08-01T04:58:15Z" user="snake21" uid="2591427">
+ <way id="5697422" visible="true" version="11" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="3636285266"/>
   <nd ref="9923716199"/>
   <nd ref="8087714654"/>
@@ -14540,8 +14574,10 @@
   <nd ref="4048303057"/>
   <nd ref="3636340183"/>
   <tag k="highway" v="residential"/>
+  <tag k="maxspeed" v="25 mph"/>
   <tag k="name" v="Tomlinson Avenue"/>
   <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
   <tag k="tiger:cfcc" v="A41"/>
   <tag k="tiger:county" v="Bronx, NY"/>
   <tag k="tiger:name_base" v="Tomlinson"/>
@@ -14844,12 +14880,14 @@
   <tag k="tiger:zip_left" v="10469"/>
   <tag k="tiger:zip_right" v="10469"/>
  </way>
- <way id="39332026" visible="true" version="9" changeset="109106648" timestamp="2021-08-03T17:28:08Z" user="BMACS001" uid="8406312">
+ <way id="39332026" visible="true" version="10" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="42734400"/>
   <nd ref="608516692"/>
   <tag k="highway" v="residential"/>
+  <tag k="maxspeed" v="25 mph"/>
   <tag k="name" v="Esplanade"/>
   <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
   <tag k="tiger:cfcc" v="A41"/>
   <tag k="tiger:county" v="Bronx, NY"/>
   <tag k="tiger:name_base" v="Esplanade"/>
@@ -15074,7 +15112,7 @@
   <tag k="tiger:zip_left" v="10461"/>
   <tag k="tiger:zip_right" v="10461"/>
  </way>
- <way id="98567865" visible="true" version="15" changeset="146558522" timestamp="2024-01-22T15:28:38Z" user="daniel_solow" uid="1954307">
+ <way id="98567865" visible="true" version="16" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="42734400"/>
   <nd ref="608516691"/>
   <nd ref="11088326046"/>
@@ -15115,8 +15153,10 @@
   <nd ref="42745421"/>
   <tag k="hgv" v="local"/>
   <tag k="highway" v="secondary"/>
+  <tag k="maxspeed" v="25 mph"/>
   <tag k="name" v="Williamsbridge Road"/>
   <tag k="oneway" v="no"/>
+  <tag k="surface" v="asphalt"/>
   <tag k="tiger:cfcc" v="A41"/>
   <tag k="tiger:county" v="Bronx, NY"/>
   <tag k="tiger:name_base" v="Williamsbridge"/>
@@ -15255,7 +15295,7 @@
   <tag k="tiger:zip_left" v="10461"/>
   <tag k="tiger:zip_right" v="10461"/>
  </way>
- <way id="225878899" visible="true" version="10" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="225878899" visible="true" version="11" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="2346901026"/>
   <nd ref="11540240898"/>
   <nd ref="2856503264"/>
@@ -15270,11 +15310,13 @@
   <nd ref="42744552"/>
   <tag k="bicycle" v="yes"/>
   <tag k="highway" v="residential"/>
+  <tag k="maxspeed" v="25 mph"/>
   <tag k="name" v="Laconia Avenue"/>
   <tag k="network" v="lcn"/>
   <tag k="oneway" v="no"/>
   <tag k="parking:lane:width" v="13'"/>
   <tag k="route" v="bicycle"/>
+  <tag k="surface" v="asphalt"/>
   <tag k="tiger:cfcc" v="A41"/>
   <tag k="tiger:county" v="Bronx, NY"/>
   <tag k="tiger:name_base" v="Laconia"/>
@@ -24020,7 +24062,7 @@
   <tag k="height" v="7.1"/>
   <tag k="nycdoitt:bin" v="2050294"/>
  </way>
- <way id="281664127" visible="true" version="1" changeset="22320335" timestamp="2014-05-13T19:51:34Z" user="Rub21_nycbuildings" uid="1781294">
+ <way id="281664127" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="2856503215"/>
   <nd ref="2856503219"/>
   <nd ref="2856503222"/>
@@ -24041,7 +24083,7 @@
   <nd ref="2856503236"/>
   <nd ref="2856503237"/>
   <nd ref="2856503215"/>
-  <tag k="building" v="yes"/>
+  <tag k="building" v="apartments"/>
   <tag k="height" v="20.4"/>
   <tag k="nycdoitt:bin" v="2050248"/>
  </way>
@@ -33898,7 +33940,7 @@
   <tag k="turn:lanes:backward" v="||through"/>
   <tag k="turn:lanes:forward" v="left|left;through|through"/>
  </way>
- <way id="420571089" visible="true" version="2" changeset="39937551" timestamp="2016-06-10T18:36:36Z" user="ediyes" uid="1240849">
+ <way id="420571089" visible="true" version="3" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="470208474"/>
   <nd ref="4205222089"/>
   <tag k="hgv" v="local"/>
@@ -33906,8 +33948,10 @@
   <tag k="lanes" v="6"/>
   <tag k="lanes:backward" v="3"/>
   <tag k="lanes:forward" v="3"/>
+  <tag k="maxspeed" v="25 mph"/>
   <tag k="name" v="Williamsbridge Road"/>
   <tag k="oneway" v="no"/>
+  <tag k="surface" v="asphalt"/>
   <tag k="tiger:cfcc" v="A41"/>
   <tag k="tiger:county" v="Bronx, NY"/>
   <tag k="tiger:name_base" v="Williamsbridge"/>
@@ -34123,20 +34167,24 @@
   <tag k="tunnel" v="yes"/>
   <tag k="wheelchair" v="no"/>
  </way>
- <way id="487519130" visible="true" version="2" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="487519130" visible="true" version="3" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="4799727224"/>
   <nd ref="11540240656"/>
   <nd ref="2346901026"/>
   <tag k="highway" v="residential"/>
+  <tag k="maxspeed" v="25 mph"/>
   <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
  </way>
- <way id="487519131" visible="true" version="5" changeset="148991296" timestamp="2024-03-22T01:08:57Z" user="TheBestIdea" uid="298513">
+ <way id="487519131" visible="true" version="6" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="4799727224"/>
   <nd ref="11540240655"/>
   <nd ref="42734403"/>
   <tag k="highway" v="residential"/>
+  <tag k="maxspeed" v="25 mph"/>
   <tag k="name" v="Esplanade"/>
   <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
   <tag k="tiger:cfcc" v="A41"/>
   <tag k="tiger:county" v="Bronx, NY"/>
   <tag k="tiger:name_base" v="Esplanade"/>
@@ -34145,14 +34193,16 @@
   <tag k="wikidata" v="Q56476281"/>
   <tag k="wikipedia" v="en:Esplanade (Bronx)"/>
  </way>
- <way id="487519132" visible="true" version="4" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="487519132" visible="true" version="5" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="608516692"/>
   <nd ref="11540240642"/>
   <nd ref="4799727224"/>
   <tag k="bicycle" v="designated"/>
   <tag k="highway" v="residential"/>
+  <tag k="maxspeed" v="25 mph"/>
   <tag k="name" v="Esplanade"/>
   <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
   <tag k="tiger:cfcc" v="A41"/>
   <tag k="tiger:county" v="Bronx, NY"/>
   <tag k="tiger:name_base" v="Esplanade"/>
@@ -34328,13 +34378,15 @@
   <tag k="wikidata" v="Q2487820"/>
   <tag k="wikipedia" v="en:Pelham Parkway"/>
  </way>
- <way id="696062323" visible="true" version="1" changeset="71086070" timestamp="2019-06-10T03:40:19Z" user="sskalyan" uid="8476269">
+ <way id="696062323" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="42745376"/>
   <nd ref="470208474"/>
   <tag k="hgv" v="local"/>
   <tag k="highway" v="secondary"/>
+  <tag k="maxspeed" v="25 mph"/>
   <tag k="name" v="Williamsbridge Road"/>
   <tag k="oneway" v="no"/>
+  <tag k="surface" v="asphalt"/>
   <tag k="tiger:cfcc" v="A41"/>
   <tag k="tiger:county" v="Bronx, NY"/>
   <tag k="tiger:name_base" v="Williamsbridge"/>
@@ -34413,7 +34465,7 @@
   <tag k="tiger:zip_left" v="10469"/>
   <tag k="tiger:zip_right" v="10469"/>
  </way>
- <way id="732746557" visible="true" version="5" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="732746557" visible="true" version="6" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="42734403"/>
   <nd ref="11540240663"/>
   <nd ref="2856503401"/>
@@ -34421,8 +34473,10 @@
   <nd ref="8399513082"/>
   <nd ref="42734407"/>
   <tag k="highway" v="residential"/>
+  <tag k="maxspeed" v="25 mph"/>
   <tag k="name" v="Esplanade"/>
   <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
   <tag k="tiger:cfcc" v="A41"/>
   <tag k="tiger:county" v="Bronx, NY"/>
   <tag k="tiger:name_base" v="Esplanade"/>
@@ -34926,7 +34980,7 @@
   <nd ref="8997382965"/>
   <tag k="landuse" v="grass"/>
  </way>
- <way id="972135523" visible="true" version="3" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="972135523" visible="true" version="4" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="8997382970"/>
   <nd ref="11540240657"/>
   <nd ref="8997382971"/>
@@ -34934,6 +34988,7 @@
   <nd ref="8997382972"/>
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="concrete"/>
  </way>
  <way id="972135524" visible="true" version="1" changeset="109488783" timestamp="2021-08-11T02:23:31Z" user="Canyon Runner" uid="108619">
   <nd ref="8997382973"/>
@@ -34942,15 +34997,16 @@
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
  </way>
- <way id="972135525" visible="true" version="2" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="972135525" visible="true" version="3" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="8997382972"/>
   <nd ref="8997382976"/>
   <nd ref="8997382973"/>
   <tag k="crossing" v="traffic_signals"/>
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="asphalt"/>
  </way>
- <way id="972135526" visible="true" version="2" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="972135526" visible="true" version="3" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240659"/>
   <nd ref="8997382940"/>
   <nd ref="8997382934"/>
@@ -34961,8 +35017,9 @@
   <nd ref="8997382937"/>
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="concrete"/>
  </way>
- <way id="972135527" visible="true" version="2" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="972135527" visible="true" version="3" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240659"/>
   <nd ref="8997382977"/>
   <nd ref="8997382970"/>
@@ -34970,6 +35027,7 @@
   <tag k="crossing:markings" v="no"/>
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="asphalt"/>
  </way>
  <way id="1004042568" visible="true" version="2" changeset="146559269" timestamp="2024-01-22T15:48:01Z" user="daniel_solow" uid="1954307">
   <nd ref="42738482"/>
@@ -36558,18 +36616,20 @@
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
  </way>
- <way id="1241964840" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964840" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240626"/>
   <nd ref="11540240628"/>
   <nd ref="11540240627"/>
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="concrete"/>
  </way>
- <way id="1241964841" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964841" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240629"/>
   <nd ref="11540240630"/>
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="concrete"/>
  </way>
  <way id="1241964842" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240631"/>
@@ -36599,13 +36659,14 @@
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
  </way>
- <way id="1241964846" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964846" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240625"/>
   <nd ref="9938424635"/>
   <nd ref="11540240629"/>
   <tag k="crossing" v="traffic_signals"/>
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="asphalt"/>
  </way>
  <way id="1241964847" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240586"/>
@@ -36615,13 +36676,14 @@
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
  </way>
- <way id="1241964848" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964848" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240585"/>
   <nd ref="9938424637"/>
   <nd ref="11540240626"/>
   <tag k="crossing" v="traffic_signals"/>
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="asphalt"/>
  </way>
  <way id="1241964849" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240635"/>
@@ -36631,7 +36693,7 @@
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
  </way>
- <way id="1241964850" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964850" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240638"/>
   <nd ref="11540240643"/>
   <nd ref="11540240639"/>
@@ -36639,14 +36701,16 @@
   <nd ref="11540240640"/>
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="concrete"/>
  </way>
- <way id="1241964851" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964851" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="8997382971"/>
   <nd ref="11540240641"/>
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="concrete"/>
  </way>
- <way id="1241964852" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964852" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240641"/>
   <nd ref="11540240642"/>
   <nd ref="11540240638"/>
@@ -36654,6 +36718,7 @@
   <tag k="crossing:markings" v="yes"/>
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="asphalt"/>
  </way>
  <way id="1241964853" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240632"/>
@@ -36663,21 +36728,23 @@
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
  </way>
- <way id="1241964854" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964854" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240643"/>
   <nd ref="11540240644"/>
   <nd ref="11540240648"/>
   <nd ref="11540240645"/>
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="concrete"/>
  </way>
- <way id="1241964855" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964855" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240646"/>
   <nd ref="11540240647"/>
   <nd ref="11540240648"/>
   <nd ref="11540240649"/>
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="concrete"/>
  </way>
  <way id="1241964856" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240710"/>
@@ -36689,15 +36756,16 @@
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
  </way>
- <way id="1241964857" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964857" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240651"/>
   <nd ref="9938424639"/>
   <nd ref="11540240646"/>
   <tag k="crossing" v="traffic_signals"/>
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="asphalt"/>
  </way>
- <way id="1241964858" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964858" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240649"/>
   <nd ref="11540240656"/>
   <nd ref="11540240655"/>
@@ -36705,39 +36773,45 @@
   <tag k="crossing" v="traffic_signals"/>
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="asphalt"/>
  </way>
- <way id="1241964859" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964859" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240654"/>
   <nd ref="11540240657"/>
   <nd ref="11540240658"/>
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="concrete"/>
  </way>
- <way id="1241964860" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964860" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240661"/>
   <nd ref="11540240770"/>
   <nd ref="11540240674"/>
   <nd ref="11540240662"/>
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="concrete"/>
  </way>
- <way id="1241964861" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964861" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240661"/>
   <nd ref="11540240663"/>
   <nd ref="11540240660"/>
   <tag k="crossing" v="traffic_signals"/>
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="asphalt"/>
  </way>
- <way id="1241964862" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964862" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240662"/>
   <nd ref="11540240898"/>
   <nd ref="11540240664"/>
   <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing:markings" v="zebra"/>
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="asphalt"/>
  </way>
- <way id="1241964863" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964863" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240665"/>
   <nd ref="11540240678"/>
   <nd ref="11540240781"/>
@@ -36746,6 +36820,7 @@
   <nd ref="11540240666"/>
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="concrete"/>
  </way>
  <way id="1241964864" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240667"/>
@@ -36758,12 +36833,13 @@
   <tag k="amenity" v="parking"/>
   <tag k="parking" v="surface"/>
  </way>
- <way id="1241964865" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964865" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240673"/>
   <nd ref="11540240771"/>
   <nd ref="11540240674"/>
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="concrete"/>
  </way>
  <way id="1241964866" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
   <nd ref="2856502182"/>
@@ -36775,23 +36851,25 @@
   <tag k="amenity" v="parking"/>
   <tag k="parking" v="surface"/>
  </way>
- <way id="1241964867" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964867" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240664"/>
   <nd ref="11540240678"/>
   <nd ref="11540240684"/>
   <nd ref="11540240677"/>
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="concrete"/>
  </way>
- <way id="1241964868" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964868" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240665"/>
   <nd ref="11540240679"/>
   <nd ref="11540240645"/>
   <tag k="crossing" v="traffic_signals"/>
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="asphalt"/>
  </way>
- <way id="1241964869" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964869" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240680"/>
   <nd ref="11540240684"/>
   <nd ref="11540240692"/>
@@ -36802,6 +36880,7 @@
   <nd ref="11540240683"/>
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="concrete"/>
  </way>
  <way id="1241964870" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240685"/>
@@ -37029,19 +37108,21 @@
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
  </way>
- <way id="1241964898" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964898" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240767"/>
   <nd ref="11540240768"/>
   <nd ref="11540240769"/>
   <nd ref="11540240770"/>
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="concrete"/>
  </way>
- <way id="1241964899" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964899" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240771"/>
   <nd ref="11540240772"/>
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="concrete"/>
  </way>
  <way id="1241964900" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240773"/>
@@ -37052,22 +37133,24 @@
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
  </way>
- <way id="1241964901" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964901" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240778"/>
   <nd ref="11540240777"/>
   <nd ref="11540240780"/>
   <nd ref="11540240779"/>
   <tag k="footway" v="sidewalk"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="concrete"/>
  </way>
- <way id="1241964902" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964902" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240778"/>
   <nd ref="2856503262"/>
   <nd ref="11540240673"/>
-  <tag k="crossing" v="unmarked"/>
-  <tag k="crossing:markings" v="no"/>
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="crossing:markings" v="zebra"/>
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="asphalt"/>
  </way>
  <way id="1241964903" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240784"/>
@@ -37415,29 +37498,32 @@
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
  </way>
- <way id="1241964962" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964962" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240701"/>
   <nd ref="9938424640"/>
   <nd ref="11540240677"/>
   <tag k="crossing" v="traffic_signals"/>
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="asphalt"/>
  </way>
- <way id="1241964963" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964963" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240687"/>
   <nd ref="11540240906"/>
   <nd ref="11540240636"/>
   <tag k="crossing" v="traffic_signals"/>
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="asphalt"/>
  </way>
- <way id="1241964964" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="1241964964" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="11540240680"/>
   <nd ref="11540240907"/>
   <nd ref="11540240640"/>
   <tag k="crossing" v="traffic_signals"/>
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
+  <tag k="surface" v="asphalt"/>
  </way>
  <way id="1241969610" visible="true" version="1" changeset="146558522" timestamp="2024-01-22T15:28:38Z" user="daniel_solow" uid="1954307">
   <nd ref="11540267351"/>

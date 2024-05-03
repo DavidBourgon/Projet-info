@@ -10,6 +10,8 @@ import folium
 import webbrowser # webbrowser sert à afficher la carte en language html.
 from geopy.geocoders import Nominatim
 from pyroutelib3 import Router
+from Utilisateur import Utilisateur
+import pandas as pd
 # router sert à préciser le type de vehicule qui peut être : car, cycle, foot,
 # horse, tram, train
 
@@ -57,23 +59,23 @@ class Particulier:
             list : Itinéraire.
 
         """
-        if not isinstance(adresse_depart, str):
-            raise TypeError("L'adresse de départ doit être un str.")
-        elif not adresse_depart.endswith(', New York'):
-            raise ValueError("La chaîne de caractères doit se "
-                             "terminer par ', New York'.")
-        elif not adresse_depart.split(',')[0].strip().isalpha():
-            raise TypeError("Le début de la chaîne de caractères "
-                            "doit être str.")
+        # if not isinstance(adresse_depart, str):
+        #     raise TypeError("L'adresse de départ doit être un str.")
+        # elif not adresse_depart.endswith(', New York'):
+        #     raise ValueError("La chaîne de caractères doit se "
+        #                      "terminer par ', New York'.")
+        # elif not adresse_depart.split(',')[0].strip().isalpha():
+        #     raise TypeError("Le début de la chaîne de caractères "
+        #                     "doit être str.")
 
-        if not isinstance(adresse_arrivee, str):
-            raise TypeError("L'adresse de départ doit être un str.")
-        elif not adresse_arrivee.endswith(', New York'):
-            raise ValueError("La chaîne de caractères doit se "
-                             "terminer par ', New York'.")
-        elif not adresse_arrivee.split(',')[0].strip().isalpha():
-            raise TypeError("Le début de la chaîne de caractères "
-                            "doit être str.")
+        # if not isinstance(adresse_arrivee, str):
+        #     raise TypeError("L'adresse de départ doit être un str.")
+        # elif not adresse_arrivee.endswith(', New York'):
+        #     raise ValueError("La chaîne de caractères doit se "
+        #                      "terminer par ', New York'.")
+        # elif not adresse_arrivee.split(',')[0].strip().isalpha():
+        #     raise TypeError("Le début de la chaîne de caractères "
+        #                     "doit être str.")
 
         # chargement et centrage de la carte
         carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=12)
@@ -83,20 +85,16 @@ class Particulier:
         coord_depart = (localisation_1.latitude, localisation_1.longitude)
         localisation_2 = geolocator.geocode(adresse_arrivee)
         coord_arrivee = (localisation_2.latitude, localisation_2.longitude)
-        # ajout des points de depart et d'arrivee à la carte
-        folium.Marker(coord_arrivee, popup='Départ').add_to(carte_bronx)
-        folium.Marker(coord_depart, popup='Arrivée').add_to(carte_bronx)
         # creation de l'itineraire
         L = ["car", "cycle", "foot"]
         itineraires = {"car": [], "cycle": [], "foot": []}
         for vehicule in L:
+            router = Router(vehicule)
             # ici on parle de noeud car la carte est un graphe
-            noeud_depart = Router(vehicule).findNode(*coord_depart)
-            noeud_arrivee = Router(vehicule).findNode(*coord_arrivee)
-            status, route = Router(vehicule).doRoute(noeud_depart,
-                                                     noeud_arrivee)
-            coordonnees_route = [Router(vehicule).nodeLatLon(node) for node in
-                                 route]
+            node_depart = router.findNode(*coord_depart)
+            node_arrivee = router.findNode(*coord_arrivee)
+            status, route = router.doRoute(node_depart, node_arrivee)
+            coordonnees_route = [router.nodeLatLon(node) for node in route]
             itineraires[vehicule] = coordonnees_route
         return itineraires
 
@@ -113,7 +111,7 @@ class Particulier:
         adresse_arrivee : str
             Adresse d'arrivée.
 
-        Retunrs
+        Returns
         -------
         itineraires : dict[str : float]
             Dictionnaire de risque d'itinéraires selon le type de véhicule.
@@ -122,8 +120,9 @@ class Particulier:
 
         """
         # chargement et centrage de la carte
-        carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=12)
+        carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=30)
         geolocator = Nominatim(user_agent="carte_bronx")
+        data = pd.read_excel("Bronx_2.xlsx")
         # chargement des dictionnaires utiles
         itineraires = self.itineraires(adresse_depart, adresse_arrivee)
         risques = {"car": 1.0, "cycle": 1.0, "foot": 1.0}
@@ -144,11 +143,11 @@ class Particulier:
                 # On met le nom de la rue en majuscules pour correspondre à
                 # la base de données.
                 nom_rue_maj = nom_rue.upper()
+                print(nom_rue_maj)
                 # Là on peut utiliser les fonctions de Xavier,
                 # il nous faudrait juste un fonction globale et
                 # un filtrage par vehicule possible pour faire :
-                compteur += jsp_quel_type.calculer_risque_rue(nom_rue_maj,
-                                                              vehicule)
+                compteur += Utilisateur.risque_rue(data, nom_rue_maj, vehicule)[-1]
             risques[vehicule] = compteur/tot_points
         return risques
 
@@ -181,29 +180,41 @@ class Particulier:
                                                       adresse_arrivee)
         vehicule_moins_risque = "car"
         risque = 2
+        localisation_1 = geolocator.geocode(adresse_depart)
+        coord_depart = (localisation_1.latitude, localisation_1.longitude)
+        localisation_2 = geolocator.geocode(adresse_arrivee)
+        coord_arrivee = (localisation_2.latitude, localisation_2.longitude)
+        folium.Marker(coord_depart, popup='Adresse de départ').add_to(carte_bronx)
+        folium.Marker(coord_arrivee, popup='Adresse d\'arrivée').add_to(carte_bronx)
         for vehicule in dico_risque:
             if dico_risque[vehicule] < risque:
                 risque = dico_risque[vehicule]
                 vehicule_moins_risque = vehicule
-        if self.type_vehicule == vehicule_moins_risque:
+        if self.categorie == vehicule_moins_risque:
             # on trace l'itineraire
-            folium.PolyLine(locations=dico_itineraires[vehicule],
-                            color='green').add_to(carte_bronx)
             for vehicule in ["car", "cycle", "foot"]:
                 if vehicule != vehicule_moins_risque:
                     folium.PolyLine(locations=dico_itineraires[vehicule],
                             color='red').add_to(carte_bronx)
+            folium.PolyLine(locations=dico_itineraires[vehicule],
+                            color='green').add_to(carte_bronx)
+            carte_bronx.save("carte_bronx.html")
             webbrowser.open('carte_bronx.html')
             return ("Vous avez choisi le mode de transport le moins risqué,"
                     "voici votre itinéraire :")
         else:
             # on trace l'itineraire
-            folium.PolyLine(locations=dico_itineraires[vehicule_moins_risque],
-                            color='green').add_to(carte_bronx)
             for vehicule in ["car", "cycle", "foot"]:
                 if vehicule != vehicule_moins_risque:
                     folium.PolyLine(locations=dico_itineraires[vehicule],
                             color='red').add_to(carte_bronx)
+            folium.PolyLine(locations=dico_itineraires[vehicule_moins_risque],
+                            color='green').add_to(carte_bronx)
+            carte_bronx.save("carte_bronx.html")
             webbrowser.open('carte_bronx.html')
-            return ("Choisissez plutôt ce type de vehicule"
+            return ("Choisissez plutôt ce type de vehicule : "
                     f"{vehicule_moins_risque}, voici l'itineraire")
+
+
+Xavier = Particulier("foot")
+print(Xavier.eviter_zone_risquee("1 E 161st St, Bronx, NY 10451, États-Unis", "111 E 164th St, Bronx, NY 10452, États-Unis"))

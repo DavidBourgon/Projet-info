@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<osm version="0.6" generator="CGImap 0.9.2 (85346 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<osm version="0.6" generator="CGImap 0.9.2 (2087064 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
  <bounds minlat="40.8387491" minlon="-73.8940430" maxlat="40.8470604" maxlon="-73.8830566"/>
  <node id="42719992" visible="true" version="3" changeset="66514822" timestamp="2019-01-21T19:03:27Z" user="daniel_solow" uid="1954307" lat="40.8511333" lon="-73.8927881"/>
  <node id="42729796" visible="true" version="3" changeset="2970028" timestamp="2009-10-27T23:07:51Z" user="woodpeck_fixbot" uid="147510" lat="40.8443070" lon="-73.8932990"/>
@@ -14745,12 +14745,12 @@
   <tag k="wikidata" v="Q14707315"/>
   <tag k="wikipedia" v="en:Southern Boulevard (Bronx)"/>
  </way>
- <way id="223868990" visible="true" version="10" changeset="146121591" timestamp="2024-01-10T22:38:13Z" user="daniel_solow" uid="1954307">
+ <way id="223868990" visible="true" version="11" changeset="150762716" timestamp="2024-05-01T18:04:18Z" user="TheBestIdea" uid="298513">
   <nd ref="42753817"/>
   <nd ref="11506909046"/>
   <nd ref="11506909047"/>
   <nd ref="42734898"/>
-  <tag k="cycleway:right" v="track"/>
+  <tag k="cycleway:right" v="shared_lane"/>
   <tag k="cycleway:right:oneway" v="yes"/>
   <tag k="highway" v="tertiary"/>
   <tag k="name" v="East 180th Street"/>
@@ -31723,10 +31723,7 @@
   <tag k="tiger:name_base" v="Crotona"/>
   <tag k="tiger:name_type" v="Pky"/>
  </way>
- <way id="845407512" visible="true" version="5" changeset="146108445" timestamp="2024-01-10T15:23:12Z" user="daniel_solow" uid="1954307">
-  <nd ref="42734898"/>
-  <nd ref="11506175056"/>
-  <nd ref="11506175055"/>
+ <way id="845407512" visible="true" version="6" changeset="150762716" timestamp="2024-05-01T18:04:18Z" user="TheBestIdea" uid="298513">
   <nd ref="42753821"/>
   <nd ref="42753824"/>
   <nd ref="42747057"/>
@@ -31872,7 +31869,7 @@
   <nd ref="8599861774"/>
   <tag k="leisure" v="park"/>
  </way>
- <way id="947065726" visible="true" version="3" changeset="149583020" timestamp="2024-04-04T18:32:34Z" user="TheBestIdea" uid="298513">
+ <way id="947065726" visible="true" version="4" changeset="150767640" timestamp="2024-05-01T20:20:45Z" user="themaster73" uid="8816479">
   <nd ref="42752041"/>
   <nd ref="10130557496"/>
   <nd ref="8569406616"/>
@@ -31883,12 +31880,12 @@
   <tag k="cycleway:right:oneway" v="yes"/>
   <tag k="highway" v="residential"/>
   <tag k="lanes" v="1"/>
-  <tag k="name" v="Waterloo Place"/>
+  <tag k="name" v="Crotona Park North"/>
   <tag k="oneway" v="yes"/>
   <tag k="tiger:cfcc" v="A41"/>
   <tag k="tiger:county" v="Bronx, NY"/>
-  <tag k="tiger:name_base" v="Waterloo"/>
-  <tag k="tiger:name_type" v="Pl"/>
+  <tag k="tiger:name_base" v="Crotona Park"/>
+  <tag k="tiger:name_type" v="N"/>
  </way>
  <way id="959038156" visible="true" version="2" changeset="111739622" timestamp="2021-09-26T20:29:55Z" user="ZeLonewolf" uid="219297">
   <nd ref="8874165077"/>
@@ -37532,6 +37529,23 @@
   <tag k="footway" v="crossing"/>
   <tag k="highway" v="footway"/>
  </way>
+ <way id="1278852334" visible="true" version="1" changeset="150762716" timestamp="2024-05-01T18:04:18Z" user="TheBestIdea" uid="298513">
+  <nd ref="42734898"/>
+  <nd ref="11506175056"/>
+  <nd ref="11506175055"/>
+  <nd ref="42753821"/>
+  <tag k="cycleway:right" v="shared_lane"/>
+  <tag k="cycleway:right:oneway" v="yes"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="name" v="East 180th Street"/>
+  <tag k="oneway" v="no"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="tiger:cfcc" v="A41"/>
+  <tag k="tiger:county" v="Bronx, NY"/>
+  <tag k="tiger:name_base" v="180th"/>
+  <tag k="tiger:name_direction_prefix" v="E"/>
+  <tag k="tiger:name_type" v="St"/>
+ </way>
  <relation id="331325" visible="true" version="18" changeset="111941188" timestamp="2021-10-01T02:32:58Z" user="ZeLonewolf" uid="219297">
   <member type="relation" ref="317707" role=""/>
   <member type="relation" ref="338257" role="south"/>
@@ -38056,7 +38070,7 @@
   <tag k="wikidata" v="Q126177"/>
   <tag k="wikipedia" v="en:5 (New York City Subway service)"/>
  </relation>
- <relation id="366783" visible="true" version="123" changeset="145780856" timestamp="2024-01-02T01:29:28Z" user="MxxCon" uid="384667">
+ <relation id="366783" visible="true" version="124" changeset="150733078" timestamp="2024-05-01T04:04:58Z" user="HubMiner" uid="238419">
   <member type="node" ref="3327438332" role="stop"/>
   <member type="way" ref="425601284" role="platform"/>
   <member type="node" ref="3334764784" role="stop"/>
@@ -38231,7 +38245,7 @@
   <tag k="colour" v="#ee352e"/>
   <tag k="from" v="Wakefield–241st Street"/>
   <tag k="interval" v="7"/>
-  <tag k="interval:conditional" v="6 @ (Mo-Fr 06:30-09:30); 6 @ (Mo-Fr 15:30-20:00); 8 @ (Sa-Su 06:30-23:59); 8 @ (Mo-Fr 20:00-24:00)"/>
+  <tag k="interval:conditional" v="6 @ (Mo-Fr 06:30-09:30); 6 @ (Mo-Fr 15:30-20:00); 8 @ (Sa-Su 06:30-23:59); 8 @ (Mo-Fr 20:00-23:59)"/>
   <tag k="interval:note" v="Approximate minutes from Wikipedia article"/>
   <tag k="interval:source" v="https://en.wikipedia.org/wiki/List_of_New_York_City_Subway_services#Train%20intervals"/>
   <tag k="name" v="NYCS - 2 Train: Wakefield–241st Street → Flatbush Avenue–Brooklyn College"/>
@@ -38253,7 +38267,7 @@
   <tag k="wikidata" v="Q126142"/>
   <tag k="wikipedia" v="en:2 (New York City Subway service)"/>
  </relation>
- <relation id="2971067" visible="true" version="60" changeset="149898978" timestamp="2024-04-12T08:39:26Z" user="A_Prokopova_lyft" uid="10976496">
+ <relation id="2971067" visible="true" version="61" changeset="150762716" timestamp="2024-05-01T18:04:18Z" user="TheBestIdea" uid="298513">
   <member type="node" ref="5598578426" role="platform"/>
   <member type="way" ref="551922425" role=""/>
   <member type="way" ref="46594509" role=""/>
@@ -38270,6 +38284,7 @@
   <member type="way" ref="219926572" role=""/>
   <member type="way" ref="758062857" role=""/>
   <member type="way" ref="845407512" role=""/>
+  <member type="way" ref="1278852334" role=""/>
   <member type="way" ref="223868990" role=""/>
   <member type="way" ref="223868993" role=""/>
   <member type="way" ref="225980842" role=""/>
@@ -38673,7 +38688,7 @@
   <tag k="to" v="Mott Haven"/>
   <tag k="type" v="route"/>
  </relation>
- <relation id="2974034" visible="true" version="66" changeset="149828724" timestamp="2024-04-10T16:27:19Z" user="TheBestIdea" uid="298513">
+ <relation id="2974034" visible="true" version="67" changeset="150762716" timestamp="2024-05-01T18:04:18Z" user="TheBestIdea" uid="298513">
   <member type="node" ref="5797637166" role="platform"/>
   <member type="way" ref="44763888" role=""/>
   <member type="way" ref="46591084" role=""/>
@@ -38770,6 +38785,7 @@
   <member type="way" ref="1198020801" role=""/>
   <member type="way" ref="1198020800" role=""/>
   <member type="way" ref="223868990" role=""/>
+  <member type="way" ref="1278852334" role=""/>
   <member type="way" ref="845407512" role=""/>
   <member type="way" ref="758062857" role=""/>
   <member type="way" ref="897215671" role=""/>
@@ -47098,7 +47114,7 @@
   <tag k="wikidata" v="Q126177"/>
   <tag k="wikipedia" v="en:5 (New York City Subway service)"/>
  </relation>
- <relation id="12283228" visible="true" version="20" changeset="135579039" timestamp="2023-05-01T15:27:43Z" user="TheBestIdea" uid="298513">
+ <relation id="12283228" visible="true" version="21" changeset="150762716" timestamp="2024-05-01T18:04:18Z" user="TheBestIdea" uid="298513">
   <member type="node" ref="5598577514" role="platform"/>
   <member type="way" ref="601868381" role=""/>
   <member type="way" ref="939355664" role=""/>
@@ -47175,6 +47191,7 @@
   <member type="way" ref="225980842" role=""/>
   <member type="way" ref="223868993" role=""/>
   <member type="way" ref="223868990" role=""/>
+  <member type="way" ref="1278852334" role=""/>
   <member type="way" ref="845407512" role=""/>
   <member type="way" ref="758062857" role=""/>
   <member type="way" ref="219926572" role=""/>
@@ -47607,7 +47624,7 @@
   <tag k="route_master" v="bus"/>
   <tag k="type" v="route_master"/>
  </relation>
- <relation id="12354260" visible="true" version="26" changeset="149828724" timestamp="2024-04-10T16:27:19Z" user="TheBestIdea" uid="298513">
+ <relation id="12354260" visible="true" version="27" changeset="150762716" timestamp="2024-05-01T18:04:18Z" user="TheBestIdea" uid="298513">
   <member type="node" ref="5165505686" role="platform_entry_only"/>
   <member type="node" ref="5797637590" role="platform_exit_only"/>
   <member type="way" ref="224076217" role=""/>
@@ -47660,6 +47677,7 @@
   <member type="way" ref="897215671" role=""/>
   <member type="way" ref="758062857" role=""/>
   <member type="way" ref="845407512" role=""/>
+  <member type="way" ref="1278852334" role=""/>
   <member type="way" ref="223868990" role=""/>
   <member type="way" ref="1198020800" role=""/>
   <member type="way" ref="1198020801" role=""/>
@@ -48193,7 +48211,7 @@
   <tag k="type" v="route"/>
   <tag k="wikidata" v="Q14707315"/>
  </relation>
- <relation id="14175509" visible="true" version="3" changeset="144765254" timestamp="2023-12-04T18:14:53Z" user="TheBestIdea" uid="298513">
+ <relation id="14175509" visible="true" version="4" changeset="150762716" timestamp="2024-05-01T18:04:18Z" user="TheBestIdea" uid="298513">
   <member type="way" ref="1198020825" role="forward"/>
   <member type="way" ref="1198020823" role="forward"/>
   <member type="way" ref="1198020822" role="forward"/>
@@ -48214,6 +48232,7 @@
   <member type="way" ref="1198020801" role="forward"/>
   <member type="way" ref="1198020800" role="forward"/>
   <member type="way" ref="223868990" role="forward"/>
+  <member type="way" ref="1278852334" role="forward"/>
   <member type="way" ref="845407512" role="forward"/>
   <member type="way" ref="758062857" role="forward"/>
   <member type="way" ref="191963024" role="forward"/>

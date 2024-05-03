@@ -22,35 +22,21 @@ def test_nombre_observation_echec(kwargs,
         Utilisateur.nombre_observation(kwargs)
 
 
-# # Définition des cas de test pour nombre_observation réussie
-# @pytest.mark.parametrize(
-#     'kwargs_str',
-#     [
-#         'station_kwargs'
-#     ]
-# )
-# def test_station_nombre_observation_succes(kwargs_str, request):
-#     kwargs = request.getfixturevalue(kwargs_str)
-#     Utilisateur.nombre_observation(kwargs)
+# Définition des cas de test pour nombre_observation succes
+@pytest.mark.parametrize(
+    'data, resultat_attendu',
+    [
 
+     (tableau, ["Nombre d'observations dans la base de données :", 2000])
 
-# Définition des cas de test pour calcul_totaux_statut échec
-# MArcherais si il y avait un self
-# @pytest.mark.parametrize(
-#     'kwargs, erreur, message_erreur',
-#     [
-#         ({2, "str"}, TypeError,
-#          "La base de données doit être un DataFrame.")
-
-#     ]
-# )
-# def test_calcul_totaux_statut_echec(utilisateur_kwargs,
-#                                     kwargs,
-#                                     erreur,
-#                                     message_erreur):
-#     utilisateur_kwargs.update(kwargs)
-#     with pytest.raises(erreur, match=re.escape(message_erreur)):
-#         Utilisateur(**utilisateur_kwargs)
+    ]
+)
+def test_nombre_observation_sucess(data, resultat_attendu):
+    assert (
+        Utilisateur.nombre_observation(data)
+        ==
+        resultat_attendu
+    )
 
 
 # Définition des cas de test pour calcul_totaux_statut échec
@@ -72,6 +58,25 @@ def test_calcul_totaux_statut_echec(data,
 
     with pytest.raises(erreur, match=re.escape(message_erreur)):
         Utilisateur.calcul_totaux_statut(data, statut)
+
+
+# Définition des cas de test pour calcul_totaux_statut succes
+@pytest.mark.parametrize(
+    'data, statut, resultat_attendu',
+    [
+
+     (tableau, "B", ["Nombre total d'individus blessés :", 846]),
+     (tableau, "T", ["Nombre total d'individus tués :", 4]),
+     (tableau, "BT", ["Nombre total d'individus blessés et tués :", 850]),
+
+    ]
+)
+def test_calcul_totaux_statut_sucess(data, statut, resultat_attendu):
+    assert (
+        Utilisateur.calcul_totaux_statut(data, statut)
+        ==
+        resultat_attendu
+    )
 
 
 # Définition des cas de test pour calcul_totaux_cat_statut échec
@@ -100,6 +105,37 @@ def test_calcul_totaux_cat_statut_echec(data,
 
     with pytest.raises(erreur, match=re.escape(message_erreur)):
         Utilisateur.calcul_totaux_cat_statut(data, categorie, statut)
+
+
+# Définition des cas de test pour calcul_totaux_cat_statut succes
+@pytest.mark.parametrize(
+    'data, categorie, statut, resultat_attendu',
+    [
+
+     (tableau, "foot", "B", ['Nombre total de piétons blessés :', 151]),
+     (tableau, "foot", "T", ['Nombre total de piétons tués :', 0]),
+     (tableau, "foot", "BT", ['Nombre total de piétons blessés et tués :',
+                              151]),
+
+     (tableau, "car", "B", ["Nombre total d'automobilistes blessés :", 592]),
+     (tableau, "car", "T", ["Nombre total d'automobilistes tués :", 2]),
+     (tableau, "car", "BT", ["Nombre total d'automobilistes blessés et tués :",
+                             594]),
+
+     (tableau, "cycle", "B", ['Nombre total de cyclistes blessés :', 65]),
+     (tableau, "cycle", "T", ['Nombre total de cyclistes tués :', 1]),
+     (tableau, "cycle", "BT", ['Nombre total de cyclistes blessés et tués :',
+                               66]),
+
+    ]
+)
+def test_calcul_totaux_cat_statut_sucess(data, categorie, statut,
+                                         resultat_attendu):
+    assert (
+        Utilisateur.calcul_totaux_cat_statut(data, categorie, statut)
+        ==
+        resultat_attendu
+    )
 
 
 # Définition des cas de test pour filtrer_par_nom_de_rue échec
@@ -231,6 +267,48 @@ def test_liste_variables_dataframe_echec(data,
         Utilisateur.liste_variables_dataframe(data)
 
 
+# Définition des cas de test pour liste_variables_dataframe succes
+@pytest.mark.parametrize(
+    'data, resultat_attendu',
+    [
+
+     (tableau, ['Liste des variables de la base de données :',
+                ['CRASH.DATE', 'CRASH.TIME',
+                 'BOROUGH', 'ZIP.CODE',
+                 'LATITUDE', 'LONGITUDE', 'LOCATION',
+                 'ON.STREET.NAME', 'CROSS.STREET.NAME', 'OFF.STREET.NAME',
+                 'NUMBER.OF.PERSONS.INJURED', 'NUMBER.OF.PERSONS.KILLED',
+
+                 'NUMBER.OF.PEDESTRIANS.INJURED',
+                 'NUMBER.OF.PEDESTRIANS.KILLED',
+                 'NUMBER.OF.CYCLIST.INJURED',
+                 'NUMBER.OF.CYCLIST.KILLED',
+                 'NUMBER.OF.MOTORIST.INJURED',
+                 'NUMBER.OF.MOTORIST.KILLED',
+
+                 'CONTRIBUTING.FACTOR.VEHICLE.1',
+                 'CONTRIBUTING.FACTOR.VEHICLE.2',
+                 'CONTRIBUTING.FACTOR.VEHICLE.3',
+                 'CONTRIBUTING.FACTOR.VEHICLE.4',
+                 'CONTRIBUTING.FACTOR.VEHICLE.5',
+
+                 'COLLISION_ID',
+                 'VEHICLE.TYPE.CODE.1',
+                 'VEHICLE.TYPE.CODE.2',
+                 'VEHICLE.TYPE.CODE.3',
+                 'VEHICLE.TYPE.CODE.4',
+                 'VEHICLE.TYPE.CODE.5']])
+
+    ]
+)
+def test_liste_variables_dataframe_sucess(data, resultat_attendu):
+    assert (
+        Utilisateur.liste_variables_dataframe(data)
+        ==
+        resultat_attendu
+    )
+
+
 # Définition des cas de test pour liste_modalites_variable échec
 @pytest.mark.parametrize(
     'data, variable, erreur, message_erreur',
@@ -256,3 +334,59 @@ def test_liste_modalites_variable_echec(data,
 
     with pytest.raises(erreur, match=re.escape(message_erreur)):
         Utilisateur.liste_modalites_variable(data, variable)
+
+
+# Définition des cas de test pour liste_modalites_variable succes
+@pytest.mark.parametrize(
+    'data, variable, resultat_attendu',
+    [
+
+     (tableau, "VEHICLE.TYPE.CODE.2",
+      ['Liste des modalités différentes de la variable :',
+       "VEHICLE.TYPE.CODE.2",
+       ['Sedan', 'nan', 'Station Wagon/Sport Utility Vehicle',
+        'Bike', 'Refrigerated Van', 'E-Bike', 'Ambulance',
+        'Taxi', 'Bus', 'Pick-up Truck', 'Tractor Truck Diesel',
+        'Box Truck', 'Garbage or Refuse', 'Motorcycle', 'Moped',
+        'E-Scooter', 'MOPED', 'Van', 'UNK', 'Concrete Mixer',
+        'PK', 'FIRE TRUCK', 'Carry All', 'Motorscooter',
+        'Flat Bed', 'FORKLIFT', 'AMBULANCE', 'UNKNOWN',
+        'TRK', 'AMBU', 'FDNY FIRET', 'ESCOOTER S',
+        'Convertible', 'FORK LIFT', 'Tow Truck / Wrecker',
+        'Motorbike', 'TOW TRUCK', '4 dr sedan', 'Dump', 'Pick up',
+        '3-Door', 'ambulance']])
+
+    ]
+)
+def test_liste_modalites_variable_sucess(data, variable, resultat_attendu):
+    assert (
+        Utilisateur.liste_modalites_variable(data, variable)
+        ==
+        resultat_attendu
+    )
+
+
+tableau2 = pd.DataFrame(columns=["colonne1", "colonne2", "colonne3"])
+
+
+# Définition des cas de test pour risque_rue succes
+@pytest.mark.parametrize(
+    'data, street, categorie, resultat_attendu',
+    [
+
+     (tableau, "HEATH AVENUE", 'foot',
+      ["Pour la rue :", "HEATH AVENUE",
+       "il y a un rique (en %) de :", 0.0]),
+    #  (tableau2, "HEATH AVENUE", 'foot',
+    #   ["Il n'y a pas d'accident ou bien le tableau est vide.",
+    #    "Pour la rue :", "HEATH AVENUE",
+    #    "Il y a un rique (en %) de :", 0]),
+
+    ]
+)
+def test_risque_rue_sucess(data, street, categorie, resultat_attendu):
+    assert (
+        Utilisateur.risque_rue(data, street, categorie)
+        ==
+        resultat_attendu
+    )

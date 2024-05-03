@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<osm version="0.6" generator="CGImap 0.9.2 (1123752 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<osm version="0.6" generator="CGImap 0.9.2 (3006919 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
  <bounds minlat="40.8636797" minlon="-73.8610840" maxlat="40.8719878" maxlon="-73.8500977"/>
  <node id="42730922" visible="true" version="3" changeset="66494702" timestamp="2019-01-21T07:14:25Z" user="daniel_solow" uid="1954307" lat="40.8713360" lon="-73.8613790">
   <tag k="highway" v="traffic_signals"/>
@@ -12525,8 +12525,9 @@
   <tag k="crossing" v="traffic_signals"/>
   <tag k="highway" v="crossing"/>
  </node>
- <node id="11540240898" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307" lat="40.8582405" lon="-73.8559988">
+ <node id="11540240898" visible="true" version="2" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307" lat="40.8582405" lon="-73.8559988">
   <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing:markings" v="zebra"/>
   <tag k="highway" v="crossing"/>
  </node>
  <node id="11540240902" visible="true" version="1" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307" lat="40.8596309" lon="-73.8573356">
@@ -13054,7 +13055,7 @@
   <tag k="railway:track_ref:signals" v="Y4"/>
   <tag k="voltage" v="625"/>
  </way>
- <way id="98567865" visible="true" version="15" changeset="146558522" timestamp="2024-01-22T15:28:38Z" user="daniel_solow" uid="1954307">
+ <way id="98567865" visible="true" version="16" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="42734400"/>
   <nd ref="608516691"/>
   <nd ref="11088326046"/>
@@ -13095,15 +13096,17 @@
   <nd ref="42745421"/>
   <tag k="hgv" v="local"/>
   <tag k="highway" v="secondary"/>
+  <tag k="maxspeed" v="25 mph"/>
   <tag k="name" v="Williamsbridge Road"/>
   <tag k="oneway" v="no"/>
+  <tag k="surface" v="asphalt"/>
   <tag k="tiger:cfcc" v="A41"/>
   <tag k="tiger:county" v="Bronx, NY"/>
   <tag k="tiger:name_base" v="Williamsbridge"/>
   <tag k="tiger:name_type" v="Rd"/>
   <tag k="tiger:reviewed" v="no"/>
  </way>
- <way id="225878899" visible="true" version="10" changeset="146557623" timestamp="2024-01-22T15:06:49Z" user="daniel_solow" uid="1954307">
+ <way id="225878899" visible="true" version="11" changeset="150763948" timestamp="2024-05-01T18:37:33Z" user="daniel_solow" uid="1954307">
   <nd ref="2346901026"/>
   <nd ref="11540240898"/>
   <nd ref="2856503264"/>
@@ -13118,11 +13121,13 @@
   <nd ref="42744552"/>
   <tag k="bicycle" v="yes"/>
   <tag k="highway" v="residential"/>
+  <tag k="maxspeed" v="25 mph"/>
   <tag k="name" v="Laconia Avenue"/>
   <tag k="network" v="lcn"/>
   <tag k="oneway" v="no"/>
   <tag k="parking:lane:width" v="13'"/>
   <tag k="route" v="bicycle"/>
+  <tag k="surface" v="asphalt"/>
   <tag k="tiger:cfcc" v="A41"/>
   <tag k="tiger:county" v="Bronx, NY"/>
   <tag k="tiger:name_base" v="Laconia"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<osm version="0.6" generator="CGImap 0.9.2 (3972578 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<osm version="0.6" generator="CGImap 0.9.2 (962132 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
  <bounds minlat="40.8553705" minlon="-73.8720703" maxlat="40.8636797" maxlon="-73.8610840"/>
  <node id="42722172" visible="true" version="18" changeset="106989281" timestamp="2021-06-26T03:41:23Z" user="KindredCoda" uid="14293" lat="40.8654711" lon="-73.8719118"/>
  <node id="42724404" visible="true" version="9" changeset="124208419" timestamp="2022-07-29T01:51:10Z" user="snake21" uid="2591427" lat="40.8566842" lon="-73.8693396">
@@ -27838,7 +27838,7 @@
   <tag k="wikidata" v="Q126177"/>
   <tag k="wikipedia" v="en:5 (New York City Subway service)"/>
  </relation>
- <relation id="366783" visible="true" version="123" changeset="145780856" timestamp="2024-01-02T01:29:28Z" user="MxxCon" uid="384667">
+ <relation id="366783" visible="true" version="124" changeset="150733078" timestamp="2024-05-01T04:04:58Z" user="HubMiner" uid="238419">
   <member type="node" ref="3327438332" role="stop"/>
   <member type="way" ref="425601284" role="platform"/>
   <member type="node" ref="3334764784" role="stop"/>
@@ -28013,7 +28013,7 @@
   <tag k="colour" v="#ee352e"/>
   <tag k="from" v="Wakefield–241st Street"/>
   <tag k="interval" v="7"/>
-  <tag k="interval:conditional" v="6 @ (Mo-Fr 06:30-09:30); 6 @ (Mo-Fr 15:30-20:00); 8 @ (Sa-Su 06:30-23:59); 8 @ (Mo-Fr 20:00-24:00)"/>
+  <tag k="interval:conditional" v="6 @ (Mo-Fr 06:30-09:30); 6 @ (Mo-Fr 15:30-20:00); 8 @ (Sa-Su 06:30-23:59); 8 @ (Mo-Fr 20:00-23:59)"/>
   <tag k="interval:note" v="Approximate minutes from Wikipedia article"/>
   <tag k="interval:source" v="https://en.wikipedia.org/wiki/List_of_New_York_City_Subway_services#Train%20intervals"/>
   <tag k="name" v="NYCS - 2 Train: Wakefield–241st Street → Flatbush Avenue–Brooklyn College"/>

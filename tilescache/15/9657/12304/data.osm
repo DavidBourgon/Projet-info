@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<osm version="0.6" generator="CGImap 0.9.2 (1962145 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<osm version="0.6" generator="CGImap 0.9.2 (2170658 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
  <bounds minlat="40.8387491" minlon="-73.9050293" maxlat="40.8470604" maxlon="-73.8940430"/>
  <node id="42718687" visible="true" version="3" changeset="2970028" timestamp="2009-10-27T23:06:31Z" user="woodpeck_fixbot" uid="147510" lat="40.8445770" lon="-73.9008310"/>
  <node id="42718689" visible="true" version="5" changeset="101920551" timestamp="2021-03-29T13:26:04Z" user="daniel_solow" uid="1954307" lat="40.8440560" lon="-73.8997330">
@@ -8812,7 +8812,7 @@
   <tag k="tiger:zip_left" v="10457"/>
   <tag k="tiger:zip_right" v="10457"/>
  </way>
- <way id="5699162" visible="true" version="20" changeset="149583020" timestamp="2024-04-04T18:32:34Z" user="TheBestIdea" uid="298513">
+ <way id="5699162" visible="true" version="21" changeset="150767392" timestamp="2024-05-01T20:14:17Z" user="themaster73" uid="8816479">
   <nd ref="42755942"/>
   <nd ref="10130557849"/>
   <nd ref="2893546946"/>
@@ -8833,20 +8833,20 @@
   <nd ref="10130557864"/>
   <nd ref="42754941"/>
   <nd ref="10130557866"/>
-  <tag k="alt_name" v="Crotona Park West"/>
+  <tag k="alt_name" v="Fulton Avenue"/>
   <tag k="cycleway:right" v="lane"/>
   <tag k="cycleway:right:oneway" v="yes"/>
   <tag k="highway" v="residential"/>
   <tag k="lanes" v="1"/>
-  <tag k="name" v="Fulton Avenue"/>
+  <tag k="name" v="Crotona Park West"/>
   <tag k="oneway" v="yes"/>
   <tag k="surface" v="asphalt"/>
-  <tag k="tiger:alt_name_base" v="Crotona Park"/>
-  <tag k="tiger:alt_name_type" v="W"/>
+  <tag k="tiger:alt_name_base" v="Fulton"/>
+  <tag k="tiger:alt_name_type" v="Ave"/>
   <tag k="tiger:cfcc" v="A41"/>
   <tag k="tiger:county" v="Bronx, NY"/>
-  <tag k="tiger:name_base" v="Fulton"/>
-  <tag k="tiger:name_type" v="Ave"/>
+  <tag k="tiger:name_base" v="Crotona Park"/>
+  <tag k="tiger:name_type" v="W"/>
  </way>
  <way id="5699432" visible="true" version="8" changeset="122566525" timestamp="2022-06-19T04:27:13Z" user="MapSpot" uid="10183030">
   <nd ref="596669510"/>

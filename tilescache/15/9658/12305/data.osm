@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<osm version="0.6" generator="CGImap 0.9.2 (1842237 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<osm version="0.6" generator="CGImap 0.9.2 (573001 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
  <bounds minlat="40.8304369" minlon="-73.8940430" maxlat="40.8387491" maxlon="-73.8830566"/>
  <node id="42720086" visible="true" version="3" changeset="57156107" timestamp="2018-03-13T19:42:23Z" user="daniel_solow" uid="1954307" lat="40.8301520" lon="-73.8933600">
   <tag k="highway" v="traffic_signals"/>
@@ -34921,7 +34921,7 @@
   <tag k="wikidata" v="Q126177"/>
   <tag k="wikipedia" v="en:5 (New York City Subway service)"/>
  </relation>
- <relation id="366783" visible="true" version="123" changeset="145780856" timestamp="2024-01-02T01:29:28Z" user="MxxCon" uid="384667">
+ <relation id="366783" visible="true" version="124" changeset="150733078" timestamp="2024-05-01T04:04:58Z" user="HubMiner" uid="238419">
   <member type="node" ref="3327438332" role="stop"/>
   <member type="way" ref="425601284" role="platform"/>
   <member type="node" ref="3334764784" role="stop"/>
@@ -35096,7 +35096,7 @@
   <tag k="colour" v="#ee352e"/>
   <tag k="from" v="Wakefield–241st Street"/>
   <tag k="interval" v="7"/>
-  <tag k="interval:conditional" v="6 @ (Mo-Fr 06:30-09:30); 6 @ (Mo-Fr 15:30-20:00); 8 @ (Sa-Su 06:30-23:59); 8 @ (Mo-Fr 20:00-24:00)"/>
+  <tag k="interval:conditional" v="6 @ (Mo-Fr 06:30-09:30); 6 @ (Mo-Fr 15:30-20:00); 8 @ (Sa-Su 06:30-23:59); 8 @ (Mo-Fr 20:00-23:59)"/>
   <tag k="interval:note" v="Approximate minutes from Wikipedia article"/>
   <tag k="interval:source" v="https://en.wikipedia.org/wiki/List_of_New_York_City_Subway_services#Train%20intervals"/>
   <tag k="name" v="NYCS - 2 Train: Wakefield–241st Street → Flatbush Avenue–Brooklyn College"/>
@@ -35573,7 +35573,7 @@
   <tag k="to" v="Mott Haven"/>
   <tag k="type" v="route"/>
  </relation>
- <relation id="2974034" visible="true" version="66" changeset="149828724" timestamp="2024-04-10T16:27:19Z" user="TheBestIdea" uid="298513">
+ <relation id="2974034" visible="true" version="67" changeset="150762716" timestamp="2024-05-01T18:04:18Z" user="TheBestIdea" uid="298513">
   <member type="node" ref="5797637166" role="platform"/>
   <member type="way" ref="44763888" role=""/>
   <member type="way" ref="46591084" role=""/>
@@ -35670,6 +35670,7 @@
   <member type="way" ref="1198020801" role=""/>
   <member type="way" ref="1198020800" role=""/>
   <member type="way" ref="223868990" role=""/>
+  <member type="way" ref="1278852334" role=""/>
   <member type="way" ref="845407512" role=""/>
   <member type="way" ref="758062857" role=""/>
   <member type="way" ref="897215671" role=""/>
@@ -41814,7 +41815,7 @@
   <tag k="route_master" v="bus"/>
   <tag k="type" v="route_master"/>
  </relation>
- <relation id="12354260" visible="true" version="26" changeset="149828724" timestamp="2024-04-10T16:27:19Z" user="TheBestIdea" uid="298513">
+ <relation id="12354260" visible="true" version="27" changeset="150762716" timestamp="2024-05-01T18:04:18Z" user="TheBestIdea" uid="298513">
   <member type="node" ref="5165505686" role="platform_entry_only"/>
   <member type="node" ref="5797637590" role="platform_exit_only"/>
   <member type="way" ref="224076217" role=""/>
@@ -41867,6 +41868,7 @@
   <member type="way" ref="897215671" role=""/>
   <member type="way" ref="758062857" role=""/>
   <member type="way" ref="845407512" role=""/>
+  <member type="way" ref="1278852334" role=""/>
   <member type="way" ref="223868990" role=""/>
   <member type="way" ref="1198020800" role=""/>
   <member type="way" ref="1198020801" role=""/>
