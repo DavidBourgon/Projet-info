@@ -15,6 +15,7 @@ def choisi(L):
         time.sleep(1)
         mot = input("Entrez de nouveau votre réponse : ")
     print("Votre réponse est correcte")
+    return mot
 
 #%% Corps de l'application
 
@@ -27,24 +28,25 @@ try:
     print("Quel profil d'utilisateur êtes vous ?")
     time.sleep(1)
 
-    choisi(["Secteur Privé", "Secteur Public", "Particulier"])
+    choix = choisi(["Secteur Privé", "Secteur Public", "Particulier"])
 
     time.sleep(1)
 
-    if mot == "Secteur Privé":
+    if choix == "Secteur Privé":
         print("En tant qu'acteur privé que souhaitez vous faire ?")
         time.sleep(1)
 
-    elif mot == "Secteur Public":
+    elif choix == "Secteur Public":
         print("En tant qu'acteur public que souhaitez vous faire ?")
         time.sleep(1)
 
-    elif mot == "Particulier":
+    elif choix == "Particulier":
         print("En tant que particulier que souhaitez vous faire ?")
         time.sleep(1)
 
 
 except KeyboardInterrupt:
+    print()
     print("Fermeture de l'application")
     time.sleep(1)
     print("Nous espérons bientôt vous revoir !!!")
