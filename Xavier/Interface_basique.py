@@ -7,6 +7,7 @@ import tkinter as tk
 import time
 from particulier import Particulier
 from secteur_prive import SecteurPrive
+from Utilisateur import Utilisateur
 
 def choisi(L):
     mot = input("Entrez votre réponse :")
@@ -66,7 +67,7 @@ try:
             print("Sur quelle rue souhaitez vous connaître le taux de mortalité ?")
             time.sleep(1)
 
-            rue = choisi(Utilisateur.liste_modalites_variable(data, rue))
+            rue = input("Entrez le nom de la rue, doit finir par ', New York' :")
 
     elif choix == "Particulier":
         print("En tant que particulier que souhaitez vous faire ?")
@@ -79,11 +80,11 @@ try:
 
         if utilisation == "Déterminer un itinéraire.":
             print("Quelle est votre adresse de départ ?")
-            adresse_arrivee = choisi(Particulier.liste_modalites_variables(data, rue))
+            adresse_arrivee = input("Entrez le nom de la rue, doit finir par ', New York' :")
 
             time.sleep(1)
             print("Quelle est votre adresse d'arrivée ?")
-            adresse_depart = choisi(Particulier.liste_modalites_variable(data, rue))
+            adresse_depart = input("Entrez le nom de la rue, doit finir par ', New York' :")
 
             time.sleep(1)
             print("Voici l'itinéraire permettant de relier vos 2 adresses :",
@@ -91,27 +92,28 @@ try:
 
         if utilisation == "Connaître le risque d'un itinéraire.":
             print("Quelle est votre adresse de départ ?")
-            adresse_arrivee = input(nom_rue ', New-York')
+            adresse_arrivee = input("Entrez le nom de la rue, doit finir par ', New York' :")
 
             time.sleep(1)
             print("Quelle est votre adresse d'arrivée ?")
-            adresse_depart = choisi(Particulier.liste_modalites_variable(data, rue))
+            adresse_depart = input("Entrez le nom de la rue, doit finir par ', New York' :")
 
             time.sleep(1)
             print("Voici le risque de l'itinéraire permettant de relier vos 2 adresses :",
-                  Particulier.evaluate_risque_itineraire(adresse_arrivee, adresse_depart))
+                  Particulier.evaluate_risque_itineraire(adresse_arrivee,
+                                                         adresse_depart))
 
         if utilisation == "Savoir quel moyen de transport utiliser pour éviter les risques.":
             print("Quelle est votre adresse de départ ?")
-            adresse_arrivee = choisi(Particulier.liste_modalites_variables(data, rue))
+            adresse_arrivee = input("Entrez le nom de la rue, doit finir par ', New York' :")
 
             time.sleep(1)
             print("Quelle est votre adresse d'arrivée ?")
-            adresse_depart = choisi(Particulier.liste_modalites_variable(data, rue))
+            adresse_depart = input("Entrez le nom de la rue, doit finir par ', New York' :")
 
             time.sleep(1)
-            print("Voici l'itinéraire permettant de relier vos 2 adresses :",
-                  Particulier.eviter_zone_risquee(adresse_arrivee, adresse_depart))
+            print(Particulier.eviter_zone_risquee(adresse_arrivee,
+                                                  adresse_depart))
 
 
 except KeyboardInterrupt:
