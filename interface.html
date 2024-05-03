@@ -111,9 +111,37 @@
         }
 
         function eviterZoneRisquee(startAddress, endAddress, vehicle) {
-            // Vous pouvez implémenter ici le code pour appeler votre fonction Python avec les adresses et le moyen de locomotion
-            // Par exemple, vous pouvez utiliser fetch() pour envoyer une requête HTTP à votre serveur Python
-            // ou utiliser une technologie comme Flask pour intégrer du code Python directement dans votre application Web.
+             // Définir les données à envoyer dans la requête
+            var data = {
+                start: startAddress,
+                end: endAddress,
+                vehicle: vehicle
+            };
+
+            // Configuration de la requête fetch
+            var requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            };
+
+            // Envoyer la requête à votre API Flask
+            fetch('/python', requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur réseau');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Traitement des résultats de votre API Flask
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
         }
     </script>
 </body>

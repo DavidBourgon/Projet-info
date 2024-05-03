@@ -507,11 +507,11 @@ data["NUMBER.OF.PERSONS.KILLED"].fillna(0, inplace=True)
 
 # # Convertion de  'CRASH DATE' en datetime
 
-df["CRASH.DATE"] = pd.to_datetime(df["CRASH.DATE"])
-df["YEAR"] = df["CRASH.DATE"].dt.year
-df["MONTH"] = df["CRASH.DATE"].dt.month
-# # Convertir la colonne 'Heure' en format datetime
-df['CRASH.TIME'] = pd.to_datetime(df['CRASH.TIME'], format='%H:%M')
+# df["CRASH.DATE"] = pd.to_datetime(df["CRASH.DATE"])
+# df["YEAR"] = df["CRASH.DATE"].dt.year
+# df["MONTH"] = df["CRASH.DATE"].dt.month
+# # # Convertir la colonne 'Heure' en format datetime
+# df['CRASH.TIME'] = pd.to_datetime(df['CRASH.TIME'], format='%H:%M')
 
 
 # # Fonction pour classer si c'est jour ou nuit

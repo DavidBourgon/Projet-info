@@ -3,7 +3,7 @@ from particulier import Particulier
 
 app = Flask(__name__)
 
-@app.route('/votre-endpoint-python', methods=['POST'])
+@app.route('/python', methods=['POST'])
 def votre_fonction_python():
     data = request.json
     adresse_de_depart = data.get('start')
