@@ -216,5 +216,5 @@ class Particulier:
                     f"{vehicule_moins_risque}, voici l'itineraire")
 
 
-Xavier = Particulier("foot")
-print(Xavier.eviter_zone_risquee("1 E 161st St, Bronx, NY 10451, États-Unis", "111 E 164th St, Bronx, NY 10452, États-Unis"))
+#Xavier = Particulier("foot")
+#print(Xavier.eviter_zone_risquee("1 E 161st St, Bronx, NY 10451, États-Unis", "111 E 164th St, Bronx, NY 10452, États-Unis"))
