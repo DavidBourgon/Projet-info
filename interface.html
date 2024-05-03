@@ -35,6 +35,9 @@
             width: 100%; /* Force la largeur à 100% */
             margin-top: 20px; /* Marge vers le haut */
         }
+        .address-input {
+            display: none; /* Masquer les champs d'adresse par défaut */
+        }
         pre {
             background-color: #f4f4f4;
             padding: 20px;
@@ -51,12 +54,67 @@
         <div class="banner">
             <h1>Quel profil d'utilisateur êtes-vous ?</h1>
             <p>Sélectionnez parmi les propositions suivantes :</p>
-            <select>
+            <select id="profil" onchange="toggleAddressInputs()">
+                <option value="">Sélectionnez un profil</option>
                 <option value="secteur_prive">Secteur Privé</option>
                 <option value="secteur_public">Secteur Public</option>
                 <option value="particulier">Particulier</option>
             </select>
+            <!-- Champs pour le moyen de locomotion -->
+            <div class="address-input" id="vehicle">
+                <label for="vehicle">Moyen de locomotion :</label>
+                <select id="vehicle" name="vehicle">
+                    <option value="voiture">Voiture</option>
+                    <option value="vélo">Vélo</option>
+                    <option value="à_pied">À pied</option>
+                </select>
+            </div>
+            <!-- Champs pour l'adresse de départ et l'adresse d'arrivée -->
+            <div class="address-input" id="adresse_de_depart">
+                <label for="start">Adresse de départ :</label>
+                <input type="text" id="start" name="start">
+            </div>
+            <div class="address-input" id="adresse_d_arrivee">
+                <label for="end">Adresse d'arrivée :</label>
+                <input type="text" id="end" name="end">
+            </div>
+            <!-- Bouton Valider -->
+            <button onclick="validerAdresses()">Valider</button>
         </div>
     </div>
+
+    <script>
+        function toggleAddressInputs() {
+            var selectElement = document.getElementById("profil");
+            var selectedValue = selectElement.value;
+            var addressInputs = document.querySelectorAll(".address-input");
+
+            // Afficher les champs d'adresse si "Particulier" est sélectionné, sinon les masquer
+            if (selectedValue === "particulier") {
+                addressInputs.forEach(function(input) {
+                    input.style.display = "block";
+                });
+            } else {
+                addressInputs.forEach(function(input) {
+                    input.style.display = "none";
+                });
+            }
+        }
+
+        function validerAdresses() {
+            var startAddress = document.getElementById("start").value;
+            var endAddress = document.getElementById("end").value;
+            var vehicle = document.getElementById("vehicle").value;
+
+            // Lancer la fonction eviterZoneRisquee avec les adresses et le moyen de locomotion collectés
+            eviterZoneRisquee(startAddress, endAddress, vehicle);
+        }
+
+        function eviterZoneRisquee(startAddress, endAddress, vehicle) {
+            // Vous pouvez implémenter ici le code pour appeler votre fonction Python avec les adresses et le moyen de locomotion
+            // Par exemple, vous pouvez utiliser fetch() pour envoyer une requête HTTP à votre serveur Python
+            // ou utiliser une technologie comme Flask pour intégrer du code Python directement dans votre application Web.
+        }
+    </script>
 </body>
 </html>
