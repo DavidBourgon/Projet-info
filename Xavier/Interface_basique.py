@@ -42,7 +42,7 @@ try:
 
         utilisation = choisi(["Déterminer le prix de mon assurance."])
         time.sleep(1)
-        
+
         if utilisation == "Déterminer le prix de mon assurance.":
             print("Quel véhicule souhaitez vous assurer ?")
             time.sleep(1)
@@ -53,7 +53,7 @@ try:
                   "régulièrement.")
 
             localisation = choisi([])
-
+            time.sleep(1)
             print("Le prix de votre assurance sera de :",
                   self.__donner_prix(data, localisation, vehicule))
 
@@ -90,8 +90,8 @@ try:
 
             time.sleep(1)
             print("Voici le risque de l'itinéraire permettant de relier vos 2 adresses :",
-                  Particulier.evaluate_risque_itineraire(adresse_arrivee,
-                                                         adresse_depart))
+                  Particulier.evaluate_risque_itineraire(adresse_depart,
+                                                         adresse_arrivee))
 
         if utilisation == "Savoir quel moyen de transport utiliser pour éviter les risques et avoir l'itinéraire correspondant.":
             print("Quelle est votre adresse de départ ?")
@@ -102,8 +102,8 @@ try:
             adresse_arrivee = input("Entrez le nom de la rue, doit finir par ', New York' :")
 
             time.sleep(1)
-            print(Particulier.eviter_zone_risquee(adresse_arrivee,
-                                                  adresse_depart))
+            print(Particulier.eviter_zone_risquee(adresse_depart,
+                                                  adresse_arrivee))
 
 
 except KeyboardInterrupt:
