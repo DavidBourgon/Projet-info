@@ -36,7 +36,10 @@
             margin-top: 20px; /* Marge vers le haut */
         }
         .address-input {
-            display: none; /* Masquer les champs d'adresse par défaut */
+            display: none; 
+        }
+        .prive-input {
+            display: none; 
         }
         pre {
             background-color: #f4f4f4;
@@ -54,12 +57,22 @@
         <div class="banner">
             <h1>Quel profil d'utilisateur êtes-vous ?</h1>
             <p>Sélectionnez parmi les propositions suivantes :</p>
-            <select id="profil" onchange="toggleAddressInputs()">
+            <select id="profil" onchange="toggleAddressInputs() ; togglePriveInputs() ;">
                 <option value="">Sélectionnez un profil</option>
                 <option value="secteur_prive">Secteur Privé</option>
                 <option value="secteur_public">Secteur Public</option>
                 <option value="particulier">Particulier</option>
             </select>
+            <div class="prive-input" id="prive-inputs">
+                <div id="nom">
+                    <label for="name">Nom :</label>
+                    <input type="text" id="nom" name="name">
+                </div>
+                <div id="marge">
+                    <label for="marge">Marge :</label>
+                    <input type="text" id="marge" name="marge">
+                </div>
+            </div>
             <!-- Champs pour le moyen de locomotion -->
             <div class="address-input" id="vehicle">
                 <label for="vehicle">Moyen de locomotion :</label>
@@ -89,7 +102,6 @@
             var selectedValue = selectElement.value;
             var addressInputs = document.querySelectorAll(".address-input");
 
-            // Afficher les champs d'adresse si "Particulier" est sélectionné, sinon les masquer
             if (selectedValue === "particulier") {
                 addressInputs.forEach(function(input) {
                     input.style.display = "block";
@@ -98,6 +110,18 @@
                 addressInputs.forEach(function(input) {
                     input.style.display = "none";
                 });
+            }
+        }
+
+        function togglePriveInputs() {
+            var selectElement = document.getElementById("profil");
+            var selectedValue = selectElement.value;
+            var priveInputs = document.getElementById("prive-inputs");
+
+            if (selectedValue === "secteur_prive") {
+                priveInputs.style.display = "block";
+            } else {
+                priveInputs.style.display = "none";
             }
         }
 
