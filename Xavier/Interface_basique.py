@@ -41,7 +41,8 @@ try:
         time.sleep(1)
 
         utilisation = choisi(["Déterminer le prix de mon assurance."])
-
+        time.sleep(1)
+        
         if utilisation == "Déterminer le prix de mon assurance.":
             print("Quel véhicule souhaitez vous assurer ?")
             time.sleep(1)
@@ -62,6 +63,7 @@ try:
 
         utilisation = choisi(["Connaître le taux de mortalité d'une rue.",
                               "Localiser une infrastructure."])
+        time.sleep(1)
 
         if utilisation == "Connaître le taux de mortalité d'une rue.":
             print("Sur quelle rue souhaitez vous connaître le taux de mortalité ?")
@@ -76,6 +78,7 @@ try:
         utilisation = choisi(["Connaître le risque d'un itinéraire.",
                               "Savoir quel moyen de transport utiliser pour"
                               " éviter les risques et avoir l'itinéraire correspondant."])
+        time.sleep(1)
 
         if utilisation == "Connaître le risque d'un itinéraire.":
             print("Quelle est votre adresse de départ ?")
