@@ -130,12 +130,44 @@
             var endAddress = document.getElementById("end").value;
             var vehicle = document.getElementById("vehicle").value;
 
-            // Lancer la fonction eviterZoneRisquee avec les adresses et le moyen de locomotion collectés
-            eviterZoneRisquee(startAddress, endAddress, vehicle);
+            // Définir les données à envoyer dans la requête
+            var data = {
+                start: startAddress,
+                end: endAddress,
+                vehicle: vehicle
+            };
+
+            // Configuration de la requête fetch
+            var requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            };
+
+            // Envoyer la requête à votre API Flask
+            fetch('/python', requestOptions)
+        .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur réseau');
+                }
+                return response.json();
+            })
+        .then(data => {
+                // Traitement des résultats de votre API Flask
+                console.log(data);
+            })
+        .catch(error => {
+                console.error('Erreur:', error);
+            });
         }
 
         function eviterZoneRisquee(startAddress, endAddress, vehicle) {
-             // Définir les données à envoyer dans la requête
+            if (startAddress === "" || endAddress === "") {
+            alert("Veuillez entrer les adresses de départ et d'arrivée.");
+            return;
+            }
             var data = {
                 start: startAddress,
                 end: endAddress,
@@ -160,8 +192,9 @@
                 return response.json();
             })
             .then(data => {
-                // Traitement des résultats de votre API Flask
-                console.log(data);
+                // Display the results in the result div
+                var resultDiv = document.getElementById("result");
+                resultDiv.textContent = JSON.stringify(data);
             })
             .catch(error => {
                 console.error('Erreur:', error);
