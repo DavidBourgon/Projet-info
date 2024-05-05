@@ -8,6 +8,7 @@ import time
 
 tableau = pd.read_excel("Bronx_2.xlsx")
 
+
 def choisi(L):
     mot = input("Entrez votre réponse :")
     while mot not in L:
@@ -54,7 +55,7 @@ try:
             localisation = choisi([])
             time.sleep(1)
             print("Le prix de votre assurance sera de :",
-                  self.__donner_prix(data, localisation, vehicule))
+                  secteur_publi.__donner_prix(data, localisation, vehicule))
 
     elif choix == "Secteur Public":
         print("En tant qu'acteur public que souhaitez vous faire ?")
