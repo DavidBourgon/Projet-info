@@ -207,7 +207,7 @@ class Particulier:
             for vehicule in ["car", "cycle", "foot"]:
                 if vehicule != vehicule_moins_risque:
                     folium.PolyLine(locations=dico_itineraires[vehicule],
-                            color='red').add_to(carte_bronx)
+                                    color='red').add_to(carte_bronx)
             folium.PolyLine(locations=dico_itineraires[vehicule_moins_risque],
                             color='green').add_to(carte_bronx)
             carte_bronx.save("carte_bronx.html")

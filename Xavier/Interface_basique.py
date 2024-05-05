@@ -1,8 +1,5 @@
 #%% importation des modules
-# from Utilisateur import Utilisateur
-# from secteur_prive import SecteurPrive
-# from secteur_public import SecteurPublic
-# from particulier import Particulier
+
 import tkinter as tk
 import time
 from particulier import Particulier
