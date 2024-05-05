@@ -30,8 +30,23 @@ class SecteurPrive:
         self.marge = marge
 
     def __decompose_trajet(adresse_depart, adresse_arrrive):
-        # doit return une liste des rues / passages emprunter
-        # par l'utilisateur (localisation)
+        """
+        Décompose un trajet entre 2 adresses.
+
+        Prameters
+        ---------
+        adresse_depart : str
+            Adresse de départ.
+
+        adresse_arrivee : str
+            Adresse d'arrivée.
+
+        Retunrs
+        -------
+        localisation : list[str]
+            liste des rues qu'il faut emprunter pour réaliser le trajet
+            entre les 2 adresses données en entrée.
+        """
         pass
 
     def __donner_prix(self, data, localisation, categorie):
