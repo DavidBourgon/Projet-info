@@ -13,8 +13,8 @@ class SecteurPublic:
     Parameters
     ----------
     categorie : str
-        Catégorie de l'usagé : piéton, cycliste ou  automobiliste. Elle vaut
-        soit foot, soit cycle soit car.
+        Catégorie du secteur public : institut de statistiques ou forces de
+        l'ordre.
 
     """
 
@@ -24,9 +24,10 @@ class SecteurPublic:
         if not isinstance(categorie, str):
             raise TypeError("La catégorie doit être une chaîne de caractères.")
 
-        if categorie not in ("foot", "cycle", "car"):
-            raise ValueError("La catégorie doit valoir foot, cycle ou "
-                             "car.")
+        if categorie not in ("institut_de_statistiques", "forces_de_l_ordre"):
+            raise ValueError("La catégorie doit valoir "
+                             "institut_de_statistiques ou "
+                             "force_de_l_ordre.")
 
     def calculer_mortalité_rue(self, rue: str) -> int:
         """ Calcule le taux de mortalité d'une rue.
