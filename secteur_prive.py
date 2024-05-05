@@ -1,6 +1,7 @@
 from Utilisateur import Utilisateur
 from geopy.geocoders import Nominatim
 from pyroutelib3 import Router
+import folium
 
 
 class SecteurPrive:
@@ -31,7 +32,7 @@ class SecteurPrive:
         self.nom_assureur = nom_assureur
         self.marge = marge
 
-    def __decompose_trajet(self, adresse_depart, adresse_arrivee):
+    def __decompose_trajet(self, adresse_depart, adresse_arrivee, categorie):
         """
         Décompose un trajet entre 2 adresses.
 
@@ -43,12 +44,17 @@ class SecteurPrive:
         adresse_arrivee : str
             Adresse d'arrivée.
 
+        categorie : str
+            foot cyvle ou car
+
         Retunrs
         -------
         localisation : list[str]
             liste des rues qu'il faut emprunter pour réaliser le trajet
             entre les 2 adresses données en entrée.
         """
+        carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=12)
+
         # Coordonnées des 2 adresses
         geolocator = Nominatim(user_agent="carte_bronx")
         localisation_1 = geolocator.geocode(adresse_depart)
@@ -57,22 +63,21 @@ class SecteurPrive:
         coord_arrivee = (localisation_2.latitude, localisation_2.longitude)
 
         # Création de l'itinéraire
-        router = Router(self.categorie)
+        router = Router(categorie)
         node_depart = router.findNode(*coord_depart)
         node_arrivee = router.findNode(*coord_arrivee)
         status, route = router.doRoute(node_depart, node_arrivee)
 
         # Récupération des noms des rues
-        rues = []
+        rues = set()
         for node in route:
             coordonnees = router.nodeLatLon(node)
             localisation = geolocator.reverse(coordonnees)
             adresse = localisation.raw['address']
             nom_rue = adresse.get('road', None)
             if nom_rue:
-                rues.append(nom_rue)
-
-        return rues
+                rues.add(nom_rue)
+        return list(rues)
 
     def __donner_prix(self, data, rues, categorie):
         """
@@ -85,8 +90,7 @@ class SecteurPrive:
             Liste des zones dans lesquelles le client se déplace.
 
         catégorie : str
-            Véhicule du client qui souhaite être assuré.
-
+            # foot cycle ou car
         Returns
         -------
         prix : float
@@ -101,7 +105,7 @@ class SecteurPrive:
             ind_risque += Utilisateur.risque_rue(data,
                                                  rues[k],
                                                  categorie)
-        prix = (400 * ind_risque) * (1 + self.marge)
+        prix = (400 * (ind_risque/len(rues))) * (1 + self.marge)
         return prix
 
     def __repr__(self, rues: list[str], categorie):
