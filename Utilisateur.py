@@ -481,43 +481,6 @@ class Utilisateur:
                 "il y a un rique (en %) de :", risque]
 
 
-# # Nettoyage de la base de donnée
-# # Convertion de  'CRASH DATE' en datetime
-# data["CRASH.DATE"] = pd.to_datetime(data["CRASH.DATE"])
-# data["YEAR"] = data["CRASH.DATE"].dt.year
-# datata["MONTH"] = data["CRASH.DATE"].dt.month
-# # Convertir la colonne 'Heure' en format datetime
-# data['CRASH.TIME'] = pd.to_datetime(data['CRASH.TIME'], format='%H:%M')
-
-
-# # Fonction pour classer si c'est jour ou nuit
-# def classer_jour_nuit(heure):
-#     if heure.hour >= 6 and heure.hour < 18:
-#         return 'jour'
-#     else:
-#         return 'nuit'
-
-# # Appliquer la fonction pour créer une nouvelle colonne 'Jour_Nuit'
-# def ajout_jour_nuit(data) :
-#      df['JOUR_NUIT'] = df['CRASH.TIME'].apply(classer_jour_nuit)
-
-
-# # #Calcul du risque selon l'horraire
-# # def risque_nuit_jour(data) :
-# #     jour=2
-# #     nuit=2
-# #     if data['Jour_Nuit']=='jour':
-# #         if jour==0 :
-# #                 return 0
-# #         else :
-# #              return jour/(jour+nuit)
-# #     else :
-# #         if nuit==0 :
-# #                 return 0
-# #         else :
-# #                 return nuit/(jour+nuit)
-
-# # #risque des voitures
 # data = pd.read_csv("bronx.csv", sep=";")
 
 
