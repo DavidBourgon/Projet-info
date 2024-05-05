@@ -377,11 +377,6 @@ tableau2 = pd.DataFrame(columns=["colonne1", "colonne2", "colonne3"])
      (tableau, "HEATH AVENUE", 'foot',
       ["Pour la rue :", "HEATH AVENUE",
        "il y a un rique (en %) de :", 0.0]),
-    #  (tableau2, "HEATH AVENUE", 'foot',
-    #   ["Il n'y a pas d'accident ou bien le tableau est vide.",
-    #    "Pour la rue :", "HEATH AVENUE",
-    #    "Il y a un rique (en %) de :", 0]),
-
     ]
 )
 def test_risque_rue_sucess(data, street, categorie, resultat_attendu):

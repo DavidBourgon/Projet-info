@@ -1,10 +1,12 @@
 #%% importation des modules
-
+import pandas as pd
 import tkinter as tk
 import time
-from particulier import Particulier
-from secteur_prive import SecteurPrive
-from Utilisateur import Utilisateur
+# from particulier import Particulier
+# from secteur_prive import SecteurPrive
+# from Utilisateur import Utilisateur
+
+tableau = pd.read_excel("Bronx_2.xlsx")
 
 def choisi(L):
     mot = input("Entrez votre réponse :")
