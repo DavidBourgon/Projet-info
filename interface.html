@@ -36,16 +36,16 @@
             margin-top: 20px; /* Marge vers le haut */
         }
         .address-input {
-            display: none; 
+            display: none;
         }
         .prive-input {
-            display: none; 
+            display: none;
         }
         .choix-input {
-            display: none; 
+            display: none;
         }
         .rue-input{
-            display: none; 
+            display: none;
         }
         pre {
             background-color: #f4f4f4;
@@ -78,7 +78,7 @@
                     <label for="marge">Marge :</label>
                     <input type="text" id="marge" name="marge">
                 </div>
-                <label for="vehicle"> Véhicule :</label>
+                <label for="vehicle"> Véhicule du client:</label>
                 <select id="vehicle_assuré" name="vehicle_assuré">
                     <option value="">Sélectionnez le moyen de transport de votre client</option>
                     <option value="foot">À pied</option>
@@ -147,11 +147,11 @@
             </div>
             <!-- Champs pour l'adresse de départ et l'adresse d'arrivée -->
             <div class="address-input" id="adresse_de_depart">
-                <label for="start">Adresse de départ :</label>
+                <label for="start">Adresse de départ du client :</label>
                 <input type="text" id="start" name="start">
             </div>
             <div class="address-input" id="adresse_d_arrivee">
-                <label for="end">Adresse d'arrivée :</label>
+                <label for="end">Adresse d'arrivée du client :</label>
                 <input type="text" id="end" name="end">
             </div>
             <!-- Champ pour la rue -->
@@ -183,7 +183,7 @@
                 document.querySelectorAll(".address-input").forEach(function(input) {
             input.style.display = "none";
         });
-            }      
+            }
         }
         function togglePriveInputs() {
             var selectElement = document.getElementById("profil");
