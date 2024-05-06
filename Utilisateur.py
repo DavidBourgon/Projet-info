@@ -481,44 +481,43 @@ class Utilisateur:
                 "il y a un rique (en %) de :", risque]
 
 
-def remplace_mort_blesse(data) : 
-    data["NUMBER.OF.PERSONS.INJURED"] = data["NUMBER.OF.PERSONS.INJURED"].fillna(0)
-    data["NUMBER.OF.PERSONS.KILLED"] = data["NUMBER.OF.PERSONS.KILLED"].fillna(0)
+    def remplace_mort_blesse(data) : 
+        data["NUMBER.OF.PERSONS.INJURED"] = data["NUMBER.OF.PERSONS.INJURED"].fillna(0)
+        data["NUMBER.OF.PERSONS.KILLED"] = data["NUMBER.OF.PERSONS.KILLED"].fillna(0)
 
+    def df_blesse_mort_rue(data, utilisateur):
+        rues = pd.unique(pd.concat([data["ON.STREET.NAME"],
+                                    data["OFF.STREET.NAME"],
+                                    data["CROSS.STREET.NAME"]]))
 
-def df_blesse_mort_rue(data, utilisateur):
-    rues = pd.unique(pd.concat([data["ON.STREET.NAME"],
-                                data["OFF.STREET.NAME"],
-                                data["CROSS.STREET.NAME"]]))
-    
-    nombre_blesses_pietons_par_rue = {}
-    nombre_blesses_cyclistes_par_rue = {}
-    nombre_tues_pietons_par_rue = {}
-    nombre_tues_cyclistes_par_rue = {}
+        nombre_blesses_pietons_par_rue = {}
+        nombre_blesses_cyclistes_par_rue = {}
+        nombre_tues_pietons_par_rue = {}
+        nombre_tues_cyclistes_par_rue = {}
 
-    for rue in rues:
-        rue_filtre = data[(data["ON.STREET.NAME"] == rue) |
-                          (data["OFF.STREET.NAME"] == rue) |
-                          (data["CROSS.STREET.NAME"] == rue)]
+        for rue in rues:
+            rue_filtre = data[(data["ON.STREET.NAME"] == rue) |
+                              (data["OFF.STREET.NAME"] == rue) |
+                              (data["CROSS.STREET.NAME"] == rue)]
 
-        if utilisateur == "pedestrian":
-            total_blesses_pietons = \
-            total_blesses_pietons = \
-            rue_filtre["NUMBER.OF.PEDESTRIANS.INJURED"].sum()
-            total_tues_pietons = \
-                rue_filtre["NUMBER.OF.PEDESTRIANS.KILLED"].sum()
-            nombre_blesses_pietons_par_rue[rue] = \
-                total_blesses_pietons
-            nombre_tues_pietons_par_rue[rue] = \
-                total_tues_pietons
+            if utilisateur == "pedestrian":
+                total_blesses_pietons = 
+                total_blesses_pietons = \
+                rue_filtre["NUMBER.OF.PEDESTRIANS.INJURED"].sum()
+                total_tues_pietons = \
+                    rue_filtre["NUMBER.OF.PEDESTRIANS.KILLED"].sum()
+                nombre_blesses_pietons_par_rue[rue] = \
+                    total_blesses_pietons
+                nombre_tues_pietons_par_rue[rue] = \
+                    total_tues_pietons
 
-        elif utilisateur == "cyclist":
-            total_blesses_cyclistes = \
-                rue_filtre["NUMBER.OF.CYCLIST.INJURED"].sum()
-            total_tues_cyclistes = \
-                rue_filtre["NUMBER.OF.CYCLIST.KILLED"].sum()
-            nombre_blesses_cyclistes_par_rue[rue] = total_blesses_cyclistes
-            nombre_tues_cyclistes_par_rue[rue] = total_tues_cyclistes
+            elif utilisateur == "cyclist":
+                total_blesses_cyclistes = \
+                    rue_filtre["NUMBER.OF.CYCLIST.INJURED"].sum()
+                total_tues_cyclistes = \
+                    rue_filtre["NUMBER.OF.CYCLIST.KILLED"].sum()
+                nombre_blesses_cyclistes_par_rue[rue] = total_blesses_cyclistes
+                nombre_tues_cyclistes_par_rue[rue] = total_tues_cyclistes
 
 
 #     # Définir df_result en dehors des conditions
@@ -611,3 +610,4 @@ def risque_voiture(data, rue, voiture):
             return 0.4
     else:
         return 0
+
