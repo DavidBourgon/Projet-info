@@ -29,8 +29,16 @@ class Particulier:
         soit foot pour les piétons, soit cycle pour les cyclistes soit car
         pour les automobilistes.
 
+    heure_depart : str
+        Heure de départ au format HH:MM.
+
+    heure_arrivee : str
+        Heure d'arrivée au format HH:MM.
+        Vaut None par défaut.
+
     """
-    def __init__(self, categorie, heure_depart, heure_arrive=None):
+    def __init__(self, categorie, heure_depart, heure_arrivee=None):
+
         if not isinstance(categorie, str):
             raise TypeError("La catégorie doit être une chaîne de caractères.")
 
@@ -47,31 +55,31 @@ class Particulier:
                              "au format 'HH:MM'.")
 
         # Si l'heure d'arrivée n'est pas spécifiée
-        if heure_arrive is None:
+        if heure_arrivee is None:
             # Ajouter 12 heures à l'heure de départ
             heures, minutes = heure_depart.split(':')
             heures = (int(heures) + 12) % 24
             # Ajouter 12 heures (modulo 24 pour gérer le passage à minuit)
-            heure_arrive = f"{heures:02d}:{minutes}"
+            heure_arrivee = f"{heures:02d}:{minutes}"
 
         else:
-            if not isinstance(heure_arrive, str):
+            if not isinstance(heure_arrivee, str):
                 raise TypeError("L'heure d'arrivée doit être "
                                 " une chaîne de caractères.")
 
-            if not re.match(r'^(2[0-3]|[01][0-9]):[0-5][0-9]$', heure_arrive):
+            if not re.match(r'^(2[0-3]|[01][0-9]):[0-5][0-9]$', heure_arrivee):
                 raise ValueError("L'heure d'arrivée doit être "
                                  "au format 'HH:MM'.")
 
             # Vérification que l'heure de départ n'est pas supérieure
             # à l'heure d'arrivée
-            if heure_depart > heure_arrive:
+            if heure_depart > heure_arrivee:
                 raise ValueError("L'heure de départ ne doit pas être "
                                  "supérieure à l'heure d'arrivée.")
 
         self.categorie = categorie
         self.heure_depart = heure_depart
-        self.heure_arrive = heure_arrive
+        self.heure_arrivee = heure_arrivee
 
     def itineraires(self, adresse_depart, adresse_arrivee):
         """
@@ -90,7 +98,7 @@ class Particulier:
         itineraires : dict[str : list]
             Dictionnaire d'itinéraires selon le type de véhicule.
             str : Moyen de transport utilisé.
-            list : Itinéraire.
+            list : Liste des rues à prendre pour effectuer le trajet.
 
         """
         # if not isinstance(adresse_depart, str):
@@ -168,12 +176,12 @@ class Particulier:
 
         for categorie in L:
             Iti_coord = itineraires[categorie]
-            # on va voir besoin du nombre total de points pour renvoyer
+            # on va avoir besoin du nombre total de points pour renvoyer
             # la moyenne du risque dans le dictionnaire
             tot_points = len(Iti_coord)
             compteur = 0
             for i in range(len(Iti_coord)):
-                # Pour matcher avec les fonction morts risque_rue de Xavier,
+                # Pour matcher avec les fonctions morts risque_rue de Xavier,
                 # on trouve le nom de la rue pour les coordonnées données
                 localisation = geolocator.reverse(Iti_coord[i])
                 address = localisation.raw['address']
@@ -269,12 +277,14 @@ class Particulier:
         Parameters
         ----------
         rue : str
-            Nom de la rue
+            Nom de la rue.
 
         Returns
         -------
-        float : Risque de la rue.
-            """
+        risque : float
+            Risque de la rue.
+
+        """
         risque = Utilisateur.risque_rue(rue, self.categorie)[-1]
         return risque
 
