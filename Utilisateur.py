@@ -396,8 +396,6 @@ class Utilisateur:
         Renvoie toutes les modalités différentes d'une variable d'une base de
         données.
 
-        attention varible en majuscule et séparer les mots par des points
-
         Parameters
         ----------
         data : DataFrame
