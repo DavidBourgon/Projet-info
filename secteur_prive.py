@@ -81,7 +81,8 @@ class SecteurPrive:
                 rues.add(nom_rue)
         return list(rues)
 
-    def __donner_prix(self, data, adresse_depart, adresse_arrivee, categorie):
+    def __donner_prix(self, data, adresse_depart, adresse_arrivee,
+                      categorie, type_vehicule=None):
         """
         Détermine le prix qu'un client va payer en fonction de comment
         il se déplace sur son trajet le plus fréquent
@@ -107,12 +108,19 @@ class SecteurPrive:
             Prix que va devoir payer le client chez cet assureur.
 
         """
+        if type_vehicule is not None:
+            data_par_type = Utilisateur.\
+                filtrer_par_modalite_variable(data, type_vehicule,
+                                              "VEHICLE.TYPE.CODE.1")
+        else:
+            data_par_type = data
+
         rues = self.__decompose_trajet(adresse_depart, adresse_arrivee,
                                        categorie)
 
         ind_risque = 0
         for k in len(rues):
-            ind_risque += Utilisateur.risque_rue(data,
+            ind_risque += Utilisateur.risque_rue(data_par_type,
                                                  rues[k],
                                                  categorie)
         prix = (400 * (ind_risque/len(rues))) * (1 + self.marge)
