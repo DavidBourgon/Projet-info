@@ -1,11 +1,9 @@
 import pandas as pd
 import re
-import warnings
-warnings.filterwarnings('ignore')
 
 
 class Utilisateur:
-    @staticmethod
+
     def nombre_observation(data):
         """
         Compte le nombre d'observations d'une base de données.
@@ -200,11 +198,6 @@ class Utilisateur:
 
         if not isinstance(street, str):
             raise TypeError("Le nom de la rue doit être de type str.")
-
-        for char in street:
-            if not (char.isupper() or char.isspace() or char.isnumeric()):
-                raise ValueError("Le nom de la rue doit contenir uniquement"
-                                 " des majuscules, des espaces ou des nombres")
 
         filtered_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
                              data["ON.STREET.NAME"].str.contains(street) |

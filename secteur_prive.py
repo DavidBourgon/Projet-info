@@ -2,7 +2,8 @@ from Utilisateur import Utilisateur
 from geopy.geocoders import Nominatim
 from pyroutelib3 import Router
 import folium
-
+import pandas as pd
+import openpyxl
 
 class SecteurPrive:
     """ Secteur Privé.
@@ -119,23 +120,31 @@ class SecteurPrive:
                                        categorie)
 
         ind_risque = 0
-        for k in len(rues):
+        for k in range(len(rues)):
             ind_risque += Utilisateur.risque_rue(data_par_type,
                                                  rues[k],
-                                                 categorie)
-        prix = (400 * (ind_risque/len(rues))) * (1 + self.marge)
+                                                 categorie)[-1]
+        prix = (200 + (400 * (ind_risque/len(rues)))) * (1 + self.marge)
         return prix
 
-    def __repr__(self, data, adresse_depart, adresse_arrivee, categorie):
+    def __repr__(self, data, adresse_depart, adresse_arrivee,
+                 categorie, type_vehicule=None):
         """
 
         Représentation officielle de la réponse de l'assureur au client
         lui indiquant combien il doit payer.
 
         """
-        prix = self.__donner_prix(data, adresse_depart,
-                                  adresse_arrivee, categorie)
         return (f"Pour vous assurer sur votre trajet quotidien, auprès de "
                 f"{self.nom_assureur} "
                 f"vous devez vous acquitter de "
-                f"{prix} €")
+                f"{self.__donner_prix(data, adresse_depart,
+                                      adresse_arrivee, categorie,
+                                      type_vehicule=None)} €")
+
+data = pd.read_excel("Bronx_sans_Na.xlsx")
+Groupama = SecteurPrive("Groupama", 0.5)
+
+print(Groupama.__repr__(data, "1 E 161st St, Bronx, NY 10451, États-Unis",
+                        "111 E 164th St, Bronx, NY 10452, États-Unis",
+                        "car"))

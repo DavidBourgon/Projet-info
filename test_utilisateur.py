@@ -146,10 +146,7 @@ def test_calcul_totaux_cat_statut_sucess(data, categorie, statut,
          "La base de données doit être un DataFrame."),
 
         (tableau, 4, TypeError,
-         "Le nom de la rue doit être de type str."),
-        (tableau, "rue", ValueError,
-         "Le nom de la rue doit contenir uniquement"
-         " des majuscules et des espaces"),
+         "Le nom de la rue doit être de type str.")
 
     ]
 )
