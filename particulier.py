@@ -165,7 +165,6 @@ class Particulier:
             filtrer_par_heure(data,
                               self.heure_depart,
                               self.heure_arrive)[-1]
-        print(data_heure)
 
         for categorie in L:
             Iti_coord = itineraires[categorie]
