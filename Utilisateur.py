@@ -1,11 +1,9 @@
 import pandas as pd
 import re
-import warnings
-warnings.filterwarnings('ignore')
 
 
 class Utilisateur:
-    @staticmethod
+
     def nombre_observation(data):
         """
         Compte le nombre d'observations d'une base de données.
