@@ -103,6 +103,10 @@ class SecteurPrive:
             Catégorie d'usagé à laquelle le client appartient. Prend la
             valeur foot cycle ou car.
 
+        type_vehicule : str
+            Type de véhicule que le client possède.
+            Vaut None par défaut.
+
         Returns
         -------
         prix : float
