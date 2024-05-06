@@ -480,11 +480,43 @@ class Utilisateur:
         return ["Pour la rue :", street,
                 "il y a un rique (en %) de :", risque]
 
-    def remplace_mort_blesse(data) : 
-        data["NUMBER.OF.PERSONS.INJURED"] = data["NUMBER.OF.PERSONS.INJURED"].fillna(0)
-        data["NUMBER.OF.PERSONS.KILLED"] = data["NUMBER.OF.PERSONS.KILLED"].fillna(0)
+    def remplace_mort_blesse(data): 
+        """
+        Remplace les valeurs manquantes dans les colonnes 'NUMBER.OF.PERSONS.INJURED' et 'NUMBER.OF.PERSONS.KILLED' par 0.
+
+        Parameters
+        ----------
+        data : DataFrame
+            Le DataFrame contenant les données sur les accidents.
+
+        Returns
+        -------
+        None
+        """
+        data["NUMBER.OF.PERSONS.INJURED"] = \
+            data["NUMBER.OF.PERSONS.INJURED"].fillna(0)
+        data["NUMBER.OF.PERSONS.KILLED"] = \
+            data["NUMBER.OF.PERSONS.KILLED"].fillna(0)
 
     def df_blesse_mort_rue(data, utilisateur):
+        """
+        Calcule le nombre de blessés et de morts par type d'utilisateur (piéton ou cycliste) pour chaque rue.
+
+        Parameters
+        ----------
+        data : DataFrame
+            Le DataFrame contenant les données sur les accidents.
+        utilisateur : str
+            Le type d'utilisateur ("pedestrian" pour piéton ou "cyclist" pour cycliste).
+
+        Returns
+        -------
+        DataFrame or None
+            Un DataFrame contenant le nombre de blessés et de morts par type d'utilisateur pour chaque rue.
+            Si aucune donnée n'est trouvée pour l'utilisateur donné, retourne None.
+        """
+
+        data = Utilisateur.remplace_mort_blesse(data)
         rues = pd.unique(pd.concat([data["ON.STREET.NAME"],
                                     data["OFF.STREET.NAME"],
                                     data["CROSS.STREET.NAME"]]))
@@ -508,44 +540,30 @@ class Utilisateur:
                     total_blesses_pietons
                 nombre_tues_pietons_par_rue[rue] = \
                     total_tues_pietons
+                df_pietons = pd.DataFrame(list( nombre_blesses_pietons_par_rue.items()),
+                 columns=["Rue", "Nombre blesses pietons"])
+                df_tues_pietons = pd.DataFrame(list(nombre_tues_pietons_par_rue.items()),
+                 columns=["Rue", "Nombre tues pietons"])
+                df_result = \
+                pd.merge(df_pietons, df_tues_pietons, on="Rue", how="inner")
 
             elif utilisateur == "cyclist":
-                total_blesses_cyclistes = \
-                    Utilisateur.calcul_totaux_cat_statut(rue_filtre, "cycle", "B")
-                total_tues_cyclistes = \
-                    Utilisateur.calcul_totaux_cat_statut(rue_filtre, "cycle", "T")
+                total_blesses_cyclistes = Utilisateur.calcul_totaux_cat_statut(rue_filtre, "cycle", "B")
+                total_tues_cyclistes = Utilisateur.calcul_totaux_cat_statut(rue_filtre, "cycle", "T")
                 nombre_blesses_cyclistes_par_rue[rue] = total_blesses_cyclistes
                 nombre_tues_cyclistes_par_rue[rue] = total_tues_cyclistes
+                df_cyclistes =pd.DataFrame(list(nombre_blesses_cyclistes_par_rue.items()),columns=["Rue", "Nombre blesses cyclistes"])
+                df_tues_cyclistes =pd.DataFrame(list(nombre_tues_cyclistes_par_rue.items()), columns=["Rue", "Nombre tues cyclistes"])
+                df_result = pd.merge(df_cyclistes, df_tues_cyclistes, on="Rue", how="inner")
+        else:
+            df_result = None
 
-
-#     # Définir df_result en dehors des conditions
-#     df_result = None
-
-#     if utilisateur == "pedestrian":
-#         df_pietons = pd.DataFrame(list(
-#             nombre_blesses_pietons_par_rue.items()),
-#                 columns=["Rue", "Nombre blesses pietons"])
-#         df_tues_pietons = pd.DataFrame(list(
-#             nombre_tues_pietons_par_rue.items()),
-#                          columns=["Rue", "Nombre tues pietons"])
-#         df_result = \
-#             pd.merge(df_pietons, df_tues_pietons, on="Rue", how="inner")
-
-#     elif utilisateur == "cyclist":
-#         df_cyclistes =\
-#               pd.DataFrame(list(nombre_blesses_cyclistes_par_rue.items()),
-#                            columns=["Rue", "Nombre blesses cyclistes"])
-#         df_tues_cyclistes =\
-#             pd.DataFrame(list(nombre_tues_cyclistes_par_rue.items()),
-#                          columns=["Rue", "Nombre tues cyclistes"])
-#         df_result = pd.merge(df_cyclistes, df_tues_cyclistes,
-#                              on="Rue", how="inner")
-
-#     return df_result
+        return df_result
 
     def risque_rue_pieton_velo(data, rue, utilisateur):
         """
-    Calcule le risque pour les piétons ou les cyclistes sur une rue spécifique.
+        Calcule le risque pour les piétons ou les cyclistes sur 
+        une rue spécifique.
 
         Parameters
         ----------
