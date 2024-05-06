@@ -79,7 +79,7 @@ class SecteurPrive:
                 rues.add(nom_rue)
         return list(rues)
 
-    def __donner_prix(self, data, rues, categorie):
+    def __donner_prix(self, data, adresse_depart, adresse_arrivee, categorie):
         """
         Détermine le prix qu'un client va payer en fonction de comment
         il se déplace sur son trajet le plus fréquent
@@ -97,8 +97,8 @@ class SecteurPrive:
             Prix que va devoir payer le client chez cet assureur.
 
         """
-        if not isinstance(rues, list):
-            raise TypeError("L'argument rues doit être une liste de rues")
+        rues = self.__decompose_trajet(adresse_depart, adresse_arrivee,
+                                       categorie)
 
         ind_risque = 0
         for k in len(rues):
@@ -108,13 +108,16 @@ class SecteurPrive:
         prix = (400 * (ind_risque/len(rues))) * (1 + self.marge)
         return prix
 
-    def __repr__(self, rues: list[str], categorie):
+    def __repr__(self, data, adresse_depart, adresse_arrivee, categorie):
         """
 
         Représentation officielle de la réponse de l'assureur au client
         lui indiquant combien il doit payer.
 
         """
-        return (f"Pour vous assurer sur votre trajet quotidien,"
-                f" vous devez vous acquitter de"
-                f" {self.__donner_prix(rues, categorie)}")
+        prix = self.__donner_prix(data, adresse_depart,
+                                  adresse_arrivee, categorie)
+        return (f"Pour vous assurer sur votre trajet quotidien, auprès de "
+                f"{self.nom_assureur} "
+                f"vous devez vous acquitter de "
+                f"{prix} €")
