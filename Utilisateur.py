@@ -205,7 +205,7 @@ class Utilisateur:
         return ["Base de données filtrée pour la rue nomée:",
                 street, filtered_data]
 
-    def filtrer_par_date(sel, data, date_debut, date_fin):
+    def filtrer_par_date(data, date_debut, date_fin):
         """
         Filtre le DataFrame en fonction de la date entre date_debut
         et date_fin inclus.
