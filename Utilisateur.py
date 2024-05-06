@@ -16,9 +16,8 @@ class Utilisateur:
 
         Returns
         -------
-        list[str, int] :
-            str : Phrase réponse.
-            int : Nombre d'observations de la base de données.
+        list : Phrase réponse avec le nombre d'observations de la base de
+               données.
 
         Raises
         ------
@@ -47,10 +46,8 @@ class Utilisateur:
 
         Returns
         -------
-        list[str, int] :
-            str : Phrase réponse.
-            int : Nombre de personnes blessées et/ou tuées selon le statut
-              souhaité.
+        list : Liste contenant une phrase réponse et le nombre de personnes
+            blessées et/ou tuées selon le statut souhaité.
 
         """
         if not isinstance(data, pd.DataFrame):
@@ -101,10 +98,9 @@ class Utilisateur:
 
         Returns
         -------
-        list[str, int] :
-            str : Phrase réponse.
-            int : Nombre de personnes blessées et/ou tuées selon la catégorie
-                  souhaitée et le statut souhaité.
+        list : Liste contenant une phrase réponse et le nombre de personnes
+            blessées et/ou tuées selon la catégorie souhaitée et le statut
+            souhaité.
 
         """
         if not isinstance(data, pd.DataFrame):
@@ -187,10 +183,8 @@ class Utilisateur:
 
         Returns
         -------
-        list[str, DataFrame] :
-            str : Phrase réponse.
-            DataFrame : La base de données filtrée contenant uniquement les
-                        lignes où le nom de la rue correspond à street.
+        list : Une liste contenant un message donnant la rue choisie et le
+            DataFrame filtré
 
         """
         if not isinstance(data, pd.DataFrame):
