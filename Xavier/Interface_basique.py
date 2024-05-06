@@ -54,8 +54,7 @@ try:
 
             localisation = choisi([])
             time.sleep(1)
-            print("Le prix de votre assurance sera de :",
-                  secteur_publi.__donner_prix(data, localisation, vehicule))
+            print("Le prix de votre assurance sera de :")
 
     elif choix == "Secteur Public":
         print("En tant qu'acteur public que souhaitez vous faire ?")
