@@ -62,6 +62,11 @@
     <div class="content">
         <div class="banner">
             <h1>Quel profil d'utilisateur êtes-vous ?</h1>
+            <!-- Champ pour télécharger le document Excel -->
+            <form id="upload-form" enctype="multipart/form-data">
+                <label for="excel">Télécharger le document Excel :</label>
+                <input type="file" id="excel" name="excel" accept=".xls,.xlsx">
+            </form>
             <p>Sélectionnez parmi les propositions suivantes :</p>
             <select id="profil" onchange="toggleInputs(); togglePriveInputs();">
                 <option value="">Sélectionnez un profil</option>
