@@ -231,10 +231,10 @@ def test_filtrer_par_heure_echec(data,
         (3, "str", "str", TypeError,
          "La base de données doit être un DataFrame."),
 
-        (tableau, "A.B.C", "str", ValueError,
+        (tableau, "str", "A.B.C", ValueError,
          "Cette variable n'est pas dans la base de données."),
 
-        (tableau, "CRASH.TIME", "str", ValueError,
+        (tableau, "str", "CRASH.TIME", ValueError,
          "Cette modalité n'existe pas pour la variable choisie."),
     ]
 )
