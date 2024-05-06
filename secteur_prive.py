@@ -45,13 +45,15 @@ class SecteurPrive:
             Adresse d'arrivée.
 
         categorie : str
-            foot cyvle ou car
+            Catégorie d'usagé à laquelle le client appartient. Prend la
+            valeur foot cycle ou car.
 
         Retunrs
         -------
         localisation : list[str]
             liste des rues qu'il faut emprunter pour réaliser le trajet
             entre les 2 adresses données en entrée.
+
         """
         carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=12)
 
@@ -86,11 +88,16 @@ class SecteurPrive:
 
         Parameters
         ----------
-        localisation : list[str]
-            Liste des zones dans lesquelles le client se déplace.
+        data : DataFrame
+            Base de données sur laquelle nous travaillons.
+
+        rues : list(str)
+            Liste des rues dans lesquelles le client se déplace.
 
         catégorie : str
-            # foot cycle ou car
+            Catégorie d'usagé à laquelle le client appartient. Prend la
+            valeur foot cycle ou car.
+
         Returns
         -------
         prix : float
