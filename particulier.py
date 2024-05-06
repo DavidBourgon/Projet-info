@@ -181,19 +181,23 @@ class Particulier:
         dico_risque = self.evaluate_risque_itineraire(adresse_depart,
                                                       adresse_arrivee)
         categorie_moins_risque = "car"
-        risque = 2
+        risque = dico_risque["car"]
+
         localisation_1 = geolocator.geocode(adresse_depart)
         coord_depart = (localisation_1.latitude, localisation_1.longitude)
         localisation_2 = geolocator.geocode(adresse_arrivee)
         coord_arrivee = (localisation_2.latitude, localisation_2.longitude)
+
         folium.Marker(coord_depart,
                       popup='Adresse de départ').add_to(carte_bronx)
         folium.Marker(coord_arrivee,
                       popup='Adresse d\'arrivée').add_to(carte_bronx)
+
         for categorie in dico_risque:
             if dico_risque[categorie] < risque:
                 risque = dico_risque[categorie]
                 vehicule_moins_risque = categorie
+                
         if self.categorie == categorie_moins_risque:
             # on trace l'itineraire
             for categorie in ["car", "cycle", "foot"]:
@@ -217,7 +221,7 @@ class Particulier:
             carte_bronx.save("carte_bronx.html")
             webbrowser.open('carte_bronx.html')
             return ("Choisissez plutôt ce type de vehicule : "
-                    f"{vehicule_moins_risque}, voici l'itineraire")
+                    f"{vehicule_moins_risque}, voici l'itineraire :")
 
 
 #Xavier = Particulier("foot")
