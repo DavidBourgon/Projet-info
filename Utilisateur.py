@@ -187,10 +187,8 @@ class Utilisateur:
 
         Returns
         -------
-        list[str, DataFrame] :
-            str : Phrase réponse.
-            DataFrame : La base de données filtrée contenant uniquement les
-                        lignes où le nom de la rue correspond à street.
+        list : Une liste contenant un message donnant la rue choisie et le
+            DataFrame filtré
 
         """
         if not isinstance(data, pd.DataFrame):
