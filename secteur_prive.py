@@ -91,8 +91,11 @@ class SecteurPrive:
         data : DataFrame
             Base de données sur laquelle nous travaillons.
 
-        rues : list(str)
-            Liste des rues dans lesquelles le client se déplace.
+        adresse_depart : str
+            Adresse de départ.
+
+        adresse_arrivee : str
+            Adresse d'arrivée.
 
         catégorie : str
             Catégorie d'usagé à laquelle le client appartient. Prend la
