@@ -261,16 +261,16 @@ class Particulier:
             webbrowser.open('carte_bronx.html')
             return ("Choisissez plutôt ce type de vehicule : "
                     f"{vehicule_moins_risque}, voici l'itineraire :")
-    
+
     def risque_rue(self, rue):
         """
         Permet de déterminer le risque d'une rue.
-        
+
         Parameters
         ----------
         rue : str
             Nom de la rue
-        
+
         Returns
         -------
         float : Risque de la rue.
