@@ -41,6 +41,12 @@
         .prive-input {
             display: none; 
         }
+        .choix-input {
+            display: none; 
+        }
+        .rue-input{
+            display: none; 
+        }
         pre {
             background-color: #f4f4f4;
             padding: 20px;
@@ -57,7 +63,7 @@
         <div class="banner">
             <h1>Quel profil d'utilisateur êtes-vous ?</h1>
             <p>Sélectionnez parmi les propositions suivantes :</p>
-            <select id="profil" onchange="toggleAddressInputs() ; togglePriveInputs() ;">
+            <select id="profil" onchange="toggleInputs(); togglePriveInputs();">
                 <option value="">Sélectionnez un profil</option>
                 <option value="secteur_prive">Secteur Privé</option>
                 <option value="secteur_public">Secteur Public</option>
@@ -72,6 +78,12 @@
                     <label for="marge">Marge :</label>
                     <input type="text" id="marge" name="marge">
                 </div>
+            </div>
+            <div class="choix-input" id="choix-input">
+                <input type="radio" id="itineraire" name="choix" value="itineraire">
+                <label for="itineraire">Vous voulez connaître un itinéraire sûr</label><br>
+                <input type="radio" id="risque" name="choix" value="risque">
+                <label for="risque">Je veux connaître le risque d'une rue</label><br>
             </div>
             <!-- Champs pour le moyen de locomotion -->
             <div class="address-input" id="vehicle">
@@ -91,28 +103,37 @@
                 <label for="end">Adresse d'arrivée :</label>
                 <input type="text" id="end" name="end">
             </div>
+            <!-- Champ pour la rue -->
+            <div class="rue-input" id="rue">
+                <label for="rue">Rue :</label>
+                <input type="text" id="rue" name="rue">
+            </div>
             <!-- Bouton Valider -->
             <button onclick="validerAdresses()">Valider</button>
         </div>
     </div>
 
     <script>
-        function toggleAddressInputs() {
+        function toggleInputs() {
             var selectElement = document.getElementById("profil");
             var selectedValue = selectElement.value;
-            var addressInputs = document.querySelectorAll(".address-input");
+            var choixInputs = document.getElementById("choix-input");
+            var priveInputs = document.getElementById("prive-inputs");
+            var rueInput = document.getElementById("rue");
 
             if (selectedValue === "particulier") {
-                addressInputs.forEach(function(input) {
-                    input.style.display = "block";
-                });
+                choixInputs.style.display = "block";
+                priveInputs.style.display = "block";
+                toggleAddressInputs();
             } else {
-                addressInputs.forEach(function(input) {
-                    input.style.display = "none";
-                });
-            }
+                choixInputs.style.display = "none";
+                priveInputs.style.display = "none";
+                rueInput.style.display = "none";
+                document.querySelectorAll(".address-input").forEach(function(input) {
+            input.style.display = "none";
+        });
+            }      
         }
-
         function togglePriveInputs() {
             var selectElement = document.getElementById("profil");
             var selectedValue = selectElement.value;
@@ -124,6 +145,28 @@
                 priveInputs.style.display = "none";
             }
         }
+        function toggleAddressInputs() {
+                    document.querySelectorAll('input[name="choix"]').forEach((radio) => {
+                        radio.addEventListener("change", function() {
+                            var vehicleInput = document.getElementById("vehicle");
+                            var addressInputs = document.querySelectorAll(".address-input");
+                            var rueInput = document.getElementById("rue");
+
+                            if (this.value === "itineraire") {
+                                vehicleInput.style.display = "block";
+                                addressInputs.forEach(function(input) {
+                                    input.style.display = "block";
+                                });
+                                rueInput.style.display = "none";
+                            } else if (this.value === "risque") {
+                                vehicleInput.style.display = "none";
+                                document.getElementById("rue").style.display = "block";
+                                document.getElementById("adresse_d_arrivee").style.display = "none";
+                                document.getElementById("adresse_de_depart").style.display = "none";
+                            }
+                        });
+                    });
+                }
 
         function validerAdresses() {
             var startAddress = document.getElementById("start").value;
