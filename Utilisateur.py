@@ -79,7 +79,7 @@ class Utilisateur:
 
     def calcul_totaux_cat_statut(data, categorie, statut):
         """
-        Calcule le nombre de blessées et/ou de tués selon le type de personnes
+        Calcule le nombre de blessés et/ou de tués selon le type de personnes
         souhaité.
 
         data : DataFrame
@@ -104,7 +104,7 @@ class Utilisateur:
         list[str, int] :
             str : Phrase réponse.
             int : Nombre de personnes blessées et/ou tuées selon la catégorie
-            souhaitée et le statut souhaité.
+                  souhaitée et le statut souhaité.
 
         """
         if not isinstance(data, pd.DataFrame):
@@ -346,7 +346,7 @@ class Utilisateur:
         Returns
         -------
         list : Une liste contenant un message décrivant la modalité filtrée
-        d'une certaines variable et le DataFrame filtré.
+               d'une certaine variable et le DataFrame filtré.
 
         """
         if not isinstance(data, pd.DataFrame):
@@ -437,7 +437,7 @@ class Utilisateur:
         Parameters
         ----------
         data : Dataframe
-            base de données sur laquelle nous travaillons.
+            Base de données sur laquelle nous travaillons.
 
         street : str
             Nom de la rue pour laquelle nous souhaitons déterminer le danger.
