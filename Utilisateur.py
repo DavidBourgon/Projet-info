@@ -16,9 +16,8 @@ class Utilisateur:
 
         Returns
         -------
-        list[str, int] :
-            str : Phrase réponse.
-            int : Nombre d'observations de la base de données.
+        list : Phrase réponse avec le nombre d'observations de la base de
+               données.
 
         Raises
         ------
