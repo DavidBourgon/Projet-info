@@ -480,7 +480,6 @@ class Utilisateur:
         return ["Pour la rue :", street,
                 "il y a un rique (en %) de :", risque]
 
-
     def remplace_mort_blesse(data) : 
         data["NUMBER.OF.PERSONS.INJURED"] = data["NUMBER.OF.PERSONS.INJURED"].fillna(0)
         data["NUMBER.OF.PERSONS.KILLED"] = data["NUMBER.OF.PERSONS.KILLED"].fillna(0)
@@ -501,11 +500,10 @@ class Utilisateur:
                               (data["CROSS.STREET.NAME"] == rue)]
 
             if utilisateur == "pedestrian":
-                total_blesses_pietons = 
                 total_blesses_pietons = \
-                rue_filtre["NUMBER.OF.PEDESTRIANS.INJURED"].sum()
+                    Utilisateur.calcul_totaux_cat_statut(rue_filtre, "foot", "B")
                 total_tues_pietons = \
-                    rue_filtre["NUMBER.OF.PEDESTRIANS.KILLED"].sum()
+                    Utilisateur.calcul_totaux_cat_statut(rue_filtre, "foot", "T")
                 nombre_blesses_pietons_par_rue[rue] = \
                     total_blesses_pietons
                 nombre_tues_pietons_par_rue[rue] = \
@@ -513,9 +511,9 @@ class Utilisateur:
 
             elif utilisateur == "cyclist":
                 total_blesses_cyclistes = \
-                    rue_filtre["NUMBER.OF.CYCLIST.INJURED"].sum()
+                    Utilisateur.calcul_totaux_cat_statut(rue_filtre, "cycle", "B")
                 total_tues_cyclistes = \
-                    rue_filtre["NUMBER.OF.CYCLIST.KILLED"].sum()
+                    Utilisateur.calcul_totaux_cat_statut(rue_filtre, "cycle", "T")
                 nombre_blesses_cyclistes_par_rue[rue] = total_blesses_cyclistes
                 nombre_tues_cyclistes_par_rue[rue] = total_tues_cyclistes
 
