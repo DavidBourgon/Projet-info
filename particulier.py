@@ -197,7 +197,7 @@ class Particulier:
             if dico_risque[categorie] < risque:
                 risque = dico_risque[categorie]
                 vehicule_moins_risque = categorie
-                
+
         if self.categorie == categorie_moins_risque:
             # on trace l'itineraire
             for categorie in ["car", "cycle", "foot"]:

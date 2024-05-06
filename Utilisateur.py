@@ -333,7 +333,7 @@ class Utilisateur:
                 heure_fin, ":",
                 filtered_data]
 
-    def filtrer_par_modalite_variable(data, variable, modalite):
+    def filtrer_par_modalite_variable(data, modalite, variable):
         """
         Filtre la base de données en fonction d'une modalité spécifique d'une
         variable spécifique et renvoie la base de données filtrée.
