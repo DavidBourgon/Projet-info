@@ -47,10 +47,8 @@ class Utilisateur:
 
         Returns
         -------
-        list[str, int] :
-            str : Phrase réponse.
-            int : Nombre de personnes blessées et/ou tuées selon le statut
-              souhaité.
+        list : Liste contenant une phrase réponse et le nombre de personnes
+            blessées et/ou tuées selon le statut souhaité.
 
         """
         if not isinstance(data, pd.DataFrame):
