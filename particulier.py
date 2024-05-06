@@ -12,6 +12,7 @@ from geopy.geocoders import Nominatim
 from pyroutelib3 import Router
 from Utilisateur import Utilisateur
 import pandas as pd
+import re
 # router sert à préciser le type de vehicule qui peut être : car, cycle, foot,
 # horse, tram, train
 
@@ -29,15 +30,48 @@ class Particulier:
         pour les automobilistes.
 
     """
-    def __init__(self, categorie):
-        self.categorie = categorie
-
+    def __init__(self, categorie, heure_depart, heure_arrive=None):
         if not isinstance(categorie, str):
             raise TypeError("La catégorie doit être une chaîne de caractères.")
 
         if categorie not in ("foot", "cycle", "car"):
             raise ValueError("La catégorie doit valoir foot, cycle ou "
                              "car.")
+
+        if not isinstance(heure_depart, str):
+            raise TypeError("L'heure de départ doit être "
+                            "une chaîne de caractères.")
+
+        if not re.match(r'^(2[0-3]|[01][0-9]):[0-5][0-9]$', heure_depart):
+            raise ValueError("L'heure de départ doit être "
+                             "au format 'HH:MM'.")
+
+        # Si l'heure d'arrivée n'est pas spécifiée
+        if heure_arrive is None:
+            # Ajouter 12 heures à l'heure de départ
+            heures, minutes = heure_depart.split(':')
+            heures = (int(heures) + 12) % 24
+            # Ajouter 12 heures (modulo 24 pour gérer le passage à minuit)
+            heure_arrive = f"{heures:02d}:{minutes}"
+
+        else:
+            if not isinstance(heure_arrive, str):
+                raise TypeError("L'heure d'arrivée doit être "
+                                " une chaîne de caractères.")
+
+            if not re.match(r'^(2[0-3]|[01][0-9]):[0-5][0-9]$', heure_arrive):
+                raise ValueError("L'heure d'arrivée doit être "
+                                 "au format 'HH:MM'.")
+
+            # Vérification que l'heure de départ n'est pas supérieure
+            # à l'heure d'arrivée
+            if heure_depart > heure_arrive:
+                raise ValueError("L'heure de départ ne doit pas être "
+                                 "supérieure à l'heure d'arrivée.")
+
+        self.categorie = categorie
+        self.heure_depart = heure_depart
+        self.heure_arrive = heure_arrive
 
     def itineraires(self, adresse_depart, adresse_arrivee):
         """
@@ -127,6 +161,12 @@ class Particulier:
         itineraires = self.itineraires(adresse_depart, adresse_arrivee)
         risques = {"car": 1.0, "cycle": 1.0, "foot": 1.0}
         L = ["car", "cycle", "foot"]
+        data_heure = Utilisateur.\
+            filtrer_par_heure(data,
+                              self.heure_depart,
+                              self.heure_arrive)[-1]
+        print(data_heure)
+
         for categorie in L:
             Iti_coord = itineraires[categorie]
             # on va voir besoin du nombre total de points pour renvoyer
@@ -147,7 +187,7 @@ class Particulier:
                 # Là on peut utiliser les fonctions de Xavier,
                 # il nous faudrait juste un fonction globale et
                 # un filtrage par vehicule possible pour faire :
-                compteur += Utilisateur.risque_rue(data,
+                compteur += Utilisateur.risque_rue(data_heure,
                                                    nom_rue_maj,
                                                    categorie)[-1]
             risques[categorie] = compteur/tot_points
@@ -224,5 +264,5 @@ class Particulier:
                     f"{vehicule_moins_risque}, voici l'itineraire :")
 
 
-#Xavier = Particulier("foot")
-#print(Xavier.eviter_zone_risquee("1 E 161st St, Bronx, NY 10451, États-Unis", "111 E 164th St, Bronx, NY 10452, États-Unis"))
+Xavier = Particulier("car", "08:00")
+print(Xavier.eviter_zone_risquee("1 E 161st St, Bronx, NY 10451, États-Unis", "111 E 164th St, Bronx, NY 10452, États-Unis"))

@@ -194,16 +194,16 @@ class Utilisateur:
                         lignes où le nom de la rue correspond à street.
 
         """
-        # if not isinstance(data, pd.DataFrame):
-        #     raise TypeError("La base de données doit être un DataFrame.")
+        if not isinstance(data, pd.DataFrame):
+            raise TypeError("La base de données doit être un DataFrame.")
 
-        # if not isinstance(street, str):
-        #     raise TypeError("Le nom de la rue doit être de type str.")
+        if not isinstance(street, str):
+            raise TypeError("Le nom de la rue doit être de type str.")
 
-        # for char in street:
-        #     if not (char.isupper() or char.isspace()):
-        #         raise ValueError("Le nom de la rue doit contenir uniquement"
-        #                          " des majuscules et des espaces")
+        for char in street:
+            if not (char.isupper() or char.isspace()):
+                raise ValueError("Le nom de la rue doit contenir uniquement"
+                                 " des majuscules et des espaces")
 
         filtered_data = data[data["CROSS.STREET.NAME"].str.contains(street) |
                              data["ON.STREET.NAME"].str.contains(street) |
@@ -480,9 +480,10 @@ class Utilisateur:
         return ["Pour la rue :", street,
                 "il y a un rique (en %) de :", risque]
 
-    def remplace_mort_blesse(data): 
+    def remplace_mort_blesse(data):
         """
-        Remplace les valeurs manquantes dans les colonnes 'NUMBER.OF.PERSONS.INJURED' et 'NUMBER.OF.PERSONS.KILLED' par 0.
+        Remplace les valeurs manquantes dans les colonnes
+        'NUMBER.OF.PERSONS.INJURED' et 'NUMBER.OF.PERSONS.KILLED' par 0.
 
         Parameters
         ----------
@@ -562,7 +563,7 @@ class Utilisateur:
 
     def risque_rue_pieton_velo(data, rue, utilisateur):
         """
-        Calcule le risque pour les piétons ou les cyclistes sur 
+        Calcule le risque pour les piétons ou les cyclistes sur
         une rue spécifique.
 
         Parameters
@@ -581,13 +582,13 @@ class Utilisateur:
         Returns
         -------
         float :
-            Le niveau de risque associé aux piétons ou aux cyclistes sur 
+            Le niveau de risque associé aux piétons ou aux cyclistes sur
             la rue spécifique.
-            - 0 si aucun accident n'est enregistré pour cette rue 
+            - 0 si aucun accident n'est enregistré pour cette rue
             pour l'utilisateur donné.
-            - Le risque calculé pour les piétons sur la rue spécifique, 
+            - Le risque calculé pour les piétons sur la rue spécifique,
             arrondi à 3 décimales,si l'utilisateur est "pedestrian".
-            - Le risque calculé pour les cyclistes sur la rue spécifique, 
+            - Le risque calculé pour les cyclistes sur la rue spécifique,
             si l'utilisateur est "cyclist".
 
         """
