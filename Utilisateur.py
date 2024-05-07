@@ -511,7 +511,6 @@ class Utilisateur:
         else:
             return 0
 
-
     def risque_voiture(data, rue, voiture):
         nbr_acc = 0
         if voiture in data['VEHICLE.TYPE.CODE.1'].values : 
@@ -539,11 +538,14 @@ class Utilisateur:
 
     def risque_rue(data, street, categorie) : 
         if categorie == "car" :
-            risque = Utilisateur.risque_voiture(data, street, "Sedan")*100
-            return ["Pour la rue :", street, "il y a un rique (en %) de :", risque]
+            risque = Utilisateur.risque_voiture(data, street, "Sedan")
         else : 
-            risque = Utilisateur.risque_rue_pieton_velo(data, street, categorie)*100
-            return ["Pour la rue :", street,"il y a un rique (en %) de :", risque]
+            risque = Utilisateur.risque_rue_pieton_velo(data, street, categorie)
+        if risque == None :
+            return 0
+        else : 
+            return risque*100
+
 
 data = pd.read_csv("bronx.csv", sep=";")
 risk_foot = Utilisateur.risque_rue_pieton_velo(data, "1994      BRUCKNER BOULEVARD", "foot")

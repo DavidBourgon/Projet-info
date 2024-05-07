@@ -115,7 +115,7 @@ class SecteurPrive:
 
         liste_risque = []
         for k in rues:
-            liste_risque.append(Utilisateur.risque_rue(data, rues, categorie)[-1])
+            liste_risque.append(Utilisateur.risque_rue(data, k, categorie))
         liste_risque.sort()
         risque = ( liste_risque[-1] + liste_risque[-2])/2 
         prix = (200 + (400 * risque)) * (1 + self.marge)
@@ -139,4 +139,4 @@ Groupama = SecteurPrive("Groupama", 0.5)
 
 print(Groupama.__repr__(data, "1994      BRUCKNER BOULEVARD",
                         "111 E 164th St, Bronx, NY 10452, États-Unis",
-                        "car"))
+                        "foot"))
