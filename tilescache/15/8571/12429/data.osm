@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="CGImap 0.9.2 (3657892 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <bounds minlat="39.7916548" minlon="-85.8361816" maxlat="39.8000960" maxlon="-85.8251953"/>
+ <node id="179764763" visible="true" version="3" changeset="25423578" timestamp="2014-09-14T04:28:32Z" user="Dr Centerline" uid="2245537" lat="39.7987965" lon="-85.8211132"/>
+ <node id="179782717" visible="true" version="3" changeset="28469514" timestamp="2015-01-28T17:52:24Z" user="Dr Centerline" uid="2245537" lat="39.7985542" lon="-85.8400941"/>
+ <node id="179784861" visible="true" version="3" changeset="114283797" timestamp="2021-11-27T04:38:18Z" user="imamapperguy" uid="11583057" lat="39.7988549" lon="-85.8163861"/>
+ <node id="179789987" visible="true" version="3" changeset="28678863" timestamp="2015-02-07T15:30:11Z" user="Dr Centerline" uid="2245537" lat="39.7823384" lon="-85.8304049"/>
+ <node id="179789996" visible="true" version="3" changeset="28678863" timestamp="2015-02-07T15:30:11Z" user="Dr Centerline" uid="2245537" lat="39.7986804" lon="-85.8306053"/>
+ <node id="179803241" visible="true" version="3" changeset="26243437" timestamp="2014-10-21T21:24:24Z" user="Dr Centerline" uid="2245537" lat="39.7984194" lon="-85.8500336"/>
+ <node id="2428242160" visible="true" version="1" changeset="17457672" timestamp="2013-08-22T15:57:43Z" user="Rub21" uid="510836" lat="39.7984382" lon="-85.8488207"/>
+ <node id="3336373858" visible="true" version="1" changeset="28678863" timestamp="2015-02-07T15:30:06Z" user="Dr Centerline" uid="2245537" lat="39.7894011" lon="-85.8304954"/>
+ <node id="3336373872" visible="true" version="1" changeset="28678863" timestamp="2015-02-07T15:30:06Z" user="Dr Centerline" uid="2245537" lat="39.7955371" lon="-85.8310911"/>
+ <node id="3336373873" visible="true" version="1" changeset="28678863" timestamp="2015-02-07T15:30:06Z" user="Dr Centerline" uid="2245537" lat="39.7955414" lon="-85.8305535"/>
+ <node id="3336373874" visible="true" version="1" changeset="28678863" timestamp="2015-02-07T15:30:06Z" user="Dr Centerline" uid="2245537" lat="39.7955427" lon="-85.8311294"/>
+ <node id="3336373875" visible="true" version="1" changeset="28678863" timestamp="2015-02-07T15:30:06Z" user="Dr Centerline" uid="2245537" lat="39.7955431" lon="-85.8315753"/>
+ <node id="3336373876" visible="true" version="2" changeset="114281236" timestamp="2021-11-26T23:43:01Z" user="imamapperguy" uid="11583057" lat="39.7955908" lon="-85.8310911">
+  <tag k="entrance" v="yes"/>
+ </node>
+ <node id="5927481816" visible="true" version="1" changeset="62892940" timestamp="2018-09-24T19:44:11Z" user="Dr Centerline" uid="2245537" lat="39.7833451" lon="-85.8304178"/>
+ <node id="6847827534" visible="true" version="1" changeset="75238969" timestamp="2019-10-03T14:34:41Z" user="arosalon" uid="10159527" lat="39.7986489" lon="-85.8329700"/>
+ <node id="6847827535" visible="true" version="1" changeset="75238969" timestamp="2019-10-03T14:34:41Z" user="arosalon" uid="10159527" lat="39.7996944" lon="-85.8329890"/>
+ <node id="6847827536" visible="true" version="1" changeset="75238969" timestamp="2019-10-03T14:34:41Z" user="arosalon" uid="10159527" lat="39.8005063" lon="-85.8330158"/>
+ <node id="6847827537" visible="true" version="1" changeset="75238969" timestamp="2019-10-03T14:34:41Z" user="arosalon" uid="10159527" lat="39.8006856" lon="-85.8329970"/>
+ <node id="6847827538" visible="true" version="1" changeset="75238969" timestamp="2019-10-03T14:34:41Z" user="arosalon" uid="10159527" lat="39.8007618" lon="-85.8329836"/>
+ <node id="6847827539" visible="true" version="1" changeset="75238969" timestamp="2019-10-03T14:34:41Z" user="arosalon" uid="10159527" lat="39.8008422" lon="-85.8329380"/>
+ <node id="6992560241" visible="true" version="1" changeset="77327652" timestamp="2019-11-20T13:43:59Z" user="nambim" uid="10240917" lat="39.7985917" lon="-85.8372695"/>
+ <node id="6992560243" visible="true" version="1" changeset="77327652" timestamp="2019-11-20T13:43:59Z" user="nambim" uid="10240917" lat="39.7986043" lon="-85.8363252"/>
+ <node id="7010849283" visible="true" version="1" changeset="77566268" timestamp="2019-11-26T10:00:51Z" user="pbobbili" uid="10480278" lat="39.7912519" lon="-85.8305129"/>
+ <node id="7081457302" visible="true" version="1" changeset="78794857" timestamp="2019-12-24T01:54:03Z" user="sanganh" uid="10173453" lat="39.7962794" lon="-85.8305657"/>
+ <node id="7081457303" visible="true" version="1" changeset="78794857" timestamp="2019-12-24T01:54:03Z" user="sanganh" uid="10173453" lat="39.7962841" lon="-85.8311087"/>
+ <node id="7081457304" visible="true" version="1" changeset="78794857" timestamp="2019-12-24T01:54:03Z" user="sanganh" uid="10173453" lat="39.7973341" lon="-85.8305831"/>
+ <node id="7081457305" visible="true" version="1" changeset="78794857" timestamp="2019-12-24T01:54:03Z" user="sanganh" uid="10173453" lat="39.7973382" lon="-85.8311230"/>
+ <node id="7114834028" visible="true" version="1" changeset="79302435" timestamp="2020-01-07T16:57:33Z" user="desuman" uid="10208972" lat="39.7985980" lon="-85.8367827"/>
+ <node id="7114834033" visible="true" version="1" changeset="79302435" timestamp="2020-01-07T16:57:33Z" user="desuman" uid="10208972" lat="39.7992733" lon="-85.8359953"/>
+ <node id="7114834034" visible="true" version="1" changeset="79302435" timestamp="2020-01-07T16:57:33Z" user="desuman" uid="10208972" lat="39.7986093" lon="-85.8359497"/>
+ <node id="7155497255" visible="true" version="1" changeset="80007731" timestamp="2020-01-24T04:49:45Z" user="vpprahar" uid="10145810" lat="39.7984790" lon="-85.8457536"/>
+ <node id="7161775039" visible="true" version="1" changeset="80122240" timestamp="2020-01-27T06:27:35Z" user="asddiqu" uid="10208981" lat="39.7987324" lon="-85.8263519"/>
+ <node id="7161775040" visible="true" version="1" changeset="80122240" timestamp="2020-01-27T06:27:35Z" user="asddiqu" uid="10208981" lat="39.7995748" lon="-85.8264085"/>
+ <node id="7247012710" visible="true" version="1" changeset="81539592" timestamp="2020-02-27T08:53:20Z" user="pbobbili" uid="10480278" lat="39.7984837" lon="-85.8454026"/>
+ <node id="7247012713" visible="true" version="1" changeset="81539592" timestamp="2020-02-27T08:53:20Z" user="pbobbili" uid="10480278" lat="39.7984876" lon="-85.8451041"/>
+ <node id="7247012719" visible="true" version="1" changeset="81539592" timestamp="2020-02-27T08:53:20Z" user="pbobbili" uid="10480278" lat="39.7985016" lon="-85.8440539"/>
+ <node id="7557982036" visible="true" version="1" changeset="85744027" timestamp="2020-05-26T05:38:33Z" user="bnilima" uid="10192122" lat="39.7932901" lon="-85.8305322"/>
+ <node id="7557982037" visible="true" version="1" changeset="85744027" timestamp="2020-05-26T05:38:33Z" user="bnilima" uid="10192122" lat="39.7933037" lon="-85.8297150"/>
+ <node id="7557982038" visible="true" version="1" changeset="85744027" timestamp="2020-05-26T05:38:33Z" user="bnilima" uid="10192122" lat="39.7933288" lon="-85.8296616"/>
+ <node id="7557982039" visible="true" version="1" changeset="85744027" timestamp="2020-05-26T05:38:33Z" user="bnilima" uid="10192122" lat="39.7933722" lon="-85.8296467"/>
+ <node id="7557982040" visible="true" version="1" changeset="85744027" timestamp="2020-05-26T05:38:33Z" user="bnilima" uid="10192122" lat="39.7934634" lon="-85.8296408"/>
+ <node id="7557982041" visible="true" version="1" changeset="85744027" timestamp="2020-05-26T05:38:33Z" user="bnilima" uid="10192122" lat="39.7928498" lon="-85.8305280"/>
+ <node id="7557982042" visible="true" version="1" changeset="85744027" timestamp="2020-05-26T05:38:33Z" user="bnilima" uid="10192122" lat="39.7928659" lon="-85.8300831"/>
+ <node id="7557982043" visible="true" version="1" changeset="85744027" timestamp="2020-05-26T05:38:33Z" user="bnilima" uid="10192122" lat="39.7928852" lon="-85.8300405"/>
+ <node id="7557982044" visible="true" version="1" changeset="85744027" timestamp="2020-05-26T05:38:33Z" user="bnilima" uid="10192122" lat="39.7929172" lon="-85.8300346"/>
+ <node id="7602893449" visible="true" version="1" changeset="86357133" timestamp="2020-06-08T13:22:13Z" user="vbbukka" uid="10159579" lat="39.7988074" lon="-85.8203241"/>
+ <node id="8035334343" visible="true" version="1" changeset="92881149" timestamp="2020-10-22T08:56:09Z" user="sunaman" uid="10271425" lat="39.7988476" lon="-85.8174209"/>
+ <node id="8096261847" visible="true" version="1" changeset="93784396" timestamp="2020-11-09T09:05:12Z" user="vuliset" uid="11676212" lat="39.7925971" lon="-85.8305212"/>
+ <node id="8096261848" visible="true" version="1" changeset="93784396" timestamp="2020-11-09T09:05:12Z" user="vuliset" uid="11676212" lat="39.7926025" lon="-85.8303643"/>
+ <node id="8096261849" visible="true" version="1" changeset="93784396" timestamp="2020-11-09T09:05:12Z" user="vuliset" uid="11676212" lat="39.7926303" lon="-85.8302900"/>
+ <node id="8096261850" visible="true" version="1" changeset="93784396" timestamp="2020-11-09T09:05:12Z" user="vuliset" uid="11676212" lat="39.7926933" lon="-85.8302539"/>
+ <node id="8096261851" visible="true" version="1" changeset="93784396" timestamp="2020-11-09T09:05:12Z" user="vuliset" uid="11676212" lat="39.7927530" lon="-85.8302003"/>
+ <node id="8096261852" visible="true" version="1" changeset="93784396" timestamp="2020-11-09T09:05:12Z" user="vuliset" uid="11676212" lat="39.7927782" lon="-85.8301391"/>
+ <node id="8096261853" visible="true" version="1" changeset="93784396" timestamp="2020-11-09T09:05:12Z" user="vuliset" uid="11676212" lat="39.7927950" lon="-85.8300538"/>
+ <node id="8096261854" visible="true" version="1" changeset="93784396" timestamp="2020-11-09T09:05:12Z" user="vuliset" uid="11676212" lat="39.7927975" lon="-85.8299531"/>
+ <node id="8096261855" visible="true" version="1" changeset="93784396" timestamp="2020-11-09T09:05:12Z" user="vuliset" uid="11676212" lat="39.7927771" lon="-85.8298791"/>
+ <node id="8096701303" visible="true" version="1" changeset="93794857" timestamp="2020-11-09T11:31:12Z" user="sahithpe" uid="11676310" lat="39.7985783" lon="-85.8382802"/>
+ <node id="8553017784" visible="true" version="1" changeset="101556578" timestamp="2021-03-23T08:27:32Z" user="navuddin" uid="10173440" lat="39.7967289" lon="-85.8305731"/>
+ <node id="8553017785" visible="true" version="1" changeset="101556578" timestamp="2021-03-23T08:27:32Z" user="navuddin" uid="10173440" lat="39.7967226" lon="-85.8311735"/>
+ <node id="8595994496" visible="true" version="1" changeset="102350615" timestamp="2021-04-05T17:49:41Z" user="kotaprad" uid="10145714" lat="39.7988178" lon="-85.8195758"/>
+ <node id="8595994508" visible="true" version="1" changeset="102350615" timestamp="2021-04-05T17:49:41Z" user="kotaprad" uid="10145714" lat="39.7988287" lon="-85.8187840"/>
+ <node id="8656241349" visible="true" version="1" changeset="103426779" timestamp="2021-04-22T16:57:26Z" user="sanuhya" uid="10480280" lat="39.7985280" lon="-85.8420682"/>
+ <node id="9020418179" visible="true" version="1" changeset="109944379" timestamp="2021-08-19T16:44:44Z" user="singhiyv" uid="10252548" lat="39.7984632" lon="-85.8469387"/>
+ <node id="11225682488" visible="true" version="2" changeset="141881466" timestamp="2023-09-28T20:43:52Z" user="hagent" uid="18403953" lat="39.7789664" lon="-85.8016829">
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704354" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7807154" lon="-85.8017413">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704355" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7813836" lon="-85.8017568">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704356" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7818833" lon="-85.8017718">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704357" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7823071" lon="-85.8017836">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704358" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7829073" lon="-85.8017783">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704359" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7834572" lon="-85.8017692">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704360" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7835151" lon="-85.8020553">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704361" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7835028" lon="-85.8022814">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704362" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7834675" lon="-85.8029626">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704363" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7834390" lon="-85.8036464">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704364" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7834085" lon="-85.8042482">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704365" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7833926" lon="-85.8046379">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704366" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7834158" lon="-85.8047608">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704367" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7833985" lon="-85.8051605">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704368" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7833770" lon="-85.8056905">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704369" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7833366" lon="-85.8065198">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704370" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7832991" lon="-85.8073089">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704371" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7832579" lon="-85.8081286">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704372" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7832183" lon="-85.8089354">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704373" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7831821" lon="-85.8097229">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704374" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7831445" lon="-85.8105345">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704375" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7831058" lon="-85.8113075">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704376" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7830687" lon="-85.8121101">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704377" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7830337" lon="-85.8128664">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704378" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7829986" lon="-85.8136432">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704379" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7829656" lon="-85.8144168">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225704380" visible="true" version="1" changeset="141881791" timestamp="2023-09-28T20:53:37Z" user="hagent" uid="18403953" lat="39.7834215" lon="-85.8046400">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225705548" visible="true" version="1" changeset="141881466" timestamp="2023-09-28T20:43:52Z" user="hagent" uid="18403953" lat="39.7794660" lon="-85.8017087">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11225705549" visible="true" version="1" changeset="141881466" timestamp="2023-09-28T20:43:52Z" user="hagent" uid="18403953" lat="39.7801402" lon="-85.8017240">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185299" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7933598" lon="-85.8304740">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185300" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7928026" lon="-85.8304710">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185301" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7922462" lon="-85.8304659">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185302" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7915658" lon="-85.8304625">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185303" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7908111" lon="-85.8304550">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185304" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7901215" lon="-85.8304497">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185305" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7894018" lon="-85.8304475">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185306" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7886742" lon="-85.8304330">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185307" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7879570" lon="-85.8304287">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185308" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7872402" lon="-85.8304196">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185309" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7865950" lon="-85.8304051">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185310" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7859503" lon="-85.8303976">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185311" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7852718" lon="-85.8303928">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185312" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7848031" lon="-85.8303891">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185313" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7841790" lon="-85.8303826">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185314" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7833973" lon="-85.8303726">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185315" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7826749" lon="-85.8303610">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185316" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7822142" lon="-85.8304708">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185317" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7825026" lon="-85.8304575">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185318" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7822553" lon="-85.8295617">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185319" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7822957" lon="-85.8287801">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185320" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7823282" lon="-85.8279749">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185321" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7823732" lon="-85.8269707">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185322" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7824128" lon="-85.8261113">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185323" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7824540" lon="-85.8252209">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185324" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7824981" lon="-85.8243196">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185325" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7825426" lon="-85.8233315">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185326" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7825781" lon="-85.8225939">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185327" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7826218" lon="-85.8216895">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185328" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7826547" lon="-85.8209454">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185329" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7826923" lon="-85.8201692">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185330" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7827236" lon="-85.8194010">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185331" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7827623" lon="-85.8186194">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185332" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7827961" lon="-85.8179110">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185333" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7828395" lon="-85.8169422">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185334" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7828944" lon="-85.8159836">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227185335" visible="true" version="1" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953" lat="39.7829311" lon="-85.8151996">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232762" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8111013" lon="-85.8406334">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232763" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8111040" lon="-85.8403243">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232764" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8111032" lon="-85.8401811">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232765" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8110291" lon="-85.8406548">
+  <tag k="power" v="portal"/>
+ </node>
+ <node id="11227232766" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8106490" lon="-85.8401798">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232767" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8103564" lon="-85.8401789">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232768" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8100580" lon="-85.8401781">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232769" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8094485" lon="-85.8401705">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232770" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8087369" lon="-85.8401622">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232771" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8080323" lon="-85.8401546">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232772" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8074437" lon="-85.8401402">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232773" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8068597" lon="-85.8401379">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232774" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8062653" lon="-85.8401281">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232775" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8056638" lon="-85.8401296">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232776" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8053485" lon="-85.8401235">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232777" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8049388" lon="-85.8401129">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232778" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8043123" lon="-85.8400469">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232779" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8035929" lon="-85.8400673">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232780" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8029262" lon="-85.8400795">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232781" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8021933" lon="-85.8400593">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232782" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8017148" lon="-85.8400655">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232783" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8012608" lon="-85.8400718">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232784" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8008061" lon="-85.8400660">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232785" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.8003667" lon="-85.8400592">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232786" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7999227" lon="-85.8400511">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232787" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7994583" lon="-85.8400394">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232788" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7990022" lon="-85.8400335">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232789" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7984376" lon="-85.8400245">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232790" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7985235" lon="-85.8397996">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232791" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7985237" lon="-85.8393529">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232792" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7985379" lon="-85.8386652">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232793" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7985497" lon="-85.8379105">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232794" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7985600" lon="-85.8372305">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232795" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7985634" lon="-85.8367444">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232796" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7985727" lon="-85.8362761">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232797" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7985830" lon="-85.8353620">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232798" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7985957" lon="-85.8344558">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232799" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7986040" lon="-85.8335964">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232800" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7986182" lon="-85.8327716">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232801" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7986285" lon="-85.8319703">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232802" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7986388" lon="-85.8312023">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232803" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7986506" lon="-85.8304731">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232804" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7978032" lon="-85.8305367">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232805" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7973671" lon="-85.8305363">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232806" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7985173" lon="-85.8305284">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232807" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7981615" lon="-85.8305531">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232808" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7970978" lon="-85.8305264">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232809" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7968227" lon="-85.8305226">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232810" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7963998" lon="-85.8305176">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232811" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7956826" lon="-85.8305028">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232812" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7950586" lon="-85.8304972">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232813" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7944431" lon="-85.8304892">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <node id="11227232814" visible="true" version="1" changeset="141915002" timestamp="2023-09-29T14:15:18Z" user="hagent" uid="18403953" lat="39.7938873" lon="-85.8304831">
+  <tag k="material" v="wood"/>
+  <tag k="power" v="pole"/>
+ </node>
+ <way id="17361692" visible="true" version="12" changeset="101556578" timestamp="2021-03-23T08:27:32Z" user="navuddin" uid="10173440">
+  <nd ref="179789987"/>
+  <nd ref="5927481816"/>
+  <nd ref="3336373858"/>
+  <nd ref="7010849283"/>
+  <nd ref="8096261847"/>
+  <nd ref="7557982041"/>
+  <nd ref="7557982036"/>
+  <nd ref="3336373873"/>
+  <nd ref="7081457302"/>
+  <nd ref="8553017784"/>
+  <nd ref="7081457304"/>
+  <nd ref="179789996"/>
+  <tag k="highway" v="unclassified"/>
+  <tag k="name" v="North 150 W"/>
+  <tag k="name_1" v="North 150 West"/>
+  <tag k="name_2" v="150W"/>
+  <tag k="tiger:cfcc" v="A41"/>
+  <tag k="tiger:county" v="Hancock, IN"/>
+  <tag k="tiger:name_base" v="150W"/>
+  <tag k="tiger:name_base_1" v="150"/>
+  <tag k="tiger:name_base_2" v="150W"/>
+  <tag k="tiger:name_direction_prefix" v="N"/>
+  <tag k="tiger:name_direction_prefix_1" v="N"/>
+  <tag k="tiger:name_direction_suffix_1" v="W"/>
+  <tag k="tiger:reviewed" v="no"/>
+  <tag k="tiger:zip_left" v="46140"/>
+  <tag k="tiger:zip_right" v="46140"/>
+ </way>
+ <way id="304105055" visible="true" version="9" changeset="114283797" timestamp="2021-11-27T04:38:18Z" user="imamapperguy" uid="11583057">
+  <nd ref="179784861"/>
+  <nd ref="8035334343"/>
+  <nd ref="8595994508"/>
+  <nd ref="8595994496"/>
+  <nd ref="7602893449"/>
+  <nd ref="179764763"/>
+  <nd ref="7161775039"/>
+  <nd ref="179789996"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="name" v="West McKenzie Road"/>
+  <tag k="name_1" v="East 21st Street"/>
+  <tag k="name_2" v="West 100 North"/>
+  <tag k="old_name" v="100 North"/>
+  <tag k="tiger:cfcc" v="A41"/>
+  <tag k="tiger:county" v="Hancock, IN"/>
+  <tag k="tiger:name_base" v="McKenzie"/>
+  <tag k="tiger:name_base_1" v="21st"/>
+  <tag k="tiger:name_base_2" v="100"/>
+  <tag k="tiger:name_direction_prefix" v="W"/>
+  <tag k="tiger:name_direction_prefix_1" v="E"/>
+  <tag k="tiger:name_direction_prefix_2" v="W"/>
+  <tag k="tiger:name_direction_suffix_2" v="N"/>
+  <tag k="tiger:name_type" v="Rd"/>
+  <tag k="tiger:name_type_1" v="St"/>
+  <tag k="tiger:reviewed" v="no"/>
+ </way>
+ <way id="308973276" visible="true" version="10" changeset="109944379" timestamp="2021-08-19T16:44:44Z" user="singhiyv" uid="10252548">
+  <nd ref="179803241"/>
+  <nd ref="2428242160"/>
+  <nd ref="9020418179"/>
+  <nd ref="7155497255"/>
+  <nd ref="7247012710"/>
+  <nd ref="7247012713"/>
+  <nd ref="7247012719"/>
+  <nd ref="8656241349"/>
+  <nd ref="179782717"/>
+  <nd ref="8096701303"/>
+  <nd ref="6992560241"/>
+  <nd ref="7114834028"/>
+  <nd ref="6992560243"/>
+  <nd ref="7114834034"/>
+  <nd ref="6847827534"/>
+  <nd ref="179789996"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="name" v="West 100 N"/>
+  <tag k="name_1" v="West McKenzie Road"/>
+  <tag k="name_2" v="East 21st Street"/>
+  <tag k="tiger:cfcc" v="A41"/>
+  <tag k="tiger:county" v="Hancock, IN"/>
+  <tag k="tiger:name_base" v="100"/>
+  <tag k="tiger:name_base_1" v="McKenzie"/>
+  <tag k="tiger:name_base_2" v="21st"/>
+  <tag k="tiger:name_direction_prefix" v="W"/>
+  <tag k="tiger:name_direction_prefix_1" v="W"/>
+  <tag k="tiger:name_direction_prefix_2" v="E"/>
+  <tag k="tiger:name_direction_suffix" v="N"/>
+  <tag k="tiger:name_type_1" v="Rd"/>
+  <tag k="tiger:name_type_2" v="St"/>
+  <tag k="tiger:reviewed" v="no"/>
+  <tag k="tiger:zip_left" v="46140"/>
+  <tag k="tiger:zip_right" v="46140"/>
+ </way>
+ <way id="326927689" visible="true" version="1" changeset="28678863" timestamp="2015-02-07T15:30:08Z" user="Dr Centerline" uid="2245537">
+  <nd ref="3336373872"/>
+  <nd ref="3336373874"/>
+  <tag k="access" v="private"/>
+  <tag k="highway" v="service"/>
+  <tag k="service" v="driveway"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+ <way id="326927690" visible="true" version="1" changeset="28678863" timestamp="2015-02-07T15:30:08Z" user="Dr Centerline" uid="2245537">
+  <nd ref="3336373874"/>
+  <nd ref="3336373875"/>
+  <tag k="access" v="private"/>
+  <tag k="highway" v="service"/>
+  <tag k="service" v="driveway"/>
+  <tag k="surface" v="gravel"/>
+ </way>
+ <way id="326927691" visible="true" version="1" changeset="28678863" timestamp="2015-02-07T15:30:08Z" user="Dr Centerline" uid="2245537">
+  <nd ref="3336373873"/>
+  <nd ref="3336373872"/>
+  <nd ref="3336373876"/>
+  <tag k="access" v="private"/>
+  <tag k="highway" v="service"/>
+  <tag k="service" v="driveway"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+ <way id="731106631" visible="true" version="1" changeset="75238969" timestamp="2019-10-03T14:34:41Z" user="arosalon" uid="10159527">
+  <nd ref="6847827534"/>
+  <nd ref="6847827535"/>
+  <nd ref="6847827536"/>
+  <nd ref="6847827537"/>
+  <nd ref="6847827538"/>
+  <nd ref="6847827539"/>
+  <tag k="access" v="private"/>
+  <tag k="highway" v="service"/>
+  <tag k="service" v="driveway"/>
+ </way>
+ <way id="758261014" visible="true" version="1" changeset="78794857" timestamp="2019-12-24T01:54:03Z" user="sanganh" uid="10173453">
+  <nd ref="7081457302"/>
+  <nd ref="7081457303"/>
+  <tag k="access" v="private"/>
+  <tag k="highway" v="service"/>
+  <tag k="service" v="driveway"/>
+ </way>
+ <way id="758261015" visible="true" version="1" changeset="78794857" timestamp="2019-12-24T01:54:03Z" user="sanganh" uid="10173453">
+  <nd ref="7081457304"/>
+  <nd ref="7081457305"/>
+  <tag k="access" v="private"/>
+  <tag k="highway" v="service"/>
+  <tag k="service" v="driveway"/>
+ </way>
+ <way id="761514098" visible="true" version="1" changeset="79302435" timestamp="2020-01-07T16:57:33Z" user="desuman" uid="10208972">
+  <nd ref="7114834033"/>
+  <nd ref="7114834034"/>
+  <tag k="access" v="private"/>
+  <tag k="highway" v="service"/>
+  <tag k="service" v="driveway"/>
+ </way>
+ <way id="766831537" visible="true" version="1" changeset="80122240" timestamp="2020-01-27T06:27:35Z" user="asddiqu" uid="10208981">
+  <nd ref="7161775039"/>
+  <nd ref="7161775040"/>
+  <tag k="access" v="private"/>
+  <tag k="highway" v="service"/>
+  <tag k="service" v="driveway"/>
+ </way>
+ <way id="808257099" visible="true" version="1" changeset="85744027" timestamp="2020-05-26T05:38:33Z" user="bnilima" uid="10192122">
+  <nd ref="7557982036"/>
+  <nd ref="7557982037"/>
+  <nd ref="7557982038"/>
+  <nd ref="7557982039"/>
+  <nd ref="7557982040"/>
+  <tag k="access" v="private"/>
+  <tag k="highway" v="service"/>
+  <tag k="service" v="driveway"/>
+ </way>
+ <way id="808257100" visible="true" version="1" changeset="85744027" timestamp="2020-05-26T05:38:33Z" user="bnilima" uid="10192122">
+  <nd ref="7557982041"/>
+  <nd ref="7557982042"/>
+  <nd ref="7557982043"/>
+  <nd ref="7557982044"/>
+  <tag k="access" v="private"/>
+  <tag k="highway" v="service"/>
+  <tag k="service" v="driveway"/>
+ </way>
+ <way id="868583573" visible="true" version="1" changeset="93784396" timestamp="2020-11-09T09:05:12Z" user="vuliset" uid="11676212">
+  <nd ref="8096261847"/>
+  <nd ref="8096261848"/>
+  <nd ref="8096261849"/>
+  <nd ref="8096261850"/>
+  <nd ref="8096261851"/>
+  <nd ref="8096261852"/>
+  <nd ref="8096261853"/>
+  <nd ref="8096261854"/>
+  <nd ref="8096261855"/>
+  <tag k="highway" v="service"/>
+  <tag k="service" v="driveway"/>
+ </way>
+ <way id="921221200" visible="true" version="1" changeset="101556578" timestamp="2021-03-23T08:27:32Z" user="navuddin" uid="10173440">
+  <nd ref="8553017784"/>
+  <nd ref="8553017785"/>
+  <tag k="highway" v="service"/>
+  <tag k="service" v="driveway"/>
+ </way>
+ <way id="1211669660" visible="true" version="3" changeset="141915281" timestamp="2023-09-29T14:21:41Z" user="hagent" uid="18403953">
+  <nd ref="11227232765"/>
+  <nd ref="11227232762"/>
+  <nd ref="11227232763"/>
+  <nd ref="11227232764"/>
+  <nd ref="11227232766"/>
+  <nd ref="11227232767"/>
+  <nd ref="11227232768"/>
+  <nd ref="11227232769"/>
+  <nd ref="11227232770"/>
+  <nd ref="11227232771"/>
+  <nd ref="11227232772"/>
+  <nd ref="11227232773"/>
+  <nd ref="11227232774"/>
+  <nd ref="11227232775"/>
+  <nd ref="11227232776"/>
+  <nd ref="11227232777"/>
+  <nd ref="11227232778"/>
+  <nd ref="11227232779"/>
+  <nd ref="11227232780"/>
+  <nd ref="11227232781"/>
+  <nd ref="11227232782"/>
+  <nd ref="11227232783"/>
+  <nd ref="11227232784"/>
+  <nd ref="11227232785"/>
+  <nd ref="11227232786"/>
+  <nd ref="11227232787"/>
+  <nd ref="11227232788"/>
+  <nd ref="11227232789"/>
+  <nd ref="11227232790"/>
+  <nd ref="11227232791"/>
+  <nd ref="11227232792"/>
+  <nd ref="11227232793"/>
+  <nd ref="11227232794"/>
+  <nd ref="11227232795"/>
+  <nd ref="11227232796"/>
+  <nd ref="11227232797"/>
+  <nd ref="11227232798"/>
+  <nd ref="11227232799"/>
+  <nd ref="11227232800"/>
+  <nd ref="11227232801"/>
+  <nd ref="11227232802"/>
+  <nd ref="11227232803"/>
+  <nd ref="11227232806"/>
+  <nd ref="11227232807"/>
+  <nd ref="11227232804"/>
+  <nd ref="11227232805"/>
+  <nd ref="11227232808"/>
+  <nd ref="11227232809"/>
+  <nd ref="11227232810"/>
+  <nd ref="11227232811"/>
+  <nd ref="11227232812"/>
+  <nd ref="11227232813"/>
+  <nd ref="11227232814"/>
+  <nd ref="11227185299"/>
+  <nd ref="11227185300"/>
+  <nd ref="11227185301"/>
+  <nd ref="11227185302"/>
+  <nd ref="11227185303"/>
+  <nd ref="11227185304"/>
+  <nd ref="11227185305"/>
+  <nd ref="11227185306"/>
+  <nd ref="11227185307"/>
+  <nd ref="11227185308"/>
+  <nd ref="11227185309"/>
+  <nd ref="11227185310"/>
+  <nd ref="11227185311"/>
+  <nd ref="11227185312"/>
+  <nd ref="11227185313"/>
+  <nd ref="11227185314"/>
+  <nd ref="11227185315"/>
+  <nd ref="11227185317"/>
+  <nd ref="11227185316"/>
+  <nd ref="11227185318"/>
+  <nd ref="11227185319"/>
+  <nd ref="11227185320"/>
+  <nd ref="11227185321"/>
+  <nd ref="11227185322"/>
+  <nd ref="11227185323"/>
+  <nd ref="11227185324"/>
+  <nd ref="11227185325"/>
+  <nd ref="11227185326"/>
+  <nd ref="11227185327"/>
+  <nd ref="11227185328"/>
+  <nd ref="11227185329"/>
+  <nd ref="11227185330"/>
+  <nd ref="11227185331"/>
+  <nd ref="11227185332"/>
+  <nd ref="11227185333"/>
+  <nd ref="11227185334"/>
+  <nd ref="11227185335"/>
+  <nd ref="11225704379"/>
+  <nd ref="11225704378"/>
+  <nd ref="11225704377"/>
+  <nd ref="11225704376"/>
+  <nd ref="11225704375"/>
+  <nd ref="11225704374"/>
+  <nd ref="11225704373"/>
+  <nd ref="11225704372"/>
+  <nd ref="11225704371"/>
+  <nd ref="11225704370"/>
+  <nd ref="11225704369"/>
+  <nd ref="11225704368"/>
+  <nd ref="11225704367"/>
+  <nd ref="11225704366"/>
+  <nd ref="11225704380"/>
+  <nd ref="11225704365"/>
+  <nd ref="11225704364"/>
+  <nd ref="11225704363"/>
+  <nd ref="11225704362"/>
+  <nd ref="11225704361"/>
+  <nd ref="11225704360"/>
+  <nd ref="11225704359"/>
+  <nd ref="11225704358"/>
+  <nd ref="11225704357"/>
+  <nd ref="11225704356"/>
+  <nd ref="11225704355"/>
+  <nd ref="11225704354"/>
+  <nd ref="11225705549"/>
+  <nd ref="11225705548"/>
+  <nd ref="11225682488"/>
+  <tag k="cables" v="3"/>
+  <tag k="power" v="line"/>
+  <tag k="voltage" v="69000"/>
+ </way>
+</osm>

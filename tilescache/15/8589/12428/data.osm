@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="CGImap 0.9.2 (4091446 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <bounds minlat="39.8000960" minlon="-85.6384277" maxlat="39.8085360" maxlon="-85.6274414"/>
+ <node id="179753448" visible="true" version="2" changeset="3013794" timestamp="2009-11-02T05:59:10Z" user="woodpeck_fixbot" uid="147510" lat="39.8007010" lon="-85.6448060"/>
+ <node id="179760983" visible="true" version="3" changeset="28603845" timestamp="2015-02-04T04:50:55Z" user="Dr Centerline" uid="2245537" lat="39.8006345" lon="-85.6543897"/>
+ <node id="179761005" visible="true" version="2" changeset="3013794" timestamp="2009-11-02T06:01:51Z" user="woodpeck_fixbot" uid="147510" lat="39.8007400" lon="-85.6395940"/>
+ <node id="179761026" visible="true" version="2" changeset="3013794" timestamp="2009-11-02T06:01:51Z" user="woodpeck_fixbot" uid="147510" lat="39.8008010" lon="-85.6187310"/>
+ <node id="3181265377" visible="true" version="1" changeset="26715611" timestamp="2014-11-11T17:08:36Z" user="Dr Centerline" uid="2245537" lat="39.8006178" lon="-85.6568086"/>
+ <node id="6999993402" visible="true" version="1" changeset="77411125" timestamp="2019-11-22T07:34:27Z" user="rahuzod" uid="10173459" lat="39.8006451" lon="-85.6528640"/>
+ <node id="7078954629" visible="true" version="1" changeset="78750498" timestamp="2019-12-23T03:36:48Z" user="bhavant" uid="10208966" lat="39.8006325" lon="-85.6546861"/>
+ <node id="7558920741" visible="true" version="1" changeset="85759682" timestamp="2020-05-26T09:25:40Z" user="utkap" uid="10192112" lat="39.8007434" lon="-85.6384475"/>
+ <node id="8084756414" visible="true" version="1" changeset="93608503" timestamp="2020-11-05T14:13:16Z" user="leelamrs" uid="10240925" lat="39.8007540" lon="-85.6348300"/>
+ <node id="8084756415" visible="true" version="1" changeset="93608503" timestamp="2020-11-05T14:13:16Z" user="leelamrs" uid="10240925" lat="39.8011169" lon="-85.6347900"/>
+ <node id="8084756416" visible="true" version="1" changeset="93608503" timestamp="2020-11-05T14:13:16Z" user="leelamrs" uid="10240925" lat="39.8011315" lon="-85.6345160"/>
+ <node id="8084780617" visible="true" version="1" changeset="93608503" timestamp="2020-11-05T14:13:16Z" user="leelamrs" uid="10240925" lat="39.8010880" lon="-85.6345117"/>
+ <node id="8084780618" visible="true" version="1" changeset="93608503" timestamp="2020-11-05T14:13:16Z" user="leelamrs" uid="10240925" lat="39.8007549" lon="-85.6344986"/>
+ <node id="8510232929" visible="true" version="1" changeset="100907532" timestamp="2021-03-12T12:11:02Z" user="pppadal" uid="10209001" lat="39.8007915" lon="-85.6219730"/>
+ <way id="312273184" visible="true" version="10" changeset="100907532" timestamp="2021-03-12T12:11:02Z" user="pppadal" uid="10209001">
+  <nd ref="3181265377"/>
+  <nd ref="7078954629"/>
+  <nd ref="179760983"/>
+  <nd ref="6999993402"/>
+  <nd ref="179753448"/>
+  <nd ref="179761005"/>
+  <nd ref="7558920741"/>
+  <nd ref="8084756414"/>
+  <nd ref="8084780618"/>
+  <nd ref="8510232929"/>
+  <nd ref="179761026"/>
+  <tag k="highway" v="unclassified"/>
+  <tag k="name" v="East 100 N"/>
+  <tag k="name_1" v="100N"/>
+  <tag k="name_2" v="East 100 North"/>
+  <tag k="tiger:cfcc" v="A41"/>
+  <tag k="tiger:county" v="Hancock, IN"/>
+  <tag k="tiger:name_base" v="100N"/>
+  <tag k="tiger:name_base_1" v="100N"/>
+  <tag k="tiger:name_base_2" v="100"/>
+  <tag k="tiger:name_direction_prefix" v="E"/>
+  <tag k="tiger:name_direction_prefix_2" v="E"/>
+  <tag k="tiger:name_direction_suffix_2" v="N"/>
+  <tag k="tiger:reviewed" v="no"/>
+  <tag k="tiger:zip_left" v="46140"/>
+  <tag k="tiger:zip_right" v="46140"/>
+ </way>
+ <way id="867320172" visible="true" version="1" changeset="93608503" timestamp="2020-11-05T14:13:16Z" user="leelamrs" uid="10240925">
+  <nd ref="8084756414"/>
+  <nd ref="8084756415"/>
+  <tag k="highway" v="service"/>
+  <tag k="service" v="driveway"/>
+ </way>
+ <way id="867320173" visible="true" version="1" changeset="93608503" timestamp="2020-11-05T14:13:16Z" user="leelamrs" uid="10240925">
+  <nd ref="8084756415"/>
+  <nd ref="8084756416"/>
+  <nd ref="8084780617"/>
+  <nd ref="8084780618"/>
+  <tag k="highway" v="service"/>
+  <tag k="service" v="driveway"/>
+ </way>
+</osm>

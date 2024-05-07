@@ -549,7 +549,3 @@ class Utilisateur:
         else: 
             return 0
 
-
-data = pd.read_excel("Bronx_sans_Na.xlsx")
-te = Utilisateur.risque_rue(data, "BRONXWOOD AVENUE", "foot")
-print(te)

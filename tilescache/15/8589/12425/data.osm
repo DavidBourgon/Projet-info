@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="CGImap 0.9.2 (3943588 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <bounds minlat="39.8254131" minlon="-85.6384277" maxlat="39.8338501" maxlon="-85.6274414"/>
+ <node id="179751073" visible="true" version="2" changeset="3013794" timestamp="2009-11-02T05:58:09Z" user="woodpeck_fixbot" uid="147510" lat="39.8294260" lon="-85.6896380"/>
+ <node id="179751101" visible="true" version="2" changeset="3013794" timestamp="2009-11-02T05:58:09Z" user="woodpeck_fixbot" uid="147510" lat="39.8296310" lon="-85.6738770"/>
+ <node id="179751126" visible="true" version="4" changeset="28267441" timestamp="2015-01-20T02:30:25Z" user="Dr Centerline" uid="2245537" lat="39.8297804" lon="-85.6546436"/>
+ <node id="179751143" visible="true" version="3" changeset="26581147" timestamp="2014-11-05T22:25:30Z" user="Dr Centerline" uid="2245537" lat="39.8298619" lon="-85.6450231"/>
+ <node id="179751171" visible="true" version="3" changeset="101544507" timestamp="2021-03-23T05:38:08Z" user="pppadal" uid="10209001" lat="39.8299711" lon="-85.6259596"/>
+ <node id="6639687092" visible="true" version="1" changeset="72541884" timestamp="2019-07-23T07:09:17Z" user="ntanniru" uid="9196100" lat="39.8295693" lon="-85.6786218"/>
+ <node id="6639687099" visible="true" version="1" changeset="72541884" timestamp="2019-07-23T07:09:17Z" user="ntanniru" uid="9196100" lat="39.8295635" lon="-85.6790683"/>
+ <node id="6670102038" visible="true" version="1" changeset="72898308" timestamp="2019-08-01T13:11:22Z" user="utkshukl" uid="10159529" lat="39.8297051" lon="-85.6643376"/>
+ <node id="6670102044" visible="true" version="1" changeset="72898308" timestamp="2019-08-01T13:11:22Z" user="utkshukl" uid="10159529" lat="39.8297283" lon="-85.6613518"/>
+ <node id="6986481270" visible="true" version="2" changeset="101546792" timestamp="2021-03-23T06:11:58Z" user="pppadal" uid="10209001" lat="39.8298300" lon="-85.6487763"/>
+ <node id="8105433705" visible="true" version="1" changeset="93890374" timestamp="2020-11-11T01:42:41Z" user="nampeb" uid="11676225" lat="39.8299443" lon="-85.6299247"/>
+ <node id="8105433706" visible="true" version="1" changeset="93890374" timestamp="2020-11-11T01:42:41Z" user="nampeb" uid="11676225" lat="39.8296774" lon="-85.6299189"/>
+ <node id="8105433707" visible="true" version="1" changeset="93890374" timestamp="2020-11-11T01:42:41Z" user="nampeb" uid="11676225" lat="39.8291719" lon="-85.6299847"/>
+ <node id="8105433708" visible="true" version="1" changeset="93890374" timestamp="2020-11-11T01:42:41Z" user="nampeb" uid="11676225" lat="39.8289682" lon="-85.6300467"/>
+ <node id="8105433709" visible="true" version="1" changeset="93890374" timestamp="2020-11-11T01:42:41Z" user="nampeb" uid="11676225" lat="39.8289072" lon="-85.6300332"/>
+ <node id="8552499248" visible="true" version="1" changeset="101547777" timestamp="2021-03-23T06:26:10Z" user="pppadal" uid="10209001" lat="39.8289149" lon="-85.6301538"/>
+ <node id="8552499249" visible="true" version="1" changeset="101547777" timestamp="2021-03-23T06:26:10Z" user="pppadal" uid="10209001" lat="39.8288436" lon="-85.6302247"/>
+ <node id="8552499250" visible="true" version="1" changeset="101547777" timestamp="2021-03-23T06:26:10Z" user="pppadal" uid="10209001" lat="39.8287168" lon="-85.6303589"/>
+ <node id="8552499251" visible="true" version="1" changeset="101547777" timestamp="2021-03-23T06:26:10Z" user="pppadal" uid="10209001" lat="39.8285643" lon="-85.6306117"/>
+ <node id="8552499252" visible="true" version="1" changeset="101547777" timestamp="2021-03-23T06:26:10Z" user="pppadal" uid="10209001" lat="39.8285266" lon="-85.6306645"/>
+ <node id="8552499253" visible="true" version="1" changeset="101547777" timestamp="2021-03-23T06:26:10Z" user="pppadal" uid="10209001" lat="39.8289343" lon="-85.6301271"/>
+ <node id="8655858870" visible="true" version="1" changeset="103420048" timestamp="2021-04-22T14:35:22Z" user="rojganes" uid="9218359" lat="39.8295015" lon="-85.6838376"/>
+ <node id="8987907684" visible="true" version="1" changeset="109310266" timestamp="2021-08-07T13:13:08Z" user="ashradha" uid="10271429" lat="39.8298674" lon="-85.6440235"/>
+ <way id="17358001" visible="true" version="14" changeset="109310266" timestamp="2021-08-07T13:13:08Z" user="ashradha" uid="10271429">
+  <nd ref="179751073"/>
+  <nd ref="8655858870"/>
+  <nd ref="6639687099"/>
+  <nd ref="6639687092"/>
+  <nd ref="179751101"/>
+  <nd ref="6670102038"/>
+  <nd ref="6670102044"/>
+  <nd ref="179751126"/>
+  <nd ref="6986481270"/>
+  <nd ref="179751143"/>
+  <nd ref="8987907684"/>
+  <nd ref="8105433705"/>
+  <nd ref="179751171"/>
+  <tag k="highway" v="unclassified"/>
+  <tag k="name" v="East 300 N"/>
+  <tag k="name_1" v="300N"/>
+  <tag k="name_2" v="East 300 North"/>
+  <tag k="tiger:cfcc" v="A41"/>
+  <tag k="tiger:county" v="Hancock, IN"/>
+  <tag k="tiger:name_base" v="300N"/>
+  <tag k="tiger:name_base_1" v="300N"/>
+  <tag k="tiger:name_base_2" v="300"/>
+  <tag k="tiger:name_direction_prefix" v="E"/>
+  <tag k="tiger:name_direction_prefix_2" v="E"/>
+  <tag k="tiger:name_direction_suffix_2" v="N"/>
+  <tag k="tiger:reviewed" v="no"/>
+  <tag k="tiger:zip_left" v="46140"/>
+  <tag k="tiger:zip_right" v="46140"/>
+ </way>
+ <way id="869953107" visible="true" version="1" changeset="93890374" timestamp="2020-11-11T01:42:41Z" user="nampeb" uid="11676225">
+  <nd ref="8105433705"/>
+  <nd ref="8105433706"/>
+  <nd ref="8105433707"/>
+  <nd ref="8105433708"/>
+  <nd ref="8105433709"/>
+  <tag k="highway" v="service"/>
+  <tag k="service" v="driveway"/>
+ </way>
+ <way id="921162970" visible="true" version="1" changeset="101547777" timestamp="2021-03-23T06:26:10Z" user="pppadal" uid="10209001">
+  <nd ref="8105433708"/>
+  <nd ref="8552499253"/>
+  <nd ref="8552499248"/>
+  <nd ref="8552499249"/>
+  <nd ref="8552499250"/>
+  <nd ref="8552499251"/>
+  <nd ref="8552499252"/>
+  <tag k="highway" v="service"/>
+  <tag k="service" v="driveway"/>
+ </way>
+</osm>
