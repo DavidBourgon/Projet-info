@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="CGImap 0.9.2 (3968073 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <bounds minlat="40.8636797" minlon="-72.6855469" maxlat="40.8719878" maxlon="-72.6745605"/>
+ <node id="213367439" visible="true" version="2" changeset="3426756" timestamp="2009-12-22T12:33:06Z" user="woodpeck_fixbot" uid="147510" lat="40.8656180" lon="-72.6796800"/>
+ <node id="213401324" visible="true" version="2" changeset="3426756" timestamp="2009-12-22T12:39:39Z" user="woodpeck_fixbot" uid="147510" lat="40.8655570" lon="-72.6787790"/>
+ <node id="213573090" visible="true" version="2" changeset="3426756" timestamp="2009-12-22T13:16:33Z" user="woodpeck_fixbot" uid="147510" lat="40.8663940" lon="-72.6936720"/>
+ <node id="213722476" visible="true" version="2" changeset="3427192" timestamp="2009-12-22T13:46:41Z" user="woodpeck_fixbot" uid="147510" lat="40.8651820" lon="-72.6761480"/>
+ <node id="213839793" visible="true" version="2" changeset="2219438" timestamp="2009-08-21T07:52:40Z" user="woodpeck_fixbot" uid="147510" lat="40.8661030" lon="-72.6877540"/>
+ <node id="213938178" visible="true" version="2" changeset="2718794" timestamp="2009-10-03T02:37:40Z" user="woodpeck_fixbot" uid="147510" lat="40.8657860" lon="-72.6834090"/>
+ <node id="214057192" visible="true" version="2" changeset="3427676" timestamp="2009-12-22T14:39:04Z" user="woodpeck_fixbot" uid="147510" lat="40.8651880" lon="-72.6752930"/>
+ <node id="214057199" visible="true" version="2" changeset="2718794" timestamp="2009-10-03T02:41:45Z" user="woodpeck_fixbot" uid="147510" lat="40.8651890" lon="-72.6745550"/>
+ <node id="214057209" visible="true" version="2" changeset="3427676" timestamp="2009-12-22T14:39:04Z" user="woodpeck_fixbot" uid="147510" lat="40.8656500" lon="-72.6801780"/>
+ <node id="214057213" visible="true" version="2" changeset="3156309" timestamp="2009-11-19T01:44:01Z" user="woodpeck_fixbot" uid="147510" lat="40.8655760" lon="-72.6790800"/>
+ <node id="214057217" visible="true" version="2" changeset="3427676" timestamp="2009-12-22T14:39:04Z" user="woodpeck_fixbot" uid="147510" lat="40.8654720" lon="-72.6774780"/>
+ <node id="214057218" visible="true" version="2" changeset="3427676" timestamp="2009-12-22T14:39:04Z" user="woodpeck_fixbot" uid="147510" lat="40.8654640" lon="-72.6773390"/>
+ <node id="214057222" visible="true" version="2" changeset="2219438" timestamp="2009-08-21T07:57:45Z" user="woodpeck_fixbot" uid="147510" lat="40.8655460" lon="-72.6773430"/>
+ <node id="214078801" visible="true" version="2" changeset="3427676" timestamp="2009-12-22T14:42:39Z" user="woodpeck_fixbot" uid="147510" lat="40.8662990" lon="-72.6926650"/>
+ <node id="635724239" visible="true" version="1" changeset="3846299" timestamp="2010-02-11T08:27:48Z" user="42429" uid="42429" lat="40.8654280" lon="-72.6769895"/>
+ <node id="635724241" visible="true" version="1" changeset="3846299" timestamp="2010-02-11T08:27:48Z" user="42429" uid="42429" lat="40.8652495" lon="-72.6768178"/>
+ <node id="4429012182" visible="true" version="1" changeset="42605929" timestamp="2016-10-03T13:51:46Z" user="MCM7" uid="2421207" lat="40.8662098" lon="-72.6904296"/>
+ <node id="4681030386" visible="true" version="1" changeset="46010363" timestamp="2017-02-12T01:35:38Z" user="TheBestIdea" uid="298513" lat="40.8661954" lon="-72.6900691"/>
+ <way id="20233873" visible="true" version="3" changeset="14420872" timestamp="2012-12-27T03:19:53Z" user="bot-mode" uid="451693">
+  <nd ref="213722476"/>
+  <nd ref="214057192"/>
+  <nd ref="214057199"/>
+  <tag k="highway" v="track"/>
+  <tag k="name" v="Middle Line Highway"/>
+  <tag k="tiger:cfcc" v="A41"/>
+  <tag k="tiger:county" v="Suffolk, NY"/>
+  <tag k="tiger:name_base" v="Middle Line"/>
+  <tag k="tiger:name_type" v="Hwy"/>
+  <tag k="tiger:reviewed" v="no"/>
+ </way>
+ <way id="20233875" visible="true" version="6" changeset="46010363" timestamp="2017-02-12T01:35:38Z" user="TheBestIdea" uid="298513">
+  <nd ref="213573090"/>
+  <nd ref="214078801"/>
+  <nd ref="4429012182"/>
+  <nd ref="4681030386"/>
+  <nd ref="213839793"/>
+  <nd ref="213938178"/>
+  <nd ref="214057209"/>
+  <nd ref="213367439"/>
+  <nd ref="214057213"/>
+  <nd ref="213401324"/>
+  <nd ref="214057217"/>
+  <nd ref="635724239"/>
+  <nd ref="635724241"/>
+  <nd ref="213722476"/>
+  <tag k="highway" v="track"/>
+  <tag k="name" v="Middle Line Highway"/>
+  <tag k="tiger:cfcc" v="A41"/>
+  <tag k="tiger:county" v="Suffolk, NY"/>
+  <tag k="tiger:name_base" v="Middle Line"/>
+  <tag k="tiger:name_type" v="Hwy"/>
+  <tag k="tiger:reviewed" v="no"/>
+ </way>
+ <way id="50055432" visible="true" version="2" changeset="14420872" timestamp="2012-12-27T03:20:30Z" user="bot-mode" uid="451693">
+  <nd ref="214057217"/>
+  <nd ref="214057218"/>
+  <nd ref="214057222"/>
+  <tag k="highway" v="track"/>
+  <tag k="name" v="Middle Line Highway"/>
+  <tag k="tiger:cfcc" v="A41"/>
+  <tag k="tiger:county" v="Suffolk, NY"/>
+  <tag k="tiger:name_base" v="Middle Line"/>
+  <tag k="tiger:name_type" v="Hwy"/>
+  <tag k="tiger:reviewed" v="no"/>
+ </way>
+</osm>

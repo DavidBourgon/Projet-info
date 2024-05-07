@@ -4,7 +4,7 @@ from pyroutelib3 import Router
 import folium
 import pandas as pd
 import openpyxl
-
+import time
 class SecteurPrive:
     """ Secteur Privé.
 
@@ -82,7 +82,7 @@ class SecteurPrive:
                 rues.add(nom_rue)
         return list(rues)
 
-    def __donner_prix(self, data, adresse_depart, adresse_arrivee,
+    def donner_prix(self, data, adresse_depart, adresse_arrivee,
                       categorie, type_vehicule=None):
         """
         Détermine le prix qu'un client va payer en fonction de comment
@@ -113,19 +113,16 @@ class SecteurPrive:
             Prix que va devoir payer le client chez cet assureur.
 
         """
-
         rues = self.__decompose_trajet(adresse_depart, adresse_arrivee,
                                        categorie)
-
-        liste_risque = []
-        for k in rues:
-            liste_risque.append(Utilisateur.risque_rue(data, k.upper(), categorie))
+        liste_risque = [Utilisateur.risque_rue(data, rue.upper(), categorie) for rue in rues]
         liste_risque.sort()
         if len(liste_risque) == 1 :
+            fin = time.time()
             return liste_risque[0]
-        else:  
+        else: 
             return (200 + (400 * ((liste_risque[-1] + liste_risque[-2])/200))) * (1 + self.marge)
-    
+        
     def __repr__(self, data, adresse_depart, adresse_arrivee,
                  categorie, type_vehicule=None):
         """
@@ -137,7 +134,4 @@ class SecteurPrive:
         return (f"Pour vous assurer sur votre trajet quotidien, auprès de {self.nom_assureur}, " f"vous devez vous acquitter de {self.__donner_prix(data, adresse_depart, adresse_arrivee, categorie, type_vehicule=None)} €")
 
 
-data = pd.read_excel("BdD_Bronx.xlsx")
-Groupama = SecteurPrive("Groupama", 0.5)
-print(Groupama.__repr__(data, "SOUTH OAK DRIVE","BRONXWOOD AVENUE","foot"))
 

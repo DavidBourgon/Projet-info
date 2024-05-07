@@ -506,46 +506,39 @@ class Utilisateur:
             return 0
 
     def risque_voiture(data, street, voiture):
-        nbr_acc = 0
-        if voiture == "car" and 'Sedan' in data['VEHICLE.TYPE.CODE.1'].values :         
-            if street in data[data["CROSS.STREET.NAME"].str.contains(street) | data["ON.STREET.NAME"].str.contains(street) | data["OFF.STREET.NAME"].str.contains(street)]:
-            # Filtrer les données pour la rue spécifique
-            # et le type de véhicule spécifique
-                test = (data["VEHICLE.TYPE.CODE.1"] == 'Sedan')
-                df_filtre_on = data[(data['ON.STREET.NAME'] == rue) & test]
-                df_filtre_off = data[(data['OFF.STREET.NAME'] == rue) & test]
-                df_filtre_cross = data[(data['CROSS.STREET.NAME'] == rue) & test]
-            # Compter le nombre d'accidents après le filtrage
-                nbr_acc = len(df_filtre_on) + len(df_filtre_off) + len(df_filtre_cross)
-                if nbr_acc == 0:
-                    return 0
-                if nbr_acc < 5 and nbr_acc > 0:
-                    return 0.1
-                if nbr_acc < 8 and nbr_acc >= 5:
-                    return 0.2
-                if nbr_acc < 10 and nbr_acc >= 8:
-                    return 0.3
-                else:
-                    return 0.4
+        if voiture != "car" or 'Sedan' not in data['VEHICLE.TYPE.CODE.1'].values:
+            return 0
+    
+    # Filtrer les données pour la rue spécifique et le type de véhicule spécifique
+        df_filtre = data[(data["ON.STREET.NAME"].str.contains(street) |
+                          data["OFF.STREET.NAME"].str.contains(street) |
+                          data["CROSS.STREET.NAME"].str.contains(street)) &
+                         (data["VEHICLE.TYPE.CODE.1"] == 'Sedan')]
+    
+        nbr_acc = len(df_filtre)
+    
+        if nbr_acc == 0:
+            return 0
+        elif nbr_acc < 5:
+            return 0.1
+        elif nbr_acc < 8:
+            return 0.2
+        elif nbr_acc < 10:
+            return 0.3
         else:
-            return nbr_acc
+            return 0.4
 
     def type_vehicule():
         return ['Sedan', 'Station Wagon/Sport Utility Vehicle', 'Taxi', 'Box Truck', 'Ambulance', 'Dump', 'E-Bike', 'Motorcycle', 'Bus', 'FDNY Ambul', 'Pick-up Truck', 'E-Scooter', 'Flat Rack', 'UNK', 'Tractor Truck Diesel', 'Flat Bed', 'GARBAGE TR', 'Bike', 'Garbage or Refuse', 'Van', 'SCHOOL BUS', 'Motorscooter', 'Moped', '3-Door', 'MOPED', 'Chassis Cab', 'Tow Truck / Wrecker', 'Convertible', 'MTA', 'TRAILER', 'AMBULANCE', 'E-bike', 'FIRE TRUCK', 'Refrigerated Van', 'MOTOR SCOO', 'Tractor Truck Gasoline', 'Carry All', 'ambulance', 'Motorbike', 'PICK UP', '4 dr sedan', 'PK', 'Postal ser', 'SANMEN COU']
     
-    def risque_rue(data, rue, categorie) : 
+    def risque_rue(data, rue, categorie):
         if categorie == 'car' or categorie in Utilisateur.type_vehicule():
             risque = Utilisateur.risque_voiture(data, rue, categorie)
-            if risque == None:
-                    return 0
-            if risque != None:
-                return risque*100
-        if categorie == "foot" or categorie == "cycle":
+        elif categorie == "foot" or categorie == "cycle":
             risque = Utilisateur.risque_rue_pieton_velo(data, rue, categorie)
-            if risque == None:
-                return 0
-            if risque != None:
-                return risque*100
-        else: 
-            return 0
-
+        else:
+            return ["Pour la rue :", rue, "il y a un rique (en %) de :", 0]    
+        if risque is None:
+            return ["Pour la rue :", rue, "il y a un rique (en %) de :", 0]
+        else:
+            return ["Pour la rue :", rue, "il y a un rique (en %) de :", risque*100]
