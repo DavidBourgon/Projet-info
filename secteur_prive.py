@@ -109,23 +109,19 @@ class SecteurPrive:
             Prix que va devoir payer le client chez cet assureur.
 
         """
-        if type_vehicule is not None:
-            data_par_type = Utilisateur.\
-                filtrer_par_modalite_variable(data, type_vehicule,
-                                              "VEHICLE.TYPE.CODE.1")
-        else:
-            data_par_type = data
 
         rues = self.__decompose_trajet(adresse_depart, adresse_arrivee,
                                        categorie)
 
-        ind_risque = 0
-        for k in range(len(rues)):
-            ind_risque += Utilisateur.risque_rue(data_par_type,
-                                                 rues[k],
-                                                 categorie)[-1]
-        prix = (200 + (400 * (ind_risque/len(rues)))) * (1 + self.marge)
+        liste_risque = []
+        for k in rues:
+            liste_risque.append(Utilisateur.risque_rue(data, rues, categorie)[-1])
+        liste_risque.sort()
+        risque = ( liste_risque[-1] + liste_risque[-2])/2 
+        prix = (200 + (400 * risque)) * (1 + self.marge)
         return prix
+
+
 
     def __repr__(self, data, adresse_depart, adresse_arrivee,
                  categorie, type_vehicule=None):
@@ -135,16 +131,12 @@ class SecteurPrive:
         lui indiquant combien il doit payer.
 
         """
-        return (f"Pour vous assurer sur votre trajet quotidien, auprès de "
-                f"{self.nom_assureur} "
-                f"vous devez vous acquitter de "
-                f"{self.__donner_prix(data, adresse_depart,
-                                      adresse_arrivee, categorie,
-                                      type_vehicule=None)} €")
+        return (f"Pour vous assurer sur votre trajet quotidien, auprès de {self.nom_assureur}, " f"vous devez vous acquitter de {self.__donner_prix(data, adresse_depart, adresse_arrivee, categorie, type_vehicule=None)} €")
 
-data = pd.read_excel("Bronx_sans_Na.xlsx")
+
+data = pd.read_excel("BdD_Bronx.xlsx")
 Groupama = SecteurPrive("Groupama", 0.5)
 
-print(Groupama.__repr__(data, "1 E 161st St, Bronx, NY 10451, États-Unis",
+print(Groupama.__repr__(data, "1994      BRUCKNER BOULEVARD",
                         "111 E 164th St, Bronx, NY 10452, États-Unis",
                         "car"))
