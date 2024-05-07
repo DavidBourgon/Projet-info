@@ -475,15 +475,15 @@ class Utilisateur:
                 pd.DataFrame(list(nombre_tues_cyclistes_par_rue.items()),
                              columns=["Rue", "Nombre tues cyclistes"])
             df_result = pd.merge(df_cyclistes, df_tues_cyclistes,
-                             on="Rue", how="inner")
+                                 on="Rue", how="inner")
         
         return df_result
 
     def risque_rue_pieton_velo(data, rue, categorie):
         df_b_m = Utilisateur.df_blesse_mort_rue(data, categorie)
+        df_b_m.dropna(subset=["Rue"], inplace=True)
         if rue in df_b_m["Rue"].values:
-            df_rue = df_b_m[df_b_m["Rue"] == rue]
-        
+            df_rue = df_b_m[df_b_m["Rue"].str.contains(rue)]    
             if categorie == "foot":
                 nombre_total_pietons_rue_specifique = \
                     df_rue['Nombre blesses pietons'].sum() + df_rue[
@@ -505,13 +505,13 @@ class Utilisateur:
         else:
             return 0
 
-    def risque_voiture(data, rue, voiture):
+    def risque_voiture(data, street, voiture):
         nbr_acc = 0
-        if voiture in data['VEHICLE.TYPE.CODE.1'].values : 
-            if rue in data["CROSS.STREET.NAME"].values or rue in data["ON.STREET.NAME"].values or rue in data["OFF.STREET.NAME"].values:
+        if voiture == "car" and 'Sedan' in data['VEHICLE.TYPE.CODE.1'].values :         
+            if street in data[data["CROSS.STREET.NAME"].str.contains(street) | data["ON.STREET.NAME"].str.contains(street) | data["OFF.STREET.NAME"].str.contains(street)]:
             # Filtrer les données pour la rue spécifique
             # et le type de véhicule spécifique
-                test = (data["VEHICLE.TYPE.CODE.1"] == voiture)
+                test = (data["VEHICLE.TYPE.CODE.1"] == 'Sedan')
                 df_filtre_on = data[(data['ON.STREET.NAME'] == rue) & test]
                 df_filtre_off = data[(data['OFF.STREET.NAME'] == rue) & test]
                 df_filtre_cross = data[(data['CROSS.STREET.NAME'] == rue) & test]
@@ -530,19 +530,26 @@ class Utilisateur:
         else:
             return nbr_acc
 
-    def risque_rue(data, street, categorie) : 
-        if categorie == "car" :
-            risque = Utilisateur.risque_voiture(data, street, "Sedan")
-        else : 
-            risque = Utilisateur.risque_rue_pieton_velo(data, street, categorie)
-        if risque == None :
+    def type_vehicule():
+        return ['Sedan', 'Station Wagon/Sport Utility Vehicle', 'Taxi', 'Box Truck', 'Ambulance', 'Dump', 'E-Bike', 'Motorcycle', 'Bus', 'FDNY Ambul', 'Pick-up Truck', 'E-Scooter', 'Flat Rack', 'UNK', 'Tractor Truck Diesel', 'Flat Bed', 'GARBAGE TR', 'Bike', 'Garbage or Refuse', 'Van', 'SCHOOL BUS', 'Motorscooter', 'Moped', '3-Door', 'MOPED', 'Chassis Cab', 'Tow Truck / Wrecker', 'Convertible', 'MTA', 'TRAILER', 'AMBULANCE', 'E-bike', 'FIRE TRUCK', 'Refrigerated Van', 'MOTOR SCOO', 'Tractor Truck Gasoline', 'Carry All', 'ambulance', 'Motorbike', 'PICK UP', '4 dr sedan', 'PK', 'Postal ser', 'SANMEN COU']
+    
+    def risque_rue(data, rue, categorie) : 
+        if categorie == 'car' or categorie in Utilisateur.type_vehicule():
+            risque = Utilisateur.risque_voiture(data, rue, categorie)
+            if risque == None:
+                    return 0
+            if risque != None:
+                return risque*100
+        if categorie == "foot" or categorie == "cycle":
+            risque = Utilisateur.risque_rue_pieton_velo(data, rue, categorie)
+            if risque == None:
+                return 0
+            if risque != None:
+                return risque*100
+        else: 
             return 0
-        else : 
-            return risque*100
 
 
-data = pd.read_csv("bronx.csv", sep=";")
-risk_foot = Utilisateur.risque_rue_pieton_velo(data, "1994      BRUCKNER BOULEVARD", "foot")
-risk = Utilisateur.risque_rue(data, "1368      MOUNT HOPE PLACE", "cycle")
-print(risk_foot)
-print(risk)
+data = pd.read_excel("Bronx_sans_Na.xlsx")
+te = Utilisateur.risque_rue(data, "BRONXWOOD AVENUE", "foot")
+print(te)

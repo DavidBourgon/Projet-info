@@ -121,11 +121,7 @@ class SecteurPrive:
         for k in rues:
             liste_risque.append(Utilisateur.risque_rue(data, k, categorie))
         liste_risque.sort()
-        risque = ( liste_risque[-1] + liste_risque[-2])/2 
-        prix = (200 + (400 * risque)) * (1 + self.marge)
-        return prix
-
-
+        return liste_risque
 
     def __repr__(self, data, adresse_depart, adresse_arrivee,
                  categorie, type_vehicule=None):
@@ -138,9 +134,8 @@ class SecteurPrive:
         return (f"Pour vous assurer sur votre trajet quotidien, auprès de {self.nom_assureur}, " f"vous devez vous acquitter de {self.__donner_prix(data, adresse_depart, adresse_arrivee, categorie, type_vehicule=None)} €")
 
 
-data = pd.read_excel("BdD_Bronx.xlsx")
-Groupama = SecteurPrive("Groupama", 0.5)
+#data = pd.read_excel("Bronx_sans_Na.xlsx")
+#Groupama = SecteurPrive("Groupama", 0.5)
 
-print(Groupama.__repr__(data, "1994      BRUCKNER BOULEVARD",
-                        "111 E 164th St, Bronx, NY 10452, États-Unis",
-                        "foot"))
+#print(Groupama.__repr__(data, "1994 BRUCKNER BOULEVARD","1950 BLACKROCK AVENUE","foot"))
+
