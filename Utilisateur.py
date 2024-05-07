@@ -519,14 +519,18 @@ class Utilisateur:
     
         if nbr_acc == 0:
             return 0
-        elif nbr_acc < 5:
-            return 0.1
-        elif nbr_acc < 8:
-            return 0.2
-        elif nbr_acc < 10:
+        elif nbr_acc < 20:
             return 0.3
-        else:
+        elif nbr_acc < 40:
             return 0.4
+        elif nbr_acc < 60:
+            return 0.5
+        elif nbr_acc < 80:
+            return 0.7
+        elif nbr_acc < 100:
+            return 0.9
+        else:
+            return 1
 
     def type_vehicule():
         return ['Sedan', 'Station Wagon/Sport Utility Vehicle', 'Taxi', 'Box Truck', 'Ambulance', 'Dump', 'E-Bike', 'Motorcycle', 'Bus', 'FDNY Ambul', 'Pick-up Truck', 'E-Scooter', 'Flat Rack', 'UNK', 'Tractor Truck Diesel', 'Flat Bed', 'GARBAGE TR', 'Bike', 'Garbage or Refuse', 'Van', 'SCHOOL BUS', 'Motorscooter', 'Moped', '3-Door', 'MOPED', 'Chassis Cab', 'Tow Truck / Wrecker', 'Convertible', 'MTA', 'TRAILER', 'AMBULANCE', 'E-bike', 'FIRE TRUCK', 'Refrigerated Van', 'MOTOR SCOO', 'Tractor Truck Gasoline', 'Carry All', 'ambulance', 'Motorbike', 'PICK UP', '4 dr sedan', 'PK', 'Postal ser', 'SANMEN COU']
@@ -535,10 +539,11 @@ class Utilisateur:
         if categorie == 'car' or categorie in Utilisateur.type_vehicule():
             risque = Utilisateur.risque_voiture(data, rue, categorie)
         elif categorie == "foot" or categorie == "cycle":
-            risque = Utilisateur.risque_rue_pieton_velo(data, rue, categorie)
-        else:
-            return ["Pour la rue :", rue, "il y a un rique (en %) de :", 0]    
+            risque = Utilisateur.risque_rue_pieton_velo(data, rue, categorie)  
         if risque is None:
             return ["Pour la rue :", rue, "il y a un rique (en %) de :", 0]
         else:
+            if risque > 1:
+                risque=1
             return ["Pour la rue :", rue, "il y a un rique (en %) de :", risque*100]
+
