@@ -13,18 +13,27 @@
             text-align: center; /* Centrage du texte */
             align-self: flex-start; /* Alignement au début du conteneur parent */
         }
+        .arriere{background-color: #f0f0f0; /* Couleur de fond de la page */
+            background-image: url('photo site/bronx_image.jpg'); /* Image de fond */
+            background-size: cover; /* Redimensionne l'image pour couvrir toute la surface */
+            background-position: center; /* Centre l'image de fond */}
         .content {
             display: flex; /* Utilise Flexbox */
             flex-direction: column; /* Empile les éléments verticalement */
             align-items: center; /* Centre les éléments horizontalement */
             min-height: 100vh; /* Hauteur minimale de l'écran */
             justify-content: center; /* Centre les éléments verticalement */
-            background-color: #f0f0f0; /* Couleur de fond de la page */
-            background-image: url('photo site/bronx_image.jpg'); /* Image de fond */
-            background-size: cover; /* Redimensionne l'image pour couvrir toute la surface */
-            background-position: center; /* Centre l'image de fond */
             font-family: Arial, sans-serif; /* Police de caractère */
             padding: 20px; /* Espacement intérieur */
+        }
+        .bas-de-page{
+            display: flex; 
+            justify-content: flex-end;
+            align-items: flex-end;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .lien-telechargement {
+            margin-left: 20px; 
         }
         .banner {
             background-color: rgba(255, 255, 255, 0.7); /* Couleur de fond */
@@ -36,16 +45,16 @@
             margin-top: 20px; /* Marge vers le haut */
         }
         .address-input {
-            display: none; 
+            display: none;
         }
         .prive-input {
-            display: none; 
+            display: none;
         }
         .choix-input {
-            display: none; 
+            display: none;
         }
         .rue-input{
-            display: none; 
+            display: none;
         }
         pre {
             background-color: #f4f4f4;
@@ -59,110 +68,120 @@
     <h1>Agence de renseignement sur les dangers de circulation dans le Bronx</h1>
 </div>
 <body>
-    <div class="content">
-        <div class="banner">
-            <h1>Quel profil d'utilisateur êtes-vous ?</h1>
-            <p>Sélectionnez parmi les propositions suivantes :</p>
-            <select id="profil" onchange="toggleInputs(); togglePriveInputs();">
-                <option value="">Sélectionnez un profil</option>
-                <option value="secteur_prive">Secteur Privé</option>
-                <option value="secteur_public">Secteur Public</option>
-                <option value="particulier">Particulier</option>
-            </select>
-            <div class="prive-input" id="prive-inputs">
-                <div id="nom">
-                    <label for="name">Nom :</label>
-                    <input type="text" id="nom" name="name">
-                </div>
-                <div id="marge">
-                    <label for="marge">Marge :</label>
-                    <input type="text" id="marge" name="marge">
-                </div>
-                <label for="vehicle"> Véhicule :</label>
-                <select id="vehicle_assuré" name="vehicle_assuré">
-                    <option value="">Sélectionnez le moyen de transport de votre client</option>
-                    <option value="foot">À pied</option>
-                    <option value="cycle">À vélo</option>
-                    <option value="Sedan">Sedan</option>
-                    <option value="Station Wagon/Sport Utility Vehicle">Station Wagon/Sport Utility Vehicle</option>
-                    <option value="Taxi">Taxi</option>
-                    <option value="Box Truck">Box Truck</option>
-                    <option value="Ambulance">Ambulance</option>
-                    <option value="Dump">Dump</option>
-                    <option value="E-Bike">E-Bike</option>
-                    <option value="nan">nan</option>
-                    <option value="Motorcycle">Motorcycle</option>
-                    <option value="Bus">Bus</option>
-                    <option value="FDNY Ambul">FDNY Ambul</option>
-                    <option value="Pick-up Truck">Pick-up Truck</option>
-                    <option value="E-Scooter">E-Scooter</option>
-                    <option value="Flat Rack">Flat Rack</option>
-                    <option value="UNK">UNK</option>
-                    <option value="Tractor Truck Diesel">Tractor Truck Diesel</option>
-                    <option value="Flat Bed">Flat Bed</option>
-                    <option value="GARBAGE TR">GARBAGE TR</option>
-                    <option value="Bike">Bike</option>
-                    <option value="Garbage or Refuse">Garbage or Refuse</option>
-                    <option value="Van">Van</option>
-                    <option value="SCHOOL BUS">SCHOOL BUS</option>
-                    <option value="Motorscooter">Motorscooter</option>
-                    <option value="Moped">Moped</option>
-                    <option value="3-Door">3-Door</option>
-                    <option value="MOPED">MOPED</option>
-                    <option value="Chassis Cab">Chassis Cab</option>
-                    <option value="Tow Truck / Wrecker">Tow Truck / Wrecker</option>
-                    <option value="Convertible">Convertible</option>
-                    <option value="MTA">MTA</option>
-                    <option value="TRAILER">TRAILER</option>
-                    <option value="AMBULANCE">AMBULANCE</option>
-                    <option value="E-bike">E-bike</option>
-                    <option value="FIRE TRUCK">FIRE TRUCK</option>
-                    <option value="Refrigerated Van">Refrigerated Van</option>
-                    <option value="MOTOR SCOO">MOTOR SCOO</option>
-                    <option value="Tractor Truck Gasoline">Tractor Truck Gasoline</option>
-                    <option value="Carry All">Carry All</option>
-                    <option value="ambulance">ambulance</option>
-                    <option value="Motorbike">Motorbike</option>
-                    <option value="PICK UP">PICK UP</option>
-                    <option value="4 dr sedan">4 dr sedan</option>
-                    <option value="PK">PK</option>
-                    <option value="Postal ser">Postal ser</option>
-                    <option value="SANMEN COU">SANMEN COU</option>
+    <div class="arriere">
+        <div class="content">
+            <div class="banner">
+                <h1>Quel profil d'utilisateur êtes-vous ?</h1>
+                <p>Sélectionnez parmi les propositions suivantes :</p>
+                <select id="profil" onchange="toggleInputs(); togglePriveInputs();">
+                    <option value="">Sélectionnez un profil</option>
+                    <option value="secteur_prive">Secteur Privé</option>
+                    <option value="secteur_public">Secteur Public</option>
+                    <option value="particulier">Particulier</option>
                 </select>
+                <div class="prive-input" id="prive-inputs">
+                    <div id="nom">
+                        <label for="name">Nom :</label>
+                        <input type="text" id="nom" name="name">
+                    </div>
+                    <div id="marge">
+                        <label for="marge">Marge :</label>
+                        <input type="text" id="marge" name="marge">
+                    </div>
+                    <label for="vehicle"> Véhicule du client:</label>
+                    <select id="vehicle_assuré" name="vehicle_assuré">
+                        <option value="">Sélectionnez le moyen de transport de votre client</option>
+                        <option value="foot">À pied</option>
+                        <option value="cycle">À vélo</option>
+                        <option value="Sedan">Sedan</option>
+                        <option value="Station Wagon/Sport Utility Vehicle">Station Wagon/Sport Utility Vehicle</option>
+                        <option value="Taxi">Taxi</option>
+                        <option value="Box Truck">Box Truck</option>
+                        <option value="Ambulance">Ambulance</option>
+                        <option value="Dump">Dump</option>
+                        <option value="E-Bike">E-Bike</option>
+                        <option value="nan">nan</option>
+                        <option value="Motorcycle">Motorcycle</option>
+                        <option value="Bus">Bus</option>
+                        <option value="FDNY Ambul">FDNY Ambul</option>
+                        <option value="Pick-up Truck">Pick-up Truck</option>
+                        <option value="E-Scooter">E-Scooter</option>
+                        <option value="Flat Rack">Flat Rack</option>
+                        <option value="UNK">UNK</option>
+                        <option value="Tractor Truck Diesel">Tractor Truck Diesel</option>
+                        <option value="Flat Bed">Flat Bed</option>
+                        <option value="GARBAGE TR">GARBAGE TR</option>
+                        <option value="Bike">Bike</option>
+                        <option value="Garbage or Refuse">Garbage or Refuse</option>
+                        <option value="Van">Van</option>
+                        <option value="SCHOOL BUS">SCHOOL BUS</option>
+                        <option value="Motorscooter">Motorscooter</option>
+                        <option value="Moped">Moped</option>
+                        <option value="3-Door">3-Door</option>
+                        <option value="MOPED">MOPED</option>
+                        <option value="Chassis Cab">Chassis Cab</option>
+                        <option value="Tow Truck / Wrecker">Tow Truck / Wrecker</option>
+                        <option value="Convertible">Convertible</option>
+                        <option value="MTA">MTA</option>
+                        <option value="TRAILER">TRAILER</option>
+                        <option value="AMBULANCE">AMBULANCE</option>
+                        <option value="E-bike">E-bike</option>
+                        <option value="FIRE TRUCK">FIRE TRUCK</option>
+                        <option value="Refrigerated Van">Refrigerated Van</option>
+                        <option value="MOTOR SCOO">MOTOR SCOO</option>
+                        <option value="Tractor Truck Gasoline">Tractor Truck Gasoline</option>
+                        <option value="Carry All">Carry All</option>
+                        <option value="ambulance">ambulance</option>
+                        <option value="Motorbike">Motorbike</option>
+                        <option value="PICK UP">PICK UP</option>
+                        <option value="4 dr sedan">4 dr sedan</option>
+                        <option value="PK">PK</option>
+                        <option value="Postal ser">Postal ser</option>
+                        <option value="SANMEN COU">SANMEN COU</option>
+                    </select>
+                </div>
+                <div class="choix-input" id="choix-input">
+                    <input type="radio" id="itineraire" name="choix" value="itineraire">
+                    <label for="itineraire">Vous voulez connaître un itinéraire sûr</label><br>
+                    <input type="radio" id="risque" name="choix" value="risque">
+                    <label for="risque">Je veux connaître le risque d'une rue</label><br>
+                </div>
+                <!-- Champs pour le moyen de locomotion -->
+                <div class="address-input" id="vehicle">
+                    <label for="vehicle">Moyen de locomotion :</label>
+                    <select id="vehicle" name="vehicle">
+                        <option value="voiture">Voiture</option>
+                        <option value="vélo">Vélo</option>
+                        <option value="à_pied">À pied</option>
+                    </select>
+                </div>
+                <!-- Champs pour l'adresse de départ et l'adresse d'arrivée -->
+                <div class="address-input" id="adresse_de_depart">
+                    <label for="start">Adresse de départ :</label>
+                    <input type="text" id="start" name="start">
+                </div>
+                <div class="address-input" id="adresse_d_arrivee">
+                    <label for="end">Adresse d'arrivée :</label>
+                    <input type="text" id="end" name="end">
+                </div>
+                <!-- Champ pour la rue -->
+                <div class="rue-input" id="rue">
+                    <label for="rue">Rue :</label>
+                    <input type="text" id="rue" name="rue">
+                </div>
+                <!-- Bouton Valider -->
+                <button onclick="validerAdresses()">Valider</button>
             </div>
-            <div class="choix-input" id="choix-input">
-                <input type="radio" id="itineraire" name="choix" value="itineraire">
-                <label for="itineraire">Vous voulez connaître un itinéraire sûr</label><br>
-                <input type="radio" id="risque" name="choix" value="risque">
-                <label for="risque">Je veux connaître le risque d'une rue</label><br>
-            </div>
-            <!-- Champs pour le moyen de locomotion -->
-            <div class="address-input" id="vehicle">
-                <label for="vehicle">Moyen de locomotion :</label>
-                <select id="vehicle" name="vehicle">
-                    <option value="voiture">Voiture</option>
-                    <option value="vélo">Vélo</option>
-                    <option value="à_pied">À pied</option>
-                </select>
-            </div>
-            <!-- Champs pour l'adresse de départ et l'adresse d'arrivée -->
-            <div class="address-input" id="adresse_de_depart">
-                <label for="start">Adresse de départ :</label>
-                <input type="text" id="start" name="start">
-            </div>
-            <div class="address-input" id="adresse_d_arrivee">
-                <label for="end">Adresse d'arrivée :</label>
-                <input type="text" id="end" name="end">
-            </div>
-            <!-- Champ pour la rue -->
-            <div class="rue-input" id="rue">
-                <label for="rue">Rue :</label>
-                <input type="text" id="rue" name="rue">
-            </div>
-            <!-- Bouton Valider -->
-            <button onclick="validerAdresses()">Valider</button>
+            
+        </div>
+        <div class = "bas-de-page">
+            <!-- Champ pour télécharger le document Excel -->
+            <span> Nos estimations s'appuient sur cette base de données :</span>
+            <a class="lien-telechargement" href="Bronx_2.xlsx" download="Bronx_2.xlsx">cliquez ici pour télécharger</a>
         </div>
     </div>
+
+    
 
     <script>
         function toggleInputs() {
@@ -183,7 +202,7 @@
                 document.querySelectorAll(".address-input").forEach(function(input) {
             input.style.display = "none";
         });
-            }      
+            }
         }
         function togglePriveInputs() {
             var selectElement = document.getElementById("profil");
