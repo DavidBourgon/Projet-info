@@ -425,9 +425,39 @@ class Utilisateur:
                 variable, liste_modalites]
 
     def df_blesse_mort_rue(data, categorie):
+        """
+        Calcule le nombre de blessés et de morts par rue pour une 
+        catégorie donnée.
+.
+
+        Parameters
+        ----------
+        data : DataFrame
+            La base de données dont on souhaite obtenir les modalités d'une de
+            ses variables.
+
+        categorie : str
+            Catégorie des personnes dont on veut déterminer le nombre
+            de blessés et/ou tués.
+            cycle : cyclistes
+            foot : piétons
+
+        Returns
+        -------
+        DataFrame: Un DataFrame contenant le nombre de blessés et de 
+                    morts par rue.
+                   Pour la catégorie 'foot', renvoie un DataFrame 
+                   avec les colonnes 'Rue',
+                   'Nombre blesses pietons' et 'Nombre tues pietons'.
+                   Pour la catégorie 'cycle', renvoie un DataFrame
+                   avec les colonnes 'Rue',
+                   'Nombre blesses cyclistes' et 'Nombre tues cyclistes'.
+        """
         data.dropna(subset=["CONTRIBUTING.FACTOR.VEHICLE.1"], inplace=True)
-        data["NUMBER.OF.PERSONS.INJURED"] = data["NUMBER.OF.PERSONS.INJURED"].fillna(0)
-        data["NUMBER.OF.PERSONS.KILLED"] = data["NUMBER.OF.PERSONS.KILLED"].fillna(0)
+        data["NUMBER.OF.PERSONS.INJURED"] = \
+            data["NUMBER.OF.PERSONS.INJURED"].fillna(0)
+        data["NUMBER.OF.PERSONS.KILLED"] = \
+            data["NUMBER.OF.PERSONS.KILLED"].fillna(0)
 
         rues = pd.unique(pd.concat([data["ON.STREET.NAME"],
                                     data["OFF.STREET.NAME"],
@@ -443,16 +473,20 @@ class Utilisateur:
                               (data["CROSS.STREET.NAME"] == rue)]
             if categorie == "foot":
                 total_blesses_pietons = \
-                    Utilisateur.calcul_totaux_cat_statut(rue_filtre, categorie, "B")[-1]
+                    Utilisateur.calcul_totaux_cat_statut(
+                        rue_filtre, categorie, "B")[-1]
                 total_tues_pietons = \
-                    Utilisateur.calcul_totaux_cat_statut(rue_filtre, categorie, "T")[-1]
+                    Utilisateur.calcul_totaux_cat_statut(
+                        rue_filtre, categorie, "T")[-1]
                 nombre_blesses_pietons_par_rue[rue] = total_blesses_pietons
                 nombre_tues_pietons_par_rue[rue] = total_tues_pietons
             elif categorie == "cycle":
                 total_blesses_cyclistes = \
-                    Utilisateur.calcul_totaux_cat_statut(rue_filtre, categorie, "B")[-1]
+                    Utilisateur.calcul_totaux_cat_statut(
+                        rue_filtre, categorie, "B")[-1]
                 total_tues_cyclistes = \
-                    Utilisateur.calcul_totaux_cat_statut(rue_filtre, categorie, "B")[-1]
+                    Utilisateur.calcul_totaux_cat_statut(
+                        rue_filtre, categorie, "B")[-1]
                 nombre_blesses_cyclistes_par_rue[rue] = total_blesses_cyclistes
                 nombre_tues_cyclistes_par_rue[rue] = total_tues_cyclistes
 
@@ -480,6 +514,32 @@ class Utilisateur:
         return df_result
 
     def risque_rue_pieton_velo(data, rue, categorie):
+        """
+        Calcule le risque d'une rue spécifique pour les piétons 
+        ou les cyclistes.
+
+        Parameters
+        ----------
+        data : DataFrame
+            La base de données dont on souhaite obtenir les modalités d'une de
+            ses variables.
+
+        rue : str
+            rue souhaitée
+
+        categorie : str
+            Catégorie des personnes dont on veut déterminer le nombre
+            de blessés et/ou tués.
+            cycle : cyclistes
+            foot : piétons
+
+        Returns
+        -------
+        float: Le risque calculé pour la rue spécifiée
+               et la catégorie donnée.
+               Si la rue n'est pas trouvée dans les données, renvoie 0.
+
+        """
         df_b_m = Utilisateur.df_blesse_mort_rue(data, categorie)
         df_b_m.dropna(subset=["Rue"], inplace=True)
         if rue in df_b_m["Rue"].values:
@@ -497,7 +557,8 @@ class Utilisateur:
                 nombre_total_cyclistes_rue_specifique = \
                     df_rue['Nombre blesses cyclistes'].sum() + df_rue[
                         'Nombre tues cyclistes'].sum()
-                max_injuries_cyclistes = df_b_m['Nombre blesses cyclistes'].max()
+                max_injuries_cyclistes = \
+                    df_b_m['Nombre blesses cyclistes'].max()
                 max_deaths_cyclistes = df_b_m['Nombre tues cyclistes'].max()
                 risk_cyclistes = nombre_total_cyclistes_rue_specifique /\
                     (max_injuries_cyclistes + max_deaths_cyclistes)
@@ -506,10 +567,35 @@ class Utilisateur:
             return 0
 
     def risque_voiture(data, street, voiture):
-        if voiture != "car" or 'Sedan' not in data['VEHICLE.TYPE.CODE.1'].values:
+        """
+        Calcule le risque associé à une voiture sur une rue spécifique.
+
+        Parameters
+        ----------
+        data : DataFrame
+            La base de données dont on souhaite obtenir les modalités d'une de
+            ses variables.
+
+        street : str
+            rue souhaitée
+
+        voiture : str
+            Soit "car" qui prend par défault "Sedan", sinon un type de véhicule
+        Returns
+        -------
+        float: Le risque calculé pour le type de voiture spécifié
+               sur la rue donnée.
+               Si le type de voiture n'est pas "car" ou si le type
+               spécifique de voiture ("Sedan") n'est pas trouvé dans
+               les données, renvoie 0.
+               Sinon, renvoie une valeur de risque basée sur le nombre
+               d'accidents de type "Sedan" sur la rue spécifiée.
+
+        """
+        if voiture != "car" or 'Sedan' not in \
+           data['VEHICLE.TYPE.CODE.1'].values:
             return 0
 
-    # Filtrer les données pour la rue spécifique et le type de véhicule spécifique
         df_filtre = data[(data["ON.STREET.NAME"].str.contains(street) |
                           data["OFF.STREET.NAME"].str.contains(street) |
                           data["CROSS.STREET.NAME"].str.contains(street)) &
@@ -533,9 +619,55 @@ class Utilisateur:
             return 1
 
     def type_vehicule():
-        return ['Sedan', 'Station Wagon/Sport Utility Vehicle', 'Taxi', 'Box Truck', 'Ambulance', 'Dump', 'E-Bike', 'Motorcycle', 'Bus', 'FDNY Ambul', 'Pick-up Truck', 'E-Scooter', 'Flat Rack', 'UNK', 'Tractor Truck Diesel', 'Flat Bed', 'GARBAGE TR', 'Bike', 'Garbage or Refuse', 'Van', 'SCHOOL BUS', 'Motorscooter', 'Moped', '3-Door', 'MOPED', 'Chassis Cab', 'Tow Truck / Wrecker', 'Convertible', 'MTA', 'TRAILER', 'AMBULANCE', 'E-bike', 'FIRE TRUCK', 'Refrigerated Van', 'MOTOR SCOO', 'Tractor Truck Gasoline', 'Carry All', 'ambulance', 'Motorbike', 'PICK UP', '4 dr sedan', 'PK', 'Postal ser', 'SANMEN COU']
+        """
+        Retourne une liste des types de véhicules autorisés.
+        -------
+        Returns:
+            list: Une liste contenant les types de véhicules autorisés.
+        """
+        return ['Sedan', 'Station Wagon/Sport Utility Vehicle', 'Taxi',
+                'Box Truck', 'Ambulance', 'Dump', 'E-Bike', 'Motorcycle',
+                'Bus', 'FDNY Ambul', 'Pick-up Truck', 'E-Scooter', 'Flat Rack',
+                'UNK', 'Tractor Truck Diesel', 'Flat Bed', 'GARBAGE TR',
+                'Bike', 'Garbage or Refuse', 'Van', 'SCHOOL BUS',
+                'Motorscooter', 'Moped', '3-Door', 'MOPED', 'Chassis Cab',
+                'Tow Truck / Wrecker', 'Convertible', 'MTA', 'TRAILER',
+                'AMBULANCE', 'E-bike', 'FIRE TRUCK', 'Refrigerated Van',
+                'MOTOR SCOO', 'Tractor Truck Gasoline', 'Carry All',
+                'ambulance', 'Motorbike', 'PICK UP', '4 dr sedan',
+                'PK', 'Postal ser', 'SANMEN COU']
 
     def risque_rue(data, rue, categorie):
+        """
+        Calcule le risque d'une rue pour une catégorie donnée
+
+        Parameters
+        ----------
+        data : DataFrame
+            La base de données dont on souhaite obtenir les modalités d'une de
+            ses variables.
+
+        street : str
+            rue souhaitée
+
+        categorie : str
+            Catégorie des personnes dont on veut déterminer le nombre
+            de blessés et/ou tués.
+            cycle : cyclistes
+            foot : piétons
+            Soit "car" qui prend par défault "Sedan", sinon un type de véhicule
+
+        Returns
+        -------
+        float: Le risque calculé pour le type de voiture spécifié
+               sur la rue donnée.
+               Si le type de voiture n'est pas "car" ou si le type
+               spécifique de voiture ("Sedan") n'est pas trouvé dans
+               les données, renvoie 0.
+               Sinon, renvoie une valeur de risque basée sur le nombre
+               d'accidents de type "Sedan" sur la rue spécifiée.
+
+        """
         if categorie == 'car' or categorie in Utilisateur.type_vehicule():
             risque = Utilisateur.risque_voiture(data, rue, categorie)
         elif categorie == "foot" or categorie == "cycle":
@@ -544,5 +676,6 @@ class Utilisateur:
             return ["Pour la rue :", rue, "il y a un rique (en %) de :", 0]
         else:
             if risque > 1:
-                risque=1
-            return ["Pour la rue :", rue, "il y a un rique (en %) de :", risque*100]
+                risque = 1
+            return ["Pour la rue :", rue,
+                    "il y a un rique (en %) de :", risque*100]
