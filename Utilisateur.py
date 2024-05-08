@@ -516,8 +516,7 @@ class Utilisateur:
         if voiture != "car" or 'Sedan' not in \
            data['VEHICLE.TYPE.CODE.1'].values:
             return 0
-    
-    # Filtrer les données pour la rue spécifique et le type de véhicule spécifique
+
         df_filtre = data[(data["ON.STREET.NAME"].str.contains(street) |
                           data["OFF.STREET.NAME"].str.contains(street) |
                           data["CROSS.STREET.NAME"].str.contains(street)) &
@@ -541,8 +540,18 @@ class Utilisateur:
             return 1
 
     def type_vehicule():
-        return ['Sedan', 'Station Wagon/Sport Utility Vehicle', 'Taxi', 'Box Truck', 'Ambulance', 'Dump', 'E-Bike', 'Motorcycle', 'Bus', 'FDNY Ambul', 'Pick-up Truck', 'E-Scooter', 'Flat Rack', 'UNK', 'Tractor Truck Diesel', 'Flat Bed', 'GARBAGE TR', 'Bike', 'Garbage or Refuse', 'Van', 'SCHOOL BUS', 'Motorscooter', 'Moped', '3-Door', 'MOPED', 'Chassis Cab', 'Tow Truck / Wrecker', 'Convertible', 'MTA', 'TRAILER', 'AMBULANCE', 'E-bike', 'FIRE TRUCK', 'Refrigerated Van', 'MOTOR SCOO', 'Tractor Truck Gasoline', 'Carry All', 'ambulance', 'Motorbike', 'PICK UP', '4 dr sedan', 'PK', 'Postal ser', 'SANMEN COU']
-    
+        return ['Sedan', 'Station Wagon/Sport Utility Vehicle', 'Taxi',
+                'Box Truck', 'Ambulance', 'Dump', 'E-Bike', 'Motorcycle',
+                'Bus', 'FDNY Ambul', 'Pick-up Truck', 'E-Scooter', 'Flat Rack',
+                'UNK', 'Tractor Truck Diesel', 'Flat Bed', 'GARBAGE TR',
+                'Bike', 'Garbage or Refuse', 'Van', 'SCHOOL BUS',
+                'Motorscooter', 'Moped', '3-Door', 'MOPED', 'Chassis Cab',
+                'Tow Truck / Wrecker', 'Convertible', 'MTA', 'TRAILER',
+                'AMBULANCE', 'E-bike', 'FIRE TRUCK', 'Refrigerated Van',
+                'MOTOR SCOO', 'Tractor Truck Gasoline', 'Carry All',
+                'ambulance', 'Motorbike', 'PICK UP', '4 dr sedan',
+                'PK', 'Postal ser', 'SANMEN COU']
+
     def risque_rue(data, rue, categorie):
         if categorie == 'car' or categorie in Utilisateur.type_vehicule():
             risque = Utilisateur.risque_voiture(data, rue, categorie)
@@ -552,6 +561,6 @@ class Utilisateur:
             return ["Pour la rue :", rue, "il y a un rique (en %) de :", 0]
         else:
             if risque > 1:
-                risque=1
-            return ["Pour la rue :", rue, "il y a un rique (en %) de :", risque*100]
-
+                risque = 1
+            return ["Pour la rue :", rue,
+                    "il y a un rique (en %) de :", risque*100]
