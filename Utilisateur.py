@@ -680,5 +680,5 @@ class Utilisateur:
         else:
             if risque > 1:
                 risque = 1
-            return ["Pour la rue :", rue,
-                    "il y a un rique (en %) de :", risque*100]
+            return ["Pour la rue :", rue, "il y a un rique (en %) de :",
+                    risque*100]
