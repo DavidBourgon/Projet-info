@@ -129,7 +129,7 @@ class SecteurPrive:
         ind_risque = 0
         for k in range(len(rues)):
             street = rues[k].upper()
-            ind_risque += Utilisateur.risque_rue_naif(data_par_type,
+            ind_risque += Utilisateur.ris(data_par_type,
                                                       street,
                                                       categorie)[-1]
         ind_normalise = (ind_risque/100)/len(rues)
