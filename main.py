@@ -47,10 +47,6 @@ print(Axa.__repr__(data, "1 E 161st St, Bronx, NY 10451, États-Unis",
 # %% Ici des exemples d'applications des fonctions pour
 # la classe Particulier
 from particulier import Particulier
-import pandas as pd
-
-# Import des donnée
-data = pd.read_excel("Bronx_sans_Na.xlsx")
 
 # Création de deux particliers différents ayant
 # des moyens de locomotion différents et heure de départ différents
