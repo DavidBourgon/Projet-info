@@ -12,7 +12,7 @@ os.system('pip install -r requirements.txt')
 # Création de deux particliers différents ayant
 # des moyens de locomotion différents et heure de départ différents
 John = Particulier("car", "08:00")
-Ashley = Particulier("foot", "12:00")
+Ashley = Particulier("foot", "11:00")
 
 print(John.eviter_zone_risquee("1 E 161st St, Bronx, NY 10451, États-Unis",
                                "111 E 164th St, Bronx, NY 10452, "
@@ -20,11 +20,6 @@ print(John.eviter_zone_risquee("1 E 161st St, Bronx, NY 10451, États-Unis",
 
 print(Ashley.eviter_zone_risquee("Heath Avenue, Bronx, New York",
                                  "Heath Avenue, Bronx, New York"))
-
-# Voici notre interface
-path = os.path.abspath("interface.html")
-
-webbrowser.open("file://" + path)
 
 # %% Ici des exemples d'applications des fonctions pour
 # la classe Secteur_privé
@@ -60,3 +55,7 @@ print(Axa.__repr__(data, "1 E 161st St, Bronx, NY 10451, États-Unis",
                          "111 E 164th St, Bronx, NY 10452, États-Unis",
                          "cycle"))
 
+# %% Voici notre interface
+path = os.path.abspath("interface.html")
+
+webbrowser.open("file://" + path)
