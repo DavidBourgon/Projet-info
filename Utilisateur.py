@@ -426,33 +426,39 @@ class Utilisateur:
 
     def df_blesse_mort_rue(data, categorie):
         data.dropna(subset=["CONTRIBUTING.FACTOR.VEHICLE.1"], inplace=True)
-        data["NUMBER.OF.PERSONS.INJURED"] = data["NUMBER.OF.PERSONS.INJURED"].fillna(0)
-        data["NUMBER.OF.PERSONS.KILLED"] = data["NUMBER.OF.PERSONS.KILLED"].fillna(0)
+        data["NUMBER.OF.PERSONS.INJURED"] = \
+            data["NUMBER.OF.PERSONS.INJURED"].fillna(0)
+        data["NUMBER.OF.PERSONS.KILLED"] = \
+            data["NUMBER.OF.PERSONS.KILLED"].fillna(0)
 
         rues = pd.unique(pd.concat([data["ON.STREET.NAME"],
                                     data["OFF.STREET.NAME"],
-                                    data["CROSS.STREET.NAME"]]))    
+                                    data["CROSS.STREET.NAME"]]))
         nombre_blesses_pietons_par_rue = {}
         nombre_blesses_cyclistes_par_rue = {}
         nombre_tues_pietons_par_rue = {}
         nombre_tues_cyclistes_par_rue = {}
-    
+
         for rue in rues:
             rue_filtre = data[(data["ON.STREET.NAME"] == rue) |
                               (data["OFF.STREET.NAME"] == rue) |
-                              (data["CROSS.STREET.NAME"] == rue)]        
+                              (data["CROSS.STREET.NAME"] == rue)]
             if categorie == "foot":
                 total_blesses_pietons = \
-                    Utilisateur.calcul_totaux_cat_statut(rue_filtre, categorie, "B")[-1]
+                    Utilisateur.calcul_totaux_cat_statut(
+                        rue_filtre, categorie, "B")[-1]
                 total_tues_pietons = \
-                    Utilisateur.calcul_totaux_cat_statut(rue_filtre, categorie, "T")[-1]
+                    Utilisateur.calcul_totaux_cat_statut(
+                        rue_filtre, categorie, "T")[-1]
                 nombre_blesses_pietons_par_rue[rue] = total_blesses_pietons
                 nombre_tues_pietons_par_rue[rue] = total_tues_pietons
             elif categorie == "cycle":
                 total_blesses_cyclistes = \
-                    Utilisateur.calcul_totaux_cat_statut(rue_filtre, categorie, "B")[-1]
+                    Utilisateur.calcul_totaux_cat_statut(
+                        rue_filtre, categorie, "B")[-1]
                 total_tues_cyclistes = \
-                    Utilisateur.calcul_totaux_cat_statut(rue_filtre, categorie, "B")[-1]
+                    Utilisateur.calcul_totaux_cat_statut(
+                        rue_filtre, categorie, "B")[-1]
                 nombre_blesses_cyclistes_par_rue[rue] = total_blesses_cyclistes
                 nombre_tues_cyclistes_par_rue[rue] = total_tues_cyclistes
 
@@ -466,7 +472,7 @@ class Utilisateur:
                     columns=["Rue", "Nombre tues pietons"])
             df_result = \
                 pd.merge(df_pietons, df_tues_pietons, on="Rue", how="inner")
-        
+
         elif categorie == "cycle":
             df_cyclistes = \
                 pd.DataFrame(list(nombre_blesses_cyclistes_par_rue.items()),
@@ -476,14 +482,14 @@ class Utilisateur:
                              columns=["Rue", "Nombre tues cyclistes"])
             df_result = pd.merge(df_cyclistes, df_tues_cyclistes,
                                  on="Rue", how="inner")
-        
+
         return df_result
 
     def risque_rue_pieton_velo(data, rue, categorie):
         df_b_m = Utilisateur.df_blesse_mort_rue(data, categorie)
         df_b_m.dropna(subset=["Rue"], inplace=True)
         if rue in df_b_m["Rue"].values:
-            df_rue = df_b_m[df_b_m["Rue"].str.contains(rue)]    
+            df_rue = df_b_m[df_b_m["Rue"].str.contains(rue)]
             if categorie == "foot":
                 nombre_total_pietons_rue_specifique = \
                     df_rue['Nombre blesses pietons'].sum() + df_rue[
@@ -497,7 +503,8 @@ class Utilisateur:
                 nombre_total_cyclistes_rue_specifique = \
                     df_rue['Nombre blesses cyclistes'].sum() + df_rue[
                         'Nombre tues cyclistes'].sum()
-                max_injuries_cyclistes = df_b_m['Nombre blesses cyclistes'].max()
+                max_injuries_cyclistes = \
+                    df_b_m['Nombre blesses cyclistes'].max()
                 max_deaths_cyclistes = df_b_m['Nombre tues cyclistes'].max()
                 risk_cyclistes = nombre_total_cyclistes_rue_specifique /\
                     (max_injuries_cyclistes + max_deaths_cyclistes)
@@ -506,17 +513,17 @@ class Utilisateur:
             return 0
 
     def risque_voiture(data, street, voiture):
-        if voiture != "car" or 'Sedan' not in data['VEHICLE.TYPE.CODE.1'].values:
+        if voiture != "car" or 'Sedan' not in \
+           data['VEHICLE.TYPE.CODE.1'].values:
             return 0
-    
-    # Filtrer les données pour la rue spécifique et le type de véhicule spécifique
+
         df_filtre = data[(data["ON.STREET.NAME"].str.contains(street) |
                           data["OFF.STREET.NAME"].str.contains(street) |
                           data["CROSS.STREET.NAME"].str.contains(street)) &
                          (data["VEHICLE.TYPE.CODE.1"] == 'Sedan')]
-    
+
         nbr_acc = len(df_filtre)
-    
+
         if nbr_acc == 0:
             return 0
         elif nbr_acc < 20:
@@ -533,17 +540,27 @@ class Utilisateur:
             return 1
 
     def type_vehicule():
-        return ['Sedan', 'Station Wagon/Sport Utility Vehicle', 'Taxi', 'Box Truck', 'Ambulance', 'Dump', 'E-Bike', 'Motorcycle', 'Bus', 'FDNY Ambul', 'Pick-up Truck', 'E-Scooter', 'Flat Rack', 'UNK', 'Tractor Truck Diesel', 'Flat Bed', 'GARBAGE TR', 'Bike', 'Garbage or Refuse', 'Van', 'SCHOOL BUS', 'Motorscooter', 'Moped', '3-Door', 'MOPED', 'Chassis Cab', 'Tow Truck / Wrecker', 'Convertible', 'MTA', 'TRAILER', 'AMBULANCE', 'E-bike', 'FIRE TRUCK', 'Refrigerated Van', 'MOTOR SCOO', 'Tractor Truck Gasoline', 'Carry All', 'ambulance', 'Motorbike', 'PICK UP', '4 dr sedan', 'PK', 'Postal ser', 'SANMEN COU']
-    
+        return ['Sedan', 'Station Wagon/Sport Utility Vehicle', 'Taxi',
+                'Box Truck', 'Ambulance', 'Dump', 'E-Bike', 'Motorcycle',
+                'Bus', 'FDNY Ambul', 'Pick-up Truck', 'E-Scooter',
+                'Flat Rack', 'UNK', 'Tractor Truck Diesel', 'Flat Bed',
+                'GARBAGE TR', 'Bike', 'Garbage or Refuse', 'Van',
+                'SCHOOL BUS', 'Motorscooter', 'Moped', '3-Door', 'MOPED',
+                'Chassis Cab', 'Tow Truck / Wrecker', 'Convertible', 'MTA',
+                'TRAILER', 'AMBULANCE', 'E-bike', 'FIRE TRUCK',
+                'Refrigerated Van', 'MOTOR SCOO', 'Tractor Truck Gasoline',
+                'Carry All', 'ambulance', 'Motorbike', 'PICK UP',
+                '4 dr sedan', 'PK', 'Postal ser', 'SANMEN COU']
+
     def risque_rue(data, rue, categorie):
         if categorie == 'car' or categorie in Utilisateur.type_vehicule():
             risque = Utilisateur.risque_voiture(data, rue, categorie)
         elif categorie == "foot" or categorie == "cycle":
-            risque = Utilisateur.risque_rue_pieton_velo(data, rue, categorie)  
+            risque = Utilisateur.risque_rue_pieton_velo(data, rue, categorie)
         if risque is None:
             return ["Pour la rue :", rue, "il y a un rique (en %) de :", 0]
         else:
             if risque > 1:
-                risque=1
-            return ["Pour la rue :", rue, "il y a un rique (en %) de :", risque*100]
-
+                risque = 1
+            return ["Pour la rue :", rue, "il y a un rique (en %) de \
+                    :", risque*100]

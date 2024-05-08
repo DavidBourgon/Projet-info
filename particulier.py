@@ -172,7 +172,7 @@ class Particulier:
         data_heure = Utilisateur.\
             filtrer_par_heure(data,
                               self.heure_depart,
-                              self.heure_arrive)[-1]
+                              self.heure_arrivee)[-1]
 
         for categorie in L:
             Iti_coord = itineraires[categorie]
