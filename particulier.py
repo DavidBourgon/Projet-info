@@ -103,14 +103,17 @@ class Particulier:
         # chargement et centrage de la carte
         carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=12)
         geolocator = Nominatim(user_agent="carte_bronx")
+
         # coordonnées des 2 adresses
         localisation_1 = geolocator.geocode(adresse_depart)
         coord_depart = (localisation_1.latitude, localisation_1.longitude)
         localisation_2 = geolocator.geocode(adresse_arrivee)
         coord_arrivee = (localisation_2.latitude, localisation_2.longitude)
+
         # creation de l'itineraire
         L = ["car", "cycle", "foot"]
         itineraires = {"car": [], "cycle": [], "foot": []}
+
         for vehicule in L:
             router = Router(vehicule)
             # ici on parle de noeud car la carte est un graphe
@@ -119,6 +122,7 @@ class Particulier:
             status, route = router.doRoute(node_depart, node_arrivee)
             coordonnees_route = [router.nodeLatLon(node) for node in route]
             itineraires[vehicule] = coordonnees_route
+
         return itineraires
 
     def evaluate_risque_itineraire(self, adresse_depart, adresse_arrivee):
@@ -146,6 +150,7 @@ class Particulier:
         carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=30)
         geolocator = Nominatim(user_agent="carte_bronx")
         data = pd.read_excel("Bronx_2.xlsx")
+
         # chargement des dictionnaires utiles
         itineraires = self.itineraires(adresse_depart, adresse_arrivee)
         risques = {"car": 1.0, "cycle": 1.0, "foot": 1.0}
@@ -176,6 +181,7 @@ class Particulier:
                                                    nom_rue_maj,
                                                    categorie)[-1]
             risques[categorie] = compteur/tot_points
+            
         return risques
 
     def eviter_zone_risquee(self, adresse_depart, adresse_arrivee):
