@@ -1,8 +1,8 @@
 import pandas as pd
-import bordel_xavier as bx
+from Utilisateur import Utilisateur
 
 
-data = pd.read_excel("BdD_Bronx.xlsx")
+data = pd.read_excel("Bronx_sans_Na.xlsx")
 
 
 class SecteurPublic:
@@ -45,8 +45,13 @@ class SecteurPublic:
         if not isinstance(rue, str):
             raise TypeError("La rue donnée doit être de type str.")
 
-        taux_mortalité = bx.nmbr_mort_total_rue(data)/bx.nmbr_mort_total(data)
-        return f"Le taux de mortalité de la rue {rue} est {taux_mortalité}."
+        data_rue = Utilisateur.filtrer_par_nom_de_rue(data, rue)
+
+        n_mort_rue = Utilisateur.calcul_totaux_statut(data_rue, "T")
+        n_mort_total = Utilisateur.calcul_totaux_statut(data, 'T')
+
+        taux_mortalité = 100 * n_mort_rue/n_mort_total
+        return f"Le taux de mortalité de la rue {rue} est {taux_mortalité} %."
 
     def __localiser_infrastructure(self, zones: dict[int: list[str]]):
         """ Permet de savoir où localiser des structures publiques parmi
