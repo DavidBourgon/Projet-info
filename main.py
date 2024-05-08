@@ -10,3 +10,8 @@ if __name__ == "__main__":
     webbrowser.open("file://" + path)
 
 # %% Ici des exemples d'applications des fonctions
+
+Xavier = Particulier("car", "08:00")
+print(Xavier.eviter_zone_risquee("1 E 161st St, Bronx, NY 10451, États-Unis",
+                                 "111 E 164th St, Bronx, NY 10452, "
+                                 "États-Unis"))
