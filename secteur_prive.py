@@ -151,8 +151,3 @@ class SecteurPrive:
                                       adresse_arrivee, categorie,
                                       type_vehicule)} €")
 
-data = pd.read_excel("Bronx_sans_Na.xlsx")
-Groupama = SecteurPrive("Groupama", 0.8)
-print(Groupama.__repr__(data, "Heath Avenue, Bronx, New York",
-                        "Heath Avenue, Bronx, New York",
-                        "car", "Pick-up Truck"))
