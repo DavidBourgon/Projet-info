@@ -3,8 +3,8 @@ from geopy.geocoders import Nominatim
 from pyroutelib3 import Router
 import folium
 import pandas as pd
-import openpyxl
-import time
+
+
 class SecteurPrive:
     """ Secteur Privé.
 
@@ -82,7 +82,61 @@ class SecteurPrive:
                 rues.add(nom_rue)
         return list(rues)
 
-    def donner_prix(self, data, adresse_depart, adresse_arrivee,
+    def risque_rue_naif(data, street, categorie):
+        """
+        Permet de calculer le danger d'une rue en %.
+
+        Parameters
+        ----------
+        data : Dataframe
+            Base de données sur laquelle nous travaillons.
+
+        street : str
+            Nom de la rue pour laquelle nous souhaitons déterminer le danger.
+
+        categorie : str
+            Catégorie d'usagés : piéton, cycliste ou automobiliste.
+
+        Returns
+        -------
+        str : Phrase indiquant le danger en % pour la rue et la catégorie
+              souhaitées.
+
+        """
+        data_street = Utilisateur.filtrer_par_nom_de_rue(data, street)[-1]
+        n_tot = Utilisateur.nombre_observation(data)[-1]
+        if n_tot == 0:
+            return ["Il n'y a pas d'accident ou bien le tableau est vide.",
+                    "Pour la rue :", street,
+                    "Il y a un rique (en %) de :", 0]
+        else:
+            n_mort_cat = Utilisateur.\
+                calcul_totaux_cat_statut(data_street, categorie, "T")[-1]
+            n_blesse_cat = Utilisateur.\
+                calcul_totaux_cat_statut(data_street, categorie, "B")[-1]
+
+            n_mort_total = Utilisateur.\
+                calcul_totaux_statut(data_street, "T")[-1]
+            n_blesse_total = Utilisateur.\
+                calcul_totaux_statut(data_street, "B")[-1]
+
+            if n_mort_total == 0 and n_blesse_total == 0:
+                risque = 0
+
+            elif n_mort_total == 0:
+                risque = 100*n_blesse_cat/n_blesse_total
+
+            elif n_blesse_total == 0:
+                risque = 100*n_mort_cat/n_mort_total
+
+            else:
+                risque = 100*(n_mort_cat/n_mort_total +
+                              n_blesse_cat/n_blesse_total)/2
+
+        return ["Pour la rue :", street,
+                "il y a un rique (en %) de :", risque]
+
+    def __donner_prix(self, data, adresse_depart, adresse_arrivee,
                       categorie, type_vehicule=None):
         """
         Détermine le prix qu'un client va payer en fonction de comment
@@ -113,16 +167,26 @@ class SecteurPrive:
             Prix que va devoir payer le client chez cet assureur.
 
         """
+        if type_vehicule is not None:
+            data_par_type = Utilisateur.\
+                filtrer_par_modalite_variable(data, type_vehicule,
+                                              "VEHICLE.TYPE.CODE.1")
+        else:
+            data_par_type = data
+
         rues = self.__decompose_trajet(adresse_depart, adresse_arrivee,
                                        categorie)
-        liste_risque = [Utilisateur.risque_rue(data, rue.upper(), categorie) for rue in rues]
-        liste_risque.sort()
-        if len(liste_risque) == 1 :
-            fin = time.time()
-            return liste_risque[0]
-        else: 
-            return (200 + (400 * ((liste_risque[-1] + liste_risque[-2])/200))) * (1 + self.marge)
-        
+
+        ind_risque = 0
+        for k in range(len(rues)):
+            street = rues[k].upper()
+            ind_risque += SecteurPrive.risque_rue_naif(data_par_type,
+                                                       street,
+                                                       categorie)[-1]
+        ind_normalise = (ind_risque/100) * (1/len(rues))
+        prix = (200 + (400 * ind_normalise)) * (1 + self.marge)
+        return prix
+
     def __repr__(self, data, adresse_depart, adresse_arrivee,
                  categorie, type_vehicule=None):
         """
@@ -131,7 +195,25 @@ class SecteurPrive:
         lui indiquant combien il doit payer.
 
         """
-        return (f"Pour vous assurer sur votre trajet quotidien, auprès de {self.nom_assureur}, " f"vous devez vous acquitter de {self.__donner_prix(data, adresse_depart, adresse_arrivee, categorie, type_vehicule=None)} €")
+        return (f"Pour vous assurer sur votre trajet quotidien, auprès de "
+                f"{self.nom_assureur} "
+                f"vous devez vous acquitter de "
+                f"{self.__donner_prix(data, adresse_depart,
+                                      adresse_arrivee, categorie,
+                                      type_vehicule=None)} €")
 
 
+data = pd.read_excel("Bronx_sans_Na.xlsx")
+Groupama = SecteurPrive("Groupama", 0.5)
 
+# print(Groupama.__repr__(data, "1 E 161st St, Bronx, NY 10451, États-Unis",
+#                         "111 E 164th St, Bronx, NY 10452, États-Unis",
+#                         "car"))
+
+#print(SecteurPrive.risque_rue_naif(data, 'HEATH AVENUE', 'cycle'))
+
+print(Groupama.__repr__(data, "Heath Avenue, Bronx, New York",
+                        "Heath Avenue, Bronx, New York",
+                        "cycle"))
+
+# print(SecteurPrive.risque_rue_naif(data, 'HEATH AVENUE', "foot")[-1])
