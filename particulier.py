@@ -172,9 +172,6 @@ class Particulier:
                 # la base de données.
                 nom_rue_maj = nom_rue.upper()
                 print(nom_rue_maj)
-                # Là on peut utiliser les fonctions de Xavier,
-                # il nous faudrait juste un fonction globale et
-                # un filtrage par vehicule possible pour faire :
                 compteur += Utilisateur.risque_rue(data_heure,
                                                    nom_rue_maj,
                                                    categorie)[-1]
@@ -208,8 +205,9 @@ class Particulier:
         dico_itineraires = self.itineraires(adresse_depart, adresse_arrivee)
         dico_risque = self.evaluate_risque_itineraire(adresse_depart,
                                                       adresse_arrivee)
-        categorie_moins_risque = "car"
-        risque = dico_risque["car"]
+        # Pour le moment on initialise la catégorie la moins risquée à foot
+        categorie_moins_risque = "foot"
+        risque = 100.
 
         localisation_1 = geolocator.geocode(adresse_depart)
         coord_depart = (localisation_1.latitude, localisation_1.longitude)
@@ -222,9 +220,9 @@ class Particulier:
                       popup='Adresse d\'arrivée').add_to(carte_bronx)
 
         for categorie in dico_risque:
-            if dico_risque[categorie] < risque:
+            if dico_risque[categorie] < dico_risque[categorie_moins_risque]:
                 risque = dico_risque[categorie]
-                vehicule_moins_risque = categorie
+                categorie_moins_risque = categorie
 
         if self.categorie == categorie_moins_risque:
             # on trace l'itineraire
@@ -249,7 +247,7 @@ class Particulier:
             carte_bronx.save("carte_bronx.html")
             webbrowser.open('carte_bronx.html')
             return ("Choisissez plutôt ce type de vehicule : "
-                    f"{vehicule_moins_risque}, voici l'itineraire :")
+                    f"{categorie_moins_risque}, voici l'itineraire :")
 
     def risque_rue(self, rue):
         """
@@ -268,9 +266,3 @@ class Particulier:
         """
         risque = Utilisateur.risque_rue(rue, self.categorie)[-1]
         return risque
-
-
-Xavier = Particulier("car", "08:00")
-print(Xavier.eviter_zone_risquee("1 E 161st St, Bronx, NY 10451, États-Unis",
-                                 "111 E 164th St, Bronx, NY 10452, "
-                                 "États-Unis"))
