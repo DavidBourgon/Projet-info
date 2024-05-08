@@ -201,19 +201,3 @@ class SecteurPrive:
                 f"{self.__donner_prix(data, adresse_depart,
                                       adresse_arrivee, categorie,
                                       type_vehicule=None)} €")
-
-
-data = pd.read_excel("Bronx_sans_Na.xlsx")
-Groupama = SecteurPrive("Groupama", 0.5)
-
-# print(Groupama.__repr__(data, "1 E 161st St, Bronx, NY 10451, États-Unis",
-#                         "111 E 164th St, Bronx, NY 10452, États-Unis",
-#                         "car"))
-
-#print(SecteurPrive.risque_rue_naif(data, 'HEATH AVENUE', 'cycle'))
-
-print(Groupama.__repr__(data, "Heath Avenue, Bronx, New York",
-                        "Heath Avenue, Bronx, New York",
-                        "cycle"))
-
-# print(SecteurPrive.risque_rue_naif(data, 'HEATH AVENUE', "foot")[-1])
