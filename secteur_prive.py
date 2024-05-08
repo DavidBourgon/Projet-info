@@ -184,8 +184,8 @@ class SecteurPrive:
                                                        street,
                                                        categorie)[-1]
         ind_normalise = (ind_risque/100) * (1/len(rues))
-        prix = (200 + (400 * ind_normalise)) * (1 + self.marge)
-        return prix
+        prix = (400 * ind_normalise) * (1 + self.marge)
+        return round(prix, 2)
 
     def __repr__(self, data, adresse_depart, adresse_arrivee,
                  categorie, type_vehicule=None):
