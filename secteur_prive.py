@@ -2,7 +2,6 @@ from Utilisateur import Utilisateur
 from geopy.geocoders import Nominatim
 from pyroutelib3 import Router
 import folium
-import pandas as pd
 
 
 class SecteurPrive:
