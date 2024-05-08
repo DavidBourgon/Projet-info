@@ -1,11 +1,5 @@
-# # avant toute chose on a besoin de folium pour générer une carte :
-# pip install folium
-# # on a également besoin de geopy et de geolocator pour transformer
-# # des adresses en coordonnées :
-# pip install geopy
-# pip install geolocator
-# # on a besoin de créer un itinéraire avec pyroutelib3 :
-# pip install pyroutelib3
+# Tous les packages nécessaires sont dans le fichiers requiuremnts.txt
+# Pour les installer, pip install -r requirements.txt
 import folium
 import webbrowser  # webbrowser sert à afficher la carte en language html.
 from geopy.geocoders import Nominatim
@@ -101,23 +95,10 @@ class Particulier:
             list : Liste des rues à prendre pour effectuer le trajet.
 
         """
-        # if not isinstance(adresse_depart, str):
-        #     raise TypeError("L'adresse de départ doit être un str.")
-        # elif not adresse_depart.endswith(', New York'):
-        #     raise ValueError("La chaîne de caractères doit se "
-        #                      "terminer par ', New York'.")
-        # elif not adresse_depart.split(',')[0].strip().isalpha():
-        #     raise TypeError("Le début de la chaîne de caractères "
-        #                     "doit être str.")
-
-        # if not isinstance(adresse_arrivee, str):
-        #     raise TypeError("L'adresse de départ doit être un str.")
-        # elif not adresse_arrivee.endswith(', New York'):
-        #     raise ValueError("La chaîne de caractères doit se "
-        #                      "terminer par ', New York'.")
-        # elif not adresse_arrivee.split(',')[0].strip().isalpha():
-        #     raise TypeError("Le début de la chaîne de caractères "
-        #                     "doit être str.")
+        if not isinstance(adresse_depart, str):
+            raise TypeError("L'adresse de départ doit être un str.")
+        if not isinstance(adresse_arrivee, str):
+            raise TypeError("L'adresse de départ doit être un str.")
 
         # chargement et centrage de la carte
         carte_bronx = folium.Map(location=[40.8448, -73.8648], zoom_start=12)
@@ -191,9 +172,6 @@ class Particulier:
                 # la base de données.
                 nom_rue_maj = nom_rue.upper()
                 print(nom_rue_maj)
-                # Là on peut utiliser les fonctions de Xavier,
-                # il nous faudrait juste un fonction globale et
-                # un filtrage par vehicule possible pour faire :
                 compteur += Utilisateur.risque_rue(data_heure,
                                                    nom_rue_maj,
                                                    categorie)[-1]
@@ -227,8 +205,9 @@ class Particulier:
         dico_itineraires = self.itineraires(adresse_depart, adresse_arrivee)
         dico_risque = self.evaluate_risque_itineraire(adresse_depart,
                                                       adresse_arrivee)
-        categorie_moins_risque = "car"
-        risque = dico_risque["car"]
+        # Pour le moment on initialise la catégorie la moins risquée à foot
+        categorie_moins_risque = "foot"
+        risque = 100.
 
         localisation_1 = geolocator.geocode(adresse_depart)
         coord_depart = (localisation_1.latitude, localisation_1.longitude)
@@ -241,9 +220,9 @@ class Particulier:
                       popup='Adresse d\'arrivée').add_to(carte_bronx)
 
         for categorie in dico_risque:
-            if dico_risque[categorie] < risque:
+            if dico_risque[categorie] < dico_risque[categorie_moins_risque]:
                 risque = dico_risque[categorie]
-                vehicule_moins_risque = categorie
+                categorie_moins_risque = categorie
 
         if self.categorie == categorie_moins_risque:
             # on trace l'itineraire
@@ -268,7 +247,7 @@ class Particulier:
             carte_bronx.save("carte_bronx.html")
             webbrowser.open('carte_bronx.html')
             return ("Choisissez plutôt ce type de vehicule : "
-                    f"{vehicule_moins_risque}, voici l'itineraire :")
+                    f"{categorie_moins_risque}, voici l'itineraire :")
 
     def risque_rue(self, rue):
         """
@@ -287,9 +266,3 @@ class Particulier:
         """
         risque = Utilisateur.risque_rue(rue, self.categorie)[-1]
         return risque
-
-
-Xavier = Particulier("car", "08:00")
-print(Xavier.eviter_zone_risquee("1 E 161st St, Bronx, NY 10451, États-Unis",
-                                 "111 E 164th St, Bronx, NY 10452, "
-                                 "États-Unis"))
