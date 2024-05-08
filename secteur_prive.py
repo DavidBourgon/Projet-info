@@ -170,7 +170,7 @@ class SecteurPrive:
         if type_vehicule is not None:
             data_par_type = Utilisateur.\
                 filtrer_par_modalite_variable(data, type_vehicule,
-                                              "VEHICLE.TYPE.CODE.1")
+                                              "VEHICLE.TYPE.CODE.1")[-1]
         else:
             data_par_type = data
 
@@ -183,8 +183,8 @@ class SecteurPrive:
             ind_risque += SecteurPrive.risque_rue_naif(data_par_type,
                                                        street,
                                                        categorie)[-1]
-        ind_normalise = (ind_risque/100) * (1/len(rues))
-        prix = (400 * ind_normalise) * (1 + self.marge)
+        ind_normalise = (ind_risque/100)/len(rues)
+        prix = (400 * ind_normalise) * (1 + self.marge) + 200
         return round(prix, 2)
 
     def __repr__(self, data, adresse_depart, adresse_arrivee,
@@ -200,4 +200,10 @@ class SecteurPrive:
                 f"vous devez vous acquitter de "
                 f"{self.__donner_prix(data, adresse_depart,
                                       adresse_arrivee, categorie,
-                                      type_vehicule=None)} €")
+                                      type_vehicule)} €")
+
+# data = pd.read_excel("Bronx_sans_Na.xlsx")
+# Groupama = SecteurPrive("Groupama", 0.8)
+# print(Groupama.__repr__(data, "Heath Avenue, Bronx, New York",
+#                         "Heath Avenue, Bronx, New York",
+#                         "car", "Pick-up Truck"))
