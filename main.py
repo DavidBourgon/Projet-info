@@ -12,7 +12,7 @@ os.system('pip install -r requirements.txt')
 # Création de deux particliers différents ayant
 # des moyens de locomotion différents et heure de départ différents
 John = Particulier("car", "08:00")
-Ashley = Particulier("foot", "12:00")
+Ashley = Particulier("foot", "11:00")
 
 print(John.eviter_zone_risquee("1 E 161st St, Bronx, NY 10451, États-Unis",
                                "111 E 164th St, Bronx, NY 10452, "
