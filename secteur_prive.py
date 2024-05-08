@@ -130,8 +130,8 @@ class SecteurPrive:
         for k in range(len(rues)):
             street = rues[k].upper()
             ind_risque += Utilisateur.risque_rue_naif(data_par_type,
-                                                       street,
-                                                       categorie)[-1]
+                                                      street,
+                                                      categorie)[-1]
         ind_normalise = (ind_risque/100)/len(rues)
         prix = (400 * ind_normalise) * (1 + self.marge) + 200
         return round(prix, 2)
@@ -151,8 +151,8 @@ class SecteurPrive:
                                       adresse_arrivee, categorie,
                                       type_vehicule)} €")
 
-# data = pd.read_excel("Bronx_sans_Na.xlsx")
-# Groupama = SecteurPrive("Groupama", 0.8)
-# print(Groupama.__repr__(data, "Heath Avenue, Bronx, New York",
-#                         "Heath Avenue, Bronx, New York",
-#                         "car", "Pick-up Truck"))
+data = pd.read_excel("Bronx_sans_Na.xlsx")
+Groupama = SecteurPrive("Groupama", 0.8)
+print(Groupama.__repr__(data, "Heath Avenue, Bronx, New York",
+                        "Heath Avenue, Bronx, New York",
+                        "car", "Pick-up Truck"))
