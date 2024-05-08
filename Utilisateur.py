@@ -424,6 +424,60 @@ class Utilisateur:
         return ["Liste des modalités différentes de la variable :",
                 variable, liste_modalites]
 
+    def risque_rue_naif(data, street, categorie):
+        """
+        Permet de calculer le danger d'une rue en %.
+
+        Parameters
+        ----------
+        data : Dataframe
+            Base de données sur laquelle nous travaillons.
+
+        street : str
+            Nom de la rue pour laquelle nous souhaitons déterminer le danger.
+
+        categorie : str
+            Catégorie d'usagés : piéton, cycliste ou automobiliste.
+
+        Returns
+        -------
+        str : Phrase indiquant le danger en % pour la rue et la catégorie
+              souhaitées.
+
+        """
+        data_street = Utilisateur.filtrer_par_nom_de_rue(data, street)[-1]
+        n_tot = Utilisateur.nombre_observation(data)[-1]
+        if n_tot == 0:
+            return ["Il n'y a pas d'accident ou bien le tableau est vide.",
+                    "Pour la rue :", street,
+                    "Il y a un rique (en %) de :", 0]
+        else:
+            n_mort_cat = Utilisateur.\
+                calcul_totaux_cat_statut(data_street, categorie, "T")[-1]
+            n_blesse_cat = Utilisateur.\
+                calcul_totaux_cat_statut(data_street, categorie, "B")[-1]
+
+            n_mort_total = Utilisateur.\
+                calcul_totaux_statut(data_street, "T")[-1]
+            n_blesse_total = Utilisateur.\
+                calcul_totaux_statut(data_street, "B")[-1]
+
+            if n_mort_total == 0 and n_blesse_total == 0:
+                risque = 0
+
+            elif n_mort_total == 0:
+                risque = 100*n_blesse_cat/n_blesse_total
+
+            elif n_blesse_total == 0:
+                risque = 100*n_mort_cat/n_mort_total
+
+            else:
+                risque = 100*(n_mort_cat/n_mort_total +
+                              n_blesse_cat/n_blesse_total)/2
+
+        return ["Pour la rue :", street,
+                "il y a un rique (en %) de :", risque]
+
     def type_vehicule():
         """
         Retourne une liste des types de véhicules autorisés.
