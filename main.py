@@ -1,6 +1,7 @@
 # %% Installe les dépendances et lance l'interface
 import os
 import webbrowser
+from particulier import Particulier 
 
 if __name__ == "__main__":
     os.system('pip install -r requirements.txt')

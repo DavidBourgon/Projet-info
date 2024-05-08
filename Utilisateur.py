@@ -424,9 +424,28 @@ class Utilisateur:
         return ["Liste des modalités différentes de la variable :",
                 variable, liste_modalites]
 
+    def type_vehicule():
+        """
+        Retourne une liste des types de véhicules autorisés.
+        -------
+        Returns:
+            list: Une liste contenant les types de véhicules autorisés.
+        """
+        return ['Sedan', 'Station Wagon/Sport Utility Vehicle', 'Taxi',
+                'Box Truck', 'Ambulance', 'Dump', 'E-Bike', 'Motorcycle',
+                'Bus', 'FDNY Ambul', 'Pick-up Truck', 'E-Scooter', 'Flat Rack',
+                'UNK', 'Tractor Truck Diesel', 'Flat Bed', 'GARBAGE TR',
+                'Bike', 'Garbage or Refuse', 'Van', 'SCHOOL BUS',
+                'Motorscooter', 'Moped', '3-Door', 'MOPED', 'Chassis Cab',
+                'Tow Truck / Wrecker', 'Convertible', 'MTA', 'TRAILER',
+                'AMBULANCE', 'E-bike', 'FIRE TRUCK', 'Refrigerated Van',
+                'MOTOR SCOO', 'Tractor Truck Gasoline', 'Carry All',
+                'ambulance', 'Motorbike', 'PICK UP', '4 dr sedan',
+                'PK', 'Postal ser', 'SANMEN COU']
+
     def df_blesse_mort_rue(data, categorie):
         """
-        Calcule le nombre de blessés et de morts par rue pour une 
+        Calcule le nombre de blessés et de morts par rue pour une
         catégorie donnée.
 .
 
@@ -444,14 +463,14 @@ class Utilisateur:
 
         Returns
         -------
-        DataFrame: Un DataFrame contenant le nombre de blessés et de 
+        DataFrame: Un DataFrame contenant le nombre de blessés et de
                     morts par rue.
-                   Pour la catégorie 'foot', renvoie un DataFrame 
-                   avec les colonnes 'Rue',
-                   'Nombre blesses pietons' et 'Nombre tues pietons'.
+                   Pour la catégorie 'foot', renvoie un DataFrame
+                   avec les colonnes 'Rue','Nombre blesses pietons'
+                   et 'Nombre tues pietons'.
                    Pour la catégorie 'cycle', renvoie un DataFrame
-                   avec les colonnes 'Rue',
-                   'Nombre blesses cyclistes' et 'Nombre tues cyclistes'.
+                   avec les colonnes 'Rue','Nombre blesses cyclistes'
+                   et 'Nombre tues cyclistes'.
         """
         data.dropna(subset=["CONTRIBUTING.FACTOR.VEHICLE.1"], inplace=True)
         data["NUMBER.OF.PERSONS.INJURED"] = \
@@ -515,7 +534,7 @@ class Utilisateur:
 
     def risque_rue_pieton_velo(data, rue, categorie):
         """
-        Calcule le risque d'une rue spécifique pour les piétons 
+        Calcule le risque d'une rue spécifique pour les piétons
         ou les cyclistes.
 
         Parameters
@@ -583,23 +602,26 @@ class Utilisateur:
             Soit "car" qui prend par défault "Sedan", sinon un type de véhicule
         Returns
         -------
-        float: Le risque calculé pour le type de voiture spécifié
-               sur la rue donnée.
-               Si le type de voiture n'est pas "car" ou si le type
-               spécifique de voiture ("Sedan") n'est pas trouvé dans
-               les données, renvoie 0.
+        float: Le risque calculé pour le type de voiture spécifié sur
+               la rue donnée.
+               Si le type de voiture n'est pas "car" ou si le type spécifique
+               de voiture n'est pas trouvé dans les données, renvoie 0.
                Sinon, renvoie une valeur de risque basée sur le nombre
-               d'accidents de type "Sedan" sur la rue spécifiée.
+               d'accidents impliquant ce type de véhicule sur la rue spécifiée.
 
         """
-        if voiture != "car" or 'Sedan' not in \
-           data['VEHICLE.TYPE.CODE.1'].values:
+        if voiture != 'car' or voiture not in Utilisateur.type_vehicule():
             return 0
-
-        df_filtre = data[(data["ON.STREET.NAME"].str.contains(street) |
-                          data["OFF.STREET.NAME"].str.contains(street) |
-                          data["CROSS.STREET.NAME"].str.contains(street)) &
-                         (data["VEHICLE.TYPE.CODE.1"] == 'Sedan')]
+        if voiture == "car":
+            df_filtre = data[(data["ON.STREET.NAME"].str.contains(street) |
+                              data["OFF.STREET.NAME"].str.contains(street) |
+                              data["CROSS.STREET.NAME"].str.contains(street)) &
+                             (data["VEHICLE.TYPE.CODE.1"] == voiture)]
+        else:
+            df_filtre = data[(data["ON.STREET.NAME"].str.contains(street) |
+                              data["OFF.STREET.NAME"].str.contains(street) |
+                              data["CROSS.STREET.NAME"].str.contains(street)) &
+                             (data["VEHICLE.TYPE.CODE.1"] == "Sedan")]
 
         nbr_acc = len(df_filtre)
 
@@ -617,25 +639,6 @@ class Utilisateur:
             return 0.9
         else:
             return 1
-
-    def type_vehicule():
-        """
-        Retourne une liste des types de véhicules autorisés.
-        -------
-        Returns:
-            list: Une liste contenant les types de véhicules autorisés.
-        """
-        return ['Sedan', 'Station Wagon/Sport Utility Vehicle', 'Taxi',
-                'Box Truck', 'Ambulance', 'Dump', 'E-Bike', 'Motorcycle',
-                'Bus', 'FDNY Ambul', 'Pick-up Truck', 'E-Scooter', 'Flat Rack',
-                'UNK', 'Tractor Truck Diesel', 'Flat Bed', 'GARBAGE TR',
-                'Bike', 'Garbage or Refuse', 'Van', 'SCHOOL BUS',
-                'Motorscooter', 'Moped', '3-Door', 'MOPED', 'Chassis Cab',
-                'Tow Truck / Wrecker', 'Convertible', 'MTA', 'TRAILER',
-                'AMBULANCE', 'E-bike', 'FIRE TRUCK', 'Refrigerated Van',
-                'MOTOR SCOO', 'Tractor Truck Gasoline', 'Carry All',
-                'ambulance', 'Motorbike', 'PICK UP', '4 dr sedan',
-                'PK', 'Postal ser', 'SANMEN COU']
 
     def risque_rue(data, rue, categorie):
         """
@@ -659,7 +662,7 @@ class Utilisateur:
 
         Returns
         -------
-        float: Le risque calculé pour le type de voiture spécifié
+        float: Le risque calculé en % pour le type de transport spécifié
                sur la rue donnée.
                Si le type de voiture n'est pas "car" ou si le type
                spécifique de voiture ("Sedan") n'est pas trouvé dans
