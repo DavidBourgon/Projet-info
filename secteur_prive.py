@@ -150,4 +150,3 @@ class SecteurPrive:
                 f"{self.__donner_prix(data, adresse_depart,
                                       adresse_arrivee, categorie,
                                       type_vehicule)} €")
-
