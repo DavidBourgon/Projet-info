@@ -15,12 +15,12 @@ Axa = SecteurPrive("AXA", 0.8)
 # Chez Groupama
 print(Groupama.__repr__(data, "1818 Archer St, Bronx, NY",
                         "1775 Mansion St, Bronx, NY",
-                        "car", "Pick-up Truck"))
+                        "car", "Sedan"))
 
 # Chez Axa
 print(Axa.__repr__(data,"1818 Archer St, Bronx, NY",
                         "1775 Mansion St, Bronx, NY",
-                        "car", "Pick-up Truck"))
+                        "car", "Sedan"))
 
 # Lorsque le client se déplace en vélo
 # Chez Groupama
