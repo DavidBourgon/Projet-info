@@ -146,6 +146,4 @@ class SecteurPrive:
         return (f"Pour vous assurer sur votre trajet quotidien, auprès de "
                 f"{self.nom_assureur} "
                 f"vous devez vous acquitter de "
-                f"{self.__donner_prix(data, adresse_depart,
-                                      adresse_arrivee, categorie,
-                                      type_vehicule)} €")
+                f"{self.__donner_prix(data, adresse_depart, adresse_arrivee, categorie, type_vehicule)} €")
