@@ -14,22 +14,22 @@ Axa = SecteurPrive("AXA", 0.8)
 # Si ce dernier se déplace en voiture ainsi que le type de véhicule
 # Chez Groupama
 print(Groupama.__repr__(data, 
-                        "1794 Merill Street, Bronx, NY",
+                        "1794 Merrill Street, Bronx, NY",
                         "1928 Benedict Ave, Bronx, NY",
                         "car", "Pick-up Truck"))
 
 # Chez Axa
-print(Axa.__repr__(data,"1794 Merill Street, Bronx, NY",
+print(Axa.__repr__(data,"1794 Merrill Street, Bronx, NY",
                         "1928 Benedict Ave, Bronx, NY",
                         "car", "Pick-up Truck"))
 
 # Lorsque le client se déplace en vélo
 # Chez Groupama
-print(Groupama.__repr__(data, "1794 Merill Street, Bronx, NY",
+print(Groupama.__repr__(data, "1794 Merrill Street, Bronx, NY",
                         "1928 Benedict Ave, Bronx, NY",
                         "cycle"))
 
 # Chez Axa
-print(Axa.__repr__(data, "1794 Merill Street, Bronx, NY",
+print(Axa.__repr__(data, "1794 Merrill Street, Bronx, NY",
                    "1928 Benedict Ave, Bronx, NY",
                    "cycle"))
